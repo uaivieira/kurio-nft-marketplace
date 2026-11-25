@@ -1,0 +1,38 @@
+import { queryClient } from './query-client'
+import { clearCheckoutDraft } from './checkout-draft'
+import { clearSession, getSession, setSession } from './session-store'
+import type { Session } from '@/contracts/auth'
+import * as authApi from '@/api/auth'
+
+/**
+ * Identity transitions. Every one of them wipes private cache entries so data from a
+ * previous user can never render for the next one; the realtime provider reconnects
+ * automatically because it is keyed by the session token.
+ */
+function wipePrivateData() {
+  queryClient.removeQueries({ queryKey: ['private'] })
+}
+
+export async function startSession(session: Session) {
+  const previous = getSession()
+  if (previous && previous.user.id !== session.user.id) clearCheckoutDraft()
+  wipePrivateData()
+  setSession(session)
+}
+
+export async function logout() {
+  try {
+    await authApi.logout()
+  } catch {
+    /* the local session is dropped regardless of the network outcome */
+  }
+  clearCheckoutDraft()
+  clearSession()
+  queryClient.clear()
+}
+
+/** Called by the HTTP layer when the API reports SESSION_EXPIRED. The checkout draft is kept. */
+export function expireSession() {
+  clearSession()
+  queryClient.clear()
+}

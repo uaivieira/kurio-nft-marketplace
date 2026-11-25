@@ -1,0 +1,134 @@
+@import 'tailwindcss' source('.');
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/roboto-mono-latin-400-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/roboto-mono-latin-700-normal.woff2') format('woff2');
+}
+
+/* Design tokens from the Figma variables (color/*, font/family). */
+:root {
+  --background: #140d0a;
+  --foreground: #f7f3ec; /* color/text-primary */
+  --card: #241612; /* color/surface-card */
+  --card-foreground: #f5f1eb;
+  --popover: #241612;
+  --popover-foreground: #f5f1eb;
+  --primary: #d28a4c; /* color/primary */
+  --primary-foreground: #140d0a;
+  --secondary: #38220f; /* color/surface-dark */
+  --secondary-foreground: #f5f1eb;
+  --muted: #241612;
+  --muted-foreground: #b39463; /* color/secondary */
+  --text-secondary: #cfb28c; /* color/text-secondary */
+  --accent: #38220f;
+  --accent-foreground: #f5f1eb;
+  --highlight: #e89b55; /* color/text-accent */
+  --destructive: #ff8a7a;
+  --success: #8fd19e;
+  --border: #3f2319; /* color/border */
+  --input: #55321f; /* color/border-soft */
+  --ring: #e89b55;
+  --radius: 0.25rem;
+  --gradient-cta: linear-gradient(90deg, #d28a4c 0%, #a8723f 100%);
+}
+
+@theme inline {
+  --font-sans: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: 'Roboto Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-text-secondary: var(--text-secondary);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 12px);
+  /* Content column of every desktop frame is 1200px; the container adds the 20px gutters. */
+  --container-page: 77.5rem;
+
+  /* Figma type scale (text styles) mapped onto the Tailwind sizes it does not already cover. */
+  --text-micro: 0.5625rem; /* Tiny/9 Bold */
+  --text-micro--line-height: 1;
+  --text-tiny: 0.625rem; /* Tiny/10 Medium */
+  --text-tiny--line-height: 1;
+  --text-caption: 0.8125rem; /* Caption/13 Regular · lh 22 */
+  --text-caption--line-height: 1.375rem;
+  --text-md: 0.9375rem; /* Body/15 */
+  --text-md--line-height: 1rem;
+  --text-title: 1.75rem; /* section and product titles (28px, 36px box) */
+  --text-title--line-height: 2.25rem;
+  --text-display: 2.6875rem; /* Display/43 Bold · lh 70 */
+  --text-display--line-height: 4.375rem;
+  --leading-row: 2.5rem; /* Body/15 · lh 40 (filter rows) */
+  --tracking-label: 0.1em; /* Body/14 Bold letter-spacing 10% */
+  --animate-shimmer: shimmer 1.6s linear infinite;
+
+  @keyframes shimmer {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+    scrollbar-color: var(--border) var(--background);
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    min-height: 100dvh;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  img {
+    max-width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile call-to-action gradient from the mobile frames. */
+@utility bg-cta {
+  background-image: var(--gradient-cta);
+}
