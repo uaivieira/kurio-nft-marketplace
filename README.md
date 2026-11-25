@@ -53,7 +53,7 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | Comando | O que faz |
 |---|---|
 | `pnpm dev` | Desenvolvimento com mocks |
-| `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) |
+| `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) + pré-renderização do início e das páginas de NFT (`dist/index.html`, `dist/nft/<id>.html`) |
 | `pnpm preview` | Serve o build em http://127.0.0.1:4173 |
 | `pnpm typecheck` | `tsc -b` em app, testes e configs |
 | `pnpm lint` | oxlint |

@@ -6,9 +6,11 @@ test('skeletons durante carregamento lento', async ({ app }) => {
   await expect(page.getByTestId('catalog-skeleton')).toBeVisible()
   await expect(page.getByTestId('nft-card').first()).toBeVisible({ timeout: 10_000 })
 
-  await page.goto('/nft/emerald-ape-042')
+  // A direct visit to /nft/<id> is prerendered with its data; in-app navigation to a detail that is
+  // not cached yet shows the skeleton while the slow API answers.
+  await page.getByRole('link', { name: 'Sage Nomad #009', exact: true }).click()
   await expect(page.getByTestId('detail-skeleton')).toBeVisible()
-  await expect(page.getByRole('heading', { name: 'Emerald Ape #042' })).toBeVisible({ timeout: 10_000 })
+  await expect(page.getByRole('heading', { name: 'Sage Nomad #009' })).toBeVisible({ timeout: 10_000 })
 
   await addToCart(page, 'emerald-ape-042')
   await page.goto('/cart')

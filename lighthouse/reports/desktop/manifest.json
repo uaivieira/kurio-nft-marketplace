@@ -2,8 +2,8 @@
   {
     "url": "http://127.0.0.1:4174/",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_28_04.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_28_04.report.json",
+    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_56_49.report.html",
+    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_56_49.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
@@ -14,8 +14,8 @@
   {
     "url": "http://127.0.0.1:4174/",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_28_14.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_28_14.report.json",
+    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_56_59.report.html",
+    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_56_59.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
@@ -26,8 +26,8 @@
   {
     "url": "http://127.0.0.1:4174/nft/emerald-ape-042",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_28_23.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_28_23.report.json",
+    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_57_28.report.html",
+    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_57_28.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
@@ -38,8 +38,8 @@
   {
     "url": "http://127.0.0.1:4174/nft/emerald-ape-042",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_28_43.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_28_43.report.json",
+    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_57_38.report.html",
+    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_57_38.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
@@ -50,8 +50,8 @@
   {
     "url": "http://127.0.0.1:4174/",
     "isRepresentativeRun": true,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_27_54.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_27_54.report.json",
+    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_57_09.report.html",
+    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_25_22_57_09.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
@@ -62,8 +62,8 @@
   {
     "url": "http://127.0.0.1:4174/nft/emerald-ape-042",
     "isRepresentativeRun": true,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_28_33.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_28_33.report.json",
+    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_57_18.report.html",
+    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_25_22_57_18.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,

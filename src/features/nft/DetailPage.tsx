@@ -1,4 +1,4 @@
-import { useNavigate } from '@tanstack/react-router'
+import { useNavigate, useRouterState } from '@tanstack/react-router'
 import { Link } from '@tanstack/react-router'
 import { MinusGlyph, PlusGlyph } from '@/components/icons/glyphs'
 import { CartIcon, LinkedinIcon, MessageIcon, SearchIcon, StarIcon, XBrandIcon } from '@/components/icons'
@@ -191,6 +191,9 @@ export function DetailPage({ nftId }: { nftId: string }) {
 }
 
 function DetailContent({ nft }: { nft: NftDetail }) {
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
+  // Absolute in the browser; relative when prerendered at build time (no window there).
+  const shareUrl = typeof window === 'undefined' ? pathname : `${window.location.origin}${pathname}`
   const [editionId, setEditionId] = useState(() => defaultEdition(nft.editions).id)
   const edition = nft.editions.find((candidate) => candidate.id === editionId) ?? defaultEdition(nft.editions)
 
@@ -222,9 +225,9 @@ function DetailContent({ nft }: { nft: NftDetail }) {
             </dl>
             <p className="mt-3 hidden items-center gap-2 text-base leading-4 font-bold md:flex">
               Compartilhar este NFT:
-              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href)}`} target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no LinkedIn (abre em nova aba)" className="flex size-6 items-center justify-center hover:text-highlight"><LinkedinIcon className="size-[15px]" /></a>
-              <a href={`mailto:?subject=${encodeURIComponent(nft.name)}&body=${encodeURIComponent(location.href)}`} aria-label="Compartilhar por e-mail" className="flex size-6 items-center justify-center hover:text-highlight"><MessageIcon className="size-[18px]" /></a>
-              <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(nft.name)}`} target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no X (abre em nova aba)" className="flex size-6 items-center justify-center hover:text-highlight"><XBrandIcon className="size-[14px]" /></a>
+              <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no LinkedIn (abre em nova aba)" className="flex size-6 items-center justify-center hover:text-highlight"><LinkedinIcon className="size-[15px]" /></a>
+              <a href={`mailto:?subject=${encodeURIComponent(nft.name)}&body=${encodeURIComponent(shareUrl)}`} aria-label="Compartilhar por e-mail" className="flex size-6 items-center justify-center hover:text-highlight"><MessageIcon className="size-[18px]" /></a>
+              <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(nft.name)}`} target="_blank" rel="noopener noreferrer" aria-label="Compartilhar no X (abre em nova aba)" className="flex size-6 items-center justify-center hover:text-highlight"><XBrandIcon className="size-[14px]" /></a>
             </p>
           </div>
         </div>

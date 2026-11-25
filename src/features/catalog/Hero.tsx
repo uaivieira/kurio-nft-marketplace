@@ -57,7 +57,8 @@ export function Hero() {
           </div>
         </div>
         <div className="absolute top-4 right-4 w-[34%] lg:static lg:w-[450px] lg:justify-self-end">
-          <NftImage artwork={slide.artwork} alt={slide.alt} sizes="(min-width: 1024px) 450px, 130px" size={480} priority className="rounded-2xl" />
+          {/* Mobile asks for the same file as the first catalog card (shared, preloaded LCP image). */}
+          <NftImage artwork={slide.artwork} alt={slide.alt} sizes="(min-width: 1024px) 450px, 45vw" size={480} priority className="rounded-2xl" />
           <div aria-hidden="true" className="absolute -bottom-2 -left-3 w-[45%] rounded-xl border-2 border-card lg:hidden">
             <NftImage artwork="sage" alt="" sizes="60px" size={160} className="rounded-xl" />
           </div>

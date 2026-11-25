@@ -187,7 +187,25 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 
 Medianas de 3 execuções por página e perfil em [lighthouse/reports/summary.md](./lighthouse/reports/summary.md). Configuração em `lighthouse/lighthouserc.cjs`; relatórios HTML/JSON em `lighthouse/reports/<perfil>/`.
 
-Na execução de 25/11/2026, Performance atingiu 90 no início mobile, 91 no detalhe mobile e 100 nas duas páginas desktop. Accessibility, Best Practices e SEO atingiram 100 em todos os perfis; CLS e TBT foram zero. As medianas e as condições ficam no relatório acima. As otimizações incluem latência padrão de 20 ms (o cenário `slow` mantém 2,5 s), preload responsivo da arte LCP, AVIF, fontes locais, divisão por rota e carregamento adiado de Socket.IO e componentes não críticos. O backend usa interceptação na página para eliminar o registro e a ativação de service worker no carregamento frio. A auditoria usa o build completo da demonstração. Na URL publicada (Vercel, com compressão Brotli/gzip), uma execução mobile de verificação marcou Performance 98 e Accessibility, Best Practices e SEO 100 nas duas páginas (LCP 2,3 s); a diferença para o `vite preview` local vem principalmente da compressão de transferência.
+Mediana atual: **100 em Performance, Accessibility, Best Practices e SEO** no início e no detalhe, em mobile e desktop (LCP mobile 1,6 s no início e 1,4 s no detalhe; CLS e TBT zero).
+
+**Como:** o LCP é uma imagem que depende de dados. Enquanto a página dependia do JS para existir, a cadeia HTML → ~300 kB de JS → boot do backend simulado → renderização → imagem deixava o LCP em ~3,6 s no 4G lento simulado.
+
+- **Pré-renderização em build (SSG).** `pnpm build` também compila `src/entry-prerender.tsx` para Node. `scripts/prerender.ts` gera o HTML do início (`dist/index.html`) e de cada NFT (`dist/nft/<id>.html`) com o router e os componentes reais. Os dados vêm do seed padrão do backend simulado, consultado pelas funções de domínio e validado pelos mesmos contratos Zod. O cache do TanStack Query vai desidratado no HTML (`window.__KURIO_STATE__`).
+- **Assumir o HTML sem trocar o que aparece.** O cliente hidrata o cache com os dados marcados como velhos, resolve a rota (`router.load()`) e só então monta com `createRoot` dentro de `startTransition`. A primeira renderização é idêntica ao HTML, e as queries revalidam em segundo plano contra o backend deste navegador. Um teste E2E garante deslocamento de layout ~0 nessa troca.
+- **JS fora do caminho do LCP.** Nas páginas pré-renderizadas, o script de entrada e os `modulepreload` são injetados por um carregador inline assim que o navegador reporta o LCP da imagem (`PerformanceObserver`), com teto de 1,5 s. A página já está completa e visível; links funcionam como navegação normal até o app assumir.
+- **Outras URLs.** O fallback de SPA (carrinho, checkout, conta) e o início com filtros na URL recebem esse HTML marcado como desatualizado antes da primeira pintura: o conteúdo pré-renderizado fica oculto e o app carrega na hora, então o catálogo padrão nunca aparece no lugar do pedido.
+- **Demais otimizações:**
+  - latência padrão de 20 ms (o cenário `slow` mantém 2,5 s);
+  - preload responsivo da arte LCP de cada página;
+  - imagens AVIF;
+  - fonte local com preload só do peso 400;
+  - interceptação em página (sem service worker);
+  - Socket.IO, toasts, painel de cenários e diálogos carregados depois da primeira pintura;
+  - remoção de `tough-cookie` do bundle de mocks.
+- **Limitação:** o HTML estático reflete o seed padrão. Num navegador com dados simulados alterados (preços mudados por cenário, por exemplo), os valores pré-renderizados aparecem por um instante até a revalidação em segundo plano.
+
+A auditoria usa o mesmo build publicado, com imagens, fontes e funcionalidades completas.
 
 ## Limitações conhecidas
 
