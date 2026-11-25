@@ -2,6 +2,8 @@
 
 Implementação do desafio frontend "NFT Marketplace" em React + TypeScript. Toda a API (REST e Socket.IO) é simulada na camada de rede com MSW, inclusive no build publicado.
 
+- **Demo pública:** https://nft-marketplace-one-nu.vercel.app (mocks e tempo real ativos; use `ana@kurio.test` / `Kurio#2026`)
+- **Repositório:** https://github.com/uaivieira/kurio-nft-marketplace
 - Arquitetura, contratos e decisões: [ARCHITECTURE.md](./ARCHITECTURE.md)
 - Resultados do Lighthouse: [lighthouse/reports/summary.md](./lighthouse/reports/summary.md)
 

@@ -38,10 +38,10 @@ test('timeout após criar o pedido recupera o mesmo pedido', async ({ app }) => 
   await addToCart(page, 'emerald-ape-042')
   await openReview(page)
   await page.getByRole('button', { name: 'Enviar pedido' }).click()
-  // The first response never arrives: jump past the 4 s Axios timeout. The client resends with the
-  // same Idempotency-Key and gets back the order that was already created.
+  // The first response never arrives: jump past the HTTP timeout (4 s in the E2E build, 10 s by default).
+  // The client resends with the same Idempotency-Key and gets back the order that was already created.
   await expect(page.getByRole('button', { name: 'Enviando…' })).toBeVisible()
-  await page.clock.fastForward(4500)
+  await page.clock.fastForward(10_500)
   await expect(page).toHaveURL(/\/orders\//)
   await page.clock.fastForward(3000)
   await expect(page.getByTestId('order-confirmed')).toBeVisible()

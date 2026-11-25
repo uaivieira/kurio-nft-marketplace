@@ -28,3 +28,4 @@ dist-e2e
 test-results
 .lighthouseci
 figma/report
+.vercel
