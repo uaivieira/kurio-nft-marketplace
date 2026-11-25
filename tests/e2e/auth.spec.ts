@@ -52,7 +52,8 @@ test('sessão expirada durante a navegação preserva o retorno', async ({ app }
   await app.login('ana')
   await backend.expireSessions()
   await page.goto('/profile')
-  await expect(page).toHaveURL(/\/login\?.*reason=expired/)
+  // Boot + guarded request + redirect: allow for a slower network when run against the deployment.
+  await expect(page).toHaveURL(/\/login\?.*reason=expired/, { timeout: 10_000 })
   await expect(page.getByText('Sua sessão expirou. Entre novamente para retomar de onde parou.')).toBeVisible()
   const dialog = page.getByRole('dialog')
   await dialog.getByLabel('E-mail').fill(USERS.ana.email)
