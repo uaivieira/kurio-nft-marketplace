@@ -49,6 +49,20 @@ const subscribe = (listener: Listener) => {
 
 export const useSession = () => useSyncExternalStore(subscribe, getSession, getSession)
 
+const EXPIRED_KEY = 'kurio:session-expired'
+
+/** Remembers that the last session ended by expiry (not logout), for the next login prompt. */
+export function markSessionExpired() {
+  sessionStorage.setItem(EXPIRED_KEY, '1')
+}
+
+/** Reads and clears the expiry mark. */
+export function consumeSessionExpired() {
+  const expired = sessionStorage.getItem(EXPIRED_KEY) === '1'
+  sessionStorage.removeItem(EXPIRED_KEY)
+  return expired
+}
+
 /** Identifies the visitor's cart before authentication. */
 export function getGuestId() {
   let id = localStorage.getItem(GUEST_KEY)

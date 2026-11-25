@@ -1,6 +1,6 @@
 import { queryClient } from './query-client'
 import { clearCheckoutDraft } from './checkout-draft'
-import { clearSession, getSession, setSession } from './session-store'
+import { clearSession, consumeSessionExpired, getSession, markSessionExpired, setSession } from './session-store'
 import type { Session } from '@/contracts/auth'
 import * as authApi from '@/api/auth'
 
@@ -16,6 +16,7 @@ function wipePrivateData() {
 export async function startSession(session: Session) {
   const previous = getSession()
   if (previous && previous.user.id !== session.user.id) clearCheckoutDraft()
+  consumeSessionExpired()
   wipePrivateData()
   setSession(session)
 }
@@ -27,12 +28,14 @@ export async function logout() {
     /* the local session is dropped regardless of the network outcome */
   }
   clearCheckoutDraft()
+  consumeSessionExpired()
   clearSession()
   queryClient.clear()
 }
 
 /** Called by the HTTP layer when the API reports SESSION_EXPIRED. The checkout draft is kept. */
 export function expireSession() {
+  markSessionExpired()
   clearSession()
   queryClient.clear()
 }
