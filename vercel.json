@@ -2,22 +2,25 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "pnpm build",
   "outputDirectory": "dist",
-  "rewrites": [
+  "routes": [
     {
-      "source": "/((?!assets/|nft/[^/]+\\.(?:avif|webp)$|fonts/|favicon\\.svg$|robots\\.txt$).*)",
-      "destination": "/index.html"
-    }
-  ],
-  "headers": [
+      "src": "/(assets|fonts)/(.*)",
+      "headers": {
+        "cache-control": "public, max-age=31536000, immutable"
+      },
+      "continue": true
+    },
     {
-      "source": "/(assets|fonts)/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+      "src": "/nft/([a-z0-9-]+)",
+      "dest": "/nft/$1.html",
+      "check": true
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
-  ],
-  "cleanUrls": true
+  ]
 }

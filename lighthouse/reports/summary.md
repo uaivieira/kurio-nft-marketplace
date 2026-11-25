@@ -1,6 +1,6 @@
 # Lighthouse — medianas (3 execuções por página e perfil)
 
-Gerado em 2026-11-25T22:57:46.682Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
+Gerado em 2026-11-25T23:09:05.741Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
 
 | Página | Perfil | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|

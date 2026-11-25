@@ -49,11 +49,11 @@ export const test = base.extend<{ app: { page: Page; backend: ReturnType<typeof 
     const open = async (path = '/', scenario?: string) => {
       const url = scenario ? `${path}${path.includes('?') ? '&' : '?'}scenario=${scenario}` : path
       await page.goto(url)
-      await page.waitForFunction(() => Boolean(window.__kurio))
+      await page.waitForFunction(() => Boolean(window.__kurio) && document.documentElement.hasAttribute('data-app-ready'))
     }
     const login = async (user: UserKey) => {
       await page.goto('/login')
-      await page.waitForFunction(() => Boolean(window.__kurio))
+      await page.waitForFunction(() => Boolean(window.__kurio) && document.documentElement.hasAttribute('data-app-ready'))
       const dialog = page.getByRole('dialog')
       await dialog.getByLabel('E-mail').fill(USERS[user].email)
       await dialog.getByLabel('Senha', { exact: true }).fill(USERS[user].password)

@@ -3,7 +3,7 @@
  *
  * Each page gets the prerendered markup in #root, the dehydrated query cache, and a loader that
  * fetches the app bundle once the LCP image has been painted (the page is already complete and
- * visible), with a 1.5 s ceiling.
+ * visible), with a 1.5 s ceiling, or immediately on the first user interaction.
  * Any other path served with this HTML (SPA fallback, or the home with catalog filters in the URL)
  * is marked stale before first paint: the prerendered markup stays hidden and the app loads at once.
  *
@@ -55,12 +55,12 @@ async function main() {
     <style>[data-prerender-stale] #root{visibility:hidden}</style>
     ${preload}`
     const loader = `<script>window.__KURIO_STATE__=${json(state)};window.__KURIO_PRERENDER_PATH__=${json(route)}</script>
-    <script>(function(){var src=${json(entry)},pre=${json(preloads)},done=false;function go(){if(done)return;done=true;pre.forEach(function(h){var l=document.createElement('link');l.rel='modulepreload';l.crossOrigin='';l.href=h;document.head.appendChild(l)});var s=document.createElement('script');s.type='module';s.crossOrigin='';s.src=src;document.head.appendChild(s)}if(document.documentElement.hasAttribute('data-prerender-stale'))return go();setTimeout(go,1500);try{var po=new PerformanceObserver(function(list){list.getEntries().forEach(function(e){if(e.element&&e.element.tagName==='IMG'){po.disconnect();setTimeout(go,0)}})});po.observe({type:'largest-contentful-paint',buffered:true})}catch(err){go()}})()</script>`
+    <script>(function(){var src=${json(entry)},pre=${json(preloads)},done=false;function go(){if(done)return;done=true;pre.forEach(function(h){var l=document.createElement('link');l.rel='modulepreload';l.crossOrigin='';l.href=h;document.head.appendChild(l)});var s=document.createElement('script');s.type='module';s.crossOrigin='';s.src=src;document.head.appendChild(s)}if(document.documentElement.hasAttribute('data-prerender-stale'))return go();setTimeout(go,1500);['pointerdown','keydown','touchstart','focusin'].forEach(function(t){addEventListener(t,go,{once:true,capture:true,passive:true})});try{var po=new PerformanceObserver(function(list){list.getEntries().forEach(function(e){if(e.element&&e.element.tagName==='IMG'){po.disconnect();setTimeout(go,0)}})});po.observe({type:'largest-contentful-paint',buffered:true})}catch(err){go()}})()</script>`
 
     const page = base
       .replace('<!--lcp-preload-->', head)
       .replace('<div id="root"></div>', `<div id="root">${html}</div>\n    ${loader}`)
-    // `/nft/<id>` → dist/nft/<id>.html: served for the extensionless URL by vite preview (sirv) and by Vercel (cleanUrls).
+    // `/nft/<id>` → dist/nft/<id>.html: served for the extensionless URL by vite preview (sirv) and by a Vercel rewrite.
     const file = route === '/' ? path.join(DIST, 'index.html') : path.join(DIST, `${route}.html`)
     await mkdir(path.dirname(file), { recursive: true })
     await writeFile(file, page)
