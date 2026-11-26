@@ -113,14 +113,14 @@ function Purchase({ nft, edition, onEditionChange }: { nft: NftDetail; edition: 
         {soldOut && <p role="status" className="mt-2 text-xs text-destructive">{t('detail.editionSoldOut')}</p>}
       </fieldset>
 
-      <div data-testid="purchase-row" className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 max-md:gap-y-5 max-md:sticky max-md:bottom-0 max-md:z-20 max-md:order-last max-md:-mx-6 max-md:mt-6 max-md:rounded-t-[2rem] max-md:bg-card max-md:px-6 max-md:pt-5 max-md:pb-[34px] max-md:shadow-[0_-12px_32px_rgba(0,0,0,0.45)] md:mt-3 md:grid md:grid-cols-[auto_minmax(0,1fr)] md:gap-x-3 md:min-h-[49.5px] md:items-start">
+      <div data-testid="purchase-row" className="mt-5 flex w-full flex-wrap items-center justify-between gap-x-6 gap-y-3 max-md:gap-y-5 max-md:sticky max-md:bottom-0 max-md:z-20 max-md:order-last max-md:-mx-6 max-md:mt-6 max-md:rounded-t-[2rem] max-md:bg-card max-md:px-6 max-md:pt-5 max-md:pb-[34px] max-md:shadow-[0_-12px_32px_rgba(0,0,0,0.45)] md:mt-3 md:min-h-[49.5px] md:items-center">
         <div className="flex items-center gap-[9px] md:gap-3">
           <span aria-hidden="true" className="text-md font-medium text-text-secondary md:hidden">{t('detail.quantityShort')}</span>
           <QuantityStepper value={quantity} max={limit} onChange={setQuantity} size="adaptive" live testId="quantity" />
         </div>
         <p className="ml-auto text-xl font-bold text-highlight md:hidden" data-testid="mobile-price">{formatEth(edition.price)}</p>
-        {!soldOut && quantity >= limit && <p className="basis-full text-xs text-muted-foreground md:col-span-2 md:order-last" role="status">{t('detail.limit', { count: limit })}</p>}
-        <div className="flex w-full gap-3 md:ml-auto md:w-full md:min-w-0 md:max-w-[268px] md:gap-2">
+        {!soldOut && quantity >= limit && <p className="basis-full text-xs text-muted-foreground md:order-last" role="status">{t('detail.limit', { count: limit })}</p>}
+        <div className="flex w-full items-center gap-3 md:ml-0 md:w-[268px] md:shrink-0 md:gap-2">
           <Button size="lg" className="h-[60px] flex-1 rounded-full bg-cta max-md:max-w-[196px] max-md:text-base md:h-10 md:w-auto md:min-w-0 md:flex-1 md:rounded-md md:bg-none md:bg-primary md:px-0 md:text-sm" disabled={soldOut || addToCart.isPending} onClick={() => submit(true)}>
             <span className="md:hidden">{t('detail.buyMobile')}</span>
             <span className="hidden md:inline">{t('detail.buy')}</span>
