@@ -24,8 +24,9 @@ export function MockPanel() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button type="button" aria-label={t('mocks.panel')} className="fixed right-0 bottom-28 z-40 flex h-9 w-7 cursor-pointer items-center justify-center rounded-l-md border border-r-0 border-primary bg-card text-primary opacity-80 hover:opacity-100 md:bottom-3">
-          <WrenchGlyph className="size-4" aria-hidden="true" />
+        <button type="button" aria-label={t('mocks.panel')} data-testid="mock-panel-trigger" className="fixed right-4 bottom-[111px] z-40 inline-flex size-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-primary text-sm font-bold text-primary-foreground shadow-lg ring-2 ring-background transition-colors hover:bg-highlight md:bottom-4 md:h-11 md:w-auto md:px-4">
+          <WrenchGlyph className="size-5" aria-hidden="true" />
+          <span aria-hidden="true" className="max-md:hidden">{t('mocks.trigger')}</span>
         </button>
       </DialogTrigger>
       <DialogContent className="max-h-[85vh] overflow-y-auto">

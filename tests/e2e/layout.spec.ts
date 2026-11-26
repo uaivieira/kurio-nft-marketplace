@@ -29,6 +29,32 @@ async function purchaseRowClearsMetadata(page: Page) {
 test.describe('tablet and narrow desktop layout', () => {
   test.skip(({ isMobile }) => isMobile, 'widths are set explicitly in the desktop project')
 
+  test('header actions line up with the menu text', async ({ app }) => {
+    const { page } = app
+    const textMiddle = (selector: string) => page.locator(selector).first().evaluate((element) => {
+      const range = document.createRange()
+      range.selectNodeContents(element)
+      const box = range.getBoundingClientRect()
+      return (box.top + box.bottom) / 2
+    })
+    const boxMiddle = (selector: string) => page.locator(selector).first().evaluate((element) => {
+      const box = element.getBoundingClientRect()
+      return (box.top + box.bottom) / 2
+    })
+    for (const width of [768, 1024, 1440]) {
+      await page.setViewportSize({ width, height: 900 })
+      await app.open('/mercado')
+      const menu = await textMiddle('header nav a')
+      expect(Math.abs((await textMiddle('header a[href^="/login"]')) - menu), `login at ${width}px`).toBeLessThanOrEqual(1)
+      expect(Math.abs((await boxMiddle('header [data-testid="header-actions"] button')) - menu), `search at ${width}px`).toBeLessThanOrEqual(1)
+      expect(Math.abs((await boxMiddle('header a[href="/cart"] svg')) - menu), `cart at ${width}px`).toBeLessThanOrEqual(1)
+    }
+    await app.login('ana')
+    await page.goto('/mercado')
+    await expect(page.locator('header a[href="/profile"]')).toBeVisible()
+    expect(Math.abs((await textMiddle('header a[href="/profile"] span')) - (await textMiddle('header nav a')))).toBeLessThanOrEqual(1)
+  })
+
   for (const width of WIDTHS) {
     test(`no overlap or horizontal scroll at ${width}px`, async ({ app }) => {
       test.setTimeout(120_000)

@@ -66,15 +66,15 @@ export function Header() {
           <SoonLabel className="pt-[3px] text-base leading-4">{t('layout.header.creators')}</SoonLabel>
           <SoonLabel className="pt-[3px] text-base leading-4">{t('layout.header.learn')}</SoonLabel>
         </nav>
-        <div className="flex items-start justify-end gap-4">
+        <div className="flex h-[21px] items-center justify-end gap-4" data-testid="header-actions">
           <SearchDialog
             trigger={
-              <button type="button" aria-label={t('layout.header.search')} className="-mr-3 inline-flex size-10 -translate-y-[3px] cursor-pointer items-center justify-center rounded-sm">
+              <button type="button" aria-label={t('layout.header.search')} className="-mr-3 inline-flex size-10 cursor-pointer items-center justify-center rounded-sm">
                 <SearchIcon className="size-6" aria-hidden="true" />
               </button>
             }
           />
-          <CartLink className="-translate-y-1.5" />
+          <CartLink />
           {session ? (
             <Link to="/profile" aria-label={t('layout.header.profile', { name: session.user.displayName })} className="ml-4 inline-flex h-[35px] items-center gap-2 rounded-md border border-primary px-2.5 text-base font-medium">
               {session.user.avatarUrl ? (

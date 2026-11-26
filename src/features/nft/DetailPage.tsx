@@ -115,7 +115,7 @@ function Purchase({ nft, edition, onEditionChange }: { nft: NftDetail; edition: 
         {soldOut && <p role="status" className="mt-2 text-xs text-destructive">{t('detail.editionSoldOut')}</p>}
       </fieldset>
 
-      <div data-testid="purchase-row" className="mt-5 flex w-full flex-wrap items-center justify-between gap-x-6 gap-y-3 max-md:gap-y-5 max-md:sticky max-md:bottom-0 max-md:z-20 max-md:order-last max-md:-mx-6 max-md:mt-6 max-md:rounded-t-[2rem] max-md:bg-card max-md:px-6 max-md:pt-5 max-md:pb-[34px] max-md:shadow-[0_-12px_32px_rgba(0,0,0,0.45)] md:mt-3 md:grid md:min-h-[49.5px] md:grid-cols-[minmax(0,1fr)_268px] md:items-center md:gap-x-6">
+      <div data-testid="purchase-row" className="mt-5 flex flex-wrap md:w-full items-center justify-between gap-x-6 gap-y-3 max-md:gap-y-5 max-md:sticky max-md:bottom-0 max-md:z-20 max-md:order-last max-md:-mx-6 max-md:mt-6 max-md:rounded-t-[2rem] max-md:bg-card max-md:px-6 max-md:pt-5 max-md:pb-[34px] max-md:shadow-[0_-12px_32px_rgba(0,0,0,0.45)] md:mt-3 md:grid md:min-h-[49.5px] md:grid-cols-[minmax(0,1fr)_268px] md:items-center md:gap-x-6">
         <div className="flex items-center gap-[9px] md:gap-3">
           <span aria-hidden="true" className="text-md font-medium text-text-secondary md:hidden">{t('detail.quantityShort')}</span>
           <QuantityStepper value={quantity} max={limit} onChange={setQuantity} size="adaptive" live testId="quantity" />
@@ -145,16 +145,16 @@ function FavoriteLabel({ nft }: { nft: NftDetail }) {
 function Gallery({ nft }: { nft: NftDetail }) {
   const { t } = useTranslation()
   return (
-    <div className="grid min-w-0 gap-6 xl:h-[444px] xl:w-[568px] xl:grid-cols-[99px_444px] xl:gap-x-[25px] xl:gap-y-0">
-      <ul className="hidden gap-4 xl:grid xl:content-start" aria-label={t('detail.thumbnails')}>
+    <div className="grid min-w-0 gap-5 xl:h-[340px] xl:w-[436px] xl:grid-cols-[76px_340px] xl:gap-x-5 xl:gap-y-0">
+      <ul className="hidden xl:grid xl:h-[340px] xl:grid-rows-4 xl:gap-3" aria-label={t('detail.thumbnails')}>
         {[0, 1, 2, 3].map((i) => (
           <li key={i} className="rounded-md bg-card">
-            <NftImage artwork={nft.artwork} alt={t('detail.thumbnail', { name: nft.name, index: i + 1 })} sizes="99px" size={160} className="rounded-lg" />
+            <NftImage artwork={nft.artwork} alt={t('detail.thumbnail', { name: nft.name, index: i + 1 })} sizes="76px" size={160} className="rounded-lg" />
           </li>
         ))}
       </ul>
-      <div className="relative bg-card max-md:-mr-[3px] max-md:bg-transparent md:flex md:aspect-square md:items-center md:justify-center md:rounded-md md:p-5 xl:mt-0 xl:h-[444px] xl:w-[444px] xl:self-center xl:p-0">
-        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes="(min-width: 1280px) 444px, (min-width: 768px) 42vw, 100vw" size={480} priority className="rounded-2xl max-md:aspect-[361/356] max-md:rounded-3xl max-md:object-[50%_20%] md:max-w-[404px] md:rounded-3xl xl:max-w-[444px]" />
+      <div className="relative bg-card max-md:-mr-[3px] max-md:bg-transparent md:flex md:aspect-square md:items-center md:justify-center md:rounded-md md:p-5 xl:mt-0 xl:h-[340px] xl:w-[340px] xl:p-0">
+        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes="(min-width: 1280px) 340px, (min-width: 768px) 42vw, 100vw" size={480} priority className="rounded-2xl max-md:aspect-[361/356] max-md:rounded-3xl max-md:object-[50%_20%] md:max-w-[404px] md:rounded-3xl xl:max-w-[340px]" />
         <Dialog>
           <DialogTrigger asChild>
             <button type="button" aria-label={t('detail.zoom')} className="absolute top-[13px] right-3 flex size-[30px] cursor-pointer items-center justify-center rounded-full border border-border bg-elevated max-md:hidden">
@@ -211,16 +211,16 @@ function DetailContent({ nft }: { nft: NftDetail }) {
       <MobileTopBar className="pt-[23px] pb-0" action={<FavoriteButton nft={nft} className="size-[35px] rounded-full border border-border bg-elevated" />} />
       <article className="mx-auto max-w-page px-7 pb-16 md:px-5 lg:pb-[43px]">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market') }]} />
-        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[568px_595px]">
+        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[436px_450px]">
           <Gallery nft={nft} />
-          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px] xl:h-[448px] xl:w-[595px]">
+          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px] xl:h-[448px] xl:w-[450px]">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <h1 className="text-xl font-bold md:text-title md:leading-[37px]">{nft.name}</h1>
               <p className="flex h-[27px] shrink-0 items-center gap-1 rounded-full border border-primary px-2 pt-1 text-sm leading-5 font-medium md:hidden">
                 <StarIcon className="size-3.5 text-primary" /> {nft.rating.toFixed(1)}<span className="font-normal text-text-secondary">({nft.reviewCount})</span>
               </p>
             </div>
-            <div className="mt-3 hidden flex-nowrap items-center justify-between gap-x-2 xl:gap-x-4 md:flex">
+            <div className="mt-3 hidden flex-wrap items-center justify-between gap-x-2 gap-y-2 xl:gap-x-4 md:flex">
               <p className="text-[22px] leading-4 font-bold whitespace-nowrap text-highlight" data-testid="detail-price">{formatEth(edition.price)}</p>
               <p className="flex items-center gap-1 text-sm leading-5 whitespace-nowrap xl:text-md"><Stars rating={nft.rating} />{interpolate((slots) => t('detail.reviews', slots), { total: nft.reviewCount })}</p>
             </div>
@@ -250,8 +250,8 @@ function DetailContent({ nft }: { nft: NftDetail }) {
           <TabsContent value="details" className="space-y-3 pt-3 text-sm leading-6 text-text-secondary">
             <div className="space-y-6">{nft.story.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
             <p><strong className="block text-foreground">{t('detail.network.title')}</strong>{t('detail.network.text')}</p>
-            <p><strong className="block text-foreground">{t('detail.contract.title')}</strong>{interpolate((slots) => t('detail.contract.text', slots), { percent: nft.royaltiesPercent })}</p>
-            <p><strong className="block text-foreground">{t('detail.royalties.title')}</strong>{interpolate((slots) => t('detail.royalties.text', slots), { address: nft.contractAddress })}</p>
+            <p><strong className="block text-foreground">{t('detail.contract.title')}</strong>{interpolate((slots) => t('detail.contract.text', slots), { address: nft.contractAddress })}</p>
+            <p><strong className="block text-foreground">{t('detail.royalties.title')}</strong>{interpolate((slots) => t('detail.royalties.text', slots), { percent: nft.royaltiesPercent })}</p>
           </TabsContent>
           <TabsContent value="reviews" className="pt-4 text-sm text-muted-foreground">{t('detail.reviewsUnavailable')}</TabsContent>
         </Tabs>
