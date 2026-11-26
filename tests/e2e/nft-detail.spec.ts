@@ -6,6 +6,10 @@ test('desktop purchase actions stay beside the quantity', async ({ app, isMobile
   await app.open('/nft/ivory-baron-088')
   for (const width of [1024, 1100, 1280, 1440, 1706]) {
     await page.setViewportSize({ width, height: 900 })
+    const price = await page.getByTestId('detail-price').boundingBox()
+    const reviews = await page.getByText(/avaliações de colecionadores/).boundingBox()
+    expect(Math.abs(price!.y - reviews!.y), `price and reviews on one line at ${width}px`).toBeLessThanOrEqual(3)
+    const detailColumn = await page.locator('article > div.grid > div:last-child').boundingBox()
     const row = page.getByTestId('purchase-row')
     const quantity = await row.getByRole('group').boundingBox()
     const buy = await row.getByRole('button', { name: /^Comprar$/i }).boundingBox()
@@ -14,6 +18,7 @@ test('desktop purchase actions stay beside the quantity', async ({ app, isMobile
     expect(Math.abs(favorite!.y - buy!.y)).toBeLessThanOrEqual(1)
     expect(buy!.x).toBeGreaterThanOrEqual(quantity!.x + quantity!.width)
     expect(favorite!.x).toBeGreaterThanOrEqual(buy!.x + buy!.width)
+    expect(favorite!.x + favorite!.width).toBeLessThanOrEqual(detailColumn!.x + detailColumn!.width)
   }
 })
 

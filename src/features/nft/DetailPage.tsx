@@ -50,7 +50,7 @@ export function DetailSkeleton() {
 function Stars({ rating }: { rating: number }) {
   return (
     <span className="flex items-center gap-0.5" aria-hidden="true">
-      {[1, 2, 3, 4, 5].map((i) => <StarIcon key={i} className={cn('size-[15px]', i <= Math.round(rating) ? 'text-primary' : 'text-muted-foreground')} />)}
+      {[1, 2, 3, 4, 5].map((i) => <StarIcon key={i} className={cn('size-3 xl:size-[15px]', i <= Math.round(rating) ? 'text-primary' : 'text-muted-foreground')} />)}
     </span>
   )
 }
@@ -209,7 +209,7 @@ function DetailContent({ nft }: { nft: NftDetail }) {
       <MobileTopBar className="pt-[23px] pb-0" action={<FavoriteButton nft={nft} className="size-[35px] rounded-full border border-border bg-elevated" />} />
       <article className="mx-auto max-w-page px-7 pb-16 md:px-5 lg:pb-[43px]">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market') }]} />
-        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
+      <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
           <Gallery nft={nft} />
           <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px]">
             <div className="flex flex-wrap items-start justify-between gap-3">
@@ -218,9 +218,9 @@ function DetailContent({ nft }: { nft: NftDetail }) {
                 <StarIcon className="size-3.5 text-primary" /> {nft.rating.toFixed(1)}<span className="font-normal text-text-secondary">({nft.reviewCount})</span>
               </p>
             </div>
-            <div className="mt-3 hidden flex-wrap items-center justify-between gap-x-4 gap-y-2 md:flex">
+            <div className="mt-3 hidden flex-nowrap items-center justify-between gap-x-2 xl:gap-x-4 md:flex">
               <p className="text-[22px] leading-4 font-bold whitespace-nowrap text-highlight" data-testid="detail-price">{formatEth(edition.price)}</p>
-              <p className="flex items-center gap-1 text-md leading-5 whitespace-nowrap"><Stars rating={nft.rating} />{interpolate((slots) => t('detail.reviews', slots), { total: nft.reviewCount })}</p>
+              <p className="flex items-center gap-1 text-sm leading-5 whitespace-nowrap xl:text-md"><Stars rating={nft.rating} />{interpolate((slots) => t('detail.reviews', slots), { total: nft.reviewCount })}</p>
             </div>
             <div aria-hidden="true" className="mt-3 mr-[3.7%] hidden h-px bg-primary md:block" />
             <h2 className="mt-[13px] hidden text-md leading-4 font-bold md:block">{t('detail.about')}</h2>
