@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { ethAmount } from './common'
-import { orderStatus } from './order'
+import { orderFailure, orderStatus } from './order'
 
 const envelope = {
   eventId: z.string(),
@@ -26,15 +26,13 @@ export const orderUpdatedEvent = z.object({
   type: z.literal('order.updated'),
   resource: z.object({ kind: z.literal('order'), id: z.string() }),
   userId: z.string(),
-  data: z.object({ orderId: z.string(), status: orderStatus, failureReason: z.string().nullable() }),
+  data: z.object({ orderId: z.string(), status: orderStatus, failureReason: z.string().nullable(), failure: orderFailure }),
 })
 export type OrderUpdatedEvent = z.infer<typeof orderUpdatedEvent>
 
 export const realtimeEvent = z.discriminatedUnion('type', [nftUpdatedEvent, orderUpdatedEvent])
 export type RealtimeEvent = z.infer<typeof realtimeEvent>
 
-/** Engine path of the Socket.IO endpoint, shared by the client and the simulated server. */
 export const SOCKET_PATH = '/realtime/'
 
-/** Socket.IO channel names. */
 export const SOCKET_EVENTS = { nftUpdated: 'nft.updated', orderUpdated: 'order.updated' } as const

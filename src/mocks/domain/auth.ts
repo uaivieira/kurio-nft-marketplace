@@ -2,6 +2,7 @@ import type { Session, SignupInput, User } from '@/contracts/auth'
 import type { Profile, ProfileInput } from '@/contracts/profile'
 import { db, hashPassword, nextId, persist, verifyPassword, type UserRecord } from '../db/state'
 import { MockHttpError } from '../http'
+import { validation } from '@/i18n/keys'
 
 const SESSION_TTL_MS = 8 * 3600_000
 
@@ -43,9 +44,9 @@ const findByUsername = (username: string) => Object.values(db.users).find((user)
 
 export async function signup(input: SignupInput): Promise<Session> {
   const conflicts: Record<string, string> = {}
-  if (findByEmail(input.email)) conflicts.email = 'Este e-mail já está cadastrado.'
-  if (findByUsername(input.username)) conflicts.username = 'Este nome de usuário já está em uso.'
-  if (Object.keys(conflicts).length) throw new MockHttpError('CONFLICT', 'Já existe uma conta com estes dados.', conflicts)
+  if (findByEmail(input.email)) conflicts.email = validation('emailTaken')
+  if (findByUsername(input.username)) conflicts.username = validation('usernameTaken')
+  if (Object.keys(conflicts).length) throw new MockHttpError('CONFLICT', 'An account with these details already exists.', conflicts)
 
   const { salt, hash } = await hashPassword(input.password)
   const user: UserRecord = {
@@ -70,7 +71,7 @@ export async function signup(input: SignupInput): Promise<Session> {
 export async function login(email: string, password: string): Promise<Session> {
   const user = findByEmail(email)
   if (!user || !(await verifyPassword(user, password))) {
-    throw new MockHttpError('UNAUTHENTICATED', 'E-mail ou senha incorretos.')
+    throw new MockHttpError('UNAUTHENTICATED', 'Invalid email or password.', undefined, { reason: 'invalidCredentials' })
   }
   return startSession(user)
 }
@@ -83,10 +84,10 @@ export function logout(token: string | null) {
 export function updateProfile(user: UserRecord, input: ProfileInput): Profile {
   const conflicts: Record<string, string> = {}
   const emailOwner = findByEmail(input.email)
-  if (emailOwner && emailOwner.id !== user.id) conflicts.email = 'Este e-mail já está cadastrado.'
+  if (emailOwner && emailOwner.id !== user.id) conflicts.email = validation('emailTaken')
   const usernameOwner = findByUsername(input.username)
-  if (usernameOwner && usernameOwner.id !== user.id) conflicts.username = 'Este nome de usuário já está em uso.'
-  if (Object.keys(conflicts).length) throw new MockHttpError('CONFLICT', 'Já existe uma conta com estes dados.', conflicts)
+  if (usernameOwner && usernameOwner.id !== user.id) conflicts.username = validation('usernameTaken')
+  if (Object.keys(conflicts).length) throw new MockHttpError('CONFLICT', 'An account with these details already exists.', conflicts)
 
   Object.assign(user, { ...input, updatedAt: new Date().toISOString() })
   persist()
@@ -102,7 +103,7 @@ export function setAvatar(user: UserRecord, dataUrl: string | null) {
 
 export async function changePassword(user: UserRecord, currentPassword: string, newPassword: string) {
   if (!(await verifyPassword(user, currentPassword))) {
-    throw new MockHttpError('VALIDATION', 'Verifique os campos informados.', { currentPassword: 'Senha atual incorreta.' })
+    throw new MockHttpError('VALIDATION', 'Current password is incorrect.', { currentPassword: validation('currentPasswordWrong') })
   }
   const { salt, hash } = await hashPassword(newPassword)
   user.passwordSalt = salt

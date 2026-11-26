@@ -1,4 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import i18n from '@/i18n'
 import { notify } from '@/lib/notify'
 import { addFavorite, fetchFavorites, removeFavorite } from '@/api/catalog'
 import type { FavoritesList } from '@/contracts/favorites'
@@ -16,7 +17,6 @@ export function useFavorites() {
   })
 }
 
-/** Optimistic toggle: the heart flips immediately and rolls back if the API rejects it. */
 export function useToggleFavorite() {
   const queryClient = useQueryClient()
   const scope = scopeOf(useSession())
@@ -37,11 +37,12 @@ export function useToggleFavorite() {
       return { previous }
     },
     onSuccess: (_data, { favorite, name }) => {
-      announce(favorite ? `${name} adicionado aos favoritos.` : `${name} removido dos favoritos.`)
+      announce(favorite ? i18n.t('realtime.favoriteAdded', { name }) : i18n.t('realtime.favoriteRemoved', { name }))
     },
     onError: (error, { favorite, name }, context) => {
       queryClient.setQueryData(key, context?.previous)
-      const message = `Não foi possível ${favorite ? 'favoritar' : 'remover dos favoritos'} ${name}. ${errorMessage(error, '')}`.trim()
+      const reason = errorMessage(error, '')
+      const message = (favorite ? i18n.t('favorites.addFailed', { name, reason }) : i18n.t('favorites.removeFailed', { name, reason })).trim()
       notify.error(message)
       announce(message)
     },

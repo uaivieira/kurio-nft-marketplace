@@ -1,10 +1,3 @@
-/**
- * Compares each Figma frame (figma/frames/<name>.png, exported at 1x) with the app
- * rendered at the same width and with the same data shown in the frame.
- *
- * Usage: pnpm build && pnpm figma:compare [name-filter]
- * Output: figma/report/<name>-actual.png, <name>-diff.png and summary.md.
- */
 import { spawn } from 'node:child_process'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
@@ -22,9 +15,7 @@ interface Frame {
 const PORT = 4176
 const BASE = `http://127.0.0.1:${PORT}`
 const ROOT = path.resolve('figma')
-/** Per-channel tolerance for antialiasing differences between Figma and Chromium. */
 const CHANNEL_TOLERANCE = 26
-/** The cart shown in the Figma frames. */
 const FIGMA_CART: [string, number][] = [
   ['emerald-ape-042', 2],
   ['violet-nomad-314', 6],
@@ -130,7 +121,6 @@ async function main() {
       await page.goto(`${BASE}${route}`)
       await page.waitForLoadState('networkidle')
       if (frame.setup === 'ana-order') await page.getByTestId('order-confirmed').waitFor({ timeout: 10_000 })
-      // The dev panel is a demo affordance, not part of the design.
       await page.addStyleTag({ content: '[aria-label="Painel de cenários simulados"]{display:none!important}' })
       await page.waitForTimeout(300)
       const actual = await page.screenshot({ fullPage: true, animations: 'disabled' })
@@ -146,7 +136,7 @@ async function main() {
     server.kill()
   }
 
-  const summary = `# Comparação com o Figma\n\nGerado por \`pnpm figma:compare\` em ${new Date().toISOString()}. Diferença = pixels com variação acima de ${CHANNEL_TOLERANCE}/255 em algum canal, na área comum (largura do frame × menor altura).\n\n| Frame | Nó | Diferença | Altura Figma | Altura app |\n|---|---|---|---|---|\n${rows.join('\n')}\n`
+  const summary = `# Figma comparison\n\nGerado por \`pnpm figma:compare\` em ${new Date().toISOString()}. Diferença = pixels com variação acima de ${CHANNEL_TOLERANCE}/255 em algum canal, na área comum (largura do frame × menor altura).\n\n| Frame | Node | Difference | Figma height | App height |\n|---|---|---|---|---|\n${rows.join('\n')}\n`
   await writeFile(path.join(ROOT, 'report', 'summary.md'), summary)
 }
 

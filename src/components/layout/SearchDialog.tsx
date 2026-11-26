@@ -2,7 +2,6 @@ import { cloneElement, isValidElement, lazy, Suspense, useState, type MouseEvent
 
 const SearchDialogPanel = lazy(() => import('./SearchDialogPanel'))
 
-/** Renders the trigger now and loads the dialog on first use; focus returns to the trigger on close. */
 export function SearchDialog({ trigger }: { trigger: ReactElement<{ onClick?: (event: MouseEvent) => void }> }) {
   const [open, setOpen] = useState(false)
   const [loaded, setLoaded] = useState(false)

@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type ptBR from '@/i18n/locales/pt-BR'
 import { ethAmount, isoDate, network, NETWORKS } from './common'
 
 export const COLLECTIONS = [
@@ -14,17 +15,17 @@ export const COLLECTIONS = [
 ] as const
 export const collection = z.enum(COLLECTIONS)
 export type Collection = z.infer<typeof collection>
-export const COLLECTION_LABELS: Record<Collection, string> = {
-  'arte-digital': 'Arte digital',
-  fotografia: 'Fotografia',
-  musica: 'Música',
-  'arte-3d': 'Arte 3D',
-  colecionaveis: 'Colecionáveis',
-  generativa: 'Generativa',
-  jogos: 'Jogos',
-  assinaturas: 'Assinaturas',
-  utilidade: 'Utilidade',
-}
+export const COLLECTION_LABEL_KEYS = {
+  'arte-digital': 'catalog.collections.digitalArt',
+  fotografia: 'catalog.collections.photography',
+  musica: 'catalog.collections.music',
+  'arte-3d': 'catalog.collections.art3d',
+  colecionaveis: 'catalog.collections.collectibles',
+  generativa: 'catalog.collections.generative',
+  jogos: 'catalog.collections.games',
+  assinaturas: 'catalog.collections.subscriptions',
+  utilidade: 'catalog.collections.utility',
+} as const satisfies Record<Collection, `catalog.collections.${keyof (typeof ptBR)['catalog']['collections']}`>
 
 export const ARTWORKS = ['emerald', 'sage', 'ivory', 'golden'] as const
 export const artwork = z.enum(ARTWORKS)
@@ -33,7 +34,6 @@ export type Artwork = z.infer<typeof artwork>
 export const edition = z.object({
   id: z.string(),
   label: z.string(),
-  /** null = open edition */
   supply: z.number().int().positive().nullable(),
   available: z.number().int().nonnegative(),
   maxPerOrder: z.number().int().positive(),
@@ -48,7 +48,6 @@ export const nftSummary = z.object({
   artwork,
   collection,
   network,
-  /** Lowest price among editions with stock (or of all editions when sold out). */
   price: ethAmount,
   compareAtPrice: ethAmount.nullable(),
   badge: z.enum(['raro']).nullable(),
@@ -77,7 +76,6 @@ export const CATALOG_SORTS = ['recent', 'price-asc', 'price-desc', 'name'] as co
 export const CATALOG_TABS = ['all', 'new', 'trending'] as const
 export const CATALOG_PAGE_SIZE = 9
 
-/** Search params shared by the route (URL) and the REST query string. */
 export const catalogQuery = z.object({
   q: z.string().trim().max(80).optional(),
   collections: z.array(collection).optional(),

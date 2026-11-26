@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures'
 
-test('compra completa: catálogo → detalhe → carrinho → pagamento → recibo confirmado', async ({ app }) => {
+test('full purchase: catalog → detail → cart → payment → confirmed receipt', async ({ app }) => {
   const { page } = app
   await app.login('ana')
 

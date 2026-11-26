@@ -2,11 +2,6 @@ import type { Page } from '@playwright/test'
 import { securityHeaders } from '../../scripts/csp'
 import { addToCart, expect, openReview, test } from './fixtures'
 
-/**
- * `vite preview` does not read vercel.json, so every document response gets the deployed security
- * headers here. A policy too strict for the app (a blocked inline script, style, image, socket or eval)
- * shows up as a `securitypolicyviolation` event or a console error.
- */
 const HEADERS = securityHeaders()
 
 async function enforceDeployedHeaders(page: Page) {
@@ -33,8 +28,8 @@ async function enforceDeployedHeaders(page: Page) {
   }
 }
 
-test.describe('cabeçalhos de segurança do deploy', () => {
-  test('a política é aplicada: script inline injetado não executa', async ({ app }) => {
+test.describe('deployed security headers', () => {
+  test('the policy is enforced: an injected inline script does not run', async ({ app }) => {
     const { page } = app
     await enforceDeployedHeaders(page)
     await app.open('/')
@@ -48,7 +43,7 @@ test.describe('cabeçalhos de segurança do deploy', () => {
     await expect.poll(() => page.evaluate(() => (window as unknown as { __cspViolations: string[] }).__cspViolations)).toContainEqual(expect.stringMatching(/^script-src-elem blocked inline/))
   })
 
-  test('início, mercado, detalhe e catálogo filtrado sem violações', async ({ app }) => {
+  test('home, marketplace, detail and filtered catalog without violations', async ({ app }) => {
     const { page } = app
     const csp = await enforceDeployedHeaders(page)
     for (const path of ['/', '/mercado', '/nft/emerald-ape-042', '/?q=Golden']) {
@@ -59,7 +54,7 @@ test.describe('cabeçalhos de segurança do deploy', () => {
     }
   })
 
-  test('login, carrinho e checkout com tempo real sem violações', async ({ app }) => {
+  test('login, cart and checkout with realtime without violations', async ({ app }) => {
     const { page, backend } = app
     const csp = await enforceDeployedHeaders(page)
     await app.login('ana')
@@ -68,7 +63,6 @@ test.describe('cabeçalhos de segurança do deploy', () => {
     await expect(page.getByTestId('total')).toHaveText('1.206 ETH')
     await csp.expectNoViolations()
 
-    // Realtime: a Socket.IO price event invalidates the quote under review.
     await openReview(page)
     await expect.poll(() => backend.connectedSockets()).toBeGreaterThan(0)
     await backend.updateEdition('emerald-ape-042', 'e50', { price: '1.40' })

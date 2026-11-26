@@ -7,7 +7,6 @@ export const USERS = {
 
 type UserKey = keyof typeof USERS
 
-/** Typed handle to the simulated backend's control surface (window.__kurio). */
 export function backend(page: Page) {
   return {
     setScenario: (id: string) => page.evaluate((scenario) => window.__kurio!.setScenario(scenario), id),
@@ -66,7 +65,6 @@ export const test = base.extend<{ app: { page: Page; backend: ReturnType<typeof 
 
 export { expect }
 
-/** Fetches through MSW inside the page (same handlers the app uses). */
 export function apiFetch<T = unknown>(page: Page, path: string, init?: { method?: string; body?: unknown; headers?: Record<string, string> }) {
   return page.evaluate(
     async ([url, options]) => {
@@ -82,7 +80,6 @@ export function apiFetch<T = unknown>(page: Page, path: string, init?: { method?
   ) as Promise<{ status: number; body: T }>
 }
 
-/** Adds an item to the current cart (guest or user) through the REST API. */
 export async function addToCart(page: Page, nftId: string, quantity = 1, editionId = 'e50') {
   await page.evaluate(
     async ([n, q, e]) => {
@@ -99,7 +96,6 @@ export async function addToCart(page: Page, nftId: string, quantity = 1, edition
   )
 }
 
-/** Goes from the cart to the review dialog with the primary wallet connected. */
 export async function openReview(page: Page) {
   await page.goto('/checkout')
   await page.getByRole('button', { name: 'Conectar carteira' }).click()

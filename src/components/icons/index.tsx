@@ -1,6 +1,5 @@
 import type { SVGProps } from 'react'
 
-/** Scanner glyph of the mobile tab bar FAB. Exported from the Figma file; paints with currentColor. */
 export function ScanIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 27 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
@@ -13,7 +12,6 @@ export function ScanIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** "Thank you" envelope of the order confirmation modal. Exported from the Figma file; paints with currentColor. */
 export function ThankYouIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 80 80" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
@@ -29,8 +27,6 @@ export function ThankYouIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   )
 }
-
-/* Iconly icons (MIT, via react-iconly 2.2.10): only the variants used by the Figma, painted with currentColor. */
 
 export function HomeIcon(props: SVGProps<SVGSVGElement>) {
   return (
@@ -248,8 +244,6 @@ export function DiscountIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/* Brand marks from Simple Icons 9 (CC0). Google keeps its four official colours. */
-
 export function FacebookIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
@@ -290,7 +284,6 @@ export function YoutubeIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** Google logo of the "Continuar com Google" button. Exported from the Figma file with its original colours. */
 export function GoogleLogoIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false" {...props}>
@@ -305,7 +298,6 @@ export function GoogleLogoIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
-/** Facebook logo of the "Continuar com Facebook" button. Exported from the Figma file with its original colours. */
 export function FacebookLogoIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true" focusable="false" {...props}>

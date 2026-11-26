@@ -1,6 +1,6 @@
 import { expect, test } from './fixtures'
 
-test('favorito persiste após refresh', async ({ app }) => {
+test('favorite persists after refresh', async ({ app }) => {
   const { page } = app
   await app.login('ana')
   await page.getByRole('button', { name: 'Favoritar Sage Nomad #009' }).click()
@@ -12,7 +12,7 @@ test('favorito persiste após refresh', async ({ app }) => {
   await expect(page.getByTestId('favorites-grid')).toContainText('Sage Nomad #009')
 })
 
-test('falha na mutation desfaz a atualização otimista', async ({ app }) => {
+test('a failed mutation rolls back the optimistic update', async ({ app }) => {
   const { page, backend } = app
   await page.clock.install()
   await app.login('ana')
@@ -21,11 +21,8 @@ test('falha na mutation desfaz a atualização otimista', async ({ app }) => {
   await expect(heart).toBeVisible()
   await page.clock.pauseAt(new Date(Date.now() + 1000))
   await heart.click()
-  // Optimistic state first, then rollback once the API rejects.
   await page.clock.runFor(1)
   await expect(page.getByRole('button', { name: 'Remover Sage Nomad #009 dos favoritos' })).toBeVisible()
-  // The clock was only paused to observe the optimistic state. Resume it so the mocked latency and the
-  // rejection run in real time: a timer scheduled after a fixed runFor() would otherwise never fire.
   await page.clock.resume()
   await expect(page.getByRole('button', { name: 'Favoritar Sage Nomad #009' })).toHaveAttribute('aria-pressed', 'false')
   await expect(page.getByText(/Não foi possível favoritar Sage Nomad #009/).first()).toBeVisible()
@@ -35,7 +32,7 @@ test('falha na mutation desfaz a atualização otimista', async ({ app }) => {
   await expect(page.getByRole('button', { name: 'Remover Sage Nomad #009 dos favoritos' })).toBeVisible()
 })
 
-test('visitante é levado ao login ao favoritar', async ({ app }) => {
+test('guest is sent to login when favoriting', async ({ app }) => {
   const { page } = app
   await app.open('/')
   await page.getByRole('button', { name: 'Favoritar Sage Nomad #009' }).click()

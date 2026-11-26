@@ -1,21 +1,21 @@
 import { expect, test } from './fixtures'
 
-test('acesso direto ao detalhe', async ({ app }) => {
+test('direct access to the detail page', async ({ app }) => {
   await app.open('/nft/ivory-baron-088')
   await expect(app.page.getByRole('heading', { name: 'Ivory Baron #088' })).toBeVisible()
 })
 
-test('NFT inexistente', async ({ app }) => {
-  await app.open('/nft/nao-existe-999')
+test('missing NFT', async ({ app }) => {
+  await app.open('/nft/missing-999')
   await expect(app.page.getByRole('heading', { name: 'NFT não encontrado' })).toBeVisible()
 })
 
-test('rota inexistente', async ({ app }) => {
-  await app.open('/rota/que/nao/existe')
+test('missing route', async ({ app }) => {
+  await app.open('/route/that/does/not/exist')
   await expect(app.page.getByRole('heading', { name: 'Página não encontrada' })).toBeVisible()
 })
 
-test('edição esgotada fica indisponível', async ({ app }) => {
+test('sold-out edition is unavailable', async ({ app }) => {
   const { page } = app
   await app.open('/nft/onyx-relic-404')
   for (const label of ['1/1', '1/10', '1/50', 'ABERTA']) {
@@ -24,7 +24,7 @@ test('edição esgotada fica indisponível', async ({ app }) => {
   await expect(page.getByRole('button', { name: /Comprar/i }).first()).toBeDisabled()
 })
 
-test('limite de quantidade por disponibilidade', async ({ app }) => {
+test('quantity limit by availability', async ({ app }) => {
   const { page } = app
   await app.open('/nft/lunar-echo-027')
   const plus = page.getByRole('button', { name: 'Aumentar quantidade' })

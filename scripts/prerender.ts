@@ -1,24 +1,11 @@
-/**
- * Writes static HTML for the public entry pages (home, marketplace and every NFT detail) into dist/.
- *
- * Each page gets the prerendered markup in #root, the dehydrated query cache, and a loader that
- * fetches the app bundle once the LCP image has been painted (the page is already complete and
- * visible), with a 1.5 s ceiling, or immediately on the first user interaction.
- * Any other path served with this HTML (SPA fallback, or the home with catalog filters in the URL)
- * is marked stale before first paint: the prerendered markup stays hidden and the app loads at once.
- * Inline scripts are byte-identical on every page and allowed by hash in the CSP (see scripts/csp.ts);
- * the build fails if vercel.json does not allow one of them.
- *
- * Run by `pnpm build` after the client and SSR builds.
- */
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { cspDirective, cspHash, executableInlineScripts, LOADER_SCRIPT, securityHeaders, STALE_CHECK_SCRIPT } from './csp'
 
-// Optional argument: the client build directory (the E2E suite builds into dist-e2e).
 const DIST = path.resolve(process.argv[2] ?? 'dist')
 const SSR_DIR = path.resolve('dist-ssr')
+const LCP_PRELOAD_MARKER = '%kurio:lcp-preload%'
 
 interface PrerenderModule {
   seed: () => Promise<string[]>
@@ -41,8 +28,7 @@ async function main() {
   const base = template
     .replace(/\s*<script type="module" crossorigin src="[^"]+"><\/script>/, '')
     .replace(/\s*<link rel="modulepreload"[^>]*>/g, '')
-    // The home's preload stays in the shared template; detail pages swap in their own artwork below.
-    .replace(/\s*<link rel="preload" as="image"[^>]*>/, '\n    <!--lcp-preload-->')
+    .replace(/\s*<link rel="preload" as="image"[^>]*>/, `\n    ${LCP_PRELOAD_MARKER}`)
 
   const mod = (await import(pathToFileURL(path.join(SSR_DIR, 'entry-prerender.js')).href)) as PrerenderModule
   const ids = await mod.seed()
@@ -60,19 +46,16 @@ async function main() {
     const head = `<script>${STALE_CHECK_SCRIPT}</script>
     <style>[data-prerender-stale] #root{visibility:hidden}</style>
     ${preload}`
-    // Per-page data goes in non-executable JSON blocks, so the executable scripts stay byte-identical.
     const loader = `<script type="application/json" id="kurio-state">${json(state)}</script>
     <script type="application/json" id="kurio-boot">${json({ entry, preloads })}</script>
     <script>${LOADER_SCRIPT}</script>`
 
     const page = base
       .replace('<html lang="pt-BR">', `<html lang="pt-BR" data-prerender-path="${attribute(route)}">`)
-      .replace('<!--lcp-preload-->', head)
+      .replace(LCP_PRELOAD_MARKER, head)
       .replace('<div id="root"></div>', `<div id="root">${html}</div>\n    ${loader}`)
     if (!page.includes('data-prerender-path=')) throw new Error('<html lang="pt-BR"> not found in dist/index.html')
     for (const script of executableInlineScripts(page)) if (!allowed.has(cspHash(script))) missing.add(cspHash(script))
-    // `/mercado` → dist/mercado.html and `/nft/<id>` → dist/nft/<id>.html: served for the extensionless
-    // URL by vite preview (sirv) and by Vercel rewrites.
     const file = route === '/' ? path.join(DIST, 'index.html') : path.join(DIST, `${route}.html`)
     await mkdir(path.dirname(file), { recursive: true })
     await writeFile(file, page)
@@ -86,7 +69,6 @@ async function main() {
 }
 
 main().then(
-  // The query cache keeps GC timers alive; the work is done.
   () => process.exit(0),
   (error: unknown) => {
     console.error(error)

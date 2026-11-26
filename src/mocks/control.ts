@@ -4,19 +4,13 @@ import { updateEdition } from './domain/inventory'
 import { resolveOrder } from './domain/orders'
 import { isScenarioId, resetScenarioCounters, runtime, setScenario, SCENARIOS, type ScenarioId } from './scenarios'
 
-/**
- * Test/demo control surface. Every call mutates the simulated backend (db, sockets);
- * the app only ever learns about it through REST responses and Socket.IO events.
- */
 export interface KurioControl {
   scenarios: typeof SCENARIOS
   getScenario: () => ScenarioId
   setScenario: (id: string) => void
   reset: () => Promise<void>
   updateEdition: (nftId: string, editionId: string, patch: { price?: string; available?: number }) => void
-  /** Re-sends the last nft.updated event with the same eventId. */
   emitDuplicate: () => Promise<boolean>
-  /** Sends an nft.updated with a version older than the current one and a different price. */
   emitStale: (nftId: string) => Promise<void>
   dropSockets: () => Promise<void>
   setSocketOnline: (online: boolean) => Promise<void>
@@ -26,7 +20,6 @@ export interface KurioControl {
   expireSessions: () => void
 }
 
-/** The socket module loads after first paint (see browser.ts); control calls wait for it. */
 const socket = () => import('./socket')
 
 export function createControl(): KurioControl {

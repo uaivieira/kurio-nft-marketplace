@@ -1,8 +1,3 @@
-/**
- * Converts the artwork exported from Figma (assets-src/nft/*.png) into
- * responsive AVIF/WebP variants served from public/nft/.
- * Run with `pnpm assets`; the output is committed so builds need no image tooling.
- */
 import { mkdir, readdir } from 'node:fs/promises'
 import path from 'node:path'
 import sharp from 'sharp'

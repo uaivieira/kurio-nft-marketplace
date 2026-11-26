@@ -13,7 +13,7 @@ export const catalogHandlers = [
 
   http.put('/api/favorites/:nftId', route<{ nftId: string }>({ auth: true, tag: 'favorites-write' }, (ctx) => {
     const user = requireUser(ctx)
-    if (!db.nfts[ctx.params.nftId]) throw new MockHttpError('NOT_FOUND', 'NFT não encontrado.')
+    if (!db.nfts[ctx.params.nftId]) throw new MockHttpError('NOT_FOUND', 'NFT not found.', undefined, { reason: 'nft' })
     const list = (db.favorites[user.id] ??= [])
     if (!list.includes(ctx.params.nftId)) list.push(ctx.params.nftId)
     persist()

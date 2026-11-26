@@ -1,6 +1,5 @@
 import { catalogQuery, type CatalogQuery } from './nft'
 
-/** Wire format of the catalog query string, shared by the Axios client and the MSW handler. */
 export function toQueryString(query: CatalogQuery): URLSearchParams {
   const params = new URLSearchParams()
   if (query.q) params.set('q', query.q)

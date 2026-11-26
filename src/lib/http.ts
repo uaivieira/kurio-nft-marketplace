@@ -9,7 +9,6 @@ const TIMEOUT_REASON = 'kurio:timeout'
 
 declare module 'axios' {
   interface InternalAxiosRequestConfig {
-    /** Per-request deadline, owned by the interceptors below. */
     deadline?: { controller: AbortController; timer: ReturnType<typeof setTimeout> }
   }
 }
@@ -19,15 +18,10 @@ export const http = axios.create({ baseURL: '/api', headers: { Accept: 'applicat
 type AuthFailureHandler = (error: ApiError) => void
 let onAuthFailure: AuthFailureHandler | null = null
 
-/** The auth module registers how an expired session is handled; the HTTP layer stays UI-agnostic. */
 export function setAuthFailureHandler(handler: AuthFailureHandler | null) {
   onAuthFailure = handler
 }
 
-/**
- * The timeout is a timer-driven abort instead of XHR's native `timeout`, so it composes with the
- * caller's AbortSignal (query cancellation) and follows the page clock (deterministic in tests).
- */
 function armDeadline(config: InternalAxiosRequestConfig) {
   const controller = new AbortController()
   const timer = setTimeout(() => controller.abort(TIMEOUT_REASON), TIMEOUT_MS)
@@ -53,17 +47,16 @@ function normalise(error: unknown): ApiError {
   if (error instanceof ApiError) return error
   if (axios.isCancel(error)) {
     const config = (error as AxiosError).config
-    if (config?.deadline?.controller.signal.aborted) return new ApiError('TIMEOUT', 'O servidor demorou para responder.')
-    // Cancelled by the caller (stale query): not a failure, let TanStack Query discard it.
+    if (config?.deadline?.controller.signal.aborted) return new ApiError('TIMEOUT', 'Request timed out.')
     throw error
   }
   if (error instanceof AxiosError) {
-    if (!error.response) return new ApiError('NETWORK', 'Sem conexão com o servidor.')
+    if (!error.response) return new ApiError('NETWORK', 'Network error.')
     const parsed = apiErrorBody.safeParse(error.response.data)
     if (parsed.success) return new ApiError(parsed.data.code, parsed.data.message, error.response.status, parsed.data)
-    return new ApiError(error.response.status >= 500 ? 'TRANSIENT' : 'UNKNOWN', 'Resposta inesperada do servidor.', error.response.status)
+    return new ApiError(error.response.status >= 500 ? 'TRANSIENT' : 'UNKNOWN', 'Unexpected server response.', error.response.status, { details: { reason: 'unexpectedResponse' } })
   }
-  return new ApiError('UNKNOWN', 'Erro inesperado.')
+  return new ApiError('UNKNOWN', 'Unexpected error.')
 }
 
 http.interceptors.response.use(

@@ -6,6 +6,13 @@ export const ORDER_STATUSES = ['pending', 'confirmed', 'rejected'] as const
 export const orderStatus = z.enum(ORDER_STATUSES)
 export type OrderStatus = z.infer<typeof orderStatus>
 
+export const ORDER_FAILURE_CODES = ['PAYMENT_REJECTED', 'OUT_OF_STOCK'] as const
+export const orderFailure = z
+  .object({ code: z.enum(ORDER_FAILURE_CODES), name: z.string().optional(), edition: z.string().optional() })
+  .nullable()
+  .default(null)
+export type OrderFailure = z.infer<typeof orderFailure>
+
 export const buyerInfo = z.object({
   displayName: z.string(),
   username: z.string(),
@@ -44,6 +51,7 @@ export const order = z.object({
   transactionHash: z.string().nullable(),
   explorerUrl: z.string().nullable(),
   failureReason: z.string().nullable(),
+  failure: orderFailure,
 })
 export type Order = z.infer<typeof order>
 

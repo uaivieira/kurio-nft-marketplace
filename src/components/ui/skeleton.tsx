@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils"
 
-/** Shimmer placeholder. Motion is neutralised globally under prefers-reduced-motion. */
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div

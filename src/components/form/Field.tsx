@@ -1,6 +1,8 @@
 import { HideIcon, ShowIcon } from '@/components/icons'
 import { useId, useState, type ComponentProps, type ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Input } from '@/components/ui/input'
+import { translateMessage } from '@/i18n'
 import { cn } from '@/lib/utils'
 
 interface ControlProps {
@@ -12,7 +14,6 @@ interface ControlProps {
 
 interface FieldProps {
   label: ReactNode
-  /** Keeps the label for assistive tech only, where the design shows just the placeholder. */
   hideLabel?: boolean
   error?: string
   hint?: string
@@ -21,8 +22,8 @@ interface FieldProps {
   children: (props: ControlProps) => ReactNode
 }
 
-/** Label + control + error wired together: the error is announced and tied to the input. */
 export function Field({ label, hideLabel, error, hint, required, className, children }: FieldProps) {
+  const { t } = useTranslation()
   const id = useId()
   const errorId = `${id}-error`
   const hintId = `${id}-hint`
@@ -32,16 +33,17 @@ export function Field({ label, hideLabel, error, hint, required, className, chil
       <label htmlFor={id} className={cn('text-base leading-4', hideLabel && 'sr-only')}>
         {label}
         {required && <span aria-hidden="true" className="ml-0.5 text-highlight">*</span>}
-        {required && <span className="sr-only"> (obrigatório)</span>}
+        {required && <span className="sr-only">{` ${t('common.required')}`}</span>}
       </label>
       {children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': describedBy, 'aria-required': required || undefined })}
       {hint && !error && <p id={hintId} className="text-xs text-muted-foreground">{hint}</p>}
-      {error && <p id={errorId} role="alert" className="text-xs text-destructive">{error}</p>}
+      {error && <p id={errorId} role="alert" className="text-xs text-destructive">{translateMessage(error)}</p>}
     </div>
   )
 }
 
 export function PasswordInput(props: Omit<ComponentProps<typeof Input>, 'type'>) {
+  const { t } = useTranslation()
   const [visible, setVisible] = useState(false)
   return (
     <div className="relative">
@@ -49,7 +51,7 @@ export function PasswordInput(props: Omit<ComponentProps<typeof Input>, 'type'>)
       <button
         type="button"
         onClick={() => setVisible((value) => !value)}
-        aria-label={visible ? 'Ocultar senha' : 'Mostrar senha'}
+        aria-label={visible ? t('common.hidePassword') : t('common.showPassword')}
         aria-pressed={visible}
         className="absolute inset-y-0 right-0 flex w-10 cursor-pointer items-center justify-center text-muted-foreground hover:text-foreground"
       >

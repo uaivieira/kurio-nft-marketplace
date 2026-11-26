@@ -1,8 +1,8 @@
 import { expect, test } from './fixtures'
 
-test.describe('páginas pré-renderizadas', () => {
+test.describe('prerendered pages', () => {
   for (const [path, name] of [['/', 'Emerald Ape #042'], ['/mercado', 'Emerald Ape #042'], ['/nft/ivory-baron-088', 'Ivory Baron #088']] as const) {
-    test(`${path} já vem com o conteúdo no HTML`, async ({ app }) => {
+    test(`${path} ships its content in the HTML`, async ({ app }) => {
       const html = await (await app.page.request.get(path)).text()
       expect(html).toContain(name)
       expect(html).toContain('ETH')
@@ -10,9 +10,8 @@ test.describe('páginas pré-renderizadas', () => {
       expect(html).toContain('<script type="application/json" id="kurio-state">')
     })
 
-    test(`${path} assume o HTML sem deslocamento de layout`, async ({ app }) => {
+    test(`${path} takes over the HTML without layout shift`, async ({ app }) => {
       const { page } = app
-      // Record every layout shift from the very first paint.
       await page.addInitScript(() => {
         const shifts: number[] = ((window as unknown as { __shifts: number[] }).__shifts = [])
         new PerformanceObserver((list) => {
@@ -29,7 +28,7 @@ test.describe('páginas pré-renderizadas', () => {
     })
   }
 
-  test('URL com filtros não mostra o catálogo padrão pré-renderizado', async ({ app }) => {
+  test('a URL with filters does not show the prerendered default catalog', async ({ app }) => {
     const { page } = app
     await page.goto('/?q=Golden')
     await page.waitForFunction(() => Boolean(window.__kurio))
@@ -37,10 +36,9 @@ test.describe('páginas pré-renderizadas', () => {
     for (const name of await page.getByTestId('nft-card').locator('h3').allTextContents()) expect(name).toContain('Golden')
   })
 
-  test('rota não pré-renderizada não exibe a home ao carregar', async ({ app }) => {
+  test('a route that is not prerendered does not show the home while loading', async ({ app }) => {
     const { page } = app
     const html = await (await page.request.get('/cart')).text()
-    // The SPA fallback serves the home's HTML, marked stale before first paint.
     expect(html).toContain('data-prerender-stale')
     await page.goto('/cart')
     await expect(page.getByTestId('cart-empty')).toBeVisible()

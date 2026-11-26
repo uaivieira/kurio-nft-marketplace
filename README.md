@@ -6,10 +6,11 @@ Implementação do desafio frontend "NFT Marketplace" em React + TypeScript. Tod
 - **Repositório:** https://github.com/uaivieira/kurio-nft-marketplace
 - Arquitetura, contratos e decisões: [ARCHITECTURE.md](./ARCHITECTURE.md)
 - Resultados do Lighthouse: [lighthouse/reports/summary.md](./lighthouse/reports/summary.md)
+- Licenças de terceiros: [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)
 
 ## Stack
 
-React 19, TypeScript, Vite, TanStack Router (rotas por arquivo), TanStack Query, Axios, Socket.IO (`socket.io-client`), Tailwind CSS v4, shadcn/ui (Radix), MSW 2 + `@mswjs/socket.io-binding`, Zod, React Hook Form, Playwright, Lighthouse CI e Vitest (aritmética de ETH e deduplicação de eventos).
+React 19, TypeScript, Vite, TanStack Router (rotas por arquivo), TanStack Query, Axios, Socket.IO (`socket.io-client`), Tailwind CSS v4, shadcn/ui (Radix), i18next + react-i18next (textos em pt-BR), MSW 2 + `@mswjs/socket.io-binding`, Zod, React Hook Form, Playwright, Lighthouse CI e Vitest (aritmética de ETH e deduplicação de eventos).
 
 ## Requisitos
 
@@ -56,8 +57,8 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) + pré-renderização do início, do Mercado e das páginas de NFT (`dist/index.html`, `dist/mercado.html`, `dist/nft/<id>.html`) |
 | `pnpm preview` | Serve o build em http://127.0.0.1:4173 |
 | `pnpm typecheck` | `tsc -b` em app, testes e configs |
-| `pnpm lint` | oxlint |
-| `pnpm test:unit` | Vitest (aritmética de ETH, ledger de eventos, redirecionamento seguro, rascunho do checkout entre usuários, cabeçalhos de segurança do `vercel.json`) |
+| `pnpm lint` | oxlint e `scripts/check-no-comments.ts` (o código não tem comentários; a verificação falha se algum aparecer) |
+| `pnpm test:unit` | Vitest (aritmética de ETH, ledger de eventos, redirecionamento seguro, rascunho do checkout entre usuários, mensagens de erro da API em pt-BR, cabeçalhos de segurança do `vercel.json`) |
 | `pnpm test:e2e` | Playwright em Chromium desktop (1440×900) e mobile (390×844), contra um build de produção |
 | `pnpm test:e2e:update` | Regera as baselines de regressão visual |
 | `pnpm test:e2e:report` | Abre o relatório HTML (`playwright-report/`). Traces de falhas ficam em `test-results/` |
@@ -135,6 +136,7 @@ src/
   realtime/    cliente Socket.IO, ledger de eventos, live region
   features/    telas (catálogo, detalhe, carrinho, checkout, conta, auth)
   components/  layout e componentes shadcn/ui adaptados
+  i18n/        instância do i18next e dicionário pt-BR (locales/pt-BR.ts)
   routes/      rotas TanStack Router (arquivo = rota)
   mocks/       backend simulado: banco, cenários, handlers REST, servidor Socket.IO
 tests/e2e/     Playwright (funcionais + regressão visual)

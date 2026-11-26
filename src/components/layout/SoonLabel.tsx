@@ -1,15 +1,13 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import { cn } from '@/lib/utils'
 
-/**
- * Out-of-scope destinations (editorial, support, offers...) are shown but inert and
- * labelled, so nothing pretends to work.
- */
 export function SoonLabel({ children, className }: { children: ReactNode; className?: string }) {
+  const { t } = useTranslation()
   return (
-    <span aria-disabled="true" title="Em breve" className={cn('inline-block cursor-not-allowed', className)}>
+    <span aria-disabled="true" title={t('common.soon')} className={cn('inline-block cursor-not-allowed', className)}>
       {children}
-      <span className="sr-only"> (em breve)</span>
+      <span className="sr-only">{` ${t('common.soonSr')}`}</span>
     </span>
   )
 }

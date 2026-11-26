@@ -3,7 +3,6 @@ import { ARTWORKS, COLLECTIONS } from '@/contracts/nft'
 import type { Network } from '@/contracts/common'
 import { mulEth, percentOfEth } from '@/lib/eth'
 
-/** Reference "now" of the fixtures, so listing dates are stable across runs. */
 export const SEED_NOW = Date.parse('2026-07-29T12:00:00Z')
 
 export interface NftRecord {
@@ -35,7 +34,6 @@ export interface SeedUser {
 }
 
 export const SEED_PASSWORD = 'Kurio#2026'
-/** PBKDF2-SHA256 of SEED_PASSWORD with the fixed seed salt (verified by the unit test). */
 export const SEED_PASSWORD_HASH = '2b11159c92eceb3c2f19d11e559eadd95eda9f670575ca77e8901a85f529754c'
 
 export const SEED_USERS: SeedUser[] = [
@@ -86,7 +84,6 @@ interface Spec {
   network?: Network
 }
 
-/** Names, numbers and prices that appear in the Figma frames. */
 const FIGMA_SPECS: Spec[] = [
   { name: 'Emerald Ape', number: 42, artwork: 'emerald', price: '1.19', collection: 'arte-digital', network: 'ethereum' },
   { name: 'Sage Nomad', number: 9, artwork: 'sage', price: '1.69', collection: 'arte-digital', network: 'ethereum' },
@@ -103,7 +100,6 @@ const ADJECTIVES = ['Crimson', 'Amber', 'Lunar', 'Solar', 'Velvet', 'Onyx', 'Cor
 const NOUNS = ['Ape', 'Nomad', 'Vessel', 'Bloom', 'Baron', 'Beat', 'Signal', 'Echo', 'Relic', 'Sentinel', 'Oracle', 'Drifter']
 const NETWORKS: Network[] = ['ethereum', 'ethereum', 'polygon', 'solana']
 
-/** Extra fixtures with intentional edge cases used by the E2E suite. */
 const OVERRIDES: Record<string, { price?: string; available?: Record<string, number> }> = {
   'lunar-echo-027': { available: { e1: 0, e10: 0, e50: 2, open: 0 } },
   'onyx-relic-404': { available: { e1: 0, e10: 0, e50: 0, open: 0 } },

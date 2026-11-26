@@ -1,7 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import type { Session } from '@/contracts/auth'
 
-/** Minimal Web Storage for the Node test environment (enumerable keys, like the browser's). */
 class MemoryStorage {
   getItem(key: string) {
     return Object.hasOwn(this, key) ? (this as unknown as Record<string, string>)[key]! : null

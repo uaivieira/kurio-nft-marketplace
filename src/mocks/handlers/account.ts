@@ -21,7 +21,7 @@ export const accountHandlers = [
 
   http.post('/api/orders', route({ auth: true, tag: 'order-create' }, async (ctx) => {
     const key = ctx.request.headers.get('idempotency-key')
-    if (!key) throw new MockHttpError('VALIDATION', 'Cabeçalho Idempotency-Key obrigatório.')
+    if (!key) throw new MockHttpError('VALIDATION', 'Idempotency-Key header is required.', undefined, { reason: 'idempotencyKeyRequired' })
     const { order } = createOrder(requireUser(ctx), key, await ctx.body(createOrderInput))
     return order
   }, 202)),

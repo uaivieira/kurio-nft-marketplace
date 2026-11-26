@@ -1,6 +1,6 @@
 import { addToCart, expect, test, USERS } from './fixtures'
 
-test('quantidades, remoção e persistência após refresh', async ({ app }) => {
+test('quantities, removal and persistence after refresh', async ({ app }) => {
   const { page } = app
   await app.open('/nft/emerald-ape-042')
   await page.getByRole('button', { name: /Comprar/i }).first().click()
@@ -20,14 +20,14 @@ test('quantidades, remoção e persistência após refresh', async ({ app }) => 
   await expect(page.getByTestId('cart-empty')).toBeVisible()
 })
 
-test('cupom inválido, expirado, aplicado e removido', async ({ app }) => {
+test('invalid, expired, applied and removed coupon', async ({ app }) => {
   const { page } = app
   await app.open('/')
   await addToCart(page, 'emerald-ape-042', 2)
   await page.goto('/cart')
   const input = page.getByLabel('Código promocional')
 
-  await input.fill('NAOEXISTE')
+  await input.fill('NOTREAL')
   await page.getByRole('button', { name: 'Aplicar' }).click()
   await expect(page.getByText('Cupom inválido.')).toBeVisible()
 
@@ -45,7 +45,7 @@ test('cupom inválido, expirado, aplicado e removido', async ({ app }) => {
   await expect(page.getByTestId('total')).toHaveText('2.396 ETH')
 })
 
-test('itens do visitante são preservados ao autenticar', async ({ app }) => {
+test('guest items are kept on authentication', async ({ app }) => {
   const { page } = app
   await app.open('/')
   await addToCart(page, 'golden-beat-207', 3)

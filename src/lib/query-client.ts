@@ -1,11 +1,6 @@
 import { QueryClient } from '@tanstack/react-query'
 import { isApiError } from './api-error'
 
-/**
- * Cache policy (see ARCHITECTURE.md): 30 s fresh window, 5 min garbage collection.
- * Only transient/network failures retry (2x, exponential backoff); business errors
- * (4xx) are shown immediately. Mutations never retry automatically.
- */
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

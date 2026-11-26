@@ -22,7 +22,6 @@ export function useQuote(network: Network, cart: Cart | undefined) {
   })
 }
 
-/** All cart mutations return the fresh cart, which replaces the cache entry and refreshes the quote. */
 function useCartMutation<TVariables>(mutationFn: (variables: TVariables) => Promise<Cart>) {
   const queryClient = useQueryClient()
   const scope = scopeOf(useSession())

@@ -1,6 +1,6 @@
 import { addToCart, expect, openReview, test } from './fixtures'
 
-test('alteração de preço no carrinho é informada e atualiza o resumo', async ({ app }) => {
+test('a price change in the cart is announced and updates the summary', async ({ app }) => {
   const { page, backend } = app
   await app.open('/')
   await addToCart(page, 'emerald-ape-042', 2)
@@ -18,7 +18,7 @@ test('alteração de preço no carrinho é informada e atualiza o resumo', async
   await expect(page.getByRole('button', { name: 'Conectar e finalizar' })).toBeDisabled()
 })
 
-test('checkout impede confirmar com cotação desatualizada (evento Socket.IO)', async ({ app }) => {
+test('checkout blocks confirming a stale quote (Socket.IO event)', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')
   await addToCart(page, 'emerald-ape-042')
@@ -35,7 +35,7 @@ test('checkout impede confirmar com cotação desatualizada (evento Socket.IO)',
   await expect(page.getByTestId('receipt-total')).toHaveText('1.416 ETH')
 })
 
-test('preço alterado no envio exige nova confirmação (409)', async ({ app }) => {
+test('price changed on submit requires a new confirmation (409)', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')
   await backend.setScenario('price-change-during-checkout')
@@ -47,7 +47,7 @@ test('preço alterado no envio exige nova confirmação (409)', async ({ app }) 
   await expect(page.getByTestId('order-confirmed')).toBeVisible({ timeout: 10_000 })
 })
 
-test('edição esgotada no envio fecha a revisão e mantém o carrinho', async ({ app }) => {
+test('edition sold out on submit closes the review and keeps the cart', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')
   await backend.setScenario('sold-out-during-checkout')
@@ -58,13 +58,12 @@ test('edição esgotada no envio fecha a revisão e mantém o carrinho', async (
   await expect(page.getByRole('button', { name: 'Confirmar compra' })).toBeDisabled()
 })
 
-test('eventos duplicados ou antigos não regridem o estado', async ({ app }) => {
+test('duplicate or stale events do not roll back the state', async ({ app }) => {
   const { page, backend } = app
   await app.open('/nft/sage-nomad-009')
   await expect.poll(() => backend.connectedSockets()).toBeGreaterThan(0)
   await backend.updateEdition('sage-nomad-009', 'e50', { price: '2.00' })
   await expect(page.getByTestId('detail-price')).toHaveText('2.00 ETH')
-  // Record every price the UI ever shows from here on.
   await page.evaluate(() => {
     const seen: string[] = ((window as unknown as { __prices: string[] }).__prices = [])
     const node = document.querySelector('[data-testid="detail-price"]')!
@@ -72,7 +71,6 @@ test('eventos duplicados ou antigos não regridem o estado', async ({ app }) => 
   })
   await backend.emitDuplicate()
   await backend.emitStale('sage-nomad-009')
-  // Events arrive in order on the same socket: once this newer one shows, the two before it were processed.
   await backend.updateEdition('sage-nomad-009', 'e50', { price: '2.10' })
   await expect(page.getByTestId('detail-price')).toHaveText('2.10 ETH')
   const seen = await page.evaluate(() => (window as unknown as { __prices: string[] }).__prices)
@@ -81,7 +79,7 @@ test('eventos duplicados ou antigos não regridem o estado', async ({ app }) => 
   await expect(page.getByRole('radio', { name: /^1\/50/ })).toBeEnabled()
 })
 
-test('desconexão com pedido pendente: reconecta e recupera sem nova compra', async ({ app }) => {
+test('disconnect with a pending order: reconnects and recovers without a new purchase', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')
   await backend.setScenario('order-hold')
@@ -94,7 +92,6 @@ test('desconexão com pedido pendente: reconecta e recupera sem nova compra', as
   await expect.poll(() => backend.connectedSockets()).toBeGreaterThan(0)
   await backend.setSocketOnline(false)
   await expect(page.getByTestId('realtime-offline')).toBeVisible()
-  // Refresh during the outage: the order is recovered from REST, not recreated.
   await page.reload()
   await expect(page.getByTestId('order-pending')).toBeVisible()
   expect(await backend.pendingOrderIds()).toEqual([orderId])

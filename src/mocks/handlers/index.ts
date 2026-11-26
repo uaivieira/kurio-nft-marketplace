@@ -6,7 +6,6 @@ import { authHandlers } from './auth'
 import { cartHandlers } from './cart'
 import { catalogHandlers } from './catalog'
 
-/** Control endpoints bypass scenario latency/failures so tests can always reach them. */
 const controlHandlers = [
   http.get('/api/__mock/scenarios', () => HttpResponse.json({ active: runtime.scenario, scenarios: SCENARIOS })),
   http.post('/api/__mock/reset', async () => {

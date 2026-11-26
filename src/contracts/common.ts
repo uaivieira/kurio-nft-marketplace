@@ -1,7 +1,8 @@
 import { z } from 'zod'
+import { validation } from '@/i18n/keys'
 import { isEthString } from '@/lib/eth'
 
-export const ethAmount = z.string().refine(isEthString, 'Valor ETH inválido')
+export const ethAmount = z.string().refine(isEthString, validation('ethInvalid'))
 export const isoDate = z.string().datetime({ offset: true })
 
 export const NETWORKS = ['ethereum', 'polygon', 'solana'] as const

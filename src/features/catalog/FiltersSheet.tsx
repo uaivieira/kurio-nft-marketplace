@@ -1,10 +1,11 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet'
+import { useTranslation } from 'react-i18next'
 import type { CatalogPage } from '@/contracts/nft'
 import { CatalogFilters } from './CatalogFilters'
 import type { CatalogSearch } from './search'
 
-/** Filter drawer used below the desktop breakpoint; loaded on first open. */
 export default function FiltersSheet({ open, onOpenChange, search, facets, returnFocus }: { open: boolean; onOpenChange: (open: boolean) => void; search: CatalogSearch; facets: CatalogPage['facets'] | undefined; returnFocus: () => void }) {
+  const { t } = useTranslation()
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent
@@ -16,8 +17,8 @@ export default function FiltersSheet({ open, onOpenChange, search, facets, retur
         }}
       >
         <SheetHeader className="p-5 pb-0">
-          <SheetTitle>Filtros</SheetTitle>
-          <SheetDescription>Combine coleções, preço e rede.</SheetDescription>
+          <SheetTitle>{t('catalog.filters.sheetTitle')}</SheetTitle>
+          <SheetDescription>{t('catalog.filters.sheetDescription')}</SheetDescription>
         </SheetHeader>
         <CatalogFilters search={search} facets={facets} onApplied={() => onOpenChange(false)} />
       </SheetContent>

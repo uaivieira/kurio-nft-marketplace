@@ -7,7 +7,6 @@ import { catalogQueryOptions } from '@/queries/catalog'
 export const Route = createFileRoute('/')({
   validateSearch: catalogSearch,
   loaderDeps: ({ search }) => search,
-  // Prefetch only: errors surface through the component's own query state (retry, empty, error UI).
   loader: ({ deps }) => {
     void queryClient.prefetchQuery(catalogQueryOptions(deps))
   },

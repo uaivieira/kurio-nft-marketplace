@@ -21,7 +21,6 @@ export const apiErrorBody = z.object({
   code: z.enum(ERROR_CODES),
   message: z.string(),
   fieldErrors: z.record(z.string(), z.string()).optional(),
-  /** Extra machine-readable context, e.g. the fresh quote on QUOTE_STALE. */
   details: z.unknown().optional(),
 })
 export type ApiErrorBody = z.infer<typeof apiErrorBody>

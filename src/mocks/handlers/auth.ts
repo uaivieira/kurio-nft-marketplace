@@ -6,6 +6,7 @@ import { changePassword, login, logout, sessionFor, setAvatar, signup, toProfile
 import { mergeGuestCart } from '../domain/cart'
 import { MockHttpError, requireUser, route } from '../http'
 import { db } from '../db/state'
+import { validation } from '@/i18n/keys'
 
 const loginBody = loginInput.extend({ guestId: z.string().optional() })
 const signupBody = signupInput.and(z.object({ guestId: z.string().optional() }))
@@ -43,7 +44,7 @@ export const authHandlers = [
   http.put('/api/me/avatar', route({ auth: true }, async (ctx) => {
     const { dataUrl } = await ctx.body(avatarInput)
     if (dataUrl && dataUrl.length * 0.75 > MAX_AVATAR_BYTES) {
-      throw new MockHttpError('VALIDATION', 'Imagem muito grande.', { avatar: 'A imagem deve ter no máximo 1 MB.' })
+      throw new MockHttpError('VALIDATION', 'Avatar image is too large.', { avatar: validation('avatarTooLarge') }, { reason: 'imageTooLarge' })
     }
     const user = requireUser(ctx)
     const profile = setAvatar(user, dataUrl)

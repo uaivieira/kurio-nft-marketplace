@@ -6,9 +6,7 @@ const WIDTHS = [160, 320, 480] as const
 interface NftImageProps {
   artwork: Artwork
   alt: string
-  /** Rendered CSS width hint used by the browser to pick a source. */
   sizes: string
-  /** Intrinsic square size reserved to avoid layout shift. */
   size?: 160 | 320 | 480
   priority?: boolean
   className?: string

@@ -1,6 +1,5 @@
 import type { SVGProps } from 'react'
 
-/** Utility glyphs (status, close, steppers) with Lucide's geometry (ISC), inlined to avoid shipping the icon runtime. */
 function Glyph({ children, ...props }: SVGProps<SVGSVGElement>) {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" {...props}>

@@ -2,7 +2,7 @@ import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from './fixtures'
 
 for (const path of ['/', '/mercado', '/nft/emerald-ape-042', '/cart', '/login']) {
-  test(`sem violações graves de acessibilidade em ${path}`, async ({ app }) => {
+  test(`no serious accessibility violations on ${path}`, async ({ app }) => {
     await app.open(path)
     await app.page.waitForLoadState('networkidle')
     const results = await new AxeBuilder({ page: app.page }).withTags(['wcag2a', 'wcag2aa']).analyze()
@@ -11,7 +11,7 @@ for (const path of ['/', '/mercado', '/nft/emerald-ape-042', '/cart', '/login'])
   })
 }
 
-test('teclado: link de pular conteúdo e foco visível', async ({ app }) => {
+test('keyboard: skip link and visible focus', async ({ app }) => {
   const { page } = app
   await app.open('/')
   await expect(page.getByTestId('nft-card').first()).toBeVisible()
@@ -22,8 +22,8 @@ test('teclado: link de pular conteúdo e foco visível', async ({ app }) => {
   await expect(page.locator('#main')).toBeFocused()
 })
 
-test('diálogo prende o foco e devolve ao fechar', async ({ app, isMobile }) => {
-  test.skip(isMobile, 'gatilho de busca do cabeçalho desktop')
+test('dialog traps focus and returns it on close', async ({ app, isMobile }) => {
+  test.skip(isMobile, 'search trigger of the desktop header')
   const { page } = app
   await app.open('/')
   const trigger = page.getByRole('button', { name: 'Buscar NFTs' })
@@ -40,7 +40,7 @@ test('diálogo prende o foco e devolve ao fechar', async ({ app, isMobile }) => 
   await expect(trigger).toBeFocused()
 })
 
-test('formulário anuncia erros associados aos campos', async ({ app }) => {
+test('form announces errors tied to the fields', async ({ app }) => {
   const { page } = app
   await app.open('/login')
   const dialog = page.getByRole('dialog')

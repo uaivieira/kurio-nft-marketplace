@@ -1,8 +1,3 @@
-/**
- * One idempotency key per distinct order payload. The key is kept in sessionStorage, so
- * resending after a timeout or a page refresh reuses it and the server returns the
- * same order instead of creating another. A different payload gets a new key.
- */
 const PREFIX = 'kurio:idem:'
 
 function hash(text: string) {

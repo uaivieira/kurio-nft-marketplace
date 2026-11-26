@@ -5,6 +5,7 @@ import { nftUpdatedEvent, orderUpdatedEvent, SOCKET_EVENTS, SOCKET_PATH, type Nf
 import type { CartLine } from '@/contracts/cart'
 import type { CatalogPage, NftDetail } from '@/contracts/nft'
 import type { Order } from '@/contracts/order'
+import i18n from '@/i18n'
 import { formatEth } from '@/lib/eth'
 import { useSession } from '@/lib/session-store'
 import { keys } from '@/queries/keys'
@@ -41,15 +42,14 @@ function applyNftUpdate(queryClient: QueryClient, ledger: EventLedger, event: Nf
     }
   })
 
-  // The cart and quote are computed by the API from live catalog data: refetch the active ones.
   const cached = queryClient.getQueryData<{ lines: CartLine[] }>(keys.cart(scope))
   const line = cached?.lines.find((candidate) => candidate.nftId === nftId)
   if (line) {
     const next = editions.find((edition) => edition.id === line.editionId)
     if (next && next.price !== line.unitPrice) {
-      announce(`Preço de ${line.name} mudou de ${formatEth(line.unitPrice)} para ${formatEth(next.price)}.`)
+      announce(i18n.t('realtime.cartPriceChanged', { name: line.name, from: formatEth(line.unitPrice), to: formatEth(next.price) }))
     } else if (next && next.available < line.quantity) {
-      announce(`A disponibilidade de ${line.name} mudou. Restam ${next.available} unidades.`)
+      announce(i18n.t('realtime.cartAvailabilityChanged', { name: line.name, available: next.available }))
     }
   }
   void queryClient.invalidateQueries({ queryKey: keys.cart(scope), refetchType: 'active' })
@@ -58,22 +58,16 @@ function applyNftUpdate(queryClient: QueryClient, ledger: EventLedger, event: Nf
 }
 
 function applyOrderUpdate(queryClient: QueryClient, event: OrderUpdatedEvent, scope: string) {
-  const { orderId, status, failureReason } = event.data
+  const { orderId, status, failureReason, failure } = event.data
   queryClient.setQueryData<Order>(keys.order(scope, orderId), (cached) =>
-    cached && cached.version < event.version ? { ...cached, status, failureReason, version: event.version } : cached,
+    cached && cached.version < event.version ? { ...cached, status, failureReason, failure, version: event.version } : cached,
   )
-  // The event carries only the status; the receipt (hash, links) comes from REST.
   void queryClient.invalidateQueries({ queryKey: keys.order(scope, orderId) })
   void queryClient.invalidateQueries({ queryKey: keys.pendingOrders(scope) })
   if (status === 'confirmed') void queryClient.invalidateQueries({ queryKey: keys.cart(scope) })
-  announce(status === 'confirmed' ? 'Pedido confirmado.' : status === 'rejected' ? 'Pedido recusado.' : 'Pedido pendente.')
+  announce(status === 'confirmed' ? i18n.t('realtime.orderConfirmed') : status === 'rejected' ? i18n.t('realtime.orderRejected') : i18n.t('realtime.orderPending'))
 }
 
-/**
- * Owns the socket.io-client lifecycle. The effect is keyed by the session token, so
- * logging out or switching users tears down the connection, listeners and dedupe state
- * and opens a fresh one under the new identity.
- */
 export function RealtimeProvider({ children }: { children: ReactNode }) {
   const queryClient = useQueryClient()
   const session = useSession()
@@ -87,8 +81,6 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
     let cancelled = false
     setRealtimeStatus('connecting')
 
-    // socket.io-client is loaded lazily: it captures `globalThis.WebSocket` when evaluated, so it
-    // must run after the simulated backend (which patches WebSocket) is ready.
     void Promise.all([backendReady, realtimeReady, afterLoad]).then(() => import('socket.io-client')).then(({ io }) => {
       if (cancelled) return
       const client = io(window.location.origin, {
@@ -105,11 +97,10 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
       client.on('connect', () => {
         setRealtimeStatus('online')
         if (hasConnected) {
-          // Events may have been missed while offline: REST is the source of truth.
           void queryClient.invalidateQueries({ queryKey: ['nft'], refetchType: 'active' })
           void queryClient.invalidateQueries({ queryKey: ['catalog'], refetchType: 'active' })
           void queryClient.invalidateQueries({ queryKey: ['private', scope], refetchType: 'active' })
-          announce('Conexão em tempo real restabelecida.')
+          announce(i18n.t('realtime.reconnected'))
         }
         hasConnected = true
       })

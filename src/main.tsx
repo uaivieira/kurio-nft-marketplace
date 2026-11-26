@@ -1,5 +1,6 @@
 import { hydrate, QueryClientProvider, type DehydratedState } from '@tanstack/react-query'
 import { RouterProvider } from '@tanstack/react-router'
+import i18n from '@/i18n'
 import { StrictMode, startTransition } from 'react'
 import { createRoot } from 'react-dom/client'
 import { notify } from '@/lib/notify'
@@ -12,14 +13,7 @@ import { RevealPrerender } from '@/components/RevealPrerender'
 import { router } from './router'
 import './index.css'
 
-/**
- * Seeds the cache with the prerendered data when the HTML matches this URL. The data is marked
- * stale so it is revalidated against this browser's backend right after mounting, without
- * falling back to skeletons.
- */
 function adoptPrerenderedState() {
-  // Query cache captured when the page was prerendered at build time (see scripts/prerender.ts). It is
-  // a JSON block, not a script, so the Content-Security-Policy only has to allow fixed inline scripts.
   const json = document.getElementById('kurio-state')?.textContent
   if (!json || document.documentElement.hasAttribute('data-prerender-stale')) return false
   const state = JSON.parse(json) as DehydratedState
@@ -40,13 +34,11 @@ async function bootstrap() {
 
   setAuthFailureHandler(() => {
     expireSession()
-    notify.error('Sua sessão expirou. Entre novamente para continuar.')
+    notify.error(i18n.t('auth.sessionExpired'))
     const { href } = router.state.location
     void router.navigate({ to: '/login', search: { redirect: href, reason: 'expired' } })
   })
 
-  // Over prerendered HTML, resolve the route (lazy component and data) before the first commit, so
-  // React replaces the static markup with identical markup: no blank frame, no layout shift.
   if (adoptPrerenderedState()) await router.load()
 
   const root = createRoot(document.getElementById('root')!)

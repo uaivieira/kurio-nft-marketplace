@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { useTranslation } from 'react-i18next'
 
 interface Crumb {
   label: string
@@ -6,9 +7,9 @@ interface Crumb {
 }
 
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
-  // "Início / Mercado": 15px bold, text top 32px below the header line (Figma Main frame).
+  const { t } = useTranslation()
   return (
-    <nav aria-label="Trilha de navegação" className="hidden pt-8 text-md leading-4 font-bold md:block">
+    <nav aria-label={t('layout.breadcrumbs.label')} className="hidden pt-8 text-md leading-4 font-bold md:block">
       <ol className="flex flex-wrap gap-[1ch]">
         {items.map((item, index) => {
           const last = index === items.length - 1

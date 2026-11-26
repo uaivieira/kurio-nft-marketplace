@@ -109,12 +109,11 @@ export function nextId(prefix: string): string {
 export function persist() {
   try {
     localStorage.setItem(DB_STORAGE_KEY, JSON.stringify(db))
+    return true
   } catch {
-    /* storage full or unavailable: the in-memory state stays authoritative */
+    return false
   }
 }
-
-/* ---------------------------------------------------------------- passwords */
 
 const PBKDF2_ITERATIONS = 60_000
 const toHex = (bytes: Uint8Array) => Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('')
@@ -134,13 +133,10 @@ export async function verifyPassword(user: UserRecord, password: string) {
   return hash === user.passwordHash
 }
 
-/* --------------------------------------------------------------------- seed */
-
 async function seed(): Promise<DbState> {
   const state = emptyState()
   for (const nft of buildNfts()) state.nfts[nft.id] = nft
 
-  // PBKDF2(SEED_PASSWORD, 'kurio-seed-salt', 60k, SHA-256), precomputed so the first boot does no key stretching.
   const salt = 'kurio-seed-salt'
   const hash = SEED_PASSWORD_HASH
   const now = new Date().toISOString()
@@ -183,30 +179,30 @@ async function seed(): Promise<DbState> {
   return state
 }
 
-export async function initDb() {
+function readSnapshot(): DbState | null {
   try {
     const raw = localStorage.getItem(DB_STORAGE_KEY)
-    if (raw) {
-      const parsed = JSON.parse(raw) as DbState
-      if (parsed.schemaVersion === SCHEMA_VERSION) {
-        db = parsed
-        return
-      }
-    }
+    const parsed = raw ? (JSON.parse(raw) as DbState) : null
+    return parsed?.schemaVersion === SCHEMA_VERSION ? parsed : null
   } catch {
-    /* corrupted snapshot: fall through to a fresh seed */
+    return null
+  }
+}
+
+export async function initDb() {
+  const snapshot = readSnapshot()
+  if (snapshot) {
+    db = snapshot
+    return
   }
   db = await seed()
   persist()
 }
 
-/** Restores the known scenario data completely (catalog, users, carts, orders, sessions). */
 export async function resetDb() {
   db = await seed()
   persist()
 }
-
-/* ------------------------------------------------------------------- events */
 
 type Listener = (event: RealtimeEvent) => void
 const listeners = new Set<Listener>()
@@ -217,7 +213,6 @@ export function subscribe(listener: Listener) {
   return () => listeners.delete(listener)
 }
 
-/** Every event goes through here so REST state and socket events cannot diverge. */
 export function publish(event: RealtimeEvent) {
   eventLog.push(event)
   if (eventLog.length > 200) eventLog.shift()

@@ -1,7 +1,3 @@
-/**
- * Checkout form values survive a session expiry so the user can resume after logging
- * back in. The draft is tagged with its owner and dropped for anyone else.
- */
 const DRAFT_KEY = 'kurio:checkout-draft'
 
 export interface CheckoutDraft {
@@ -27,7 +23,6 @@ export function loadCheckoutDraft(userId: string): CheckoutDraft | null {
   return draft?.userId === userId ? draft : null
 }
 
-/** Owner of the stored draft, if any (it may outlive the session that wrote it). */
 export const checkoutDraftOwner = () => readDraft()?.userId ?? null
 
 export function clearCheckoutDraft() {

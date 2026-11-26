@@ -1,9 +1,12 @@
 import { useNavigate } from '@tanstack/react-router'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button } from '@/components/ui/button'
 import { Slider } from '@/components/ui/slider'
 import { NETWORK_LABELS, type Network } from '@/contracts/common'
-import { COLLECTION_LABELS, type CatalogPage, type Collection } from '@/contracts/nft'
+import { COLLECTION_LABEL_KEYS, type CatalogPage, type Collection } from '@/contracts/nft'
+import i18n from '@/i18n'
+import { interpolate } from '@/i18n/interpolate'
 import { cn } from '@/lib/utils'
 import { hasActiveFilters, useCatalogPath, type CatalogSearch } from './search'
 
@@ -14,11 +17,13 @@ function toggle<T>(list: T[] | undefined, value: T): T[] | undefined {
   return next.length ? next : undefined
 }
 
-/** Filter rows of the Figma sidebar: Body/15 with a 40px row, indented 12px. */
 const optionClass = (active: boolean) =>
   cn('flex h-10 w-full cursor-pointer items-center justify-between rounded-sm pr-2 pl-3 text-left text-md transition-colors hover:bg-primary/10', active ? 'text-highlight' : 'text-text-secondary')
 
+const formatPrice = (value: number) => new Intl.NumberFormat(i18n.language, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(value)
+
 export function CatalogFilters({ search, facets, onApplied }: { search: CatalogSearch; facets: Facets | undefined; onApplied?: () => void }) {
+  const { t } = useTranslation()
   const path = useCatalogPath()
   const navigate = useNavigate()
   const floor = Number(facets?.priceRange.min ?? 0.02)
@@ -32,7 +37,6 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
     setRange([Number(search.minPrice ?? floor), Number(search.maxPrice ?? ceiling)])
   }
 
-  /** Any filter change returns to page 1. */
   const update = (patch: Partial<CatalogSearch>) => {
     void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, ...patch, page: undefined }), hash: 'catalogo' })
     onApplied?.()
@@ -43,14 +47,14 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
   return (
     <div className="space-y-6 bg-card px-5 pt-5 pb-5 text-md">
       <fieldset>
-        <legend className="mb-1.5 text-lg font-bold">Coleções</legend>
+        <legend className="mb-1.5 text-lg font-bold">{t('common.collections')}</legend>
         <ul className="space-y-0.5">
-          {(Object.keys(COLLECTION_LABELS) as Collection[]).map((value) => {
+          {(Object.keys(COLLECTION_LABEL_KEYS) as Collection[]).map((value) => {
             const active = Boolean(search.collections?.includes(value))
             return (
               <li key={value}>
                 <button type="button" aria-pressed={active} onClick={() => update({ collections: toggle(search.collections, value) })} className={optionClass(active)}>
-                  <span>{COLLECTION_LABELS[value]}</span>
+                  <span>{t(COLLECTION_LABEL_KEYS[value])}</span>
                   <span className={cn('font-bold', active ? 'text-highlight' : 'text-foreground')}>({count(facets?.collections, value) ?? '–'})</span>
                 </button>
               </li>
@@ -60,7 +64,7 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
       </fieldset>
 
       <fieldset>
-        <legend className="mb-4 text-lg font-bold">Faixa de preço</legend>
+        <legend className="mb-4 text-lg font-bold">{t('catalog.filters.priceRange')}</legend>
         <Slider
           min={floor}
           max={ceiling}
@@ -68,10 +72,10 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
           value={range}
           onValueChange={(value) => setRange([value[0] ?? floor, value[1] ?? ceiling])}
           minStepsBetweenThumbs={1}
-          aria-label="Faixa de preço em ETH"
+          aria-label={t('catalog.filters.priceRangeLabel')}
         />
         <p className="mt-5 px-3 text-sm" aria-live="polite">
-          Preço: {range[0].toFixed(2).replace('.', ',')} - {range[1].toFixed(2).replace('.', ',')} ETH
+          {interpolate((slots) => t('catalog.filters.price', slots), { min: formatPrice(range[0]), max: formatPrice(range[1]) })}
         </p>
         <Button
           className="mt-3 ml-3 h-9 px-3 text-base"
@@ -82,12 +86,12 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
             })
           }
         >
-          Aplicar
+          {t('common.apply')}
         </Button>
       </fieldset>
 
       <fieldset>
-        <legend className="mb-1.5 text-lg font-bold">Rede</legend>
+        <legend className="mb-1.5 text-lg font-bold">{t('catalog.filters.network')}</legend>
         <ul className="space-y-0.5">
           {(Object.keys(NETWORK_LABELS) as Network[]).map((value) => {
             const active = Boolean(search.networks?.includes(value))
@@ -110,7 +114,7 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
           className="w-full"
           onClick={() => update({ collections: undefined, networks: undefined, minPrice: undefined, maxPrice: undefined, q: undefined })}
         >
-          Limpar filtros
+          {t('catalog.filters.clear')}
         </Button>
       )}
     </div>

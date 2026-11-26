@@ -17,7 +17,9 @@ prerendering in `scripts/prerender.ts`). Read `README.md` and `ARCHITECTURE.md` 
   `src/queries/**`, test fixtures in `tests/e2e/fixtures.ts`. Never duplicate an implementation.
 - Keep the documented behaviour in `README.md` working (scenario selection via URL, panel and
   console, reset, failure flows) unless the task explicitly changes it; update docs when it does.
-- Follow the existing code style: comments explain why, TypeScript strict, no `any`, no debug code.
+- Follow the existing code style: code and test names in English, no comments at all (`pnpm lint`
+  fails on any; put the rationale in `ARCHITECTURE.md`), user-facing text only in
+  `src/i18n/locales/pt-BR.ts`, TypeScript strict, no `any`, no debug code.
 - Do not commit, push or deploy. Leave changes in the working tree for review.
 - Do not kill the dev server on port 5173. Stop any other server or `chrome-headless-shell` you
   start. Remove scratch files, `dist-e2e/` and `test-results/` when done.

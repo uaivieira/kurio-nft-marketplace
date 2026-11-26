@@ -1,9 +1,5 @@
 import type { CatalogQuery } from '@/contracts/nft'
 
-/**
- * Public data is keyed by its parameters. Private data lives under
- * ['private', <userId|guest>, ...] so it is isolated per user and can be wiped in one call.
- */
 export const keys = {
   catalog: (query: CatalogQuery) => ['catalog', query] as const,
   nft: (id: string) => ['nft', id] as const,

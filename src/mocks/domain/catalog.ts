@@ -105,7 +105,7 @@ export function queryCatalog(query: CatalogQuery): CatalogPage {
 
 export function getNftDetail(id: string): NftDetail {
   const nft = db.nfts[id]
-  if (!nft) throw new MockHttpError('NOT_FOUND', 'NFT não encontrado.')
+  if (!nft) throw new MockHttpError('NOT_FOUND', 'NFT not found.', undefined, { reason: 'nft' })
   const related = Object.values(db.nfts)
     .filter((other) => other.id !== nft.id && other.collection === nft.collection)
     .concat(Object.values(db.nfts).filter((other) => other.id !== nft.id && other.collection !== nft.collection))

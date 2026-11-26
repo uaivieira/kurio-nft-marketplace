@@ -1,8 +1,7 @@
 import { addToCart, apiFetch, expect, openReview, test } from './fixtures'
 
-test('pagamento recusado preserva o carrinho', async ({ app }) => {
+test('rejected payment keeps the cart', async ({ app }) => {
   const { page, backend } = app
-  // Fake clock: the simulated network settles orders 2.5 s after creation; we skip ahead instead of waiting.
   await page.clock.install()
   await app.login('ana')
   await backend.setScenario('payment-rejected')
@@ -17,7 +16,7 @@ test('pagamento recusado preserva o carrinho', async ({ app }) => {
   await expect(page.getByTestId('cart-line')).toHaveCount(1)
 })
 
-test('clique repetido cria um único pedido', async ({ app }) => {
+test('repeated clicks create a single order', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')
   await backend.setScenario('order-hold')
@@ -30,7 +29,7 @@ test('clique repetido cria um único pedido', async ({ app }) => {
   expect(await backend.pendingOrderIds()).toHaveLength(1)
 })
 
-test('timeout após criar o pedido recupera o mesmo pedido', async ({ app }) => {
+test('timeout after creating the order recovers the same order', async ({ app }) => {
   const { page, backend } = app
   await page.clock.install()
   await app.login('ana')
@@ -38,8 +37,6 @@ test('timeout após criar o pedido recupera o mesmo pedido', async ({ app }) => 
   await addToCart(page, 'emerald-ape-042')
   await openReview(page)
   await page.getByRole('button', { name: 'Enviar pedido' }).click()
-  // The first response never arrives: jump past the HTTP timeout (4 s in the E2E build, 10 s by default).
-  // The client resends with the same Idempotency-Key and gets back the order that was already created.
   await expect(page.getByRole('button', { name: 'Enviando…' })).toBeVisible()
   await page.clock.fastForward(10_500)
   await expect(page).toHaveURL(/\/orders\//)
@@ -49,7 +46,7 @@ test('timeout após criar o pedido recupera o mesmo pedido', async ({ app }) => 
   expect(body.items).toHaveLength(1)
 })
 
-test('idempotência: mesma chave recupera o pedido; conteúdo diferente gera conflito', async ({ app }) => {
+test('idempotency: the same key returns the order; a different payload conflicts', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')
   await backend.setScenario('order-hold')
@@ -65,7 +62,7 @@ test('idempotência: mesma chave recupera o pedido; conteúdo diferente gera con
     network: 'ethereum',
     buyer: { displayName: 'Ana Souza', username: 'ana', profileName: 'ana', email: 'ana@kurio.test', referralCode: 'KURIO2026', ensName: 'anasouza.eth' },
   }
-  const headers = { 'Idempotency-Key': 'chave-fixa-1' }
+  const headers = { 'Idempotency-Key': 'fixed-key-1' }
   const first = await apiFetch<{ id: string }>(page, '/orders', { method: 'POST', body: payload, headers })
   const again = await apiFetch<{ id: string }>(page, '/orders', { method: 'POST', body: payload, headers })
   expect(first.status).toBe(202)

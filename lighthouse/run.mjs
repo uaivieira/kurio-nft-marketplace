@@ -1,8 +1,3 @@
-/**
- * Runs the Lighthouse audit for both profiles (3 runs per page each) and writes
- * lighthouse/reports/summary.md with the median of every category plus LCP, CLS and TBT.
- * Usage: pnpm build && pnpm lighthouse
- */
 import { execSync } from 'node:child_process'
 import { readFileSync, rmSync, writeFileSync } from 'node:fs'
 import os from 'node:os'
@@ -40,15 +35,15 @@ for (const profile of PROFILES) {
   }
 }
 
-const summary = `# Lighthouse — medianas (3 execuções por página e perfil)
+const summary = `# Lighthouse — medians (3 runs per page and profile)
 
 Gerado em ${new Date().toISOString()} por \`pnpm lighthouse\` (build otimizado servido por \`vite preview\`, cenário de mocks \`default\`).
 
-| Página | Perfil | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
+| Page | Profile | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
 ${rows.join('\n')}
 
-## Ambiente
+## Environment
 
 - Lighthouse ${lighthouseVersion} (via @lhci/cli), Chrome ${chromeVersion}
 - Node ${process.version}, ${os.type()} ${os.release()} ${os.arch()}, ${os.cpus()[0]?.model ?? ''}

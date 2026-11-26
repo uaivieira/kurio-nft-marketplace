@@ -8,7 +8,6 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 1 : 0,
-  // Fixed worker count: the realtime and timeout scenarios are timing-sensitive under heavy parallelism.
   workers: process.env.CI ? 2 : 4,
   reporter: [['list'], ['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
@@ -26,7 +25,6 @@ export default defineConfig({
     { name: 'chromium-mobile', use: { ...devices['Pixel 7'], viewport: { width: 390, height: 844 } } },
   ],
   webServer: process.env.PLAYWRIGHT_BASE_URL ? undefined : {
-    // A production build (with prerendered pages) and short HTTP timeouts so timeout scenarios stay fast; mocks stay enabled.
     command: `VITE_HTTP_TIMEOUT_MS=4000 pnpm exec vite build --outDir dist-e2e && VITE_HTTP_TIMEOUT_MS=4000 pnpm exec vite build --ssr src/entry-prerender.tsx --outDir dist-ssr && pnpm exec tsx scripts/prerender.ts dist-e2e && pnpm exec vite preview --outDir dist-e2e --host 127.0.0.1 --port ${PORT}`,
     url: BASE_URL,
     reuseExistingServer: !process.env.CI,

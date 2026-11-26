@@ -7,14 +7,10 @@ interface EditionPatch {
   available?: number
 }
 
-/**
- * The single place where catalog data changes. REST responses read `db`, and the
- * Socket.IO event is published from the same mutation, so both always agree.
- */
 export function updateEdition(nftId: string, editionId: string, patch: EditionPatch) {
   const nft = db.nfts[nftId]
   const edition = nft?.editions.find((candidate) => candidate.id === editionId)
-  if (!nft || !edition) throw new MockHttpError('NOT_FOUND', 'NFT ou edição não encontrados.')
+  if (!nft || !edition) throw new MockHttpError('NOT_FOUND', 'NFT or edition not found.', undefined, { reason: 'nftOrEdition' })
   if (patch.price !== undefined) edition.price = patch.price
   if (patch.available !== undefined) edition.available = Math.max(0, patch.available)
   nft.version += 1

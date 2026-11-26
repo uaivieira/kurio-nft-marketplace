@@ -1,8 +1,8 @@
 import { apiFetch, expect, test } from './fixtures'
 import type { Page } from '@playwright/test'
 
-test.describe('catálogo', () => {
-  test.skip(({ isMobile }) => isMobile, 'filtros laterais e ordenação são do layout desktop; o mobile é coberto em mobile-catalog')
+test.describe('catalog', () => {
+  test.skip(({ isMobile }) => isMobile, 'sidebar filters and sorting belong to the desktop layout; mobile is covered by the mobile catalog test')
 
   async function gridNames(page: Page) {
     await expect(page.getByTestId('catalog-grid')).toHaveAttribute('aria-busy', 'false')
@@ -14,7 +14,7 @@ test.describe('catálogo', () => {
     return body.items.map((item) => item.name)
   }
 
-  test('filtros combinados, ordenação, paginação e histórico', async ({ app }) => {
+  test('combined filters, sorting, pagination and history', async ({ app }) => {
     const { page } = app
     await app.open('/')
     await expect(page.getByTestId('nft-card').first()).toBeVisible()
@@ -29,18 +29,16 @@ test.describe('catálogo', () => {
     await expect(page).toHaveURL(/sort=price-asc/)
     expect(await gridNames(page)).toEqual(await apiNames(page, 'collection=musica&network=polygon&sort=price-asc'))
 
-    // History restores the previous combination.
     await page.goBack()
     await expect(page).not.toHaveURL(/sort=/)
     expect(await gridNames(page)).toEqual(await apiNames(page, 'collection=musica&network=polygon'))
 
-    // Refresh keeps the URL state.
     await page.reload()
     await expect(page.getByRole('button', { name: /^Música/ })).toHaveAttribute('aria-pressed', 'true')
     expect(await gridNames(page)).toEqual(await apiNames(page, 'collection=musica&network=polygon'))
   })
 
-  test('paginação reinicia ao mudar filtro', async ({ app }) => {
+  test('pagination resets when a filter changes', async ({ app }) => {
     const { page } = app
     await app.open('/')
     await page.getByRole('link', { name: 'Página 2' }).click()
@@ -51,7 +49,7 @@ test.describe('catálogo', () => {
     expect(await gridNames(page)).toEqual(await apiNames(page, 'network=ethereum'))
   })
 
-  test('busca e resultado vazio', async ({ app }) => {
+  test('search and empty result', async ({ app }) => {
     const { page } = app
     await app.open('/')
     await page.getByRole('button', { name: 'Buscar NFTs' }).click()
@@ -64,13 +62,11 @@ test.describe('catálogo', () => {
     await expect(page.getByTestId('catalog-empty')).toBeVisible()
   })
 
-  test('respostas fora de ordem não sobrescrevem a consulta mais recente', async ({ app }) => {
+  test('out-of-order responses do not overwrite the latest query', async ({ app }) => {
     const { page } = app
-    // Fake clock: the seeded jitter latencies (80 ms–1.8 s) are released by advancing time, not by waiting.
     await page.clock.install()
     await app.open('/', 'jitter')
     await expect(page.getByTestId('nft-card').first()).toBeVisible({ timeout: 10_000 })
-    // Fire several filter changes faster than the variable latency resolves.
     await page.getByRole('button', { name: /^Música/ }).click()
     await page.getByRole('button', { name: /^Fotografia/ }).click()
     await page.getByRole('button', { name: /^Solana/ }).click()
@@ -82,8 +78,8 @@ test.describe('catálogo', () => {
   })
 })
 
-test('catálogo mobile: busca e filtros na gaveta', async ({ app, isMobile }) => {
-  test.skip(!isMobile, 'layout mobile')
+test('mobile catalog: search and filters in the drawer', async ({ app, isMobile }) => {
+  test.skip(!isMobile, 'mobile layout')
   const { page } = app
   await app.open('/')
   await page.getByRole('searchbox', { name: 'Buscar NFTs' }).fill('Nomad')

@@ -4,11 +4,6 @@ const MAX_SEEN = 500
 
 export type Verdict = 'apply' | 'duplicate' | 'stale'
 
-/**
- * Decides whether an incoming event may change state. Delivery is at-least-once and
- * unordered, so the client drops events it already handled (same eventId) and events
- * whose version is not newer than the latest version seen for that resource.
- */
 export class EventLedger {
   private readonly seen = new Set<string>()
   private readonly versions = new Map<string, number>()
@@ -25,7 +20,6 @@ export class EventLedger {
     return 'apply'
   }
 
-  /** REST is authoritative: after a refetch, versions at or below it can never apply. */
   observe(kind: string, id: string, version: number) {
     const key = `${kind}:${id}`
     if (version > (this.versions.get(key) ?? -1)) this.versions.set(key, version)

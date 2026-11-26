@@ -3,17 +3,6 @@ import { ws } from 'msw'
 import { SOCKET_PATH, type RealtimeEvent } from '@/contracts/events'
 import { db, eventLog, subscribe } from './db/state'
 
-/**
- * Socket.IO server simulated at the network layer. msw's WebSocket interception
- * plus @mswjs/socket.io-binding encode/decode the Engine.IO + Socket.IO frames,
- * so the real socket.io-client in the app talks to it over `ws://<origin>/realtime/`.
- *
- * Limitations: websocket transport only (no HTTP long-polling), default namespace
- * only, no acknowledgements; the token travels as a query param because the binding
- * does not expose the CONNECT packet payload. The custom path (not the default
- * /socket.io/) avoids msw's special-casing of that prefix, which would otherwise
- * also capture Vite's HMR socket on `/` during development.
- */
 const PING_INTERVAL_MS = 20_000
 
 interface Client {
@@ -32,7 +21,7 @@ export function createSocketHandlers() {
   return [
     link.addEventListener('connection', (connection) => {
       if (!online) {
-        connection.client.close(1013, 'Servidor indisponível')
+        connection.client.close(1013, 'Server unavailable')
         return
       }
       const token = new URL(connection.client.url).searchParams.get('token')
@@ -41,7 +30,7 @@ export function createSocketHandlers() {
       const client: Client = {
         userId: session && session.expiresAt > Date.now() ? session.userId : null,
         emit: (type, payload) => io.client.emit(type, payload),
-        close: () => connection.client.close(1006, 'Conexão encerrada'),
+        close: () => connection.client.close(1006, 'Connection closed'),
       }
       clients.add(client)
 
@@ -54,7 +43,6 @@ export function createSocketHandlers() {
   ]
 }
 
-/** nft.updated is public; order.updated only reaches the owner's connections. */
 export function broadcast(event: RealtimeEvent) {
   for (const client of clients) {
     if (event.type === 'order.updated' && event.userId !== client.userId) continue

@@ -4,13 +4,14 @@ import { addEth, fromWei, mulEth, percentOfEth, subEth, toWei } from '@/lib/eth'
 import { COUPONS } from '../db/seed'
 import { db, nextId, persist, type CartLineRecord, type CartRecord, type UserRecord } from '../db/state'
 import { MockHttpError } from '../http'
+import { validation } from '@/i18n/keys'
 
 const NETWORK_FEES: Record<Network, string> = { ethereum: '0.016', polygon: '0.002', solana: '0.001' }
 const QUOTE_TTL_MS = 5 * 60_000
 
 export const cartKey = (user: UserRecord | null, guestId: string | null) => {
   if (user) return `user:${user.id}`
-  if (!guestId) throw new MockHttpError('VALIDATION', 'Identificador de visitante ausente.')
+  if (!guestId) throw new MockHttpError('VALIDATION', 'Guest id header is missing.', undefined, { reason: 'guestIdMissing' })
   return `guest:${guestId}`
 }
 
@@ -63,17 +64,17 @@ export function viewCart(cart: CartRecord, owner: 'guest' | 'user'): Cart {
 function limitFor(nftId: string, editionId: string) {
   const nft = db.nfts[nftId]
   const edition = nft?.editions.find((candidate) => candidate.id === editionId)
-  if (!nft || !edition) throw new MockHttpError('NOT_FOUND', 'NFT ou edição não encontrados.')
+  if (!nft || !edition) throw new MockHttpError('NOT_FOUND', 'NFT or edition not found.', undefined, { reason: 'nftOrEdition' })
   return { edition, limit: Math.min(edition.available, edition.maxPerOrder) }
 }
 
 export function addItem(cart: CartRecord, nftId: string, editionId: string, quantity: number) {
   const { edition, limit } = limitFor(nftId, editionId)
-  if (limit === 0) throw new MockHttpError('AVAILABILITY_CONFLICT', 'Esta edição está esgotada.')
+  if (limit === 0) throw new MockHttpError('AVAILABILITY_CONFLICT', 'Edition is sold out.', undefined, { reason: 'soldOut' })
   const existing = cart.lines.find((line) => line.nftId === nftId && line.editionId === editionId)
   const next = (existing?.quantity ?? 0) + quantity
   if (next > limit) {
-    throw new MockHttpError('AVAILABILITY_CONFLICT', `Limite de ${limit} unidade(s) para esta edição.`, { quantity: `Máximo de ${limit}` })
+    throw new MockHttpError('AVAILABILITY_CONFLICT', `Quantity exceeds the limit of ${limit} for this edition.`, { quantity: validation('quantityAboveLimit') }, { reason: 'limit', limit })
   }
   if (existing) existing.quantity = next
   else cart.lines.push({ id: nextId('line'), nftId, editionId, quantity, priceWhenAdded: edition.price })
@@ -82,10 +83,10 @@ export function addItem(cart: CartRecord, nftId: string, editionId: string, quan
 
 export function setQuantity(cart: CartRecord, lineId: string, quantity: number) {
   const line = cart.lines.find((candidate) => candidate.id === lineId)
-  if (!line) throw new MockHttpError('NOT_FOUND', 'Item não encontrado no carrinho.')
+  if (!line) throw new MockHttpError('NOT_FOUND', 'Cart item not found.', undefined, { reason: 'cartItem' })
   const { limit } = limitFor(line.nftId, line.editionId)
   if (quantity > limit) {
-    throw new MockHttpError('AVAILABILITY_CONFLICT', `Limite de ${limit} unidade(s) para esta edição.`, { quantity: `Máximo de ${limit}` })
+    throw new MockHttpError('AVAILABILITY_CONFLICT', `Quantity exceeds the limit of ${limit} for this edition.`, { quantity: validation('quantityAboveLimit') }, { reason: 'limit', limit })
   }
   line.quantity = quantity
   touch(cart)
@@ -94,7 +95,7 @@ export function setQuantity(cart: CartRecord, lineId: string, quantity: number) 
 export function removeLine(cart: CartRecord, lineId: string) {
   const before = cart.lines.length
   cart.lines = cart.lines.filter((line) => line.id !== lineId)
-  if (cart.lines.length === before) throw new MockHttpError('NOT_FOUND', 'Item não encontrado no carrinho.')
+  if (cart.lines.length === before) throw new MockHttpError('NOT_FOUND', 'Cart item not found.', undefined, { reason: 'cartItem' })
   touch(cart)
 }
 
@@ -106,7 +107,6 @@ export function acknowledgePrices(cart: CartRecord) {
   touch(cart)
 }
 
-/** Moves guest lines into the user's cart, summing quantities within availability limits. */
 export function mergeGuestCart(user: UserRecord, guestId: string) {
   const guestKey = `guest:${guestId}`
   const guest = db.carts[guestKey]
@@ -126,8 +126,8 @@ export function mergeGuestCart(user: UserRecord, guestId: string) {
 export function applyCoupon(cart: CartRecord, code: string) {
   const normalized = code.trim().toUpperCase()
   const coupon = COUPONS[normalized as keyof typeof COUPONS]
-  if (!coupon) throw new MockHttpError('COUPON_INVALID', 'Cupom inválido.', { code: 'Cupom inválido.' })
-  if (Date.parse(coupon.expiresAt) < Date.now()) throw new MockHttpError('COUPON_EXPIRED', 'Este cupom expirou.', { code: 'Este cupom expirou.' })
+  if (!coupon) throw new MockHttpError('COUPON_INVALID', 'Coupon is invalid.', { code: validation('couponInvalid') })
+  if (Date.parse(coupon.expiresAt) < Date.now()) throw new MockHttpError('COUPON_EXPIRED', 'Coupon has expired.', { code: validation('couponExpired') })
   cart.couponCode = normalized
   touch(cart)
 }
@@ -137,7 +137,6 @@ export function removeCoupon(cart: CartRecord) {
   touch(cart)
 }
 
-/** Deterministic fingerprint: changes whenever any amount the user agreed to would change. */
 function fingerprint(parts: unknown) {
   const text = JSON.stringify(parts)
   let hash = 0
@@ -149,12 +148,13 @@ export function computeQuote(cart: CartRecord, network: Network): Quote {
   const lines = cart.lines.map(viewLine).filter((line): line is CartLine => line !== null)
   const issues: QuoteIssue[] = []
   for (const line of lines) {
-    if (line.available === 0) issues.push({ lineId: line.id, kind: 'sold-out', message: `${line.name} (${line.editionLabel}) esgotou.` })
+    const details = { name: line.name, edition: line.editionLabel, available: line.available, previousPrice: line.priceWhenAdded, price: line.unitPrice }
+    if (line.available === 0) issues.push({ lineId: line.id, kind: 'sold-out', message: `${line.name} (${line.editionLabel}) is sold out.`, details })
     else if (line.quantity > line.available) {
-      issues.push({ lineId: line.id, kind: 'insufficient', message: `Restam apenas ${line.available} unidade(s) de ${line.name} (${line.editionLabel}).` })
+      issues.push({ lineId: line.id, kind: 'insufficient', message: `Only ${line.available} unit(s) of ${line.name} (${line.editionLabel}) left.`, details })
     }
     if (line.unitPrice !== line.priceWhenAdded) {
-      issues.push({ lineId: line.id, kind: 'price-changed', message: `O preço de ${line.name} mudou de ${line.priceWhenAdded} para ${line.unitPrice} ETH.` })
+      issues.push({ lineId: line.id, kind: 'price-changed', message: `Price of ${line.name} changed from ${line.priceWhenAdded} to ${line.unitPrice} ETH.`, details })
     }
   }
 
@@ -204,7 +204,7 @@ export function computeQuote(cart: CartRecord, network: Network): Quote {
           code: cart.couponCode,
           status: couponExpired ? 'expired' : 'applied',
           percentOff: couponDef?.percentOff ?? 0,
-          message: couponExpired ? 'Este cupom expirou.' : `${couponDef?.percentOff}% de desconto aplicado.`,
+          message: couponExpired ? 'Coupon has expired.' : `${couponDef?.percentOff}% discount applied.`,
         }
       : null,
     issues,

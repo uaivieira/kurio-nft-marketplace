@@ -24,13 +24,11 @@ export interface RouteContext<TParams extends PathParams> {
   user: UserRecord | null
   token: string | null
   guestId: string | null
-  /** Parses and validates the JSON body, raising a 422 with per-field messages. */
   body: <T>(schema: ZodType<T>) => Promise<T>
 }
 
 interface RouteOptions {
   auth?: boolean
-  /** Used by scenarios to target specific endpoints. */
   tag?: 'catalog' | 'favorites-write' | 'order-create' | 'wallet-connect'
 }
 
@@ -63,13 +61,13 @@ async function applyScenario(options: RouteOptions): Promise<Response | undefine
   if (options.tag === 'catalog') {
     runtime.catalogCalls += 1
     const failing = scenario === 'http-500' || (scenario === 'flaky-catalog' && runtime.catalogCalls <= 3)
-    if (failing) return errorResponse(new MockHttpError('TRANSIENT', 'Serviço indisponível. Tente novamente.'))
+    if (failing) return errorResponse(new MockHttpError('TRANSIENT', 'Service unavailable.'))
   }
   if (options.tag === 'favorites-write' && scenario === 'favorites-fail') {
-    return errorResponse(new MockHttpError('TRANSIENT', 'Não foi possível atualizar os favoritos.'))
+    return errorResponse(new MockHttpError('TRANSIENT', 'Favorites update failed.', undefined, { reason: 'favorites' }))
   }
   if (options.tag === 'wallet-connect' && scenario === 'wallet-refused') {
-    return errorResponse(new MockHttpError('WALLET_REFUSED', 'A carteira recusou a conexão.'))
+    return errorResponse(new MockHttpError('WALLET_REFUSED', 'Wallet refused the connection.'))
   }
   return undefined
 }
@@ -92,13 +90,13 @@ export function route<TParams extends PathParams = PathParams>(
     try {
       const { user, token } = authenticate(request)
       if (options.auth) {
-        if (!token) throw new MockHttpError('UNAUTHENTICATED', 'Faça login para continuar.')
+        if (!token) throw new MockHttpError('UNAUTHENTICATED', 'Authentication required.')
         if (runtime.scenario === 'session-expired' && once('session-expired')) {
           delete db.sessions[token]
           persist()
-          throw new MockHttpError('SESSION_EXPIRED', 'Sua sessão expirou. Entre novamente.')
+          throw new MockHttpError('SESSION_EXPIRED', 'Session expired.')
         }
-        if (!user) throw new MockHttpError('SESSION_EXPIRED', 'Sua sessão expirou. Entre novamente.')
+        if (!user) throw new MockHttpError('SESSION_EXPIRED', 'Session expired.')
       }
       const ctx: RouteContext<TParams> = {
         request,
@@ -116,12 +114,11 @@ export function route<TParams extends PathParams = PathParams>(
             const key = issue.path.join('.') || '_'
             fieldErrors[key] ??= issue.message
           }
-          throw new MockHttpError('VALIDATION', 'Verifique os campos informados.', fieldErrors)
+          throw new MockHttpError('VALIDATION', 'Request body failed validation.', fieldErrors)
         },
       }
       const result = await handler(ctx)
       if (options.tag === 'order-create' && runtime.scenario === 'order-timeout' && once('order-timeout')) {
-        // The order now exists server-side, but the response never arrives: the client times out.
         await delay('infinite')
       }
       if (result instanceof Response) return result
@@ -135,6 +132,6 @@ export function route<TParams extends PathParams = PathParams>(
 }
 
 export function requireUser(ctx: { user: UserRecord | null }): UserRecord {
-  if (!ctx.user) throw new MockHttpError('UNAUTHENTICATED', 'Faça login para continuar.')
+  if (!ctx.user) throw new MockHttpError('UNAUTHENTICATED', 'Authentication required.')
   return ctx.user
 }

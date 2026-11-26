@@ -4,7 +4,6 @@ import { scopeOf, useSession } from '@/lib/session-store'
 import { isApiError } from '@/lib/api-error'
 import { keys } from './keys'
 
-/** Socket events update this query instantly; polling is the fallback while an order is pending. */
 export function useOrder(id: string) {
   const scope = scopeOf(useSession())
   return useQuery({

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { ethAmount, network } from './common'
+import { validation } from '@/i18n/keys'
 import { artwork } from './nft'
 
 export const cartLine = z.object({
@@ -12,7 +13,6 @@ export const cartLine = z.object({
   editionLabel: z.string(),
   quantity: z.number().int().positive(),
   unitPrice: ethAmount,
-  /** Unit price when the line was added or last acknowledged; differs after a price change. */
   priceWhenAdded: ethAmount,
   available: z.number().int().nonnegative(),
   maxPerOrder: z.number().int().positive(),
@@ -37,7 +37,7 @@ export const addCartItemInput = z.object({
 export type AddCartItemInput = z.infer<typeof addCartItemInput>
 
 export const updateCartItemInput = z.object({ quantity: z.number().int().positive() })
-export const applyCouponInput = z.object({ code: z.string().trim().min(1, 'Informe o código').max(24) })
+export const applyCouponInput = z.object({ code: z.string().trim().min(1, validation('couponRequired')).max(24) })
 export const mergeCartInput = z.object({ guestId: z.string() })
 
 export const quoteRequest = z.object({ network: network.default('ethereum') })
@@ -47,6 +47,7 @@ export const quoteIssue = z.object({
   lineId: z.string(),
   kind: z.enum(['price-changed', 'insufficient', 'sold-out']),
   message: z.string(),
+  details: z.object({ name: z.string(), edition: z.string(), available: z.number().int().nonnegative(), previousPrice: ethAmount, price: ethAmount }),
 })
 export type QuoteIssue = z.infer<typeof quoteIssue>
 
@@ -65,7 +66,6 @@ export type QuoteLine = z.infer<typeof quoteLine>
 
 export const quote = z.object({
   id: z.string(),
-  /** Fingerprint of prices, stock, coupon and fee. Changes whenever the quote would differ. */
   version: z.string(),
   network,
   createdAt: z.string(),

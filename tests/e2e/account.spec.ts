@@ -1,9 +1,8 @@
 import { expect, test, USERS } from './fixtures'
 
-// 1×1 transparent PNG
 const PNG = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=', 'base64')
 
-test('perfil: validação, conflito e persistência', async ({ app }) => {
+test('profile: validation, conflict and persistence', async ({ app }) => {
   const { page } = app
   await app.login('ana')
   await page.goto('/profile')
@@ -27,7 +26,7 @@ test('perfil: validação, conflito e persistência', async ({ app }) => {
   await expect(page.getByLabel('Nome de exibição')).toHaveValue('Ana S.')
 })
 
-test('avatar: alterar e remover', async ({ app }) => {
+test('avatar: change and remove', async ({ app }) => {
   const { page } = app
   await app.login('ana')
   await page.goto('/profile')
@@ -42,19 +41,19 @@ test('avatar: alterar e remover', async ({ app }) => {
   await expect(page.getByText('Use uma imagem PNG, JPEG ou WebP.')).toBeVisible()
 })
 
-test('senha: erros de validação e alteração efetiva', async ({ app }) => {
+test('password: validation errors and effective change', async ({ app }) => {
   const { page } = app
   await app.login('ana')
   await page.goto('/profile')
   const submit = page.getByRole('button', { name: 'Alterar senha' })
 
-  await page.getByLabel('Senha atual').fill('errada123')
-  await page.getByLabel('Nova senha', { exact: true }).fill('NovaSenha1')
-  await page.getByLabel('Confirmar nova senha').fill('Diferente1')
+  await page.getByLabel('Senha atual').fill('wrong1234')
+  await page.getByLabel('Nova senha', { exact: true }).fill('NewSecret1')
+  await page.getByLabel('Confirmar nova senha').fill('Different1')
   await submit.click()
   await expect(page.getByText('As senhas não coincidem')).toBeVisible()
 
-  await page.getByLabel('Confirmar nova senha').fill('NovaSenha1')
+  await page.getByLabel('Confirmar nova senha').fill('NewSecret1')
   await submit.click()
   await expect(page.getByText('Senha atual incorreta.')).toBeVisible()
 
@@ -67,12 +66,12 @@ test('senha: erros de validação e alteração efetiva', async ({ app }) => {
   await page.goto('/login')
   const dialog = page.getByRole('dialog')
   await dialog.getByLabel('E-mail').fill(USERS.ana.email)
-  await dialog.getByLabel('Senha', { exact: true }).fill('NovaSenha1')
+  await dialog.getByLabel('Senha', { exact: true }).fill('NewSecret1')
   await dialog.getByRole('button', { name: 'Entrar', exact: true }).click()
   await expect(page).toHaveURL('/')
 })
 
-test('carteiras: validação, cadastro principal e secundária', async ({ app }) => {
+test('wallets: validation, primary and secondary registration', async ({ app }) => {
   const { page } = app
   await app.login('bruno')
   await page.goto('/profile/wallets')
@@ -81,7 +80,7 @@ test('carteiras: validação, cadastro principal e secundária', async ({ app })
   await expect(primary.getByLabel('Endereço da carteira')).toHaveAttribute('aria-invalid', 'true')
 
   await primary.getByLabel('Nome de exibição').fill('Bruno Lima')
-  await primary.getByLabel('Apelido da carteira').fill('Principal')
+  await primary.getByLabel('Apelido da carteira').fill('Main')
   await primary.getByLabel('Rede').click()
   await page.getByRole('option', { name: 'Polygon' }).click()
   await primary.getByLabel('Nome do perfil').fill('bruno')

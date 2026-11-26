@@ -4,7 +4,7 @@ import { safeRedirect } from './redirect'
 describe('safeRedirect', () => {
   it('keeps same-origin paths with query and hash', () => {
     expect(safeRedirect('/checkout')).toBe('/checkout')
-    expect(safeRedirect('/orders/abc?from=checkout#recibo')).toBe('/orders/abc?from=checkout#recibo')
+    expect(safeRedirect('/orders/abc?from=checkout#receipt')).toBe('/orders/abc?from=checkout#receipt')
     expect(safeRedirect('/?q=Golden%20Beat&page=2#catalogo')).toBe('/?q=Golden%20Beat&page=2#catalogo')
   })
 

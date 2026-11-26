@@ -1,12 +1,8 @@
 import type { FieldValues, Path, UseFormReturn } from 'react-hook-form'
-import { isApiError } from '@/lib/api-error'
+import { errorMessage, isApiError } from '@/lib/api-error'
 
-/**
- * Copies API field errors onto the form. Returns the message for anything that
- * could not be attached to a field, so the caller can show it as a form-level alert.
- */
 export function applyApiErrors<T extends FieldValues>(form: UseFormReturn<T>, error: unknown): string | null {
-  if (!isApiError(error)) return 'Algo deu errado. Tente novamente.'
+  if (!isApiError(error)) return errorMessage(error)
   let attached = 0
   for (const [name, message] of Object.entries(error.fieldErrors)) {
     if (name in form.getValues()) {
@@ -19,5 +15,5 @@ export function applyApiErrors<T extends FieldValues>(form: UseFormReturn<T>, er
     if (first) form.setFocus(first as Path<T>)
     return null
   }
-  return error.message
+  return errorMessage(error)
 }

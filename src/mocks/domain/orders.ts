@@ -1,9 +1,10 @@
 import { orderUpdatedEvent } from '@/contracts/events'
-import type { CreateOrderInput, Order } from '@/contracts/order'
+import type { CreateOrderInput, Order, OrderFailure } from '@/contracts/order'
 import { percentOfEth } from '@/lib/eth'
 import { hex } from '../db/seed'
 import { db, eventId, nextId, persist, publish, type OrderRecord, type UserRecord } from '../db/state'
 import { MockHttpError } from '../http'
+import { validation } from '@/i18n/keys'
 import { once, runtime } from '../scenarios'
 import { computeQuote, getOrCreateCart } from './cart'
 import { updateEdition } from './inventory'
@@ -31,7 +32,6 @@ function transactionHash(seq: number) {
   return `0x${hex(rand, 64)}`
 }
 
-/** Applies the scenario's one-shot mutation just before the quote is revalidated. */
 function applyCheckoutScenario(userId: string) {
   const cart = db.carts[`user:${userId}`]
   const first = cart?.lines[0]
@@ -52,7 +52,7 @@ export function createOrder(user: UserRecord, key: string, input: CreateOrderInp
   const existing = db.idempotency[idemKey]
   if (existing) {
     if (existing.fingerprint !== fingerprint) {
-      throw new MockHttpError('IDEMPOTENCY_MISMATCH', 'Esta chave de idempotência já foi usada com outro conteúdo.')
+      throw new MockHttpError('IDEMPOTENCY_MISMATCH', 'Idempotency key was already used with a different payload.')
     }
     const record = db.orders[existing.orderId]
     if (record) return { order: toOrder(record), replay: true }
@@ -61,21 +61,21 @@ export function createOrder(user: UserRecord, key: string, input: CreateOrderInp
   applyCheckoutScenario(user.id)
 
   const cart = getOrCreateCart(`user:${user.id}`)
-  if (!cart.lines.length) throw new MockHttpError('VALIDATION', 'Seu carrinho está vazio.')
+  if (!cart.lines.length) throw new MockHttpError('VALIDATION', 'Cart is empty.', undefined, { reason: 'emptyCart' })
 
   const wallets = getWallets(user)
   const wallet = [wallets.primary, wallets.secondary].find((candidate) => candidate?.id === input.walletId)
   const connection = db.connections[input.connectionId]
   if (!wallet || !connection || connection.userId !== user.id || connection.walletId !== wallet.id) {
-    throw new MockHttpError('VALIDATION', 'Conecte uma carteira cadastrada para continuar.', { wallet: 'Carteira não conectada.' })
+    throw new MockHttpError('VALIDATION', 'A registered wallet must be connected.', { wallet: validation('walletNotConnected') }, { reason: 'walletNotConnected' })
   }
 
   const quote = computeQuote(cart, input.network)
   if (!quote.purchasable) {
-    throw new MockHttpError('AVAILABILITY_CONFLICT', quote.issues.find((issue) => issue.kind !== 'price-changed')?.message ?? 'Itens indisponíveis.', undefined, { quote })
+    throw new MockHttpError('AVAILABILITY_CONFLICT', quote.issues.find((issue) => issue.kind !== 'price-changed')?.message ?? 'Items unavailable.', undefined, { quote })
   }
   if (quote.version !== input.quoteVersion) {
-    throw new MockHttpError('QUOTE_STALE', 'A cotação mudou. Revise os valores antes de confirmar.', undefined, { quote })
+    throw new MockHttpError('QUOTE_STALE', 'Quote is stale.', undefined, { quote })
   }
 
   const now = new Date().toISOString()
@@ -99,6 +99,7 @@ export function createOrder(user: UserRecord, key: string, input: CreateOrderInp
     transactionHash: null,
     explorerUrl: null,
     failureReason: null,
+    failure: null,
     resolveAt: hold ? null : Date.now() + SETTLE_AFTER_MS,
     outcome: runtime.scenario === 'payment-rejected' ? 'rejected' : 'confirmed',
   }
@@ -118,7 +119,7 @@ function emitOrder(record: OrderRecord) {
       userId: record.userId,
       version: record.version,
       occurredAt: record.updatedAt,
-      data: { orderId: record.id, status: record.status, failureReason: record.failureReason },
+      data: { orderId: record.id, status: record.status, failureReason: record.failureReason, failure: record.failure },
     }),
   )
 }
@@ -126,6 +127,7 @@ function emitOrder(record: OrderRecord) {
 function settle(record: OrderRecord, outcome: 'confirmed' | 'rejected') {
   if (record.status !== 'pending') return
   let reason: string | null = null
+  let failure: OrderFailure = null
 
   if (outcome === 'confirmed') {
     const short = record.lines.find((line) => {
@@ -134,10 +136,12 @@ function settle(record: OrderRecord, outcome: 'confirmed' | 'rejected') {
     })
     if (short) {
       outcome = 'rejected'
-      reason = `${short.name} (${short.editionLabel}) não tem mais unidades disponíveis.`
+      reason = `${short.name} (${short.editionLabel}) is no longer available.`
+      failure = { code: 'OUT_OF_STOCK', name: short.name, edition: short.editionLabel }
     }
   } else {
-    reason = 'Pagamento recusado pela carteira.'
+    reason = 'Payment rejected by the wallet.'
+    failure = { code: 'PAYMENT_REJECTED' }
   }
 
   if (outcome === 'confirmed') {
@@ -161,6 +165,7 @@ function settle(record: OrderRecord, outcome: 'confirmed' | 'rejected') {
 
   record.status = outcome
   record.failureReason = reason
+  record.failure = failure
   record.version += 1
   record.updatedAt = new Date().toISOString()
   record.resolveAt = null
@@ -176,7 +181,6 @@ export function settleDue(now = Date.now()) {
 
 let timer: ReturnType<typeof setTimeout> | undefined
 
-/** Pending orders resolve by wall-clock time, so a page refresh does not lose them. */
 export function scheduleSettlement() {
   clearTimeout(timer)
   const dues = Object.values(db.orders)
@@ -192,15 +196,15 @@ export function scheduleSettlement() {
 
 export function resolveOrder(orderId: string, outcome: 'confirmed' | 'rejected') {
   const record = db.orders[orderId]
-  if (!record) throw new MockHttpError('NOT_FOUND', 'Pedido não encontrado.')
+  if (!record) throw new MockHttpError('NOT_FOUND', 'Order not found.', undefined, { reason: 'order' })
   settle(record, outcome)
 }
 
 export function getOrderFor(user: UserRecord, orderId: string): Order {
   settleDue()
   const record = db.orders[orderId]
-  if (!record) throw new MockHttpError('NOT_FOUND', 'Pedido não encontrado.')
-  if (record.userId !== user.id) throw new MockHttpError('FORBIDDEN', 'Você não tem acesso a este pedido.')
+  if (!record) throw new MockHttpError('NOT_FOUND', 'Order not found.', undefined, { reason: 'order' })
+  if (record.userId !== user.id) throw new MockHttpError('FORBIDDEN', 'Order belongs to another user.')
   return toOrder(record)
 }
 
