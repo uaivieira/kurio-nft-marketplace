@@ -1,0 +1,20 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "identifier": "urn:air:nft-marketplace-one-nu.vercel.app:kurio:marketplace",
+      "displayName": "Kurio NFT marketplace",
+      "type": "text/markdown; profile=\"urn:air:agent-skills\"",
+      "url": "https://nft-marketplace-one-nu.vercel.app/agent-skills/kurio-marketplace.md",
+      "description": "Agent skill for the Kurio demo NFT marketplace: search the catalog, read NFT editions and prices, and build a cart for a human to review and confirm. The backend is simulated; no real purchase happens.",
+      "representativeQueries": [
+        "find digital art NFTs under 2 ETH",
+        "add an NFT edition to the cart",
+        "compare NFT prices by network"
+      ],
+      "capabilities": ["search_nfts", "get_nft", "add_to_cart", "get_cart", "open_page"],
+      "tags": ["nft", "marketplace", "webmcp", "demo"],
+      "version": "1.0.0"
+    }
+  ]
+}

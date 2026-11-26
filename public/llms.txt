@@ -1,0 +1,28 @@
+# Kurio — Marketplace de NFTs
+
+> Kurio is a demo NFT marketplace (React + TypeScript). Its whole backend (REST and Socket.IO) is simulated in the browser: prices, wallets, payments and orders are fictitious, and no real blockchain transaction ever happens. The interface is in Brazilian Portuguese; prices are in ETH, shown as exact decimal strings.
+
+Agents can browse the catalog, open NFT pages and build a cart. Placing an order always requires a human to review and confirm it in the checkout. When the browser supports WebMCP, the site registers tools for these actions (see the agent skill below).
+
+## Pages
+
+- [Home](https://nft-marketplace-one-nu.vercel.app/): highlights and the catalog, with search, filters, sorting and pagination kept in the URL
+- [Marketplace](https://nft-marketplace-one-nu.vercel.app/mercado): the full catalog grid
+- [Example NFT](https://nft-marketplace-one-nu.vercel.app/nft/emerald-ape-042): detail page with editions, availability, quantity limit and favorites
+- [Cart](https://nft-marketplace-one-nu.vercel.app/cart): quantities, coupon and a price quote from the API
+- [Log in](https://nft-marketplace-one-nu.vercel.app/login): demo account `ana@kurio.test` / `Kurio#2026`
+
+## Catalog URL parameters
+
+- [Search and sorting](https://nft-marketplace-one-nu.vercel.app/mercado?q=ape&sort=price-asc): `q` (text), `sort` (`recent`, `price-asc`, `price-desc`, `name`), `tab` (`all`, `new`, `trending`), `page`, `minPrice` and `maxPrice` (ETH decimal strings)
+- [Filters](https://nft-marketplace-one-nu.vercel.app/mercado?networks=%5B%22polygon%22%5D): `collections` and `networks` are JSON arrays, for example `networks=["polygon"]`
+
+## For agents
+
+- [Agent skill](https://nft-marketplace-one-nu.vercel.app/agent-skills/kurio-marketplace.md): how to navigate the site and use its WebMCP tools
+- [Agentic Resource Discovery manifest](https://nft-marketplace-one-nu.vercel.app/.well-known/ard.json)
+
+## Documentation
+
+- [README](https://github.com/uaivieira/kurio-nft-marketplace/blob/main/README.md): setup, demo credentials and simulated scenarios
+- [Architecture](https://github.com/uaivieira/kurio-nft-marketplace/blob/main/ARCHITECTURE.md): REST contracts, realtime events, session, cart and cache policies
