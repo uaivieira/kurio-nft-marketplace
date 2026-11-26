@@ -109,7 +109,7 @@ export function getNftDetail(id: string): NftDetail {
   const related = Object.values(db.nfts)
     .filter((other) => other.id !== nft.id && other.collection === nft.collection)
     .concat(Object.values(db.nfts).filter((other) => other.id !== nft.id && other.collection !== nft.collection))
-    .slice(0, 5)
+    .slice(0, 15)
     .map(summarize)
   const label = nft.name
   return {

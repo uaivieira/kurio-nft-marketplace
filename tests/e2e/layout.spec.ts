@@ -1,7 +1,7 @@
 import type { Page } from '@playwright/test'
 import { addToCart, expect, test } from './fixtures'
 
-const WIDTHS = [768, 900, 1024, 1100, 1280, 1440]
+const WIDTHS = [768, 900, 1024, 1100, 1280, 1440, 1706]
 
 const horizontalOverflow = (page: Page) => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)
 
@@ -82,6 +82,7 @@ test.describe('tablet and narrow desktop layout', () => {
       const footer = page.getByRole('contentinfo')
       const chip = footer.getByText(/MetaMask/)
       expect(await chip.evaluate((element) => element.getBoundingClientRect().height), 'wallet chip on one line').toBeLessThanOrEqual(26)
+      expect(await chip.evaluate((element) => element.scrollWidth <= element.clientWidth), 'wallet names fit the chip').toBe(true)
       const newsletter = footer.getByRole('textbox')
       expect(await newsletter.evaluate((input: HTMLInputElement) => {
         input.value = input.placeholder

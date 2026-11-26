@@ -48,10 +48,10 @@ export function Hero() {
               t(slide.text)
             )}
           </p>
-          <Link to={path} hash="catalogo" className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary uppercase max-md:mt-0 max-md:flex max-md:w-fit max-md:leading-4 max-md:text-highlight lg:mt-8 lg:h-10 lg:w-[140px] lg:rounded-md lg:bg-primary lg:pl-[27.5px] lg:text-base lg:text-primary-foreground lg:hover:bg-highlight">
+          <Link to={path} hash="catalogo" className="mt-4 inline-flex items-center justify-center gap-2 text-xs font-bold text-primary uppercase max-md:mt-0 max-md:flex max-md:w-fit max-md:leading-4 max-md:text-highlight lg:mt-8 lg:h-10 lg:w-[140px] lg:rounded-md lg:bg-primary lg:px-0 lg:text-base lg:text-primary-foreground lg:hover:bg-highlight">
             {`${t('common.explore')} `}<ArrowRightIcon className="size-4 lg:hidden" aria-hidden="true" />
           </Link>
-          <div role="group" aria-label={t('catalog.hero.chooseSlide')} className="absolute bottom-1 left-1/2 flex -translate-x-1/2 max-md:-bottom-[3px] lg:static lg:mt-auto lg:translate-x-0 lg:translate-y-[5px] lg:justify-end lg:pr-0">
+          <div role="group" aria-label={t('catalog.hero.chooseSlide')} className="absolute bottom-1 left-1/2 flex -translate-x-1/2 max-md:-bottom-[3px] lg:static lg:mt-auto lg:translate-x-1 lg:translate-y-[5px] lg:justify-end lg:pr-0">
             {SLIDES.map((item, position) => (
               <button
                 key={item.artwork}
@@ -62,7 +62,7 @@ export function Hero() {
                   setChanged(true)
                   setIndex(position)
                 }}
-                className="flex size-6 cursor-pointer items-center justify-center"
+                className="flex size-6 cursor-pointer items-center justify-center lg:w-4"
               >
                 <span aria-hidden="true" className={cn('size-2 rounded-full bg-primary max-md:size-[7px]', position === index ? 'opacity-100' : 'opacity-40 lg:opacity-100')} />
               </button>

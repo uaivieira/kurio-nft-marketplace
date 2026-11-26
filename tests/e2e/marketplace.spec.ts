@@ -30,7 +30,7 @@ test.describe('marketplace page', () => {
     await expect(page.locator('footer')).toBeVisible()
   })
 
-  test('header: Mercado leads to /mercado and is active only there', async ({ app, isMobile }) => {
+  test('header: Mercado scrolls to the home listing and opens the market from other routes', async ({ app, isMobile }) => {
     test.skip(isMobile, 'desktop header')
     const { page } = app
     await app.open('/')
@@ -39,9 +39,21 @@ test.describe('marketplace page', () => {
     await expect(nav.getByRole('link', { name: 'Mercado' })).not.toHaveAttribute('aria-current', 'page')
 
     await nav.getByRole('link', { name: 'Mercado' }).click()
+    await expect(page).toHaveURL('/')
+    await expect.poll(() => page.locator('#catalogo').evaluate((element) => element.getBoundingClientRect().top), { timeout: 5000 }).toBeLessThan(32)
+    await expect(nav.getByRole('link', { name: 'Início' })).toHaveAttribute('aria-current', 'page')
+
+    await app.open('/nft/emerald-ape-042')
+    await page.getByRole('navigation', { name: 'Principal' }).getByRole('link', { name: 'Mercado' }).click()
     await expect(page).toHaveURL('/mercado')
-    await expect(nav.getByRole('link', { name: 'Mercado' })).toHaveAttribute('aria-current', 'page')
-    await expect(nav.getByRole('link', { name: 'Início' })).not.toHaveAttribute('aria-current', 'page')
+    await expect.poll(() => page.locator('#catalogo').evaluate((element) => element.getBoundingClientRect().top), { timeout: 5000 }).toBeLessThan(32)
+
+    await page.emulateMedia({ reducedMotion: 'reduce' })
+    await app.open('/')
+    await page.getByRole('navigation', { name: 'Principal' }).getByRole('link', { name: 'Mercado' }).click()
+    await expect.poll(() => page.locator('#catalogo').evaluate((element) => element.getBoundingClientRect().top)).toBeLessThan(32)
+    await expect(page).toHaveURL('/')
+    await expect(nav.getByRole('link', { name: 'Início' })).toHaveAttribute('aria-current', 'page')
   })
 
   test('filters, sorting, tabs and pagination stay on /mercado', async ({ app, isMobile }) => {

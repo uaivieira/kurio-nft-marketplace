@@ -167,8 +167,8 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
         <section aria-labelledby="catalog-title" className="min-w-0">
           <h2 id="catalog-title" className="sr-only">{t('catalog.title')}</h2>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pb-4 md:mb-8 md:min-h-[18px] md:items-start md:pb-0 xl:h-[18px]">
-            <div role="tablist" aria-label={t('catalog.tabs.label')} className="flex max-w-full gap-2.5 overflow-x-auto text-sm md:gap-[21px] md:text-md">
+          <div data-testid="catalog-controls" className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pb-4 md:mb-8 md:min-h-[18px] md:items-start md:pb-0 lg:max-xl:flex-col lg:max-xl:items-stretch xl:h-[18px]">
+            <div role="tablist" aria-label={t('catalog.tabs.label')} className="flex min-w-0 max-w-full gap-2.5 overflow-x-auto text-sm md:gap-[21px] md:text-md">
               {CATALOG_TABS.map((value) => (
                 <button
                   key={value}
@@ -182,14 +182,14 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
                 </button>
               ))}
             </div>
-            <div className="hidden shrink-0 items-center gap-1 text-md whitespace-nowrap md:-mt-0.5 md:flex">
+            <div className="hidden min-w-0 shrink-0 items-center gap-1 text-md whitespace-nowrap md:-mt-0.5 md:flex lg:max-xl:self-end">
               <label htmlFor="catalog-sort">{t('catalog.sort.label')}</label>
               <span className="relative inline-flex items-center">
                 <select
                   id="catalog-sort"
                   value={sort}
                   onChange={(event) => void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, sort: event.target.value === 'recent' ? undefined : (event.target.value as (typeof CATALOG_SORTS)[number]), page: undefined }), hash: 'catalogo' })}
-                  className="h-6 cursor-pointer appearance-none bg-transparent pr-5 text-md text-foreground"
+                  className="h-6 max-w-full cursor-pointer appearance-none bg-transparent pr-5 text-md text-foreground"
                 >
                   {CATALOG_SORTS.map((value) => (
                     <option key={value} value={value} className="bg-card">{t(`catalog.sort.${value}`)}</option>

@@ -1,9 +1,10 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+import { Link, useNavigate, useRouterState } from '@tanstack/react-router'
 import { CartIcon, LogoutIcon, SearchIcon, UserIcon } from '@/components/icons'
 import { useTranslation } from 'react-i18next'
 import { useCart } from '@/queries/cart'
 import { useSession } from '@/lib/session-store'
 import { cn } from '@/lib/utils'
+import { scrollToElement } from '@/lib/scroll-to-element'
 import { SoonLabel } from './SoonLabel'
 import { SearchDialog } from './SearchDialog'
 
@@ -26,6 +27,7 @@ export function CartLink({ className }: { className?: string }) {
 export function Header() {
   const { t } = useTranslation()
   const session = useSession()
+  const navigate = useNavigate()
   const pathname = useRouterState({ select: (state) => state.location.pathname })
   const inMarket = MARKET_PATHS.some((prefix) => pathname.startsWith(prefix))
   const home = pathname === '/'
@@ -45,7 +47,19 @@ export function Header() {
             {t('common.home')}
             {home && underline}
           </Link>
-          <Link to="/mercado" className={navLink(inMarket)} aria-current={inMarket ? 'page' : undefined}>
+          <Link to="/mercado" hash="catalogo" className={navLink(inMarket)} aria-current={inMarket ? 'page' : undefined} onClick={(event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+            event.preventDefault()
+            if (home || pathname === '/mercado') {
+              if (!home && pathname === '/mercado') {
+                scrollToElement(document.getElementById('catalogo'))
+                return
+              }
+              scrollToElement(document.getElementById('catalogo'))
+              return
+            }
+            void navigate({ to: '/mercado', resetScroll: false }).then(() => requestAnimationFrame(() => scrollToElement(document.getElementById('catalogo'))))
+          }}>
             {t('common.market')}
             {inMarket && underline}
           </Link>

@@ -4,7 +4,6 @@ import { ArrowRightIcon } from '@/components/icons'
 import { NftImage } from '@/components/NftImage'
 import { SoonLabel } from '@/components/layout/SoonLabel'
 import type { Artwork } from '@/contracts/nft'
-import { cn } from '@/lib/utils'
 
 const POSTS = [
   { artwork: 'ivory', id: 'ownership' },
@@ -14,23 +13,25 @@ const POSTS = [
 ] as const satisfies readonly { artwork: Artwork; id: string }[]
 
 const PROMOS = [
-  { artwork: 'emerald', id: 'genesis', tab: 'new', copy: 'pr-7.5', title: 'max-w-[230px]' },
-  { artwork: 'ivory', id: 'curated', tab: 'trending', copy: 'pr-[35px]', title: '' },
-] as const satisfies readonly { artwork: Artwork; id: string; tab: 'new' | 'trending'; copy: string; title: string }[]
+  { artwork: 'emerald', id: 'genesis', tab: 'new' },
+  { artwork: 'ivory', id: 'curated', tab: 'trending' },
+] as const satisfies readonly { artwork: Artwork; id: string; tab: 'new' | 'trending' }[]
 
 export function PromoBanners() {
   const { t } = useTranslation()
   return (
     <section aria-label={t('catalog.promos.label')} className="mx-auto mt-24 hidden max-w-page gap-7 px-5 md:grid lg:grid-cols-2">
       {PROMOS.map((banner) => (
-        <div key={banner.id} className="relative flex h-[250px] overflow-hidden rounded-lg bg-card">
-          <NftImage artwork={banner.artwork} alt="" sizes="290px" className="aspect-auto h-[250px] w-[290px] lg:max-xl:w-[220px] shrink-0 rounded-[17.5px]" />
+        <div key={banner.id} className="relative flex h-[250px] min-w-0 overflow-hidden rounded-lg bg-card">
+          <div className="h-full w-[48%] max-w-[290px] shrink-0 overflow-hidden rounded-[17.5px]">
+            <NftImage artwork={banner.artwork} alt="" sizes="(min-width: 1280px) 290px, 48vw" className="h-full w-full rounded-[17.5px] object-cover" />
+          </div>
           <span aria-hidden="true" className="absolute top-[134px] -left-[199px] size-64 rounded-full border border-primary" />
           <span aria-hidden="true" className="absolute top-[142px] -left-[191px] size-64 rounded-full border-2 border-primary" />
-          <div className={cn('flex flex-1 flex-col items-end pt-[37px] text-right', banner.copy)}>
-            <h2 className={cn('text-lg leading-6 font-bold', banner.title)}>{t(`catalog.promos.${banner.id}.title`)}</h2>
-            <p className="mt-[9px] line-clamp-3 text-sm leading-6 text-text-secondary">{t(`catalog.promos.${banner.id}.text`)}</p>
-            <Link to="/" search={{ tab: banner.tab }} hash="catalogo" className="-mt-0.5 inline-flex h-10 w-[140px] shrink-0 items-center justify-center gap-1 rounded-md bg-primary text-sm font-medium text-primary-foreground hover:bg-highlight">
+          <div className="flex min-w-0 flex-1 flex-col items-center justify-center px-5 py-5 text-center">
+            <h2 className="text-lg leading-6 font-bold">{t(`catalog.promos.${banner.id}.title`)}</h2>
+            <p className="mt-2 line-clamp-3 text-sm leading-6 text-text-secondary">{t(`catalog.promos.${banner.id}.text`)}</p>
+            <Link to="/" search={{ tab: banner.tab }} hash="catalogo" className="mt-2 inline-flex h-10 w-full max-w-[140px] shrink-0 items-center justify-center gap-1 rounded-md bg-primary text-sm font-medium text-primary-foreground hover:bg-highlight">
               {`${t('common.explore')} `}<ArrowRightIcon className="size-[18px]" aria-hidden="true" />
             </Link>
           </div>

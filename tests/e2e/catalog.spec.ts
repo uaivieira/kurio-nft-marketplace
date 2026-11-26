@@ -43,6 +43,7 @@ test.describe('catalog', () => {
     await app.open('/')
     await page.getByRole('link', { name: 'Página 2' }).click()
     await expect(page).toHaveURL(/page=2/)
+    await expect.poll(() => page.locator('#catalogo').evaluate((element) => element.getBoundingClientRect().top), { timeout: 5000 }).toBeLessThan(32)
     expect(await gridNames(page)).toEqual(await apiNames(page, 'page=2'))
     await page.getByRole('button', { name: /^Ethereum/ }).click()
     await expect(page).not.toHaveURL(/page=/)

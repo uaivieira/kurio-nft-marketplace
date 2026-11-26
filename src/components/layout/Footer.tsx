@@ -103,7 +103,7 @@ export function Footer() {
             ))}
           </ul>
         </nav>
-        <div>
+        <div className="min-w-0">
           <h2 className={columnTitle}>{t('layout.footer.social')}</h2>
           <ul className="flex gap-2 lg:mt-[13px] lg:-ml-px">
             {SOCIAL.map(({ label, href, icon: Icon }) => (
@@ -115,7 +115,7 @@ export function Footer() {
             ))}
           </ul>
           <h2 className={`${columnTitle} mt-8 lg:mt-[25px] lg:mb-[4.5px]`}>{t('layout.footer.wallets')}</h2>
-          <p className="inline-flex h-[26px] items-center rounded-md border border-input bg-secondary px-2 text-micro font-bold tracking-[0.1px] whitespace-nowrap text-highlight uppercase lg:w-[228px] lg:pr-0.5 lg:pl-[9.5px]">
+          <p className="flex min-h-[26px] max-w-full flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-input bg-secondary px-2 py-1 text-[10px] leading-4 font-bold tracking-[0.1px] text-highlight uppercase lg:w-full lg:px-2">
             {t('layout.footer.walletList')}
           </p>
         </div>

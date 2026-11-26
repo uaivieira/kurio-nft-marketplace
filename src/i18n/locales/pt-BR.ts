@@ -140,7 +140,7 @@ const ptBR = {
       },
       social: 'Redes sociais',
       wallets: 'Carteiras compatíveis',
-      walletList: 'MetaMask\u00a0\u00a0•\u00a0\u00a0WalletConnect\u00a0\u00a0•\u00a0\u00a0Coinbase',
+      walletList: 'MetaMask • WalletConnect • Coinbase',
       copyright: '© 2026 Kurio. Propriedade digital para todos.',
     },
   },
@@ -232,6 +232,11 @@ const ptBR = {
       previous: 'Página anterior',
       page: 'Página {{page}}',
       next: 'Próxima página',
+    },
+    carousel: {
+      navigation: 'Navegação do carrossel',
+      page: 'Ir para a página {{page}} de {{total}}',
+      slide: 'página',
     },
     card: {
       rare: 'Raro',

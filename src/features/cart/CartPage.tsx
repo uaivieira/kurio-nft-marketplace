@@ -9,7 +9,7 @@ import { QuantityStepper } from '@/components/QuantityStepper'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { CartLine, QuoteIssue } from '@/contracts/cart'
-import { NftCard } from '@/features/catalog/NftCard'
+import { NftCarousel } from '@/features/catalog/NftCarousel'
 import { errorMessage } from '@/lib/api-error'
 import { issueMessage } from '@/lib/quote-issues'
 import { useReveal } from '@/lib/use-reveal'
@@ -44,10 +44,10 @@ function LineRow({ line, busy, onQuantity, onRemove }: { line: CartLine; busy: b
         <span className="max-md:hidden">{formatEth(line.unitPrice)}</span>
         {priceChanged && <span className="ml-2 text-xs font-normal text-muted-foreground line-through" data-testid="line-old-price">{formatEth(line.priceWhenAdded)}</span>}
       </p>
-      <QuantityStepper value={line.quantity} max={limit} onChange={onQuantity} label={line.name} disabled={busy} testId="line-quantity" className="max-md:col-start-3 max-md:row-start-1 max-md:mt-[38px] max-md:gap-2 max-md:justify-self-end max-[389px]:col-start-2! max-[389px]:row-start-3! max-[389px]:mt-1! max-[389px]:justify-self-start!" buttonClassName="max-md:size-6 max-md:border max-md:border-border max-md:bg-elevated max-md:text-foreground max-md:before:hidden" outputClassName="max-md:relative max-md:top-1.5 max-md:w-[17px] max-md:text-base" />
+      <QuantityStepper value={line.quantity} max={limit} onChange={onQuantity} label={line.name} disabled={busy} testId="line-quantity" className="max-md:col-start-3 max-md:row-start-1 max-md:mt-[38px] max-md:gap-2 max-md:justify-self-end max-[389px]:col-start-2! max-[389px]:row-start-3! max-[389px]:mt-1! max-[389px]:justify-self-start!" buttonClassName="h-6 w-5 max-md:size-6 max-md:border max-md:border-border max-md:bg-elevated max-md:text-foreground max-md:before:hidden" outputClassName="max-md:relative max-md:top-1.5 max-md:w-[17px] max-md:text-base" />
       <p className="hidden text-base leading-4 font-bold whitespace-nowrap text-highlight md:block" data-testid="line-total">{formatEth(mulEth(line.unitPrice, line.quantity))}</p>
       <button type="button" aria-label={t('cart.removeLine', { name: line.name })} disabled={busy} onClick={onRemove} className="flex size-8 cursor-pointer items-center justify-center text-primary max-md:col-start-3 max-md:row-start-2 max-md:mb-1.5 max-md:self-end max-md:justify-self-end max-[389px]:row-start-3! max-[389px]:mb-0! max-[389px]:self-center! md:size-6">
-        <DeleteIcon className="size-5" aria-hidden="true" />
+        <DeleteIcon className="size-6" aria-hidden="true" />
       </button>
     </li>
   )
@@ -78,6 +78,8 @@ export function CartPage() {
   const removeLine = useRemoveLine()
   const acknowledge = useAcknowledgePrices()
   const suggestions = useCatalog({})
+  const moreSuggestions = useCatalog({ page: 2 })
+  const suggestionItems = Array.from(new Map([...(suggestions.data?.items ?? []), ...(moreSuggestions.data?.items ?? [])].map((item) => [item.id, item])).values()).slice(0, 15)
   const busy = setQuantity.isPending || removeLine.isPending
   const reveal = useReveal(cart.isPending)
 
@@ -157,12 +159,7 @@ export function CartPage() {
           </aside>
         </div>
 
-        <section aria-labelledby="also-title" className="mt-24 hidden md:block lg:mt-[96px]">
-          <h2 id="also-title" className="h-7 border-b border-primary text-[17px] leading-4 font-bold text-highlight">{t('cart.alsoViewed')}</h2>
-          <ul className="mt-8 grid grid-cols-3 gap-[26px] lg:grid-cols-5">
-            {suggestions.data?.items.slice(0, 5).map((item) => <li key={item.id}><NftCard nft={item} sizes="220px" size="compact" /></li>) ?? [0, 1, 2, 3, 4].map((i) => <li key={i}><Skeleton className="aspect-square" /></li>)}
-          </ul>
-        </section>
+        {suggestions.data && moreSuggestions.data && suggestionItems.length > 0 && <NftCarousel id="also-viewed" title={t('cart.alsoViewed')} items={suggestionItems} size="compact" />}
       </div>
     </>
   )
