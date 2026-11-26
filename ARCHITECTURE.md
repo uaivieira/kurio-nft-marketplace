@@ -283,6 +283,43 @@ A auditoria usa o mesmo build publicado, com imagens, fontes e funcionalidades c
 - **Seletores** usam os textos pt-BR da interface, como o usuário os vê; títulos de teste, mensagens de asserção e nomes de baselines são em inglês. As baselines visuais (`home`, `detail`, `cart`, `payment`) e os frames do Figma (`desktop-home`, `mobile-cart`…) foram renomeados com `git mv`, sem regerar as imagens.
 - **Código sem comentários:** o porquê das decisões vive neste documento. `pnpm lint` roda `scripts/check-no-comments.ts`, que usa o scanner do TypeScript (`typescript/unstable/ast/scanner`, sem pular trivia) para achar comentários em `.ts`/`.tsx`/`.mjs`/`.cjs` sem confundir `//` dentro de strings, URLs, regex, templates ou texto JSX, além de `/* */` em CSS e `<!--` em HTML. Ignora `src/routeTree.gen.ts` (gerado), `node_modules`, `dist*` e relatórios.
 
+## Requisitos do desafio: onde estão e qual teste prova
+
+Cada item do enunciado ([junglegaming/frontend-challenge](https://github.com/junglegaming/frontend-challenge#desafio-frontend--marketplace-de-nfts)), onde é atendido e o que o verifica. Os specs ficam em `tests/e2e/`, os testes unitários ao lado do código.
+
+| Requisito | Onde | Verificação |
+|---|---|---|
+| Stack obrigatória com uso efetivo | `package.json`; Router em `src/routes`, Query em `src/queries`, Axios em `src/lib/http.ts`, Socket.IO em `src/realtime`, Tailwind em `src/index.css`, shadcn/ui em `src/components/ui`, MSW em `src/mocks` | todos os specs E2E passam por essas camadas; `lighthouse/` |
+| Início: destaques, catálogo, busca, filtros, ordenação, navegação ao NFT | `src/features/catalog`, `src/routes/index.tsx`, `src/routes/mercado.tsx` | `catalog.spec.ts`, `marketplace.spec.ts` |
+| Estado na URL, filtros combináveis, paginação reinicia, histórico | `validateSearch` das rotas `src/routes/index.tsx` e `src/routes/mercado.tsx` com o esquema de `src/features/catalog/search.ts` | `catalog.spec.ts` (filtros combinados, histórico, paginação reinicia) |
+| Resultado vazio, falha e respostas fora de ordem | chaves de query por parâmetros + `AbortSignal`, cenários `empty-catalog`, `http-500`, `flaky-catalog`, `jitter` | `catalog.spec.ts` (busca vazia, fora de ordem), `loading.spec.ts` |
+| Detalhe: acesso direto, inexistente, edição esgotada, limite de quantidade | `src/features/nft/DetailPage.tsx` | `nft-detail.spec.ts`, `prerender.spec.ts` |
+| Favoritos persistentes com atualização otimista e rollback | `src/queries/favorites.ts` | `favorites.spec.ts` |
+| Carrinho: quantidades, remoção, cupom, refresh, itens do visitante ao autenticar | `src/features/cart`, `src/mocks/domain/cart.ts` | `cart.spec.ts` |
+| ETH como string decimal com precisão | `src/lib/eth.ts`, contratos Zod | `src/lib/eth.test.ts` |
+| Pagamento: validação, revisão, carteira e rede, conexão, recusa e desconexão | `src/features/checkout/CheckoutPage.tsx`, `ReviewDialog.tsx` | `wallet.spec.ts`, `purchase.spec.ts`, `auth.spec.ts` (dados mantidos após expirar) |
+| Revalidação de cotação e nova confirmação | quote com versão, 409 `QUOTE_STALE` / `AVAILABILITY_CONFLICT` | `realtime.spec.ts` (cotação desatualizada, preço alterado no envio, edição esgotada no envio) |
+| Sem pedido duplicado (cliques repetidos, timeout) e idempotência | `Idempotency-Key` por payload, trava do envio | `purchase-failures.spec.ts` |
+| Pedido pendente, confirmado e recusado, recuperação após refresh ou reconexão | `src/features/checkout/OrderPage.tsx`, `order.updated` | `purchase-failures.spec.ts`, `realtime.spec.ts` (desconexão com pedido pendente) |
+| Recibo só para pedido confirmado, snapshot imutável, remove só o comprado | `src/mocks/domain/orders.ts` | `purchase.spec.ts`, `purchase-failures.spec.ts` (pagamento recusado mantém o carrinho) |
+| Cadastro, login, logout, sessão recuperável, expiração na navegação e no checkout | `src/lib/session-store.ts`, `src/lib/auth-flow.ts`, `requireAuth` | `auth.spec.ts`, `src/lib/auth-flow.test.ts`, `src/lib/redirect.test.ts` |
+| Logout e troca de usuário limpam cache privado e subscriptions | cache em `['private', userId]`, socket recriado por sessão | `auth.spec.ts` (troca de usuário), `realtime.spec.ts` (eventos da sessão anterior não chegam ao próximo usuário) |
+| Perfil, avatar, senha e carteiras com erros da API; senhas sem texto claro | `src/features/account`, PBKDF2 em `src/mocks/db/state.ts` | `account.spec.ts` |
+| Contratos tipados entre transporte, estado e UI | `src/contracts` (Zod) validando cada resposta em `src/api` | `pnpm typecheck`, `src/lib/api-error.test.ts` |
+| Rotas inexistentes e acesso direto a qualquer tela | `defaultNotFoundComponent` em `src/router.tsx` (`src/components/layout/NotFound.tsx`), rotas do `vercel.json` | `nft-detail.spec.ts` (rota inexistente), `marketplace.spec.ts` (acesso direto e refresh) |
+| Contratos REST e erros (validação, sessão, permissão, inexistente, conflito, transitório) | seção "Contratos REST" acima | `src/lib/api-error.test.ts`, specs de fluxo |
+| MSW na camada de rede, cenários configuráveis e reproduzíveis, reset | `src/mocks`, painel de cenários, `window.__kurio` | `loading.spec.ts`, `purchase-failures.spec.ts`, `src/mocks/db/seed.test.ts` |
+| Socket.IO via `@mswjs/socket.io-binding` e `socket.io-client` | `src/mocks/socket.ts`, `src/realtime/RealtimeProvider.tsx` | `realtime.spec.ts` |
+| Eventos com identidade e versão, duplicatas e antigos ignorados, reconciliação | `src/realtime/ledger.ts` | `src/realtime/ledger.test.ts`, `realtime.spec.ts` (eventos duplicados ou antigos) |
+| Cenário carrinho → mudança de preço → aviso → checkout bloqueado | `CartPage.tsx`, `CheckoutPage.tsx` | `realtime.spec.ts` (mudança de preço no carrinho, cotação desatualizada) |
+| Fidelidade ao Figma, desktop, tablet e mobile | seção "Fidelidade ao Figma" acima | `visual.spec.ts`, `layout.spec.ts`, `responsive.spec.ts` (320, 390, 768, 1440), `pnpm figma:compare`, `pnpm figma:geometry` |
+| Skeletons com shimmer, sem deslocamento, movimento reduzido | `src/components/ui/skeleton.tsx`, `src/index.css` | `loading.spec.ts` (skeletons, movimento reduzido), CLS 0 no Lighthouse |
+| Teclado, foco, diálogos, labels, erros associados, feedback acessível | `src/components/layout/LiveRegion.tsx`, shadcn/Radix | `a11y.spec.ts` (axe, foco, diálogo, erros), live region em `realtime.spec.ts` |
+| Testes isolados, relógio e eventos controlados, relatório HTML e traces | `playwright.config.ts`, `tests/e2e/fixtures.ts` | `playwright-report/` versionado; traces em `test-results/` nas falhas |
+| Lighthouse: 3 execuções, mediana, HTML/JSON, LCP/CLS/TBT | `lighthouse/` | `lighthouse/reports/summary.md` (100 em todas as categorias) |
+| Deploy público com mocks, tempo real, acesso direto e refresh | `vercel.json`, `scripts/prerender.ts` | `PLAYWRIGHT_BASE_URL=<url> pnpm test:e2e`, `security.spec.ts` |
+| README e ARCHITECTURE com setup, cenários, contratos, cache, sessão, desvios | `README.md`, este documento | — |
+
 ## Limitações conhecidas
 
 - Os dados simulados são por navegador (`localStorage`); não há sincronização entre dispositivos.

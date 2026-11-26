@@ -1,4 +1,4 @@
-import { addToCart, expect, openReview, test } from './fixtures'
+import { apiFetch, addToCart, expect, openReview, test } from './fixtures'
 
 test('a price change in the cart is announced and updates the summary', async ({ app }) => {
   const { page, backend } = app
@@ -101,4 +101,38 @@ test('disconnect with a pending order: reconnects and recovers without a new pur
   await expect(page.getByTestId('order-confirmed')).toBeVisible({ timeout: 10_000 })
   await page.goto('/checkout')
   await expect(page.getByTestId('checkout-empty')).toBeVisible()
+})
+
+test('order events of the previous session do not reach the next user', async ({ app }) => {
+  const { page, backend } = app
+  await app.login('ana')
+  await backend.setScenario('order-hold')
+  await addToCart(page, 'emerald-ape-042')
+  await openReview(page)
+  await page.getByRole('button', { name: 'Enviar pedido' }).click()
+  await expect(page.getByTestId('order-pending')).toBeVisible()
+  const [anaOrder] = await backend.pendingOrderIds()
+
+  await page.goto('/profile')
+  await page.getByRole('button', { name: 'Sair' }).click()
+  await expect(page).toHaveURL('/')
+  await app.login('bruno')
+  await expect.poll(() => backend.connectedSockets()).toBe(1)
+
+  await addToCart(page, 'emerald-ape-042')
+  await page.goto('/cart')
+  await expect(page.getByTestId('total')).toBeVisible()
+  await expect.poll(() => backend.connectedSockets()).toBeGreaterThan(0)
+  await page.getByTestId('live-region').evaluate((region) => {
+    const seen: string[] = []
+    Object.assign(window, { liveMessages: seen })
+    new MutationObserver(() => seen.push(region.textContent ?? '')).observe(region, { childList: true, characterData: true, subtree: true })
+  })
+
+  await backend.resolveOrder(anaOrder!, 'confirmed')
+  await backend.updateEdition('emerald-ape-042', 'e50', { price: '1.50' })
+  await expect(page.getByTestId('live-region')).toContainText('Preço de Emerald Ape #042 mudou')
+  const messages = await page.evaluate(() => (window as unknown as { liveMessages: string[] }).liveMessages)
+  expect(messages.join(' ')).not.toMatch(/Pedido (confirmado|recusado|pendente)/)
+  expect((await apiFetch(page, `/orders/${anaOrder}`)).status).toBe(403)
 })

@@ -16,6 +16,23 @@ test('skeletons while loading slowly', async ({ app }) => {
   await expect(page.getByTestId('total')).toBeVisible({ timeout: 15_000 })
 })
 
+test('skeleton shimmer respects reduced motion', async ({ app }) => {
+  const { page } = app
+  const skeleton = page.getByTestId('catalog-skeleton').locator('[data-slot="skeleton"]').first()
+  await app.open('/?q=ape', 'slow')
+  await expect(skeleton).toBeVisible()
+  expect(await skeleton.evaluate((node) => getComputedStyle(node).animationIterationCount)).toBe('infinite')
+
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await app.open('/?q=ape', 'slow')
+  await expect(skeleton).toBeVisible()
+  const motion = await skeleton.evaluate((node) => {
+    const style = getComputedStyle(node)
+    return { iterations: style.animationIterationCount, duration: style.animationDuration }
+  })
+  expect(motion).toEqual({ iterations: '1', duration: '1e-05s' })
+})
+
 test('catalog failure with retry', async ({ app }) => {
   const { page } = app
   await app.open('/', 'flaky-catalog')
