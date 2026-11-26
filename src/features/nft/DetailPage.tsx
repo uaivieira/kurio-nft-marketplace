@@ -32,12 +32,12 @@ export function DetailSkeleton() {
   const { t } = useTranslation()
   return (
     <div role="status" aria-busy="true" aria-label={t('detail.loading')} data-testid="detail-skeleton" className="mx-auto min-h-dvh max-w-page px-5 pt-5">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[573px_minmax(0,1fr)]">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[573px_595px]">
         <div className="grid min-w-0 gap-6 xl:h-[448px] xl:w-[573px] xl:grid-cols-[100px_448px] xl:gap-x-[25px] xl:gap-y-0">
           <div className="hidden gap-4 xl:grid">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="size-[100px]" />)}</div>
           <Skeleton className="aspect-square w-full xl:size-[448px]" />
         </div>
-        <div className="space-y-4">
+        <div className="space-y-4 xl:h-[448px] xl:w-[595px]">
           <Skeleton className="h-9 w-2/3" />
           <Skeleton className="h-7 w-24" />
           <Skeleton className="h-20 w-full" />
@@ -211,9 +211,9 @@ function DetailContent({ nft }: { nft: NftDetail }) {
       <MobileTopBar className="pt-[23px] pb-0" action={<FavoriteButton nft={nft} className="size-[35px] rounded-full border border-border bg-elevated" />} />
       <article className="mx-auto max-w-page px-7 pb-16 md:px-5 lg:pb-[43px]">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market') }]} />
-        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[573px_minmax(0,1fr)]">
+        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[573px_595px]">
           <Gallery nft={nft} />
-          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px]">
+          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px] xl:h-[448px] xl:w-[595px]">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <h1 className="text-xl font-bold md:text-title md:leading-[37px]">{nft.name}</h1>
               <p className="flex h-[27px] shrink-0 items-center gap-1 rounded-full border border-primary px-2 pt-1 text-sm leading-5 font-medium md:hidden">
