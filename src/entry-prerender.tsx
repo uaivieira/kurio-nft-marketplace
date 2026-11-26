@@ -1,5 +1,5 @@
 /**
- * Build-time prerendering of the public entry pages (home and every NFT detail).
+ * Build-time prerendering of the public entry pages (home, marketplace and every NFT detail).
  *
  * Runs in Node (vite build --ssr). The simulated backend is seeded in memory and queried
  * directly through its domain functions (no HTTP), the results go through the same Zod
@@ -23,6 +23,7 @@ export async function seed() {
 
 export async function prerender(url: string) {
   queryClient.clear()
+  // Default catalog: the content of `/` and `/mercado`.
   queryClient.setQueryData(keys.catalog({}), catalogPage.parse(queryCatalog({})))
   const match = url.match(/^\/nft\/([^/?#]+)$/)
   if (match) queryClient.setQueryData(keys.nft(match[1]!), nftDetail.parse(getNftDetail(match[1]!)))

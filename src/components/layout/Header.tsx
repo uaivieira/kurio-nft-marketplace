@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { SoonLabel } from './SoonLabel'
 import { SearchDialog } from './SearchDialog'
 
-const MARKET_PATHS = ['/nft', '/cart', '/checkout', '/orders']
+const MARKET_PATHS = ['/mercado', '/nft', '/cart', '/checkout', '/orders']
 
 export function CartLink({ className }: { className?: string }) {
   const { data } = useCart()
@@ -43,7 +43,7 @@ export function Header() {
             Início
             {home && underline}
           </Link>
-          <Link to="/" hash="catalogo" className={navLink(inMarket)} aria-current={inMarket ? 'page' : undefined}>
+          <Link to="/mercado" className={navLink(inMarket)} aria-current={inMarket ? 'page' : undefined}>
             Mercado
             {inMarket && underline}
           </Link>

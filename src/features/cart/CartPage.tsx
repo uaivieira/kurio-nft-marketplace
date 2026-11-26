@@ -137,7 +137,7 @@ export function CartPage() {
     <>
       <MobileTopBar title="Carrinho de NFTs" />
       <div className="mx-auto max-w-page px-5 pb-16">
-        <Breadcrumbs items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/' }, { label: 'Carrinho' }]} />
+        <Breadcrumbs items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/mercado' }, { label: 'Carrinho' }]} />
         <div className="grid gap-8 pt-3 lg:grid-cols-[1fr_20.75rem] lg:gap-[86px]">
           <section aria-label="Itens" className="min-w-0">
             {quote.data && <Issues issues={quote.data.issues} onAcknowledge={() => acknowledge.mutate(undefined, { onError: (e) => notify.error(errorMessage(e)) })} pending={acknowledge.isPending} />}

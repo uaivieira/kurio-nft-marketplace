@@ -16,12 +16,13 @@ import { CatalogPagination } from './CatalogPagination'
 import { Journal, PromoBanners } from './Editorial'
 import { Hero } from './Hero'
 import { NftCard, NftCardSkeleton } from './NftCard'
-import { hasActiveFilters, SORT_LABELS, TAB_LABELS, type CatalogSearch } from './search'
+import { hasActiveFilters, SORT_LABELS, TAB_LABELS, useCatalogPath, type CatalogSearch } from './search'
 
 const FiltersSheet = lazy(() => import('./FiltersSheet'))
 
 function SearchField({ search }: { search: CatalogSearch }) {
-  const navigate = useNavigate({ from: '/' })
+  const path = useCatalogPath()
+  const navigate = useNavigate()
   const [value, setValue] = useState(search.q ?? '')
 
   const [syncedQ, setSyncedQ] = useState(search.q)
@@ -32,9 +33,9 @@ function SearchField({ search }: { search: CatalogSearch }) {
   useEffect(() => {
     const next = value.trim() || undefined
     if (next === search.q) return
-    const timer = setTimeout(() => void navigate({ search: (prev) => ({ ...prev, q: next, page: undefined }), hash: 'catalogo' }), 350)
+    const timer = setTimeout(() => void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, q: next, page: undefined }), hash: 'catalogo' }), 350)
     return () => clearTimeout(timer)
-  }, [value, search.q, navigate])
+  }, [value, search.q, navigate, path])
 
   return (
     <div role="search" className="relative flex-1">
@@ -54,6 +55,7 @@ function SearchField({ search }: { search: CatalogSearch }) {
 }
 
 function ResultsGrid({ search, query }: { search: CatalogSearch; query: CatalogQuery }) {
+  const path = useCatalogPath()
   const { data, isPending, isError, error, refetch, isFetching, isPlaceholderData } = useCatalog(query)
   const reveal = useReveal(isPending)
 
@@ -85,7 +87,7 @@ function ResultsGrid({ search, query }: { search: CatalogSearch; query: CatalogQ
         <p className="font-bold">Nenhum NFT encontrado</p>
         <p className="text-sm text-muted-foreground">{hasActiveFilters(search) ? 'Ajuste ou limpe os filtros para ver mais resultados.' : 'O catálogo está vazio no momento.'}</p>
         {hasActiveFilters(search) && (
-          <Link to="/" hash="catalogo" className="font-bold text-highlight underline">Limpar filtros</Link>
+          <Link to={path} hash="catalogo" className="font-bold text-highlight underline">Limpar filtros</Link>
         )}
       </div>
     )
@@ -113,8 +115,15 @@ function ResultsGrid({ search, query }: { search: CatalogSearch; query: CatalogQ
   )
 }
 
-export function HomePage({ search }: { search: CatalogSearch }) {
-  const navigate = useNavigate({ from: '/' })
+/**
+ * Catalog page. `home` (`/`) is the full home of the Figma; `market` (`/mercado`, and the background
+ * of the login/signup dialogs) is the marketplace composition seen behind those frames: hero,
+ * filters and results only, without the featured NFT and the editorial sections.
+ */
+export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; variant?: 'home' | 'market' }) {
+  const path = useCatalogPath()
+  const navigate = useNavigate()
+  const home = variant === 'home'
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [filtersLoaded, setFiltersLoaded] = useState(false)
   const filtersButton = useRef<HTMLButtonElement>(null)
@@ -143,7 +152,7 @@ export function HomePage({ search }: { search: CatalogSearch }) {
       <div id="catalogo" className="mx-auto mt-8 grid max-w-page scroll-mt-4 gap-8 px-5 pb-24 md:mt-24 md:pb-0 lg:grid-cols-[310px_1fr] lg:gap-12">
         <aside className="hidden space-y-6 lg:block" aria-label="Filtros do catálogo">
           <CatalogFilters search={search} facets={data?.facets} />
-          {data?.featured ? (
+          {home && (data?.featured ? (
             <Link to="/nft/$nftId" params={{ nftId: data.featured.id }} className="relative block overflow-hidden bg-gradient-to-b from-card to-transparent pt-6">
               <p className="px-5 text-2xl leading-8 font-bold text-highlight uppercase">NFT em destaque</p>
               <p className="mt-4 px-5 text-center text-base font-bold">OFERTA LIMITADA</p>
@@ -152,7 +161,7 @@ export function HomePage({ search }: { search: CatalogSearch }) {
             </Link>
           ) : (
             <Skeleton className="h-96 w-full" />
-          )}
+          ))}
         </aside>
 
         <section aria-labelledby="catalog-title" className="min-w-0">
@@ -165,7 +174,7 @@ export function HomePage({ search }: { search: CatalogSearch }) {
                   role="tab"
                   type="button"
                   aria-selected={tab === value}
-                  onClick={() => void navigate({ search: (prev) => ({ ...prev, tab: value === 'all' ? undefined : value, page: undefined }), hash: 'catalogo' })}
+                  onClick={() => void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, tab: value === 'all' ? undefined : value, page: undefined }), hash: 'catalogo' })}
                   className={cn('-mb-px cursor-pointer border-b-2 pb-[3px] leading-4 whitespace-nowrap', tab === value ? 'border-primary font-medium text-highlight' : 'border-transparent')}
                 >
                   {TAB_LABELS[value]}
@@ -179,7 +188,7 @@ export function HomePage({ search }: { search: CatalogSearch }) {
                 <select
                   id="catalog-sort"
                   value={sort}
-                  onChange={(event) => void navigate({ search: (prev) => ({ ...prev, sort: event.target.value === 'recent' ? undefined : (event.target.value as (typeof CATALOG_SORTS)[number]), page: undefined }), hash: 'catalogo' })}
+                  onChange={(event) => void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, sort: event.target.value === 'recent' ? undefined : (event.target.value as (typeof CATALOG_SORTS)[number]), page: undefined }), hash: 'catalogo' })}
                   className="h-6 cursor-pointer appearance-none bg-transparent pr-5 text-md text-foreground"
                 >
                   {CATALOG_SORTS.map((value) => (
@@ -194,8 +203,12 @@ export function HomePage({ search }: { search: CatalogSearch }) {
         </section>
       </div>
 
-      <PromoBanners />
-      <Journal />
+      {home && (
+        <>
+          <PromoBanners />
+          <Journal />
+        </>
+      )}
       <MobileNav />
     </>
   )

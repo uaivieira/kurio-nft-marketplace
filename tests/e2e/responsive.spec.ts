@@ -2,7 +2,7 @@ import { addToCart, expect, test } from './fixtures'
 
 // 320 px = 1280 px at 400% zoom (WCAG 1.4.10 reflow).
 const WIDTHS = [320, 390, 768, 1440]
-const PUBLIC = ['/', '/nft/emerald-ape-042', '/cart', '/login', '/signup']
+const PUBLIC = ['/', '/mercado', '/nft/emerald-ape-042', '/cart', '/login', '/signup']
 const PRIVATE = ['/checkout', '/profile', '/profile/wallets', '/favorites']
 
 test.describe('sem overflow horizontal', () => {

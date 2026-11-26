@@ -13,16 +13,22 @@ export function saveCheckoutDraft(draft: CheckoutDraft) {
   sessionStorage.setItem(DRAFT_KEY, JSON.stringify(draft))
 }
 
-export function loadCheckoutDraft(userId: string): CheckoutDraft | null {
+function readDraft(): CheckoutDraft | null {
   try {
     const raw = sessionStorage.getItem(DRAFT_KEY)
-    if (!raw) return null
-    const draft = JSON.parse(raw) as CheckoutDraft
-    return draft.userId === userId ? draft : null
+    return raw ? (JSON.parse(raw) as CheckoutDraft) : null
   } catch {
     return null
   }
 }
+
+export function loadCheckoutDraft(userId: string): CheckoutDraft | null {
+  const draft = readDraft()
+  return draft?.userId === userId ? draft : null
+}
+
+/** Owner of the stored draft, if any (it may outlive the session that wrote it). */
+export const checkoutDraftOwner = () => readDraft()?.userId ?? null
 
 export function clearCheckoutDraft() {
   sessionStorage.removeItem(DRAFT_KEY)

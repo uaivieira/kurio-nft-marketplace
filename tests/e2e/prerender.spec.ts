@@ -1,12 +1,13 @@
 import { expect, test } from './fixtures'
 
 test.describe('páginas pré-renderizadas', () => {
-  for (const [path, name] of [['/', 'Emerald Ape #042'], ['/nft/ivory-baron-088', 'Ivory Baron #088']] as const) {
+  for (const [path, name] of [['/', 'Emerald Ape #042'], ['/mercado', 'Emerald Ape #042'], ['/nft/ivory-baron-088', 'Ivory Baron #088']] as const) {
     test(`${path} já vem com o conteúdo no HTML`, async ({ app }) => {
       const html = await (await app.page.request.get(path)).text()
       expect(html).toContain(name)
       expect(html).toContain('ETH')
-      expect(html).toContain('window.__KURIO_STATE__')
+      expect(html).toContain(`data-prerender-path="${path}"`)
+      expect(html).toContain('<script type="application/json" id="kurio-state">')
     })
 
     test(`${path} assume o HTML sem deslocamento de layout`, async ({ app }) => {

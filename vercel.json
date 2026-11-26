@@ -4,11 +4,27 @@
   "outputDirectory": "dist",
   "routes": [
     {
+      "src": "/(.*)",
+      "headers": {
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'sha256-R6NKEaHW85LmUmX0UDH1uzuINWfo9mCdlVRCcY/x7Oo=' 'sha256-ih7R26F6aoGgA6aAGTISKaBZcVSgkp8c5EJ/JtAFO/I=' 'sha256-zFML+AEdb/HsbX66VlYzBOqJKNNHs5/WNGYP8JiblyY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+        "X-Frame-Options": "DENY",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "accelerometer=(), bluetooth=(), camera=(), display-capture=(), geolocation=(), gyroscope=(), hid=(), magnetometer=(), microphone=(), midi=(), payment=(), serial=(), usb=()"
+      },
+      "continue": true
+    },
+    {
       "src": "/(assets|fonts)/(.*)",
       "headers": {
         "cache-control": "public, max-age=31536000, immutable"
       },
       "continue": true
+    },
+    {
+      "src": "/mercado",
+      "dest": "/mercado.html",
+      "check": true
     },
     {
       "src": "/nft/([a-z0-9-]+)",

@@ -11,7 +11,7 @@ module.exports = {
     collect: {
       startServerCommand: 'pnpm exec vite preview --host 127.0.0.1 --port 4174',
       startServerReadyPattern: '4174',
-      url: [`${BASE}/`, `${BASE}/nft/emerald-ape-042`],
+      url: [`${BASE}/`, `${BASE}/mercado`, `${BASE}/nft/emerald-ape-042`],
       numberOfRuns: 3,
       settings: {
         ...(profile === 'desktop' ? { preset: 'desktop' } : {}),

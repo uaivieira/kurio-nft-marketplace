@@ -241,7 +241,7 @@ export function CheckoutPage() {
     <>
       <MobileTopBar title="Pagamento com carteira" />
       <div className="mx-auto max-w-page px-5 pb-20">
-        <Breadcrumbs items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/' }, { label: 'Pagamento' }]} />
+        <Breadcrumbs items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/mercado' }, { label: 'Pagamento' }]} />
 
         {hasPendingOrder && (
           <p role="status" data-testid="pending-order-banner" className="mt-4 rounded-sm border border-primary bg-card p-3 text-sm">

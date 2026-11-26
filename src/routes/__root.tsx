@@ -1,4 +1,4 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { createRootRoute, Link, Outlet, useRouterState } from '@tanstack/react-router'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { LiveRegion } from '@/components/layout/LiveRegion'
@@ -9,11 +9,18 @@ import { afterLoad } from '@/lib/after-load'
 const Toaster = lazy(() => import('@/components/ui/sonner').then((m) => ({ default: m.Toaster })))
 const MockPanel = lazy(() => import('@/mocks/MockPanel').then((m) => ({ default: m.MockPanel })))
 
+/**
+ * Pages drawn without the footer: the marketplace composition behind the Figma login/signup frames
+ * ends below the catalog grid.
+ */
+const WITHOUT_FOOTER = ['/mercado', '/login', '/signup']
+
 export const Route = createRootRoute({
   component: RootLayout,
 })
 
 function RootLayout() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname })
   const [idle, setIdle] = useState(false)
   useEffect(() => {
     void afterLoad.then(() => setIdle(true))
@@ -28,7 +35,7 @@ function RootLayout() {
       <main id="main" tabIndex={-1} className="outline-none">
         <Outlet />
       </main>
-      <Footer />
+      {!WITHOUT_FOOTER.includes(pathname) && <Footer />}
       <p className="py-4 text-center text-xs md:hidden">
         © 2026 Kurio. <Link to="/" className="underline">Início</Link>
       </p>

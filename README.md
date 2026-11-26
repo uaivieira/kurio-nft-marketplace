@@ -53,11 +53,11 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | Comando | O que faz |
 |---|---|
 | `pnpm dev` | Desenvolvimento com mocks |
-| `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) + pré-renderização do início e das páginas de NFT (`dist/index.html`, `dist/nft/<id>.html`) |
+| `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) + pré-renderização do início, do Mercado e das páginas de NFT (`dist/index.html`, `dist/mercado.html`, `dist/nft/<id>.html`) |
 | `pnpm preview` | Serve o build em http://127.0.0.1:4173 |
 | `pnpm typecheck` | `tsc -b` em app, testes e configs |
 | `pnpm lint` | oxlint |
-| `pnpm test:unit` | Vitest (aritmética de ETH, ledger de eventos) |
+| `pnpm test:unit` | Vitest (aritmética de ETH, ledger de eventos, redirecionamento seguro, rascunho do checkout entre usuários, cabeçalhos de segurança do `vercel.json`) |
 | `pnpm test:e2e` | Playwright em Chromium desktop (1440×900) e mobile (390×844), contra um build de produção |
 | `pnpm test:e2e:update` | Regera as baselines de regressão visual |
 | `pnpm test:e2e:report` | Abre o relatório HTML (`playwright-report/`). Traces de falhas ficam em `test-results/` |
@@ -110,7 +110,7 @@ Entre com `ana@kurio.test` e adicione um NFT ao carrinho antes dos fluxos de com
 
 ## Deploy (Vercel)
 
-`vercel.json` define o build (`pnpm build`), a saída `dist/` e o rewrite de SPA, para que acesso direto e refresh funcionem em qualquer rota. O MSW intercepta fetch, XHR e WebSocket na página, sem exigir service worker.
+`vercel.json` define o build (`pnpm build`), a saída `dist/`, o rewrite de SPA, para que acesso direto e refresh funcionem em qualquer rota, e os cabeçalhos de segurança (CSP, `X-Frame-Options`, `nosniff`, `Referrer-Policy`, `Permissions-Policy`) de toda resposta; detalhes em [ARCHITECTURE.md](./ARCHITECTURE.md#segurança). O MSW intercepta fetch, XHR e WebSocket na página, sem exigir service worker.
 
 ```bash
 pnpm dlx vercel        # preview
@@ -123,7 +123,7 @@ Para validar uma URL publicada com os mesmos testes (sem iniciar servidor local)
 PLAYWRIGHT_BASE_URL=https://sua-demo.vercel.app pnpm test:e2e
 ```
 
-As rotas `/nft/:id` usam o fallback da SPA; somente as imagens AVIF/WebP em `/nft/` são tratadas como arquivos estáticos.
+`/mercado` serve `dist/mercado.html` e `/nft/<id>` serve a página pré-renderizada `dist/nft/<id>.html` quando ela existe; IDs desconhecidos e todas as outras rotas caem no fallback da SPA (`index.html`), e o app resolve a rota no cliente. Arquivos de `assets/`, `fonts/` e as imagens AVIF/WebP em `/nft/` são servidos como estáticos.
 
 ## Estrutura
 

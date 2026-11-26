@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRouteImport } from './routes/_auth'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as MercadoRouteImport } from './routes/mercado'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as AuthCheckoutRouteImport } from './routes/_auth/checkout'
 import { Route as AuthFavoritesRouteImport } from './routes/_auth/favorites'
@@ -39,6 +40,11 @@ const CartRoute = CartRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MercadoRoute = MercadoRouteImport.update({
+  id: '/mercado',
+  path: '/mercado',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SignupRoute = SignupRouteImport.update({
@@ -86,6 +92,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/login': typeof LoginRoute
+  '/mercado': typeof MercadoRoute
   '/signup': typeof SignupRoute
   '/checkout': typeof AuthCheckoutRoute
   '/favorites': typeof AuthFavoritesRoute
@@ -99,6 +106,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/cart': typeof CartRoute
   '/login': typeof LoginRoute
+  '/mercado': typeof MercadoRoute
   '/signup': typeof SignupRoute
   '/checkout': typeof AuthCheckoutRoute
   '/favorites': typeof AuthFavoritesRoute
@@ -113,6 +121,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteWithChildren
   '/cart': typeof CartRoute
   '/login': typeof LoginRoute
+  '/mercado': typeof MercadoRoute
   '/signup': typeof SignupRoute
   '/_auth/checkout': typeof AuthCheckoutRoute
   '/_auth/favorites': typeof AuthFavoritesRoute
@@ -128,6 +137,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/login'
+    | '/mercado'
     | '/signup'
     | '/checkout'
     | '/favorites'
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/'
     | '/cart'
     | '/login'
+    | '/mercado'
     | '/signup'
     | '/checkout'
     | '/favorites'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/_auth'
     | '/cart'
     | '/login'
+    | '/mercado'
     | '/signup'
     | '/_auth/checkout'
     | '/_auth/favorites'
@@ -169,6 +181,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRouteWithChildren
   CartRoute: typeof CartRoute
   LoginRoute: typeof LoginRoute
+  MercadoRoute: typeof MercadoRoute
   SignupRoute: typeof SignupRoute
   NftNftIdRoute: typeof NftNftIdRoute
 }
@@ -201,6 +214,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mercado': {
+      id: '/mercado'
+      path: '/mercado'
+      fullPath: '/mercado'
+      preLoaderRoute: typeof MercadoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/signup': {
@@ -297,6 +317,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRouteWithChildren,
   CartRoute: CartRoute,
   LoginRoute: LoginRoute,
+  MercadoRoute: MercadoRoute,
   SignupRoute: SignupRoute,
   NftNftIdRoute: NftNftIdRoute,
 }

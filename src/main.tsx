@@ -12,21 +12,17 @@ import { RevealPrerender } from '@/components/RevealPrerender'
 import { router } from './router'
 import './index.css'
 
-declare global {
-  interface Window {
-    /** Query cache captured when the page was prerendered at build time (see scripts/prerender.ts). */
-    __KURIO_STATE__?: DehydratedState
-  }
-}
-
 /**
  * Seeds the cache with the prerendered data when the HTML matches this URL. The data is marked
  * stale so it is revalidated against this browser's backend right after mounting, without
  * falling back to skeletons.
  */
 function adoptPrerenderedState() {
-  const state = window.__KURIO_STATE__
-  if (!state || document.documentElement.hasAttribute('data-prerender-stale')) return false
+  // Query cache captured when the page was prerendered at build time (see scripts/prerender.ts). It is
+  // a JSON block, not a script, so the Content-Security-Policy only has to allow fixed inline scripts.
+  const json = document.getElementById('kurio-state')?.textContent
+  if (!json || document.documentElement.hasAttribute('data-prerender-stale')) return false
+  const state = JSON.parse(json) as DehydratedState
   hydrate(queryClient, {
     ...state,
     queries: state.queries.map((query) => ({ ...query, state: { ...query.state, dataUpdatedAt: 0 } })),

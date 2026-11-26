@@ -35,11 +35,13 @@ export default defineConfig({
     preloadMocks(),
   ],
   resolve: {
-    alias: {
-      '@': path.resolve(import.meta.dirname, 'src'),
+    alias: [
+      { find: '@', replacement: path.resolve(import.meta.dirname, 'src') },
       // MSW's cookie jar is unused by this API (bearer tokens); see src/mocks/shims/tough-cookie.ts.
-      'tough-cookie': path.resolve(import.meta.dirname, 'src/mocks/shims/tough-cookie.ts'),
-    },
+      { find: 'tough-cookie', replacement: path.resolve(import.meta.dirname, 'src/mocks/shims/tough-cookie.ts') },
+      // Exactly `zod` (not `zod/v4`, which the wrapper imports): Zod without JIT, as the CSP requires.
+      { find: /^zod$/, replacement: path.resolve(import.meta.dirname, 'src/lib/zod.ts') },
+    ],
   },
   server: { port: 5173, strictPort: true },
   preview: { port: 4173, strictPort: true },

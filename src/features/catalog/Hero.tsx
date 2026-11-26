@@ -4,6 +4,7 @@ import { Link } from '@tanstack/react-router'
 import { NftImage } from '@/components/NftImage'
 import type { Artwork } from '@/contracts/nft'
 import { cn } from '@/lib/utils'
+import { useCatalogPath } from './search'
 
 const SLIDES: { artwork: Artwork; title: string[]; mobileTitle?: string[]; text: string; mobileText?: string; alt: string }[] = [
   { artwork: 'emerald', title: ['Seja dono do futuro', 'da arte digital'], mobileTitle: ['Seja dono da', 'cultura digital'], mobileText: 'Descubra NFTs selecionados de criadores do mundo todo.', text: 'Descubra NFTs selecionados de criadores emergentes e consagrados. Colecione arte digital rara, apoie artistas e tenha uma parte da cultura da internet.', alt: 'Macaco de óculos e jaqueta verde, arte do destaque Emerald Ape' },
@@ -13,6 +14,7 @@ const SLIDES: { artwork: Artwork; title: string[]; mobileTitle?: string[]; text:
 
 /** Desktop "Hero" (1200×450): 600px text column 40px in, 450px artwork on the right. */
 export function Hero() {
+  const path = useCatalogPath()
   const [index, setIndex] = useState(0)
   // Crossfade only after the visitor picks a slide; the first paint (prerendered LCP) never animates.
   const [changed, setChanged] = useState(false)
@@ -41,7 +43,7 @@ export function Hero() {
               slide.text
             )}
           </p>
-          <Link to="/" hash="catalogo" className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary uppercase lg:mt-8 lg:h-10 lg:w-[140px] lg:justify-center lg:rounded-sm lg:bg-primary lg:text-sm lg:text-primary-foreground lg:hover:bg-highlight">
+          <Link to={path} hash="catalogo" className="mt-4 inline-flex items-center gap-2 text-xs font-bold text-primary uppercase lg:mt-8 lg:h-10 lg:w-[140px] lg:justify-center lg:rounded-sm lg:bg-primary lg:text-sm lg:text-primary-foreground lg:hover:bg-highlight">
             Explorar <ArrowRightIcon className="size-4 lg:hidden" aria-hidden="true" />
           </Link>
           <div role="group" aria-label="Escolher destaque" className="absolute bottom-1 left-1/2 flex -translate-x-1/2 lg:static lg:mt-auto lg:translate-x-0 lg:justify-end lg:pr-0">

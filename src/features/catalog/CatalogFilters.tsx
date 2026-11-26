@@ -5,7 +5,7 @@ import { Slider } from '@/components/ui/slider'
 import { NETWORK_LABELS, type Network } from '@/contracts/common'
 import { COLLECTION_LABELS, type CatalogPage, type Collection } from '@/contracts/nft'
 import { cn } from '@/lib/utils'
-import { hasActiveFilters, type CatalogSearch } from './search'
+import { hasActiveFilters, useCatalogPath, type CatalogSearch } from './search'
 
 type Facets = CatalogPage['facets']
 
@@ -19,7 +19,8 @@ const optionClass = (active: boolean) =>
   cn('flex h-10 w-full cursor-pointer items-center justify-between rounded-sm pr-2 pl-3 text-left text-md transition-colors hover:bg-primary/10', active ? 'text-highlight' : 'text-text-secondary')
 
 export function CatalogFilters({ search, facets, onApplied }: { search: CatalogSearch; facets: Facets | undefined; onApplied?: () => void }) {
-  const navigate = useNavigate({ from: '/' })
+  const path = useCatalogPath()
+  const navigate = useNavigate()
   const floor = Number(facets?.priceRange.min ?? 0.02)
   const ceiling = Number(facets?.priceRange.max ?? 12.3)
   const [range, setRange] = useState<[number, number]>([Number(search.minPrice ?? floor), Number(search.maxPrice ?? ceiling)])
@@ -33,7 +34,7 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
 
   /** Any filter change returns to page 1. */
   const update = (patch: Partial<CatalogSearch>) => {
-    void navigate({ search: (prev) => ({ ...prev, ...patch, page: undefined }), hash: 'catalogo' })
+    void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, ...patch, page: undefined }), hash: 'catalogo' })
     onApplied?.()
   }
 

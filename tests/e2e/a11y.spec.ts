@@ -1,7 +1,7 @@
 import AxeBuilder from '@axe-core/playwright'
 import { expect, test } from './fixtures'
 
-for (const path of ['/', '/nft/emerald-ape-042', '/cart', '/login']) {
+for (const path of ['/', '/mercado', '/nft/emerald-ape-042', '/cart', '/login']) {
   test(`sem violações graves de acessibilidade em ${path}`, async ({ app }) => {
     await app.open(path)
     await app.page.waitForLoadState('networkidle')

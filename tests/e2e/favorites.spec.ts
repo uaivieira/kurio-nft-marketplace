@@ -24,12 +24,13 @@ test('falha na mutation desfaz a atualização otimista', async ({ app }) => {
   // Optimistic state first, then rollback once the API rejects.
   await page.clock.runFor(1)
   await expect(page.getByRole('button', { name: 'Remover Sage Nomad #009 dos favoritos' })).toBeVisible()
-  await page.clock.runFor(3000)
+  // The clock was only paused to observe the optimistic state. Resume it so the mocked latency and the
+  // rejection run in real time: a timer scheduled after a fixed runFor() would otherwise never fire.
+  await page.clock.resume()
   await expect(page.getByRole('button', { name: 'Favoritar Sage Nomad #009' })).toHaveAttribute('aria-pressed', 'false')
   await expect(page.getByText(/Não foi possível favoritar Sage Nomad #009/).first()).toBeVisible()
 
   await backend.setScenario('default')
-  await page.clock.resume()
   await page.getByRole('button', { name: 'Favoritar Sage Nomad #009' }).click()
   await expect(page.getByRole('button', { name: 'Remover Sage Nomad #009 dos favoritos' })).toBeVisible()
 })

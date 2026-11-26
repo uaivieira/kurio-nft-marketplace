@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router'
 
 interface Crumb {
   label: string
-  to?: '/' | '/cart'
+  to?: '/' | '/mercado' | '/cart'
 }
 
 export function Breadcrumbs({ items }: { items: Crumb[] }) {

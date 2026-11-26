@@ -1,5 +1,5 @@
 import { queryClient } from './query-client'
-import { clearCheckoutDraft } from './checkout-draft'
+import { checkoutDraftOwner, clearCheckoutDraft } from './checkout-draft'
 import { clearSession, consumeSessionExpired, getSession, markSessionExpired, setSession } from './session-store'
 import type { Session } from '@/contracts/auth'
 import * as authApi from '@/api/auth'
@@ -15,7 +15,10 @@ function wipePrivateData() {
 
 export async function startSession(session: Session) {
   const previous = getSession()
-  if (previous && previous.user.id !== session.user.id) clearCheckoutDraft()
+  // The draft survives an expiry (no session left), so its owner is checked too: another user
+  // logging in on this tab must not inherit the previous user's checkout data.
+  const owner = checkoutDraftOwner()
+  if ((previous && previous.user.id !== session.user.id) || (owner && owner !== session.user.id)) clearCheckoutDraft()
   consumeSessionExpired()
   wipePrivateData()
   setSession(session)

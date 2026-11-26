@@ -17,7 +17,7 @@ function Signup() {
   const { redirect: target } = Route.useSearch()
   return (
     <>
-      <HomePage search={{}} />
+      <HomePage search={{}} variant="market" />
       <AuthDialog mode="signup" redirect={target} />
     </>
   )

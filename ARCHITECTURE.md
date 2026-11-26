@@ -24,10 +24,11 @@ MSW (interceptores fetch, XHR e WebSocket) ─┘
 
 | Rota | Acesso | Observação |
 |---|---|---|
-| `/` | público | Search params tipados e validados: `q`, `collections[]`, `networks[]`, `minPrice`, `maxPrice`, `tab`, `sort`, `page` |
+| `/` | público | Início completo (hero, catálogo, NFT em destaque, editorial, rodapé). Search params tipados e validados: `q`, `collections[]`, `networks[]`, `minPrice`, `maxPrice`, `tab`, `sort`, `page` |
+| `/mercado` | público | Composição de mercado dos frames do Figma: hero, filtros e grade, sem destaque, editorial nem rodapé. Mesmos search params e o mesmo prefetch do início; navegação de catálogo permanece em `/mercado` |
 | `/nft/$nftId` | público | `loader` faz prefetch; 404 próprio para NFT inexistente |
 | `/cart` | público | Carrinho de visitante ou de usuário |
-| `/login`, `/signup` | público | Diálogo sobre a home (desktop) ou tela cheia (mobile); `?redirect=` com retorno seguro (só caminhos relativos) |
+| `/login`, `/signup` | público | Diálogo sobre a composição do Mercado (desktop) ou tela cheia (mobile); `?redirect=` com retorno seguro (só caminhos da mesma origem) |
 | `/checkout`, `/orders/$orderId`, `/favorites`, `/profile`, `/profile/wallets` | privado | Layout `_auth` com `beforeLoad` que redireciona para `/login?redirect=<origem>` |
 | `*` | — | Página 404 |
 
@@ -75,7 +76,7 @@ Visitantes são identificados pelo header `X-Guest-Id` (UUID em `localStorage`);
 
 **Idempotência:** o servidor guarda `userId:Idempotency-Key → { fingerprint, orderId }`. A mesma chave com o mesmo conteúdo devolve o mesmo pedido; com conteúdo diferente, 409 `IDEMPOTENCY_MISMATCH`. No cliente (`lib/idempotency.ts`), a chave é derivada do payload e guardada em `sessionStorage`, então reenvio após timeout, clique repetido ou refresh reutilizam a mesma chave.
 
-## Eventos Socket.IO
+## Eventos Socket.IO e reconciliação com o REST
 
 Envelope: `{ eventId, type, resource: { kind, id }, version, occurredAt, data }`.
 
@@ -120,7 +121,7 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 
 - `POST /auth/login` devolve um token opaco (TTL de 8 h). O cliente guarda `{token, expiresAt, user}` em `localStorage` e recupera a sessão após refresh. Senhas nunca são guardadas no cliente.
 - O guard de rota usa a sessão local. A validade real é conferida a cada chamada: um 401 `SESSION_EXPIRED` dispara `expireSession()` (limpa sessão e cache), avisa e redireciona para `/login?redirect=<rota atual>&reason=expired`.
-- **Contexto do checkout:** o formulário é salvo em `sessionStorage` com o `userId` dono. Após expirar e entrar de novo, a mesma pessoa encontra o formulário preenchido; outro usuário não o vê.
+- **Contexto do checkout:** o formulário é salvo em `sessionStorage` com o `userId` dono. Após expirar e entrar de novo, a mesma pessoa encontra o formulário preenchido; se outro usuário entrar, o rascunho é apagado no login (mesmo sem sessão anterior, caso da expiração).
 - **Logout e troca de usuário:** `queryClient.clear()` e remoção de `['private', …]`, rascunho e chaves de idempotência apagados, socket reaberto com a nova identidade.
 
 ## Carrinho
@@ -167,13 +168,14 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 - `prefers-reduced-motion` neutraliza animações (inclusive o shimmer dos skeletons).
 - Ajustes em relação ao layout: alvos de toque mínimos de 24 px (pontos do carrossel e ícones de compartilhar), títulos `h2` ocultos para manter a hierarquia, e cor de texto secundário `#b39463` (contraste AA sobre o fundo).
 
-## Fidelidade ao Figma: decisões e desvios
+## Fidelidade ao Figma: decisões de UX e desvios
 
 - **Fonte de verdade:** variáveis do Figma (`color/*`, `font/family`, estilos de texto) e a geometria dos nós (posição e tamanho) da cópia do arquivo. Cores em `src/index.css` mapeadas 1:1 (`color/ink` `#140d0a`, `color/surface-card` `#241612`, `color/surface-dark` `#38220f`, `color/primary` `#d28a4c`, `color/text-accent` `#e89b55`, `color/text-primary` `#f7f3ec`, `color/text-secondary` `#cfb28c`, `color/secondary` `#b39463`, `color/border` `#3f2319`, `color/border-soft` `#55321f`). A escala tipográfica do Figma virou utilitários (`text-micro` 9, `text-tiny` 10, `text-caption` 13, `text-md` 15, `text-title` 28, `text-display` 43/70); os demais tamanhos coincidem com os do Tailwind. Container de 1200 px de conteúdo, como nos frames desktop.
-- **Comparação automatizada:** `pnpm figma:compare` renderiza cada tela com fixtures fixas (carrinho Emerald ×2, Violet ×6, Ivory ×9; usuária Ana). Esses itens e quantidades não coincidem com todos os frames mobile; a comparação não deve ser interpretada como igualdade de dados. O script compara pixel a pixel com o PNG do frame em `figma/frames/`. Saída em `figma/report/` (diff e `summary.md`). A métrica é sensível a qualquer deslocamento vertical, a diferenças de antialiasing entre o render do Figma e o Chromium, à moldura arredondada dos frames mobile e a conteúdo que muda de propósito (contagens reais nos filtros, 6 páginas em vez de 4, home renderizada atrás dos modais de login). Por isso serve como guia de regressão, não como nota absoluta.
-- **Revisão visual pendente:** os relatórios ainda mostram diferenças de geometria e composição, sobretudo no fundo de login/cadastro desktop e na home mobile. Regressão visual aprovada significa estabilidade frente às baselines da aplicação; não comprova fidelidade integral ao Figma.
+- **Comparação automatizada:** `pnpm figma:compare` renderiza cada tela com fixtures fixas (carrinho Emerald ×2, Violet ×6, Ivory ×9; usuária Ana). Esses itens e quantidades não coincidem com todos os frames mobile; a comparação não deve ser interpretada como igualdade de dados. O script compara pixel a pixel com o PNG do frame em `figma/frames/`. Saída em `figma/report/` (diff e `summary.md`). A métrica é sensível a qualquer deslocamento vertical, a diferenças de antialiasing entre o render do Figma e o Chromium, à moldura arredondada dos frames mobile e a conteúdo que muda de propósito (contagens reais nos filtros, 6 páginas em vez de 4, paginação abaixo da grade). Por isso serve como guia de regressão, não como nota absoluta.
+- **Revisão visual pendente:** os relatórios ainda mostram diferenças de geometria e composição, sobretudo na home mobile e no fundo de login/cadastro desktop (deslocamentos do hero e da grade em relação ao frame). Regressão visual aprovada significa estabilidade frente às baselines da aplicação; não comprova fidelidade integral ao Figma.
 - **Assets:** usadas as 4 artes exportadas (`Frame 136`, `NFT Artwork 04/05/10`), convertidas para AVIF/WebP em 160/320/480 px. O catálogo reaproveita as artes, como o próprio Figma faz. Fonte Roboto Mono auto-hospedada (`public/fonts`). Ícones Iconly (MIT, react-iconly 2.2.10) e marcas Simple Icons foram incorporados como SVGs locais, apenas nas variantes usadas, sem carregar o runtime das bibliotecas. Glifos utilitários usam geometria Lucide (ISC).
-- **Login e cadastro:** diálogo sobre a home no desktop, alinhado ao topo como no frame; tela cheia no mobile, com o título e o link de troca ("Novo na Kurio? Crie uma conta") do frame mobile. Os rótulos dos campos ficam visualmente ocultos (o design só mostra placeholders), mas continuam associados aos campos para leitores de tela. O botão de cadastro usa "Criar perfil" no mobile e "Criar conta" no desktop. O diálogo mobile permite rolagem interna para manter campos e ações acessíveis em telas baixas. Login social desabilitado e rotulado.
+- **Página Mercado:** o Figma não tem frame "Mercado"; a composição aparece atrás dos modais de login e cadastro desktop (hero, filtros Coleções/Faixa de preço/Rede e grade 3×3 de cards, sem "NFT em destaque", sem seções editoriais). `/mercado` reproduz essa composição reaproveitando os componentes do início (`HomePage` com `variant="market"`), e o "Mercado" do cabeçalho leva a ela. A paginação foi mantida (requisito funcional), embora o frame mostre só 9 cards. Os dois frames terminam logo abaixo da grade, dentro dos 1981 px, sem rodapé; por isso o rodapé não aparece em `/mercado` nem atrás de login e cadastro.
+- **Login e cadastro:** diálogo sobre a composição do Mercado no desktop, alinhado ao topo como no frame; tela cheia no mobile, com o título e o link de troca ("Novo na Kurio? Crie uma conta") do frame mobile. Os rótulos dos campos ficam visualmente ocultos (o design só mostra placeholders), mas continuam associados aos campos para leitores de tela. O botão de cadastro usa "Criar perfil" no mobile e "Criar conta" no desktop. O diálogo mobile permite rolagem interna para manter campos e ações acessíveis em telas baixas. Login social desabilitado e rotulado.
 - **Checkout:** os campos de endereço e tipo de carteira vêm da carteira cadastrada selecionada (somente leitura). No desktop, "Usar outra carteira?" alterna para a carteira secundária, e "Carteira e rede" lista os provedores (WalletConnect, MetaMask, Coinbase Wallet); WalletConnect conecta qualquer carteira, os demais só a do próprio tipo. O cupom fica atrás do link "Tem um código promocional? Aplique aqui". No mobile, como no frame, aparecem os cards "Carteira conectada" (Principal/Reserva) com "Trocar carteira" e a lista de provedores; os dados do colecionador vêm pré-preenchidos num bloco recolhível que abre sozinho se houver erro. No mobile, a lista de itens, o cupom e o detalhamento de valores ficam ocultos, preservando o total e os alertas de preço e estoque antes da compra. "Confirmar compra" abre uma revisão antes do envio, exigida pelo enunciado.
 - **Perfil:** dados e senha têm botões separados ("Salvar" e "Alterar senha") para que erros de um não bloqueiem o outro.
 - **Carteiras:** o formulário principal serve para cadastrar e editar; "Adicionar" existe na carteira secundária.
@@ -183,15 +185,43 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 - **Telas sem frame mobile** (perfil, carteiras, confirmação) seguem os padrões dos frames mobile existentes.
 - **Fora de escopo** (Criadores, Aprenda, editorial, suporte, atividade, ofertas, downloads, newsletter, "Esqueceu a senha?", avaliações): visíveis, porém inertes e marcados "em breve". A newsletter informa que nada foi enviado. "Ver no Etherscan" abre um diálogo que explica que a referência é simulada.
 
+## Segurança
+
+**Modelo de ameaça.** O site é estático (Vercel) e o backend é simulado no próprio navegador: não há servidor com dados de outras pessoas, e "usuários", senhas e pedidos existem só no `localStorage` de quem visita. Os riscos reais são os de qualquer SPA pública: injeção de script (XSS) lendo o token e o estado local, clickjacking, redirecionamento aberto após o login e vazamento de dados entre usuários no mesmo navegador.
+
+**Cabeçalhos** (`vercel.json`, primeira rota `/(.*)` com `continue: true`, então valem para toda resposta: arquivos estáticos, páginas pré-renderizadas e fallback da SPA; o cache imutável de `assets/` e `fonts/` continua na rota seguinte):
+
+- `Content-Security-Policy`:
+  - `default-src 'self'`; `object-src 'none'`; `base-uri 'self'`; `form-action 'self'`; `frame-ancestors 'none'` (só funciona como cabeçalho, não em `<meta>`).
+  - `script-src 'self'` mais três hashes `sha256`: o script que marca o HTML pré-renderizado como desatualizado, o carregador do bundle e o script de restauração de rolagem que o TanStack Router emite na renderização no servidor. Sem `'unsafe-inline'` nem `'unsafe-eval'`. Como `vercel.json` é estático, esses scripts são idênticos byte a byte em todas as páginas e builds: o que varia (rota, cache desidratado, nomes dos chunks) vai em atributo do `<html>` ou em blocos `<script type="application/json">`, que não executam. `scripts/csp.ts` define os scripts e `scripts/prerender.ts` faz o build falhar se a política não liberar algum script inline das páginas geradas, então os hashes não ficam defasados.
+  - O Zod compila validadores com `new Function` e testa isso ao criar o primeiro schema. `src/lib/zod.ts` desliga o JIT (`jitless`) antes de qualquer schema; o Vite resolve todo `import 'zod'` para esse módulo.
+  - `style-src 'self' 'unsafe-inline'`: o CSS do Tailwind é arquivo próprio, mas o HTML pré-renderizado tem atributos `style` (Radix Slider), o `<style>` que oculta o HTML desatualizado, e Radix (trava de rolagem dos diálogos) e sonner injetam `<style>` em tempo de execução. Hashes não cobrem atributos nem estilos criados dinamicamente. Injeção de CSS tem impacto bem menor que a de script.
+  - `img-src 'self' data: blob:` (avatares ficam como data URL); `font-src 'self'` (Roboto Mono local); `connect-src 'self'` (REST e Socket.IO são interceptados na página pelo MSW; nada sai para outra origem).
+- `X-Frame-Options: DENY` (navegadores antigos), `X-Content-Type-Options: nosniff`, `Referrer-Policy: strict-origin-when-cross-origin` e `Permissions-Policy` negando recursos não usados (câmera, microfone, geolocalização, pagamento, USB, serial, HID, Bluetooth, MIDI, sensores, captura de tela).
+
+`vite preview` não lê `vercel.json`. `tests/e2e/security.spec.ts` aplica os mesmos cabeçalhos a cada documento e falha com qualquer violação de CSP (`securitypolicyviolation` ou console) no início, Mercado, detalhe, catálogo filtrado, login, carrinho e checkout com evento em tempo real; ele também confirma que um script inline injetado não executa. `scripts/csp.test.ts` confere os cabeçalhos e as rotas em `vercel.json`.
+
+**Correções aplicadas:**
+
+- **Redirecionamento após login** (`lib/redirect.ts`): só caminhos que resolvem para a mesma origem. Barras invertidas, espaços e caracteres de controle são rejeitados, porque o navegador trata `\` como `/` e descarta tabulações, transformando `/\evil` ou `/<tab>/evil` em `//evil` (outro host).
+- **Rascunho do checkout entre usuários** (`lib/auth-flow.ts`): o login apaga o rascunho e as chaves de idempotência quando o dono do rascunho é outro usuário, inclusive depois de uma sessão expirada (antes, só era apagado se ainda houvesse sessão anterior).
+
+**Riscos aceitos:**
+
+- **Cenário pela URL** (`?scenario=` persiste): é requisito documentado do desafio. Um link pode deixar o backend simulado em modo de falha naquele navegador; o efeito é só sobre dados simulados locais, o painel mostra o cenário ativo e "Restaurar dados do cenário"/`default` desfaz.
+- **Token em `localStorage`**: aceitável para a demo, cujo "token" vale só para o backend simulado do próprio navegador. Com uma API real, a recomendação é sessão em cookie `HttpOnly; Secure; SameSite=Lax` (o JS nunca vê o token), proteção CSRF nas mutations e a CSP acima, que reduz o risco de XSS mas não substitui o cookie.
+
+**Dependências:** `pnpm audit` não reporta vulnerabilidades conhecidas.
+
 ## Performance (Lighthouse)
 
 Medianas de 3 execuções por página e perfil em [lighthouse/reports/summary.md](./lighthouse/reports/summary.md). Configuração em `lighthouse/lighthouserc.cjs`; relatórios HTML/JSON em `lighthouse/reports/<perfil>/`.
 
-Mediana atual: **100 em Performance, Accessibility, Best Practices e SEO** no início e no detalhe, em mobile e desktop (LCP mobile 1,6 s no início e 1,4 s no detalhe; CLS e TBT zero).
+Mediana atual: **100 em Performance, Accessibility, Best Practices e SEO** no início, no Mercado e no detalhe, em mobile e desktop (LCP mobile 1,6 s no início, 1,5 s no Mercado e 1,4 s no detalhe; CLS e TBT zero).
 
 **Como:** o LCP é uma imagem que depende de dados. Enquanto a página dependia do JS para existir, a cadeia HTML → ~300 kB de JS → boot do backend simulado → renderização → imagem deixava o LCP em ~3,6 s no 4G lento simulado.
 
-- **Pré-renderização em build (SSG).** `pnpm build` também compila `src/entry-prerender.tsx` para Node. `scripts/prerender.ts` gera o HTML do início (`dist/index.html`) e de cada NFT (`dist/nft/<id>.html`) com o router e os componentes reais. Os dados vêm do seed padrão do backend simulado, consultado pelas funções de domínio e validado pelos mesmos contratos Zod. O cache do TanStack Query vai desidratado no HTML (`window.__KURIO_STATE__`).
+- **Pré-renderização em build (SSG).** `pnpm build` também compila `src/entry-prerender.tsx` para Node. `scripts/prerender.ts` gera o HTML do início (`dist/index.html`), do Mercado (`dist/mercado.html`) e de cada NFT (`dist/nft/<id>.html`) com o router e os componentes reais. Os dados vêm do seed padrão do backend simulado, consultado pelas funções de domínio e validado pelos mesmos contratos Zod. O cache do TanStack Query vai desidratado no HTML num bloco JSON não executável (`<script type="application/json" id="kurio-state">`), por causa da CSP (ver Segurança).
 - **Assumir o HTML sem trocar o que aparece.** O cliente hidrata o cache com os dados marcados como velhos, resolve a rota (`router.load()`) e só então monta com `createRoot` dentro de `startTransition`. A primeira renderização é idêntica ao HTML, e as queries revalidam em segundo plano contra o backend deste navegador. Um teste E2E garante deslocamento de layout ~0 nessa troca.
 - **JS fora do caminho do LCP.** Nas páginas pré-renderizadas, o script de entrada e os `modulepreload` são injetados por um carregador inline assim que o navegador reporta o LCP da imagem (`PerformanceObserver`), com teto de 1,5 s. A página já está completa e visível; links funcionam como navegação normal até o app assumir.
 - **Outras URLs.** O fallback de SPA (carrinho, checkout, conta) e o início com filtros na URL recebem esse HTML marcado como desatualizado antes da primeira pintura: o conteúdo pré-renderizado fica oculto e o app carrega na hora, então o catálogo padrão nunca aparece no lugar do pedido.

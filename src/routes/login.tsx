@@ -20,7 +20,7 @@ function Login() {
   const { redirect: target, reason } = Route.useSearch()
   return (
     <>
-      <HomePage search={{}} />
+      <HomePage search={{}} variant="market" />
       <AuthDialog mode="login" redirect={target} expired={reason === 'expired'} />
     </>
   )

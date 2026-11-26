@@ -1,3 +1,4 @@
+import { useRouterState } from '@tanstack/react-router'
 import { z } from 'zod'
 import { ethAmount, network } from '@/contracts/common'
 import { CATALOG_SORTS, CATALOG_TABS, collection } from '@/contracts/nft'
@@ -33,3 +34,14 @@ export const TAB_LABELS: Record<(typeof CATALOG_TABS)[number], string> = {
 
 export const hasActiveFilters = (search: CatalogSearch) =>
   Boolean(search.q || search.collections?.length || search.networks?.length || search.minPrice || search.maxPrice)
+
+/** Routes that render the catalog: the home and the dedicated marketplace page. */
+export type CatalogPath = '/' | '/mercado'
+
+/**
+ * Where catalog navigation (filters, sort, search, tabs, pagination) should land: the page being
+ * shown. The marketplace composition behind the login and signup dialogs belongs to `/mercado`.
+ */
+export function useCatalogPath(): CatalogPath {
+  return useRouterState({ select: (state) => (state.location.pathname === '/' ? '/' : '/mercado') })
+}
