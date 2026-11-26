@@ -200,7 +200,11 @@ export async function initDb() {
 }
 
 export async function resetDb() {
+  const previous = db
   db = await seed()
+  db.seq = previous.seq
+  for (const nft of Object.values(db.nfts)) nft.version = (previous.nfts[nft.id]?.version ?? 0) + 1
+  eventLog.length = 0
   persist()
 }
 

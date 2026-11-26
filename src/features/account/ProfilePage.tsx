@@ -58,11 +58,11 @@ function ProfileForm() {
   const { errors } = form.formState
 
   useEffect(() => {
-    if (data) form.reset({ displayName: data.displayName, username: data.username, email: data.email, ensLabel: data.ensLabel, ensSuffix: data.ensSuffix, walletNickname: data.walletNickname })
+    if (data) form.reset({ displayName: data.displayName, username: data.username, email: data.email, ensLabel: data.ensLabel, ensSuffix: data.ensSuffix, walletNickname: data.walletNickname }, { keepDirtyValues: true })
   }, [data, form])
 
   return (
-    <form noValidate className="space-y-4" onSubmit={form.handleSubmit((values) => {
+    <form noValidate toolname="update_profile" tooldescription="Update the collector profile: display name, username, email, ENS name and wallet nickname." className="space-y-4" onSubmit={form.handleSubmit((values) => {
       setFormError(null)
       update.mutate(values, {
         onSuccess: () => { notify.success(t('account.profile.saved')); announce(t('realtime.profileSaved')) },
@@ -103,7 +103,7 @@ function PasswordForm() {
   const { errors } = form.formState
 
   return (
-    <form noValidate className="max-w-[417px] space-y-4" onSubmit={form.handleSubmit((values) => {
+    <form noValidate toolname="change_password" tooldescription="Change the account password with the current password and a new one." className="max-w-[417px] space-y-4" onSubmit={form.handleSubmit((values) => {
       setFormError(null)
       change.mutate(values, {
         onSuccess: () => { form.reset(); notify.success(t('account.password.changed')); announce(t('realtime.passwordChanged')) },

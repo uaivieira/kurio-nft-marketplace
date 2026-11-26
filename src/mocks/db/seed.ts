@@ -52,6 +52,7 @@ export const SEED_WALLETS = {
 export const COUPONS = {
   KURIO10: { percentOff: 10, expiresAt: '2099-01-01T00:00:00Z' },
   EXPIRED5: { percentOff: 5, expiresAt: '2026-01-01T00:00:00Z' },
+  FLASH15: { percentOff: 15, expiresAt: '2030-01-01T00:00:00Z' },
 } as const
 
 function mulberry32(seed: number) {

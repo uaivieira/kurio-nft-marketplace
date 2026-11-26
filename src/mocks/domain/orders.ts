@@ -58,6 +58,9 @@ export function createOrder(user: UserRecord, key: string, input: CreateOrderInp
     if (record) return { order: toOrder(record), replay: true }
   }
 
+  const pending = Object.values(db.orders).find((order) => order.userId === user.id && order.status === 'pending')
+  if (pending) throw new MockHttpError('CONFLICT', 'An order is already pending.', undefined, { reason: 'orderPending', orderId: pending.id })
+
   applyCheckoutScenario(user.id)
 
   const cart = getOrCreateCart(`user:${user.id}`)
@@ -66,7 +69,7 @@ export function createOrder(user: UserRecord, key: string, input: CreateOrderInp
   const wallets = getWallets(user)
   const wallet = [wallets.primary, wallets.secondary].find((candidate) => candidate?.id === input.walletId)
   const connection = db.connections[input.connectionId]
-  if (!wallet || !connection || connection.userId !== user.id || connection.walletId !== wallet.id) {
+  if (!wallet || !connection || connection.userId !== user.id || connection.walletId !== wallet.id || connection.network !== input.network) {
     throw new MockHttpError('VALIDATION', 'A registered wallet must be connected.', { wallet: validation('walletNotConnected') }, { reason: 'walletNotConnected' })
   }
 

@@ -14,7 +14,7 @@ import { errorMessage } from '@/lib/api-error'
 import { issueMessage } from '@/lib/quote-issues'
 import { useReveal } from '@/lib/use-reveal'
 import { cn } from '@/lib/utils'
-import { formatEth, mulEth } from '@/lib/eth'
+import { compareEth, formatEth } from '@/lib/eth'
 import { useSession } from '@/lib/session-store'
 import { announce } from '@/realtime/announcer'
 import { useAcknowledgePrices, useCart, useQuote, useRemoveLine, useSetQuantity } from '@/queries/cart'
@@ -23,10 +23,11 @@ import { CouponForm, TotalsRows } from './Totals'
 
 const TABLE_COLUMNS = 'md:grid-cols-[minmax(0,311fr)_minmax(0,139fr)_minmax(0,136fr)_minmax(0,148fr)_24px]'
 
-function LineRow({ line, busy, onQuantity, onRemove }: { line: CartLine; busy: boolean; onQuantity: (quantity: number) => void; onRemove: () => void }) {
+function LineRow({ line, lineTotal, busy, onQuantity, onRemove }: { line: CartLine; lineTotal: string | undefined; busy: boolean; onQuantity: (quantity: number) => void; onRemove: () => void }) {
   const { t } = useTranslation()
   const limit = Math.min(line.available, line.maxPerOrder)
-  const priceChanged = line.unitPrice !== line.priceWhenAdded
+  const priceChanged = compareEth(line.unitPrice, line.priceWhenAdded) !== 0
+  const total = lineTotal ? formatEth(lineTotal) : <Skeleton as="span" className="inline-block h-4 w-20 align-middle" />
   return (
     <li data-testid="cart-line" className={`grid grid-cols-[6.25rem_minmax(0,1fr)_auto] items-start max-md:grid-rows-[auto_1fr] max-[389px]:grid-rows-[auto_auto_auto]! max-[389px]:pb-3! gap-x-2.5 gap-y-0 rounded-[14px] bg-card p-0 pr-4 md:items-center md:h-[70px] md:gap-0 md:rounded-none md:pr-6 ${TABLE_COLUMNS}`}>
       <div className="flex items-center gap-4 max-md:contents">
@@ -40,12 +41,12 @@ function LineRow({ line, busy, onQuantity, onRemove }: { line: CartLine; busy: b
         </div>
       </div>
       <p className="text-lg font-bold whitespace-nowrap text-highlight md:text-text-secondary max-md:col-start-2 max-md:row-start-2 max-md:mb-[9px] max-md:self-end max-[389px]:mt-1! max-[389px]:mb-0! max-[389px]:self-start! md:text-base md:leading-4" data-testid="line-unit">
-        <span className="md:hidden">{formatEth(mulEth(line.unitPrice, line.quantity))}</span>
+        <span className="md:hidden">{total}</span>
         <span className="max-md:hidden">{formatEth(line.unitPrice)}</span>
         {priceChanged && <span className="ml-2 text-xs font-normal text-muted-foreground line-through" data-testid="line-old-price">{formatEth(line.priceWhenAdded)}</span>}
       </p>
       <QuantityStepper value={line.quantity} max={limit} onChange={onQuantity} label={line.name} disabled={busy} testId="line-quantity" className="max-md:col-start-3 max-md:row-start-1 max-md:mt-[38px] max-md:gap-2 max-md:justify-self-end max-[389px]:col-start-2! max-[389px]:row-start-3! max-[389px]:mt-1! max-[389px]:justify-self-start!" buttonClassName="h-6 w-5 max-md:size-6 max-md:border max-md:border-border max-md:bg-elevated max-md:text-foreground max-md:before:hidden" outputClassName="max-md:relative max-md:top-1.5 max-md:w-[17px] max-md:text-base" />
-      <p className="hidden text-base leading-4 font-bold whitespace-nowrap text-highlight md:block" data-testid="line-total">{formatEth(mulEth(line.unitPrice, line.quantity))}</p>
+      <p className="hidden text-base leading-4 font-bold whitespace-nowrap text-highlight md:block" data-testid="line-total">{total}</p>
       <button type="button" aria-label={t('cart.removeLine', { name: line.name })} disabled={busy} onClick={onRemove} className="flex size-8 cursor-pointer items-center justify-center text-primary max-md:col-start-3 max-md:row-start-2 max-md:mb-1.5 max-md:self-end max-md:justify-self-end max-[389px]:row-start-3! max-[389px]:mb-0! max-[389px]:self-center! md:size-6">
         <DeleteIcon className="size-6" aria-hidden="true" />
       </button>
@@ -123,6 +124,7 @@ export function CartPage() {
             <LineRow
               key={line.id}
               line={line}
+              lineTotal={quote.data?.lines.find((item) => item.id === line.id)?.lineTotal}
               busy={busy}
               onQuantity={(quantity) => setQuantity.mutate({ lineId: line.id, quantity }, { onSuccess: () => announce(t('realtime.quantityChanged', { name: line.name, quantity })), onError: (e) => notify.error(errorMessage(e)) })}
               onRemove={() => removeLine.mutate(line.id, { onSuccess: () => announce(t('realtime.lineRemoved', { name: line.name })), onError: (e) => notify.error(errorMessage(e)) })}
@@ -148,7 +150,7 @@ export function CartPage() {
           <aside aria-labelledby="summary-title" className="min-w-0 max-md:-mx-7 max-md:rounded-t-3xl max-md:bg-card max-md:px-6 max-md:pt-6 max-md:pb-5">
             <h2 id="summary-title" className="hidden h-7 border-b border-primary text-lg leading-4 font-bold md:block">{t('cart.summary.title')}</h2>
             <div className="space-y-2.5 md:mt-[22px] md:space-y-0">
-              {cart.data && hasLines && <CouponForm cart={cart.data} />}
+              {cart.data && hasLines && <CouponForm cart={cart.data} quote={quote.data} />}
               {cart.data && !hasLines ? <p className="text-sm text-muted-foreground">{t('cart.summary.empty')}</p> : <TotalsRows quote={quote.data} loading={quote.isPending} className="md:mt-[22px]" />}
               {blockingIssues.length > 0 && <p className="text-xs text-destructive" role="status">{t('cart.summary.blocked')}</p>}
               <Button size="lg" className="w-full mt-[18px] md:mt-5 max-md:h-[60px] max-md:rounded-full max-md:bg-cta max-md:text-base md:h-10 md:text-md" disabled={!hasLines || blocked || quote.isFetching} onClick={finalize}>

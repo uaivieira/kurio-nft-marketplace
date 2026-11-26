@@ -29,6 +29,7 @@ export interface RouteContext<TParams extends PathParams> {
 
 interface RouteOptions {
   auth?: boolean
+  anonymous?: boolean
   tag?: 'catalog' | 'favorites-write' | 'order-create' | 'wallet-connect'
 }
 
@@ -96,8 +97,8 @@ export function route<TParams extends PathParams = PathParams>(
           persist()
           throw new MockHttpError('SESSION_EXPIRED', 'Session expired.')
         }
-        if (!user) throw new MockHttpError('SESSION_EXPIRED', 'Session expired.')
       }
+      if (token && !user && !options.anonymous) throw new MockHttpError('SESSION_EXPIRED', 'Session expired.')
       const ctx: RouteContext<TParams> = {
         request,
         params,

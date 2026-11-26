@@ -47,7 +47,7 @@ Definidas em `.env` (versionado, sem segredos). `.env.example` tem os mesmos val
 
 As senhas ficam no banco simulado apenas como hash PBKDF2-SHA256 com salt (WebCrypto). Novos cadastros funcionam normalmente.
 
-Cupons: `KURIO10` (10% de desconto), `EXPIRED5` (expirado). Qualquer outro código é inválido.
+Cupons: `KURIO10` (10% de desconto), `EXPIRED5` (expirado), `FLASH15` (15%, vence em 2030-01-01; serve para testar com relógio falso um cupom que expira com o carrinho aberto). Qualquer outro código é inválido.
 
 NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar-echo-027` (edição 1/50 com só 2 unidades), `/nft/nao-existe` (inexistente).
 
@@ -56,7 +56,7 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | Comando | O que faz |
 |---|---|
 | `pnpm dev` | Desenvolvimento com mocks |
-| `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) + pré-renderização do início, do Mercado e das páginas de NFT (`dist/index.html`, `dist/mercado.html`, `dist/nft/<id>.html`) |
+| `pnpm build` | Verificação de tipos + build otimizado em `dist/` (com mocks) + pré-renderização do início, do Mercado, das páginas de NFT e das páginas de entrada (login, cadastro, carrinho de visitante novo e a porta de login das rotas privadas) |
 | `pnpm preview` | Serve o build em http://127.0.0.1:4173 |
 | `pnpm typecheck` | `tsc -b` em app, testes e configs |
 | `pnpm lint` | oxlint e `scripts/check-no-comments.ts` (o código não tem comentários; a verificação falha se algum aparecer) |
@@ -68,7 +68,7 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | `pnpm assets` | Regera as imagens AVIF/WebP em `public/nft/` a partir de `assets-src/` |
 | `pnpm figma:compare [filtro]` | Compara cada tela com o PNG do frame do Figma (rode `pnpm build` antes). Relatório e diffs em `figma/report/` |
 | `pnpm figma:extract` | Extrai textos e formas dos SVGs em `figma/svg/` para as referências em `figma/nodes/` |
-| `pnpm figma:geometry [filtro]` | Confere 954 nós nos 15 frames com tolerância de ±1 px, tipografia, cores, bordas e raios; exceções justificadas em `figma/geometry-exemptions.json`. Rode `pnpm build` antes; relatório em `figma/report/geometry.md` |
+| `pnpm figma:geometry [filtro]` | Confere 954 nós nos 15 frames com tolerância de ±1 px, tipografia, cores, bordas e raios. Os desvios intencionais (dados reais, acessibilidade e ajustes de layout pedidos depois do Figma) têm exceção justificada em `figma/geometry-exemptions.json`, com só os eixos afetados. Rode `pnpm build` antes; relatório em `figma/report/geometry.md` |
 
 ## Textos e idioma (i18n)
 
@@ -82,7 +82,7 @@ Escolha o cenário de três formas, e ele persiste após recarregar a página:
 2. No painel de cenários: botão com ícone de chave inglesa no canto direito da tela
 3. No console: `window.__kurio.setScenario('order-timeout')`
 
-**Reset:** o botão "Restaurar dados do cenário" no painel (ou `await window.__kurio.reset()`) restaura integralmente o banco simulado: catálogo, usuários, carrinhos, favoritos, carteiras, pedidos e sessões. Para voltar também ao cenário padrão, selecione `default`.
+**Reset:** o botão "Restaurar dados do cenário" no painel (ou `await window.__kurio.reset()`, ou `POST /api/__mock/reset`) restaura integralmente o banco simulado: catálogo, usuários, carrinhos, favoritos, carteiras, pedidos e sessões. Ele também esvazia o log de eventos e derruba os sockets, que reconectam e reconciliam com o REST. Como as sessões são apagadas, quem estava logado é levado ao login. O painel recarrega a página na home; pelo console ou pelo endpoint, a página continua aberta. Para voltar também ao cenário padrão, selecione `default`.
 
 | Cenário | Efeito |
 |---|---|
@@ -116,6 +116,14 @@ Entre com `ana@kurio.test` e adicione um NFT ao carrinho antes dos fluxos de com
 - **Desconexão com pedido pendente:** cenário `order-hold`, envie o pedido e rode `window.__kurio.setSocketOnline(false)`. Recarregue a página, depois rode `window.__kurio.resolveOrder(window.__kurio.pendingOrderIds()[0], 'confirmed')` e `window.__kurio.setSocketOnline(true)`. Ao reconectar, o cliente reconcilia com a API e mostra o recibo, sem criar outra compra.
 - **Eventos duplicados e antigos:** em `/nft/sage-nomad-009`, rode `updateEdition(...)`, depois `window.__kurio.emitDuplicate()` e `window.__kurio.emitStale('sage-nomad-009')`. O preço não regride.
 - **Sessão expirada:** `window.__kurio.expireSessions()` e navegue para uma área privada (ou clique em "Conectar carteira" no checkout). O login abre com aviso e retorna ao ponto de origem. No checkout, os dados preenchidos são mantidos.
+- **Cupom que vence com o carrinho aberto:** aplique `FLASH15` num navegador com o relógio adiantado para perto de 2030-01-01 (é o que o teste faz com `page.clock`). Depois do vencimento, a cotação zera o desconto e o carrinho mostra o alerta com a opção de remover.
+- **Segundo pedido com um pendente:** cenário `order-hold`, envie um pedido e tente outra compra. O servidor responde 409 `CONFLICT` com o id do pedido pendente, e o app leva a ele.
+
+## Agentes de IA
+
+- `/llms.txt`, `/agent-skills/kurio-marketplace.md` e o manifesto ARD em `/.well-known/ard.json` (o mesmo arquivo em `/.well-known/ai-catalog.json`) descrevem o site para agentes.
+- Em navegadores com WebMCP (`navigator.modelContext`), o site registra as ferramentas `search_nfts`, `get_nft`, `add_to_cart`, `get_cart` e `open_page`, que usam a mesma API da interface. Não há ferramenta de compra: a pessoa revisa e confirma o pedido no checkout. Os formulários têm anotações declarativas (`toolname`, `tooldescription`) e nunca são enviados automaticamente.
+- Para testar sem um navegador com WebMCP: `pnpm exec playwright test tests/e2e/agentic.spec.ts` injeta um `navigator.modelContext` de teste e chama as ferramentas.
 
 ## Deploy (Vercel)
 
@@ -132,7 +140,7 @@ Para validar uma URL publicada com os mesmos testes (sem iniciar servidor local)
 PLAYWRIGHT_BASE_URL=https://sua-demo.vercel.app pnpm test:e2e
 ```
 
-`/mercado` serve `dist/mercado.html` e `/nft/<id>` serve a página pré-renderizada `dist/nft/<id>.html` quando ela existe; IDs desconhecidos e todas as outras rotas caem no fallback da SPA (`index.html`), e o app resolve a rota no cliente. Arquivos de `assets/`, `fonts/` e as imagens AVIF/WebP em `/nft/` são servidos como estáticos.
+`/mercado` serve `dist/mercado.html`, `/nft/<id>` serve a página pré-renderizada `dist/nft/<id>.html` quando ela existe, e `/login`, `/signup`, `/cart`, `/checkout`, `/favorites`, `/profile` e `/profile/wallets` servem as páginas de entrada pré-renderizadas (ver [ARCHITECTURE.md](./ARCHITECTURE.md#performance-lighthouse)); IDs desconhecidos e todas as outras rotas caem no fallback da SPA (`index.html`), e o app resolve a rota no cliente. Arquivos de `assets/`, `fonts/` e as imagens AVIF/WebP em `/nft/` são servidos como estáticos.
 
 ## Estrutura
 

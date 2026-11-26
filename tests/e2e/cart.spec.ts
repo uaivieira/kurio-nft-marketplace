@@ -62,3 +62,23 @@ test('guest items are kept on authentication', async ({ app }) => {
   await expect(page.getByTestId('cart-line')).toContainText('Golden Beat #207')
   await expect(page.getByTestId('line-quantity')).toHaveText('3')
 })
+
+test('a coupon that expires after being applied is flagged and stops discounting', async ({ app }) => {
+  const { page } = app
+  await page.clock.install({ time: new Date('2029-12-31T23:30:00Z') })
+  await app.open('/')
+  await addToCart(page, 'emerald-ape-042', 2)
+  await page.goto('/cart')
+  await page.getByLabel('Código promocional').fill('FLASH15')
+  await page.getByRole('button', { name: 'Aplicar' }).click()
+  await expect(page.getByTestId('coupon-applied')).toContainText('FLASH15')
+  await expect(page.getByTestId('discount')).toHaveText('(-) 0.357 ETH')
+
+  await page.clock.fastForward('40:00')
+  await page.reload()
+  await expect(page.getByTestId('coupon-expired')).toContainText('O cupom FLASH15 expirou')
+  await expect(page.getByTestId('discount')).toHaveText('(-) 0.000 ETH')
+  await expect(page.getByTestId('total')).toHaveText('2.396 ETH')
+  await page.getByRole('button', { name: 'Remover', exact: true }).click()
+  await expect(page.getByLabel('Código promocional')).toBeVisible()
+})

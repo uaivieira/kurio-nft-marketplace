@@ -43,6 +43,21 @@ export const compareEth = (a: EthString, b: EthString): -1 | 0 | 1 => {
   return diff === 0n ? 0 : diff > 0n ? 1 : -1
 }
 
+const HUNDREDTH = SCALE / 100n
+
+export const toHundredths = (value: EthString, round: 'floor' | 'ceil' = 'floor'): number => {
+  const wei = toWei(value)
+  const whole = wei / HUNDREDTH
+  return Number(round === 'ceil' && wei % HUNDREDTH !== 0n ? whole + 1n : whole)
+}
+
+export const fromHundredths = (hundredths: number): EthString => {
+  if (!Number.isInteger(hundredths) || hundredths < 0) throw new Error('Hundredths must be a non-negative integer')
+  return fromWei(BigInt(hundredths) * HUNDREDTH)
+}
+
+export const minEth = (values: EthString[]): EthString => values.reduce((min, value) => (compareEth(value, min) < 0 ? value : min))
+
 export const decimalsFor = (...values: EthString[]): number =>
   Math.max(2, ...values.map((value) => fromWei(toWei(value)).split('.')[1]?.length ?? 0))
 

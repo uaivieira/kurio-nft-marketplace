@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addEth, compareEth, decimalsFor, formatEth, fromWei, mulEth, percentOfEth, subEth, toWei } from './eth'
+import { addEth, compareEth, decimalsFor, formatEth, fromHundredths, fromWei, minEth, mulEth, percentOfEth, subEth, toHundredths, toWei } from './eth'
 
 describe('eth arithmetic', () => {
   it('keeps decimal precision where floats fail', () => {
@@ -38,5 +38,20 @@ describe('eth arithmetic', () => {
     expect(() => toWei('1e3')).toThrow()
     expect(() => toWei('-1')).toThrow()
     expect(() => mulEth('1', 1.5)).toThrow()
+  })
+})
+
+describe('hundredths', () => {
+  it('rounds to whole hundredths without floating point', () => {
+    expect(toHundredths('0.015')).toBe(1)
+    expect(toHundredths('0.015', 'ceil')).toBe(2)
+    expect(toHundredths('12.30', 'ceil')).toBe(1230)
+    expect(fromHundredths(1230)).toBe('12.30')
+    expect(fromHundredths(7)).toBe('0.07')
+  })
+
+  it('finds the lowest price by value, not by text', () => {
+    expect(minEth(['1.50', '0.9', '1.5'])).toBe('0.9')
+    expect(minEth(['10.00', '9.99'])).toBe('9.99')
   })
 })

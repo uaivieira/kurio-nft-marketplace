@@ -1,6 +1,6 @@
 import type { Cart, CartLine, Quote, QuoteIssue } from '@/contracts/cart'
 import type { Network } from '@/contracts/common'
-import { addEth, fromWei, mulEth, percentOfEth, subEth, toWei } from '@/lib/eth'
+import { addEth, compareEth, fromWei, mulEth, percentOfEth, subEth, toWei } from '@/lib/eth'
 import { COUPONS } from '../db/seed'
 import { db, nextId, persist, type CartLineRecord, type CartRecord, type UserRecord } from '../db/state'
 import { MockHttpError } from '../http'
@@ -153,7 +153,7 @@ export function computeQuote(cart: CartRecord, network: Network): Quote {
     else if (line.quantity > line.available) {
       issues.push({ lineId: line.id, kind: 'insufficient', message: `Only ${line.available} unit(s) of ${line.name} (${line.editionLabel}) left.`, details })
     }
-    if (line.unitPrice !== line.priceWhenAdded) {
+    if (compareEth(line.unitPrice, line.priceWhenAdded) !== 0) {
       issues.push({ lineId: line.id, kind: 'price-changed', message: `Price of ${line.name} changed from ${line.priceWhenAdded} to ${line.unitPrice} ETH.`, details })
     }
   }

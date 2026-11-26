@@ -1,5 +1,6 @@
 import { nftUpdatedEvent } from '@/contracts/events'
 import { db, eventId, persist, publish } from '../db/state'
+import { minEth } from '@/lib/eth'
 import { MockHttpError } from '../http'
 
 interface EditionPatch {
@@ -18,7 +19,7 @@ export function updateEdition(nftId: string, editionId: string, patch: EditionPa
 
   const inStock = nft.editions.filter((candidate) => candidate.available > 0)
   const pool = inStock.length ? inStock : nft.editions
-  const price = pool.map((candidate) => candidate.price).reduce((min, value) => (Number(value) < Number(min) ? value : min))
+  const price = minEth(pool.map((candidate) => candidate.price))
 
   const event = nftUpdatedEvent.parse({
     eventId: eventId(),

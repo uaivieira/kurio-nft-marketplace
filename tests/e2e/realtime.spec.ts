@@ -18,6 +18,26 @@ test('a price change in the cart is announced and updates the summary', async ({
   await expect(page.getByRole('button', { name: 'Conectar e finalizar' })).toBeDisabled()
 })
 
+test('a stale event older than the REST data does not announce a cart change', async ({ app }) => {
+  const { page, backend } = app
+  await app.open('/')
+  await addToCart(page, 'emerald-ape-042')
+  await page.goto('/cart')
+  await expect(page.getByTestId('total')).toHaveText('1.206 ETH')
+  await expect.poll(() => backend.connectedSockets()).toBeGreaterThan(0)
+  await page.getByTestId('live-region').evaluate((region) => {
+    const seen: string[] = ((window as unknown as { __announced: string[] }).__announced = [])
+    new MutationObserver(() => seen.push(region.textContent ?? '')).observe(region, { childList: true, characterData: true, subtree: true })
+  })
+
+  await backend.emitStale('emerald-ape-042')
+  await backend.updateEdition('emerald-ape-042', 'e50', { price: '1.50' })
+  await expect(page.getByTestId('live-region')).toContainText('para 1.50 ETH')
+  const announced = await page.evaluate(() => (window as unknown as { __announced: string[] }).__announced)
+  expect(announced.join(' ')).not.toContain('9.99')
+  await expect(page.getByTestId('cart-issues')).not.toContainText('9.99')
+})
+
 test('checkout blocks confirming a stale quote (Socket.IO event)', async ({ app }) => {
   const { page, backend } = app
   await app.login('ana')

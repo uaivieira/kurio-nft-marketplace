@@ -1,8 +1,8 @@
 import { cn } from "@/lib/utils"
 
-function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+function Skeleton({ className, as: Component = "div", ...props }: React.ComponentProps<"div"> & { as?: "div" | "span" }) {
   return (
-    <div
+    <Component
       data-slot="skeleton"
       aria-hidden="true"
       className={cn(

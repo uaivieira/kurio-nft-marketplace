@@ -30,11 +30,11 @@ export default function SearchDialogPanel({ open, onOpenChange, returnFocus }: {
           <DialogTitle>{t('layout.search.title')}</DialogTitle>
           <DialogDescription>{t('layout.search.description')}</DialogDescription>
         </DialogHeader>
-        <form onSubmit={onSubmit} className="flex gap-2" role="search">
+        <form onSubmit={onSubmit} className="flex gap-2" role="search" toolname="search_catalog" tooldescription="Search NFTs by name or collection and open the results in the catalog.">
           <label htmlFor="global-search" className="sr-only">
             {t('layout.search.label')}
           </label>
-          <Input id="global-search" name="q" autoComplete="off" placeholder={t('layout.search.placeholder')} maxLength={80} />
+          <Input id="global-search" name="q" toolparamdescription="Text to search for in NFT names and collections" autoComplete="off" placeholder={t('layout.search.placeholder')} maxLength={80} />
           <Button type="submit">
             <SearchIcon aria-hidden="true" />
             {t('layout.search.submit')}

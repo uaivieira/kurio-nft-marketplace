@@ -7,6 +7,7 @@ const PING_INTERVAL_MS = 20_000
 
 interface Client {
   userId: string | null
+  token: string | null
   emit: (type: string, payload: unknown) => void
   close: () => void
 }
@@ -29,6 +30,7 @@ export function createSocketHandlers() {
       const io = toSocketIo(connection)
       const client: Client = {
         userId: session && session.expiresAt > Date.now() ? session.userId : null,
+        token,
         emit: (type, payload) => io.client.emit(type, payload),
         close: () => connection.client.close(1006, 'Connection closed'),
       }
@@ -43,9 +45,14 @@ export function createSocketHandlers() {
   ]
 }
 
+function hasLiveSession(client: Client) {
+  const session = client.token ? db.sessions[client.token] : undefined
+  return Boolean(session && session.userId === client.userId && session.expiresAt > Date.now())
+}
+
 export function broadcast(event: RealtimeEvent) {
   for (const client of clients) {
-    if (event.type === 'order.updated' && event.userId !== client.userId) continue
+    if (event.type === 'order.updated' && (event.userId !== client.userId || !hasLiveSession(client))) continue
     client.emit(event.type, event)
   }
 }

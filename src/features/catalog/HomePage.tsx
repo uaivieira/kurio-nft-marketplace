@@ -1,13 +1,13 @@
 import { Link, useNavigate } from '@tanstack/react-router'
 import { RefreshGlyph } from '@/components/icons/glyphs'
-import { ChevronDownIcon, FilterIcon, SearchIcon } from '@/components/icons'
+import { FilterIcon, SearchIcon } from '@/components/icons'
 import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NftImage } from '@/components/NftImage'
 import { MobileNav } from '@/components/layout/MobileNav'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { CATALOG_PAGE_SIZE, CATALOG_SORTS, CATALOG_TABS, type CatalogQuery } from '@/contracts/nft'
+import { CATALOG_PAGE_SIZE, CATALOG_TABS, type CatalogQuery } from '@/contracts/nft'
 import { interpolate } from '@/i18n/interpolate'
 import { errorMessage } from '@/lib/api-error'
 import { cn } from '@/lib/utils'
@@ -15,6 +15,7 @@ import { useReveal } from '@/lib/use-reveal'
 import { useCatalog } from '@/queries/catalog'
 import { CatalogFilters } from './CatalogFilters'
 import { CatalogPagination } from './CatalogPagination'
+import { CatalogSort } from './CatalogSort'
 import { Journal, PromoBanners } from './Editorial'
 import { Hero } from './Hero'
 import { NftCard, NftCardSkeleton } from './NftCard'
@@ -130,7 +131,6 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
   const query: CatalogQuery = search
   const { data } = useCatalog(query)
   const tab = search.tab ?? 'all'
-  const sort = search.sort ?? 'recent'
 
   return (
     <>
@@ -182,22 +182,7 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
                 </button>
               ))}
             </div>
-            <div className="hidden min-w-0 shrink-0 items-center gap-1 text-md whitespace-nowrap md:-mt-0.5 md:flex lg:max-xl:self-end">
-              <label htmlFor="catalog-sort">{t('catalog.sort.label')}</label>
-              <span className="relative inline-flex items-center">
-                <select
-                  id="catalog-sort"
-                  value={sort}
-                  onChange={(event) => void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, sort: event.target.value === 'recent' ? undefined : (event.target.value as (typeof CATALOG_SORTS)[number]), page: undefined }), hash: 'catalogo' })}
-                  className="h-6 max-w-full cursor-pointer appearance-none bg-transparent pr-5 text-md text-foreground"
-                >
-                  {CATALOG_SORTS.map((value) => (
-                    <option key={value} value={value} className="bg-card">{t(`catalog.sort.${value}`)}</option>
-                  ))}
-                </select>
-                <ChevronDownIcon className="pointer-events-none absolute right-0 size-4" />
-              </span>
-            </div>
+            <CatalogSort search={search} id="catalog-sort" className="hidden md:-mt-0.5 md:flex lg:max-xl:self-end" />
           </div>
           <ResultsGrid search={search} query={query} />
         </section>

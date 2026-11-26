@@ -22,6 +22,13 @@ export interface KurioControl {
 
 const socket = () => import('./socket')
 
+export async function resetBackend() {
+  await resetDb()
+  resetScenarioCounters()
+  const { dropSockets } = await socket()
+  dropSockets()
+}
+
 export function createControl(): KurioControl {
   return {
     scenarios: SCENARIOS,
@@ -30,10 +37,7 @@ export function createControl(): KurioControl {
       if (!isScenarioId(id)) throw new Error(`Unknown scenario "${id}"`)
       setScenario(id)
     },
-    reset: async () => {
-      await resetDb()
-      resetScenarioCounters()
-    },
+    reset: resetBackend,
     updateEdition: (nftId, editionId, patch) => {
       updateEdition(nftId, editionId, patch)
     },

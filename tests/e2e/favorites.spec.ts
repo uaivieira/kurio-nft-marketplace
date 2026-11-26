@@ -38,3 +38,17 @@ test('guest is sent to login when favoriting', async ({ app }) => {
   await page.getByRole('button', { name: 'Favoritar Sage Nomad #009' }).click()
   await expect(page).toHaveURL(/\/login\?redirect=/)
 })
+
+test('favorites page shows a load failure and recovers on retry', async ({ app }) => {
+  const { page, backend } = app
+  await app.login('ana')
+  await page.getByRole('button', { name: 'Favoritar Sage Nomad #009' }).click()
+  await expect(page.getByTestId('live-region')).toHaveText('Sage Nomad #009 adicionado aos favoritos.')
+  await backend.setScenario('offline')
+  await page.goto('/favorites')
+  await expect(page.getByTestId('favorites-error')).toContainText('Não foi possível carregar seus favoritos.', { timeout: 10_000 })
+  await expect(page.getByTestId('favorites-empty')).toHaveCount(0)
+  await backend.setScenario('default')
+  await page.getByRole('button', { name: 'Tentar novamente' }).click()
+  await expect(page.getByTestId('favorites-grid')).toContainText('Sage Nomad #009')
+})

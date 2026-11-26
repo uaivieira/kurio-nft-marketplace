@@ -7,6 +7,7 @@ import { NETWORK_LABELS, type Network } from '@/contracts/common'
 import { COLLECTION_LABEL_KEYS, type CatalogPage, type Collection } from '@/contracts/nft'
 import i18n from '@/i18n'
 import { interpolate } from '@/i18n/interpolate'
+import { fromHundredths, toHundredths } from '@/lib/eth'
 import { cn } from '@/lib/utils'
 import { hasActiveFilters, useCatalogPath, type CatalogSearch } from './search'
 
@@ -20,21 +21,26 @@ function toggle<T>(list: T[] | undefined, value: T): T[] | undefined {
 const optionClass = (active: boolean) =>
   cn('flex h-10 w-full cursor-pointer items-center justify-between rounded-sm pl-3 text-left text-md transition-colors hover:bg-primary/10', active ? 'text-highlight' : 'text-text-secondary')
 
-const formatPrice = (value: number) => new Intl.NumberFormat(i18n.language, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(value)
+const formatPrice = (hundredths: number) => {
+  const [whole = '0', fraction = '00'] = fromHundredths(hundredths).split('.')
+  const separator = new Intl.NumberFormat(i18n.language).formatToParts(0.1).find((part) => part.type === 'decimal')?.value ?? '.'
+  return `${whole}${separator}${fraction.padEnd(2, '0')}`
+}
 
 export function CatalogFilters({ search, facets, onApplied }: { search: CatalogSearch; facets: Facets | undefined; onApplied?: () => void }) {
   const { t } = useTranslation()
   const path = useCatalogPath()
   const navigate = useNavigate()
-  const floor = Number(facets?.priceRange.min ?? 0.02)
-  const ceiling = Number(facets?.priceRange.max ?? 12.3)
-  const [range, setRange] = useState<[number, number]>([Number(search.minPrice ?? floor), Number(search.maxPrice ?? ceiling)])
+  const floor = toHundredths(facets?.priceRange.min ?? '0.02')
+  const ceiling = toHundredths(facets?.priceRange.max ?? '12.30', 'ceil')
+  const initial = (): [number, number] => [search.minPrice ? toHundredths(search.minPrice) : floor, search.maxPrice ? toHundredths(search.maxPrice, 'ceil') : ceiling]
+  const [range, setRange] = useState<[number, number]>(initial)
 
   const rangeKey = `${search.minPrice}|${search.maxPrice}|${floor}|${ceiling}`
   const [syncedKey, setSyncedKey] = useState(rangeKey)
   if (rangeKey !== syncedKey) {
     setSyncedKey(rangeKey)
-    setRange([Number(search.minPrice ?? floor), Number(search.maxPrice ?? ceiling)])
+    setRange(initial())
   }
 
   const update = (patch: Partial<CatalogSearch>) => {
@@ -68,11 +74,12 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
         <Slider
           min={floor}
           max={ceiling}
-          step={0.01}
+          step={1}
           value={range}
           onValueChange={(value) => setRange([value[0] ?? floor, value[1] ?? ceiling])}
           minStepsBetweenThumbs={1}
           aria-label={t('catalog.filters.priceRangeLabel')}
+          valueText={(value) => `${formatPrice(value)} ETH`}
           className="ml-3 h-[21px] w-auto"
         />
         <p className="mt-3.5 px-3 text-foreground" aria-live="polite">
@@ -82,8 +89,8 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
           className="mt-3.5 ml-3 h-9 rounded-md px-3 text-base"
           onClick={() =>
             update({
-              minPrice: range[0] > floor ? range[0].toFixed(2) : undefined,
-              maxPrice: range[1] < ceiling ? range[1].toFixed(2) : undefined,
+              minPrice: range[0] > floor ? fromHundredths(range[0]) : undefined,
+              maxPrice: range[1] < ceiling ? fromHundredths(range[1]) : undefined,
             })
           }
         >

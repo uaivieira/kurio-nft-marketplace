@@ -10,6 +10,7 @@ interface ControlProps {
   'aria-invalid': boolean
   'aria-describedby': string | undefined
   'aria-required': boolean | undefined
+  toolparamtitle: string | undefined
 }
 
 interface FieldProps {
@@ -36,7 +37,7 @@ export function Field({ label, hideLabel, error, hint, hintClassName, required, 
         {required && <span aria-hidden="true" className="relative top-[2.7px] ml-px text-[22px] leading-[0] text-coral">*</span>}
         {required && <span className="sr-only">{` ${t('common.required')}`}</span>}
       </label>
-      {children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': describedBy, 'aria-required': required || undefined })}
+      {children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': describedBy, 'aria-required': required || undefined, toolparamtitle: typeof label === 'string' ? label : undefined })}
       {hint && !error && <p id={hintId} className={cn('text-xs text-muted-foreground', hintClassName)}>{hint}</p>}
       {error && <p id={errorId} role="alert" className="text-xs text-destructive">{translateMessage(error)}</p>}
     </div>

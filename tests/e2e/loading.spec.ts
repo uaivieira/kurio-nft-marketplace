@@ -48,3 +48,26 @@ test('offline shows network feedback', async ({ app }) => {
   await app.open('/', 'offline')
   await expect(page.getByText('Sem conexão com o servidor. Verifique sua rede e tente novamente.')).toBeVisible({ timeout: 15_000 })
 })
+
+test('skeletons keep the size of the content they stand for', async ({ app }) => {
+  const { page } = app
+  await app.open('/?q=ape', 'slow')
+  const skeletonCard = page.getByTestId('catalog-skeleton').locator(':scope > *').first()
+  await expect(skeletonCard).toBeVisible()
+  const placeholder = (await skeletonCard.boundingBox())!
+  const card = page.getByTestId('nft-card').first()
+  await expect(card).toBeVisible({ timeout: 10_000 })
+  const loaded = (await card.boundingBox())!
+  expect(Math.abs(placeholder.width - loaded.width)).toBeLessThan(2)
+  expect(Math.abs(placeholder.height - loaded.height) / loaded.height).toBeLessThan(0.1)
+
+  await addToCart(page, 'emerald-ape-042')
+  await page.goto('/cart')
+  const totalsSkeleton = page.getByTestId('totals-skeleton')
+  await expect(totalsSkeleton).toBeVisible()
+  const totalsPlaceholder = (await totalsSkeleton.boundingBox())!
+  await expect(page.getByTestId('totals')).toBeVisible({ timeout: 15_000 })
+  const totals = (await page.getByTestId('totals').boundingBox())!
+  expect(Math.abs(totalsPlaceholder.width - totals.width)).toBeLessThan(2)
+  expect(Math.abs(totalsPlaceholder.height - totals.height) / totals.height).toBeLessThan(0.2)
+})

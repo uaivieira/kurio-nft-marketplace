@@ -334,11 +334,11 @@ const ptBR = {
     },
     contract: {
       title: 'Contrato:',
-      text: 'Direitos autorais do criador: {{percent}}% nas vendas secundárias, pagos automaticamente pelos mercados compatíveis.',
+      text: '{{address}} • Contrato inteligente ERC-721 verificado.',
     },
     royalties: {
       title: 'Direitos autorais:',
-      text: '{{address}} • Contrato inteligente ERC-721 verificado.',
+      text: 'Direitos autorais do criador: {{percent}}% nas vendas secundárias, pagos automaticamente pelos mercados compatíveis.',
     },
     reviewsUnavailable: 'As avaliações detalhadas não estão disponíveis nesta demonstração.',
     related: 'Mais desta coleção',
@@ -380,6 +380,7 @@ const ptBR = {
     },
     coupon: {
       applied: 'Cupom <strong>{{code}}</strong> aplicado',
+      expired: 'O cupom <strong>{{code}}</strong> expirou e não dá mais desconto. Remova-o ou aplique outro.',
       label: 'Código promocional',
       placeholder: 'Digite o código promocional...',
       reveal: 'Tem um código promocional? <emphasis>Aplique aqui</emphasis>',
@@ -537,8 +538,13 @@ const ptBR = {
   favorites: {
     loading: 'Carregando favoritos',
     empty: 'Você ainda não favoritou nenhum NFT',
+    loadError: 'Não foi possível carregar seus favoritos.',
+    itemError: 'Não foi possível carregar este NFT.',
     addFailed: 'Não foi possível favoritar {{name}}. {{reason}}',
     removeFailed: 'Não foi possível remover dos favoritos {{name}}. {{reason}}',
+  },
+  agent: {
+    addedToCart: '{{name}} adicionado ao carrinho por um assistente. Quantidade: {{quantity}}.',
   },
   realtime: {
     offline: 'Reconectando às atualizações em tempo real…',
@@ -612,6 +618,7 @@ const ptBR = {
       default: 'Já existe uma conta com estes dados.',
       walletIsSecondary: 'Esta carteira já está cadastrada como secundária.',
       walletIsPrimary: 'Esta carteira já está cadastrada como principal.',
+      orderPending: 'Você já tem um pedido pendente. Acompanhe-o antes de fazer outra compra.',
     },
     AVAILABILITY_CONFLICT: {
       default: 'Itens indisponíveis.',
@@ -676,6 +683,7 @@ const ptBR = {
   },
   mocks: {
     panel: 'Painel de cenários simulados',
+    trigger: 'Cenários',
     title: 'Cenários simulados',
     active: 'Cenário ativo: <strong>{{active}}</strong>. A escolha persiste após recarregar.',
     reset: 'Restaurar dados do cenário',

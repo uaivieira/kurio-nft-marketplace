@@ -90,3 +90,27 @@ test('mobile catalog: search and filters in the drawer', async ({ app, isMobile 
   await expect(page).toHaveURL(/collections=/)
   await expect(page.getByTestId('nft-card').first()).toContainText('Nomad')
 })
+
+test('mobile catalog: sorting from the drawer, focus trapped and returned', async ({ app, isMobile }) => {
+  test.skip(!isMobile, 'mobile layout')
+  const { page } = app
+  await app.open('/')
+  const trigger = page.getByRole('button', { name: 'Filtros' })
+  await trigger.click()
+  const drawer = page.getByRole('dialog')
+  await expect(drawer).toBeVisible()
+  for (let i = 0; i < 12; i += 1) {
+    await page.keyboard.press('Tab')
+    expect(await drawer.evaluate((node) => node.contains(document.activeElement))).toBe(true)
+  }
+  await drawer.getByLabel('Ordenar por:').selectOption({ label: 'Maior preço' })
+  await expect(page).toHaveURL(/sort=price-desc/)
+  await page.keyboard.press('Escape')
+  await expect(drawer).toHaveCount(0)
+  await expect(trigger).toBeFocused()
+  const grid = page.locator('section[aria-labelledby="catalog-title"]')
+  await expect(grid.getByTestId('nft-price').first()).toBeVisible()
+  const prices = (await grid.getByTestId('nft-price').allTextContents()).map((text) => Number.parseFloat(text))
+  expect(prices.length).toBeGreaterThan(1)
+  expect(prices).toEqual([...prices].sort((a, b) => b - a))
+})

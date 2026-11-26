@@ -114,3 +114,18 @@ test('session expires by time (8 h TTL) while browsing', async ({ app }) => {
   await expect(page).toHaveURL(/\/login\?.*reason=expired/)
   await expect(page.getByText('Sua sessão expirou. Entre novamente para retomar de onde parou.')).toBeVisible()
 })
+
+test('session expired on the cart asks to log in and keeps the cart', async ({ app }) => {
+  const { page, backend } = app
+  await app.login('ana')
+  await addToCart(page, 'emerald-ape-042')
+  await backend.expireSessions()
+  await page.goto('/cart')
+  await expect(page).toHaveURL(/\/login\?.*reason=expired/)
+  const dialog = page.getByRole('dialog')
+  await dialog.getByLabel('E-mail').fill(USERS.ana.email)
+  await dialog.getByLabel('Senha', { exact: true }).fill(USERS.ana.password)
+  await dialog.getByRole('button', { name: 'Entrar', exact: true }).click()
+  await expect(page).toHaveURL('/cart')
+  await expect(page.getByRole('main').getByText('Emerald Ape #042').first()).toBeVisible()
+})

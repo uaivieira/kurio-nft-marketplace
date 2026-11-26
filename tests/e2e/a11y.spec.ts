@@ -1,15 +1,38 @@
 import AxeBuilder from '@axe-core/playwright'
-import { expect, test } from './fixtures'
+import type { Page } from '@playwright/test'
+import { addToCart, expect, openReview, test } from './fixtures'
+
+async function seriousViolations(page: Page) {
+  await page.waitForLoadState('networkidle')
+  const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa']).analyze()
+  return results.violations
+    .filter((violation) => violation.impact === 'serious' || violation.impact === 'critical')
+    .map((violation) => `${violation.id}: ${violation.nodes.map((node) => node.target.join(' ')).join(', ')}`)
+}
 
 for (const path of ['/', '/mercado', '/nft/emerald-ape-042', '/cart', '/login']) {
   test(`no serious accessibility violations on ${path}`, async ({ app }) => {
     await app.open(path)
-    await app.page.waitForLoadState('networkidle')
-    const results = await new AxeBuilder({ page: app.page }).withTags(['wcag2a', 'wcag2aa']).analyze()
-    const serious = results.violations.filter((violation) => violation.impact === 'serious' || violation.impact === 'critical')
-    expect(serious.map((violation) => `${violation.id}: ${violation.nodes.map((node) => node.target.join(' ')).join(', ')}`)).toEqual([])
+    expect(await seriousViolations(app.page)).toEqual([])
   })
 }
+
+test('no serious accessibility violations on private screens', async ({ app }) => {
+  const { page } = app
+  await app.login('ana')
+  await addToCart(page, 'emerald-ape-042')
+  for (const path of ['/cart', '/checkout', '/profile', '/profile/wallets', '/favorites']) {
+    await page.goto(path)
+    await expect(page.locator('html')).toHaveAttribute('data-app-ready', '')
+    expect(await seriousViolations(page), path).toEqual([])
+  }
+  await openReview(page)
+  await page.getByRole('dialog').evaluate((dialog) => Promise.all(dialog.getAnimations({ subtree: true }).map((animation) => animation.finished)))
+  expect(await seriousViolations(page), 'review dialog').toEqual([])
+  await page.getByRole('button', { name: 'Enviar pedido' }).click()
+  await expect(page.getByTestId('order-confirmed')).toBeVisible({ timeout: 10_000 })
+  expect(await seriousViolations(page), 'receipt').toEqual([])
+})
 
 test('keyboard: skip link and visible focus', async ({ app }) => {
   const { page } = app
@@ -20,6 +43,13 @@ test('keyboard: skip link and visible focus', async ({ app }) => {
   await expect(skip).toBeFocused()
   await page.keyboard.press('Enter')
   await expect(page.locator('#main')).toBeFocused()
+  await page.keyboard.press('Tab')
+  const outline = await page.evaluate(() => {
+    const style = getComputedStyle(document.activeElement!)
+    return { style: style.outlineStyle, width: Number.parseFloat(style.outlineWidth) }
+  })
+  expect(outline.style).not.toBe('none')
+  expect(outline.width).toBeGreaterThan(0)
 })
 
 test('dialog traps focus and returns it on close', async ({ app, isMobile }) => {

@@ -12,14 +12,14 @@ const loginBody = loginInput.extend({ guestId: z.string().optional() })
 const signupBody = signupInput.and(z.object({ guestId: z.string().optional() }))
 
 export const authHandlers = [
-  http.post('/api/auth/signup', route({}, async (ctx) => {
+  http.post('/api/auth/signup', route({ anonymous: true }, async (ctx) => {
     const { guestId, ...input } = await ctx.body(signupBody)
     const session = await signup(input)
     if (guestId) mergeGuestCart(db.users[session.user.id]!, guestId)
     return session
   }, 201)),
 
-  http.post('/api/auth/login', route({}, async (ctx) => {
+  http.post('/api/auth/login', route({ anonymous: true }, async (ctx) => {
     const { guestId, ...input } = await ctx.body(loginBody)
     const session = await login(input.email, input.password)
     if (guestId) mergeGuestCart(db.users[session.user.id]!, guestId)
@@ -28,7 +28,7 @@ export const authHandlers = [
 
   http.get('/api/auth/session', route({ auth: true }, (ctx) => sessionFor(ctx.token!, requireUser(ctx)))),
 
-  http.post('/api/auth/logout', route({}, (ctx) => {
+  http.post('/api/auth/logout', route({ anonymous: true }, (ctx) => {
     logout(ctx.token)
     return undefined
   })),

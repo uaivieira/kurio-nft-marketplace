@@ -100,6 +100,13 @@ export function CheckoutPage() {
     onError: (error) => notify.error(errorMessage(error)),
   })
 
+  const chooseNetwork = (value: Network, onChange: (value: Network) => void) => {
+    onChange(value)
+    if (connection.state !== 'connected' || connection.connection.network === value) return
+    disconnect.mutate(connection.connection.id)
+    setConnection({ state: 'idle' })
+  }
+
   const chooseWallet = (id: string) => {
     if (id === selectedWallet?.id) return
     if (connection.state === 'connected') disconnect.mutate(connection.connection.id)
@@ -186,6 +193,14 @@ export function CheckoutPage() {
         announce(message)
         return
       }
+      const pendingOrderId = isApiError(error) && error.code === 'CONFLICT' ? (error.details as { orderId?: string } | undefined)?.orderId : undefined
+      if (pendingOrderId) {
+        setReviewOpen(false)
+        notify.error(errorMessage(error))
+        void queryClient.invalidateQueries({ queryKey: keys.pendingOrders(userId) })
+        void navigate({ to: '/orders/$orderId', params: { orderId: pendingOrderId } })
+        return
+      }
       if (error instanceof ApiError && (error.code === 'TIMEOUT' || error.code === 'NETWORK')) {
         setSubmitError(t('checkout.noResponse'))
         return
@@ -250,7 +265,7 @@ export function CheckoutPage() {
           </p>
         )}
 
-        <form noValidate onSubmit={(event) => { event.preventDefault(); void openReview() }} className="grid gap-8 pt-4 max-md:pt-0 lg:grid-cols-[minmax(0,763fr)_minmax(400px,405fr)] lg:gap-x-8 lg:pt-[27px]">
+        <form noValidate toolname="checkout_details" tooldescription="Fill in the collector details and network of the order. Submitting opens a review that the user must confirm; it never places the order by itself." onSubmit={(event) => { event.preventDefault(); void openReview() }} className="grid gap-8 pt-4 max-md:pt-0 lg:grid-cols-[minmax(0,763fr)_minmax(400px,405fr)] lg:gap-x-8 lg:pt-[27px]">
           <section aria-labelledby="buyer-title" className="max-md:order-2">
             <h2 id="buyer-title" className="mb-4 text-lg font-bold max-md:hidden lg:mb-[13px] lg:text-[17px]">{t('checkout.buyerTitle')}</h2>
             <button type="button" aria-expanded={formOpen} aria-controls="buyer-fields" onClick={() => setFormOpen((open) => !open)} className="mb-4 flex w-full cursor-pointer items-center justify-between rounded-xl bg-card px-4 py-3 text-base font-bold md:hidden">
@@ -268,7 +283,7 @@ export function CheckoutPage() {
                 <Field label={t('common.fields.network')} required error={errors.network?.message}>
                   {(p) => (
                     <Controller control={form.control} name="network" render={({ field }) => (
-                      <Select value={field.value} onValueChange={field.onChange}>
+                      <Select value={field.value} onValueChange={(value) => chooseNetwork(value as Network, field.onChange)}>
                         <SelectTrigger {...p}><SelectValue placeholder={t('common.fields.selectNetwork')} /></SelectTrigger>
                         <SelectContent>{NETWORKS.map((value) => <SelectItem key={value} value={value}>{NETWORK_LABELS[value]}</SelectItem>)}</SelectContent>
                       </Select>
@@ -294,8 +309,8 @@ export function CheckoutPage() {
                     </div>
                   )}
                 </Field>
-                {registered.length > 1 && (
-                  <label className="flex cursor-pointer items-center gap-2 text-base max-md:hidden sm:col-span-2 lg:mt-[5px] lg:items-start lg:text-md">
+                {registered.length > 1 ? (
+                  <label className="flex cursor-pointer items-center gap-2 text-base sm:col-span-2 lg:mt-[5px] lg:items-start lg:text-md">
                     <input
                       type="checkbox"
                       checked={selectedWallet?.slot === 'secondary'}
@@ -304,6 +319,11 @@ export function CheckoutPage() {
                     />
                     <span className="lg:mt-0.5 lg:leading-4">{t('checkout.useOtherWallet')}</span>
                   </label>
+                ) : (
+                  <Link to="/profile/wallets" className="flex items-center gap-2 text-base hover:text-highlight sm:col-span-2 lg:mt-[5px] lg:items-start lg:text-md">
+                    <span aria-hidden="true" className="size-4 shrink-0 rounded-full border-2 border-primary lg:size-[15px]" />
+                    <span className="lg:mt-0.5 lg:leading-4">{t('checkout.useOtherWallet')}</span>
+                  </Link>
                 )}
                 <Field label={t('checkout.note')} error={errors.note?.message} className="sm:col-span-2 lg:mt-[7px] lg:gap-3">{(p) => <Textarea {...p} rows={4} className="lg:h-[152px] lg:w-[350px]" {...form.register('note')} />}</Field>
               </div>
@@ -324,14 +344,14 @@ export function CheckoutPage() {
                     <p className="mt-1.5 text-sm leading-4 whitespace-nowrap text-muted-foreground"><span className="lg:hidden">{t('common.tokenIdShort')}</span><span className="max-lg:hidden">{t('common.tokenId')}</span>: #{line.tokenId}</p>
                   </div>
                   <p className="shrink-0 text-sm whitespace-nowrap text-text-secondary">(x {line.quantity})</p>
-                  <p className="ml-3 min-w-[86.4px] shrink-0 text-right text-lg font-bold whitespace-nowrap text-highlight">{formatEth(quote.data?.lines.find((item) => item.id === line.id)?.lineTotal ?? line.unitPrice)}</p>
+                  <LineTotal total={quote.data?.lines.find((item) => item.id === line.id)?.lineTotal} />
                 </li>
               ))}
             </ul>
             </div>
             <div className="mt-2 space-y-4 max-md:mt-0">
               <div className="space-y-[7px] max-md:hidden">
-                {cart.data && lines.length > 0 && <CollapsibleCoupon cart={cart.data} />}
+                {cart.data && lines.length > 0 && <CollapsibleCoupon cart={cart.data} quote={quote.data} />}
                 <TotalsRows quote={quote.data} loading={quote.isPending} variant="checkout" />
               </div>
               {quote.data && quote.data.issues.filter((issue) => issue.kind !== 'price-changed').map((issue) => <p key={issue.lineId} role="alert" className="text-xs text-destructive">{issueMessage(issue)}</p>)}
@@ -451,4 +471,9 @@ export function CheckoutPage() {
       )}
     </>
   )
+}
+
+function LineTotal({ total }: { total: string | undefined }) {
+  if (!total) return <Skeleton className="ml-3 h-5 w-[86.4px] shrink-0" />
+  return <p className="ml-3 min-w-[86.4px] shrink-0 text-right text-lg font-bold whitespace-nowrap text-highlight">{formatEth(total)}</p>
 }

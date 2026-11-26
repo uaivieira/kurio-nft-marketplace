@@ -44,3 +44,20 @@ test('network selection updates the fee and the review', async ({ app, isMobile 
   const review = page.getByRole('dialog', { name: 'Revise seu pedido' })
   await expect(review).toContainText('na rede Polygon')
 })
+
+test('changing the network after connecting asks to connect again', async ({ app, isMobile }) => {
+  const { page } = app
+  await app.login('ana')
+  await addToCart(page, 'emerald-ape-042')
+  await page.goto('/checkout')
+  const connection = page.getByTestId('wallet-connection')
+  await page.getByRole('button', { name: 'Conectar carteira' }).click()
+  await expect(connection.getByText(/Conectada:/)).toBeVisible()
+
+  if (isMobile) await page.getByRole('button', { name: 'Dados do colecionador' }).click()
+  await page.getByRole('combobox', { name: 'Rede' }).click()
+  await page.getByRole('option', { name: 'Polygon' }).click()
+  await expect(connection.getByRole('button', { name: 'Conectar carteira' })).toBeVisible()
+  await page.getByRole('button', { name: 'Confirmar compra' }).click()
+  await expect(connection.getByRole('alert')).toHaveText('Conecte a carteira selecionada para continuar.')
+})

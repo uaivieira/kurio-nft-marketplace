@@ -14,7 +14,7 @@ import { cn } from '@/lib/utils'
 import { announce } from '@/realtime/announcer'
 import { useApplyCoupon, useRemoveCoupon } from '@/queries/cart'
 
-export function CouponForm({ cart }: { cart: Cart }) {
+export function CouponForm({ cart, quote }: { cart: Cart; quote?: Quote }) {
   const { t } = useTranslation()
   const apply = useApplyCoupon()
   const remove = useRemoveCoupon()
@@ -23,9 +23,14 @@ export function CouponForm({ cart }: { cart: Cart }) {
   const error = form.formState.errors.code?.message ?? serverError ?? undefined
 
   if (cart.couponCode) {
+    const lapsed = quote?.coupon && quote.coupon.code === cart.couponCode && quote.coupon.status !== 'applied'
     return (
-      <div className="flex items-center justify-between rounded-sm border border-primary px-3 py-2 text-sm" data-testid="coupon-applied">
-        <span><Trans i18nKey="cart.coupon.applied" values={{ code: cart.couponCode }} components={{ strong: <strong /> }} /></span>
+      <div
+        role={lapsed ? 'alert' : undefined}
+        className={cn('flex items-center justify-between gap-3 rounded-sm border px-3 py-2 text-sm', lapsed ? 'border-destructive' : 'border-primary')}
+        data-testid={lapsed ? 'coupon-expired' : 'coupon-applied'}
+      >
+        <span><Trans i18nKey={lapsed ? 'cart.coupon.expired' : 'cart.coupon.applied'} values={{ code: cart.couponCode }} components={{ strong: <strong /> }} /></span>
         <Button
           variant="link"
           size="xs"
@@ -41,6 +46,8 @@ export function CouponForm({ cart }: { cart: Cart }) {
   return (
     <form
       noValidate
+      toolname="apply_coupon"
+      tooldescription="Apply a promotional coupon code to the cart."
       onSubmit={form.handleSubmit(({ code }) => {
         setServerError(null)
         apply.mutate(code, {
@@ -53,6 +60,7 @@ export function CouponForm({ cart }: { cart: Cart }) {
       <div className="flex h-[50px] rounded-full border border-border bg-card has-aria-invalid:border-destructive md:h-10 md:rounded-sm md:border-primary md:bg-transparent">
         <input
           id="coupon-code"
+          toolparamdescription="Promotional coupon code"
           {...form.register('code', { onChange: () => setServerError(null) })}
           autoComplete="off"
           placeholder={t('cart.coupon.placeholder')}
@@ -69,9 +77,9 @@ export function CouponForm({ cart }: { cart: Cart }) {
   )
 }
 
-export function CollapsibleCoupon({ cart }: { cart: Cart }) {
+export function CollapsibleCoupon({ cart, quote }: { cart: Cart; quote?: Quote }) {
   const [open, setOpen] = useState(Boolean(cart.couponCode))
-  if (open) return <CouponForm cart={cart} />
+  if (open) return <CouponForm cart={cart} quote={quote} />
   return (
     <button type="button" onClick={() => setOpen(true)} aria-expanded={false} className="w-full cursor-pointer text-center text-md hover:text-highlight md:text-sm">
       <Trans i18nKey="cart.coupon.reveal" components={{ emphasis: <span className="underline-offset-4 hover:underline" /> }} />
@@ -95,9 +103,10 @@ export function TotalsRows({ quote, loading, className, variant = 'cart' }: { qu
     <dl className={cn('space-y-2 text-base max-md:text-md md:text-md', className)} data-testid="totals">
       <div className={row}><dt>{t('common.subtotal')}</dt><dd data-testid="subtotal" className="whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.subtotal, decimals)}</dd></div>
       <div className={row}><dt>{t('cart.totals.discount')}</dt><dd data-testid="discount" className="whitespace-nowrap">(-) {formatEth(quote.discount, decimals)}</dd></div>
-      <div>
-        <div className={row}><dt>{t('common.networkFee')}</dt><dd data-testid="fee" className="whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.networkFee, decimals)}</dd></div>
-        <p className={cn('mt-2.5 text-xs text-highlight max-md:-mt-0.5', variant === 'checkout' ? 'text-center' : 'text-right')}>{t('cart.totals.estimatedFee')}</p>
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 *:leading-[normal]">
+        <dt className="flex min-h-6 items-center">{t('common.networkFee')}</dt>
+        <dd data-testid="fee" className="flex min-h-6 items-center whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.networkFee, decimals)}</dd>
+        <dd className={cn('col-span-2 mt-2.5 text-xs text-highlight max-md:-mt-0.5', variant === 'checkout' ? 'text-center' : 'text-right')}>{t('cart.totals.estimatedFee')}</dd>
       </div>
       <div className={cn(row, 'pt-3 text-lg font-bold max-md:pt-0', variant === 'checkout' && 'md:mt-3 md:border-t md:border-primary md:px-[42px] md:pt-[7px]')}><dt className="text-base">{t('common.total')}</dt><dd className="whitespace-nowrap text-highlight" data-testid="total">{formatEth(quote.total, decimals)}</dd></div>
     </dl>

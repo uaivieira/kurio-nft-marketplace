@@ -33,7 +33,7 @@ function WalletForm({ idPrefix, wallet, onSave, saving }: { idPrefix: string; wa
   }, [wallet, form])
 
   return (
-    <form id={idPrefix} noValidate className="space-y-4" onSubmit={form.handleSubmit(async (values) => {
+    <form id={idPrefix} noValidate toolname={`save_${idPrefix.split('-')[0]}_wallet`} tooldescription="Register or update this wallet: nickname, network, address and provider." className="space-y-4" onSubmit={form.handleSubmit(async (values) => {
       setFormError(null)
       try {
         await onSave(values)

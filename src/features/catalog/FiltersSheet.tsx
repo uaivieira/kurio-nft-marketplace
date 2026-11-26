@@ -2,6 +2,7 @@ import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '
 import { useTranslation } from 'react-i18next'
 import type { CatalogPage } from '@/contracts/nft'
 import { CatalogFilters } from './CatalogFilters'
+import { CatalogSort } from './CatalogSort'
 import type { CatalogSearch } from './search'
 
 export default function FiltersSheet({ open, onOpenChange, search, facets, returnFocus }: { open: boolean; onOpenChange: (open: boolean) => void; search: CatalogSearch; facets: CatalogPage['facets'] | undefined; returnFocus: () => void }) {
@@ -20,6 +21,7 @@ export default function FiltersSheet({ open, onOpenChange, search, facets, retur
           <SheetTitle>{t('catalog.filters.sheetTitle')}</SheetTitle>
           <SheetDescription>{t('catalog.filters.sheetDescription')}</SheetDescription>
         </SheetHeader>
+        <CatalogSort search={search} id="catalog-sort-sheet" className="flex px-5 pt-4 pb-2" />
         <CatalogFilters search={search} facets={facets} onApplied={() => onOpenChange(false)} />
       </SheetContent>
     </Sheet>

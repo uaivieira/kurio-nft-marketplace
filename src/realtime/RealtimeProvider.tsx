@@ -1,4 +1,4 @@
-import { useQueryClient, type QueryClient } from '@tanstack/react-query'
+import { useQueryClient, type Query, type QueryClient } from '@tanstack/react-query'
 import { useEffect, type ReactNode } from 'react'
 import type { Socket } from 'socket.io-client'
 import { nftUpdatedEvent, orderUpdatedEvent, SOCKET_EVENTS, SOCKET_PATH, type NftUpdatedEvent, type OrderUpdatedEvent } from '@/contracts/events'
@@ -6,7 +6,7 @@ import type { CartLine } from '@/contracts/cart'
 import type { CatalogPage, NftDetail } from '@/contracts/nft'
 import type { Order } from '@/contracts/order'
 import i18n from '@/i18n'
-import { formatEth } from '@/lib/eth'
+import { compareEth, formatEth } from '@/lib/eth'
 import { useSession } from '@/lib/session-store'
 import { keys } from '@/queries/keys'
 import { afterLoad } from '@/lib/after-load'
@@ -42,11 +42,10 @@ function applyNftUpdate(queryClient: QueryClient, ledger: EventLedger, event: Nf
     }
   })
 
-  const cached = queryClient.getQueryData<{ lines: CartLine[] }>(keys.cart(scope))
-  const line = cached?.lines.find((candidate) => candidate.nftId === nftId)
-  if (line) {
+  const cart = queryClient.getQueryData<{ lines: CartLine[] }>(keys.cart(scope))
+  for (const line of cart?.lines.filter((candidate) => candidate.nftId === nftId) ?? []) {
     const next = editions.find((edition) => edition.id === line.editionId)
-    if (next && next.price !== line.unitPrice) {
+    if (next && compareEth(next.price, line.unitPrice) !== 0) {
       announce(i18n.t('realtime.cartPriceChanged', { name: line.name, from: formatEth(line.unitPrice), to: formatEth(next.price) }))
     } else if (next && next.available < line.quantity) {
       announce(i18n.t('realtime.cartAvailabilityChanged', { name: line.name, available: next.available }))
@@ -57,15 +56,35 @@ function applyNftUpdate(queryClient: QueryClient, ledger: EventLedger, event: Nf
   ledger.observe('nft', nftId, event.version)
 }
 
+const TERMINAL_STATUSES: ReadonlySet<Order['status']> = new Set(['confirmed', 'rejected'])
+
 function applyOrderUpdate(queryClient: QueryClient, event: OrderUpdatedEvent, scope: string) {
   const { orderId, status, failureReason, failure } = event.data
-  queryClient.setQueryData<Order>(keys.order(scope, orderId), (cached) =>
-    cached && cached.version < event.version ? { ...cached, status, failureReason, failure, version: event.version } : cached,
-  )
+  const cached = queryClient.getQueryData<Order>(keys.order(scope, orderId))
+  if (cached && (TERMINAL_STATUSES.has(cached.status) || cached.version >= event.version)) return
+  if (cached && status !== 'confirmed') {
+    queryClient.setQueryData<Order>(keys.order(scope, orderId), { ...cached, status, failureReason, failure, version: event.version })
+  }
   void queryClient.invalidateQueries({ queryKey: keys.order(scope, orderId) })
   void queryClient.invalidateQueries({ queryKey: keys.pendingOrders(scope) })
   if (status === 'confirmed') void queryClient.invalidateQueries({ queryKey: keys.cart(scope) })
+  if (cached?.status === status) return
   announce(status === 'confirmed' ? i18n.t('realtime.orderConfirmed') : status === 'rejected' ? i18n.t('realtime.orderRejected') : i18n.t('realtime.orderPending'))
+}
+
+function observeRestVersions(ledger: EventLedger, query: Query) {
+  const [root, , kind] = query.queryKey
+  const data = query.state.data
+  if (!data) return
+  if (root === 'nft') {
+    const nft = data as NftDetail
+    ledger.observe('nft', nft.id, nft.version)
+  } else if (root === 'catalog') {
+    for (const item of (data as CatalogPage).items) ledger.observe('nft', item.id, item.version)
+  } else if (root === 'private' && kind === 'order') {
+    const order = data as Order
+    ledger.observe('order', order.id, order.version)
+  }
 }
 
 export function RealtimeProvider({ children }: { children: ReactNode }) {
@@ -77,6 +96,11 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const ledger = new EventLedger()
+    const queryCache = queryClient.getQueryCache()
+    for (const query of queryCache.getAll()) observeRestVersions(ledger, query)
+    const stopObserving = queryCache.subscribe((event) => {
+      if (event.type === 'updated' && event.action.type === 'success') observeRestVersions(ledger, event.query)
+    })
     let socket: Socket | undefined
     let cancelled = false
     setRealtimeStatus('connecting')
@@ -120,6 +144,7 @@ export function RealtimeProvider({ children }: { children: ReactNode }) {
 
     return () => {
       cancelled = true
+      stopObserving()
       socket?.off()
       socket?.disconnect()
       ledger.clear()

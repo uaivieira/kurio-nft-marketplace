@@ -40,7 +40,7 @@ export function ReviewDialog({ open, onOpenChange, quote, previousTotal, liveVer
             <span>{t('checkout.review.changed', { previous: formatEth(previousTotal), total: formatEth(quote.total) })}</span>
           </p>
         )}
-        {outdated && !previousTotal && (
+        {outdated && (
           <p role="alert" data-testid="quote-outdated" className="rounded-sm border border-primary p-3 text-sm">
             <Trans i18nKey="checkout.review.outdated" components={{ button: <button type="button" onClick={onRefresh} className="cursor-pointer font-bold text-highlight underline" /> }} />
           </p>

@@ -58,10 +58,10 @@ Erro padrão (`contracts/errors.ts`): `{ code, message, fieldErrors?, details? }
 |---|---|---|
 | `VALIDATION` | 422 | Corpo inválido; `fieldErrors` por campo |
 | `UNAUTHENTICATED` | 401 | Sem token, ou credenciais inválidas no login |
-| `SESSION_EXPIRED` | 401 | Token expirado ou revogado |
+| `SESSION_EXPIRED` | 401 | Token expirado ou revogado, em qualquer rota que não seja login, cadastro ou logout (inclusive carrinho e catálogo): um `Authorization` inválido nunca é tratado como visitante |
 | `FORBIDDEN` | 403 | Recurso de outro usuário (ex.: pedido) |
 | `NOT_FOUND` | 404 | Recurso inexistente |
-| `CONFLICT` | 409 | E-mail/usuário já cadastrados; endereço de carteira duplicado |
+| `CONFLICT` | 409 | E-mail/usuário já cadastrados; endereço de carteira duplicado; pedido pendente do mesmo usuário (`details.orderId`) |
 | `AVAILABILITY_CONFLICT` | 409 | Quantidade acima do disponível ou do limite por pedido; edição esgotada |
 | `COUPON_INVALID` / `COUPON_EXPIRED` | 422 | Cupom |
 | `QUOTE_STALE` | 409 | Cotação enviada não corresponde à atual; `details.quote` traz a nova |
@@ -90,7 +90,7 @@ Erro padrão (`contracts/errors.ts`): `{ code, message, fieldErrors?, details? }
 
 Visitantes são identificados pelo header `X-Guest-Id` (UUID em `localStorage`); usuários, por `Authorization: Bearer <token>`.
 
-**Idempotência:** o servidor guarda `userId:Idempotency-Key → { fingerprint, orderId }`. A mesma chave com o mesmo conteúdo devolve o mesmo pedido; com conteúdo diferente, 409 `IDEMPOTENCY_MISMATCH`. No cliente (`lib/idempotency.ts`), a chave é derivada do payload e guardada em `sessionStorage`, então reenvio após timeout, clique repetido ou refresh reutilizam a mesma chave.
+**Idempotência:** o servidor guarda `userId:Idempotency-Key → { fingerprint, orderId }`. A mesma chave com o mesmo conteúdo devolve o mesmo pedido; com conteúdo diferente, 409 `IDEMPOTENCY_MISMATCH`. No cliente (`lib/idempotency.ts`), a chave é derivada do payload e guardada em `sessionStorage`, então reenvio após timeout, clique repetido ou refresh reutilizam a mesma chave. Como o payload inclui a conexão da carteira, uma tentativa nova após refresh gera outra chave; por isso o servidor também recusa um segundo pedido enquanto o usuário tem um pendente (409 `CONFLICT` com `details.orderId`), e o cliente leva a pessoa a esse pedido. A conexão da carteira vale para uma rede: trocar a rede desconecta, e o servidor recusa um pedido cuja conexão é de outra rede.
 
 ## Eventos Socket.IO e reconciliação com o REST
 
@@ -105,9 +105,9 @@ Envelope: `{ eventId, type, resource: { kind, id }, version, occurredAt, data }`
 
 **No cliente** (`realtime/`):
 
-- `EventLedger` descarta `eventId` já visto (duplicata) e versão menor ou igual à última conhecida do recurso (evento antigo). Antes de aplicar, as atualizações de cache também comparam com a `version` do dado em cache, então um evento nunca regride um estado mais novo vindo do REST.
-- `nft.updated` atualiza com `setQueryData` o detalhe e todas as páginas de catálogo em cache, e invalida carrinho e cotação, que são recalculados pela API. Uma mudança em item do carrinho é anunciada na live region.
-- `order.updated` atualiza o status em cache e refaz a busca do pedido (o recibo vem do REST). Pedido confirmado invalida o carrinho.
+- `EventLedger` descarta `eventId` já visto (duplicata) e versão menor ou igual à última conhecida do recurso (evento antigo). O ledger também registra a `version` de cada resposta REST bem-sucedida de detalhe, catálogo e pedido (assinatura do `QueryCache`), então um evento mais velho que o dado já recebido pelo REST é descartado antes de qualquer efeito: nem cache, nem aviso na live region, nem invalidação.
+- `nft.updated` atualiza com `setQueryData` o detalhe e todas as páginas de catálogo em cache, e invalida carrinho e cotação, que são recalculados pela API. Uma mudança em qualquer linha do carrinho daquele NFT é anunciada na live region; preços são comparados por valor (`compareEth`), não por texto.
+- `order.updated` refaz a busca do pedido (o recibo, com hash da transação, vem do REST; o status `confirmed` não é aplicado parcialmente no cache). Pedido confirmado invalida o carrinho. Confirmado e recusado são terminais também no cliente: um evento para pedido já terminal em cache é ignorado, e a mudança só é anunciada quando o status muda de fato.
 - No detalhe, a quantidade escolhida é limitada a cada renderização pelo estoque e pelo limite da edição atual, então uma queda de estoque em tempo real ou a troca de edição nunca deixa uma quantidade inválida.
 - **Reconexão:** no `connect` seguinte a uma queda, todas as queries ativas de NFT, catálogo e dados privados são invalidadas: o REST é a fonte da verdade sobre o que se perdeu. Pedidos pendentes também têm polling de 4 s como rede de segurança.
 - **Ciclo de vida:** o provider é chaveado pelo token. Logout ou troca de usuário remove listeners, desconecta, limpa o ledger e abre outra conexão com a nova identidade. O servidor só entrega `order.updated` ao dono, e o cliente ainda confere `userId`.
@@ -126,8 +126,8 @@ Envelope: `{ eventId, type, resource: { kind, id }, version, occurredAt, data }`
 
 O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`) com interceptores de fetch, XHR e WebSocket. REST e Socket.IO continuam atravessando a camada de rede e os mesmos handlers; não é necessário registrar service worker. A API experimental é uma dependência de compatibilidade a revalidar nas atualizações do MSW.
 
-- `mocks/db/state.ts`: estado tipado, persistido em `localStorage` (`kurio:mockdb:v1`, com versão de schema). `reset()` re-semeia tudo.
-- `mocks/db/seed.ts`: 48 NFTs determinísticos (nomes e preços do Figma + gerados com PRNG de semente fixa), 9 coleções, 3 redes, 4 edições por NFT, 2 usuários, 2 cupons e casos de borda.
+- `mocks/db/state.ts`: estado tipado, persistido em `localStorage` (`kurio:mockdb:v1`, com versão de schema). `reset()` re-semeia tudo, esvazia o log de eventos e derruba os sockets; o contador de ids e as versões dos NFTs continuam crescendo a partir de onde estavam, para que clientes abertos não descartem os eventos seguintes como duplicatas ou antigos. As sessões somem com o reset, então um cliente logado recebe `SESSION_EXPIRED` e é levado ao login.
+- `mocks/db/seed.ts`: 48 NFTs determinísticos (nomes e preços do Figma + gerados com PRNG de semente fixa), 9 coleções, 3 redes, 4 edições por NFT, 2 usuários, 3 cupons (`KURIO10` válido, `EXPIRED5` expirado, `FLASH15` que expira em 2030-01-01, para testar com relógio falso um cupom que vence com o carrinho aberto) e casos de borda.
 - `mocks/domain/*`: regras de negócio (catálogo e facetas, carrinho e cotação, pedidos, carteiras, auth). `updateEdition()` é o único ponto que altera preço ou estoque; ele persiste e publica `nft.updated` na mesma operação, então REST e eventos nunca divergem.
 - `mocks/http.ts`: wrapper de rota com latência e falhas por cenário, autenticação, validação Zod e mapeamento de erros.
 - `mocks/scenarios.ts`: cenários determinísticos. Os contadores (requisições, falhas únicas) zeram a cada troca de cenário ou reset.
@@ -153,7 +153,8 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 - Ao entrar ou se cadastrar, o cliente envia `guestId`; o servidor mescla os itens do visitante no carrinho do usuário, somando quantidades dentro dos limites.
 - Limites por linha: `min(disponível, maxPerOrder)` da edição, validados no cliente (stepper) e no servidor (409).
 - Cada linha traz `unitPrice` atual e `priceWhenAdded`. Quando divergem, a cotação inclui um `issue` do tipo `price-changed` e a UI avisa até o usuário confirmar ciência (`/cart/acknowledge`). Esgotado e insuficiente bloqueiam a finalização.
-- Cupom aplicado fica no carrinho. Subtotal, desconto, taxa de rede e total vêm de `POST /quotes`, nunca de cálculo no cliente.
+- Cupom aplicado fica no carrinho. Se ele vencer depois de aplicado, a cotação devolve `coupon.status: 'expired'` com desconto zero, e a UI troca o aviso de "aplicado" por um alerta com a opção de remover.
+- Subtotal, desconto, taxa de rede, total e o total de cada linha vêm de `POST /quotes`, nunca de cálculo no cliente; sem cotação, a linha mostra skeleton.
 
 ## Checkout e pedidos
 
@@ -161,7 +162,7 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 2. Conexão simulada da carteira escolhida (`POST /wallets/connections`), com recusa e desconexão.
 3. "Confirmar compra" abre a revisão com um snapshot da cotação. Se um evento mudar a cotação nesse intervalo, o envio fica bloqueado até "Atualizar valores".
 4. "Enviar pedido" faz `POST /orders` com `quoteVersion` e `Idempotency-Key`. O servidor revalida preço, estoque, cupom e taxa:
-   - `QUOTE_STALE`: a revisão mostra o total antigo e o novo e exige nova confirmação.
+   - `QUOTE_STALE`: a revisão mostra o total antigo e o novo e exige nova confirmação. Se a cotação mudar de novo depois disso, o aviso de desatualizada e a ação "Atualizar valores" voltam a aparecer.
    - `AVAILABILITY_CONFLICT`: fecha a revisão; o carrinho mostra o problema.
    - Timeout ou rede: o cliente reenvia uma vez com a mesma chave e recebe o mesmo pedido.
    - Trava por `ref` e botão desabilitado impedem duplo envio. A trava só é liberada depois de uma falha: depois do sucesso o pedido existe e a chave de idempotência já foi descartada, então um clique que chegasse antes de a revisão fechar e a rota mudar criaria um segundo pedido com chave nova.
@@ -181,6 +182,7 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 - `refetchOnWindowFocus: false`, `refetchOnReconnect: true`, `gcTime` de 5 min.
 - **Timeout HTTP:** é um abort disparado por timer, não o `timeout` nativo do XHR, para compor com o `AbortSignal` de quem chamou (cancelamento de query) e seguir o relógio da página (determinístico nos testes). Um cancelamento pelo chamador (query obsoleta) não é falha: o erro é repassado para o TanStack Query descartá-lo.
 - **Backend pronto:** só as chamadas de rede esperam `backendReady` (imediato com uma API real, após o boot do MSW na demo); a UI e a imagem do LCP não ficam na fila do boot dos mocks.
+- **Prerender e cenários:** o HTML gerado no build reflete o seed padrão. O script inline marca a página como desatualizada também quando há um cenário salvo diferente de `default`, e o app ignora o estado pré-renderizado quando os mocks estão desligados; nesses casos, nada do seed aparece antes da resposta real.
 - **Mutations:** as de carrinho substituem o cache com a resposta e invalidam a cotação. Favoritos usam atualização otimista com rollback (`onMutate`/`onError`) e revalidação em `onSettled`. Perfil e avatar atualizam também o usuário da sessão.
 
 ## Acessibilidade
@@ -214,6 +216,10 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 - **Recibo:** a data segue o formato do frame ("29 Jul, 2026") com o mês abreviado em português ("25 Nov, 2026").
 - **Alvos de toque:** os pontos do carrossel têm 24 px de área clicável (o desenho tem 8 px com 13 px entre centros) para cumprir o critério de tamanho de alvo, e os inativos ficam com 40% de opacidade no mobile para indicar o slide atual (o frame desenha os três iguais).
 - **Estados sem desenho:** esqueletos com o formato do card de cada breakpoint, vazio, erro, foco (`outline` em `--ring`), hover, desabilitado e esgotado usam só os tokens de `src/index.css`. Os rádios do pagamento mobile são desenhados com `border-input` e preenchimento `primary`, em vez do rádio nativo cinza. O gradiente do hero mobile virou o token `--gradient-hero` (utilitário `bg-hero`).
+- **Ajustes de layout pedidos após o Figma (26/11):** na home, o texto do hero ficou maior e mais baixo, a arte do hero tem 360 px, os banners editoriais são centralizados e a lista de carteiras usa espaços simples para quebrar linha no rodapé (por isso a chip do checkout é mais estreita). No detalhe desktop, a galeria é agrupada com miniaturas menores, a coluna de detalhes é mais estreita e a linha de compra distribui seletor, "Comprar" e "Favoritar", centralizados na altura do seletor; com a coluna estreita, as avaliações podem quebrar para baixo do preço a partir de 1280 px. No carrinho, as sugestões viraram um carrossel paginado (o rodapé desce cerca de 44 px) e o seletor de quantidade tem 20×24 px. Cada nó afetado tem uma exceção em `figma/geometry-exemptions.json` com o motivo e só os eixos que mudaram; o resto continua sendo conferido.
+- **Contrato e direitos autorais:** no frame do detalhe, o percentual de direitos autorais aparece sob "Contrato:" e o endereço sob "Direitos autorais:". O app põe cada texto sob o título correto.
+- **Cabeçalho desktop:** busca, carrinho e o botão "Entrar" (ou a chip do perfil) ficam centralizados na linha do texto do menu (Início, Mercado…). No frame eles ficam 6,5 px abaixo; o alinhamento foi um pedido de revisão. `layout.spec.ts` confere a diferença de no máximo 1 px em 768, 1024 e 1440 px.
+- **Painel de cenários:** botão flutuante `primary` a 16 px do canto inferior direito (pílula "Cenários" no desktop, círculo de 44 px acima da barra inferior no mobile), para quem avalia a demo encontrar os cenários. Não existe no Figma.
 - **Confirmação:** o frame mostra o recibo sem cabeçalho nem rodapé e sem a linha "Subtotal"; o app mantém a página com cabeçalho e rodapé e a linha de subtotal, e alinha o cartão à posição do frame.
 - **Telas sem frame mobile** (perfil, carteiras, confirmação) seguem os padrões dos frames mobile existentes.
 - **Fora de escopo** (Criadores, Aprenda, editorial, suporte, atividade, ofertas, downloads, newsletter, "Esqueceu a senha?", avaliações): visíveis, porém inertes e marcados "em breve". A newsletter informa que nada foi enviado. "Ver no Etherscan" abre um diálogo que explica que a referência é simulada.
@@ -254,7 +260,9 @@ O boot usa `defineNetwork` e uma única `InterceptorSource` (`msw/experimental`)
 
 Medianas de 3 execuções por página e perfil em [lighthouse/reports/summary.md](./lighthouse/reports/summary.md). Configuração em `lighthouse/lighthouserc.cjs`; relatórios HTML/JSON em `lighthouse/reports/<perfil>/`.
 
-Mediana atual: **100 em Performance, Accessibility, Best Practices e SEO** no início, no Mercado e no detalhe, em mobile e desktop (LCP mobile 1,6 s no início, 1,5 s no Mercado e 1,4 s no detalhe; CLS e TBT zero).
+Mediana atual, em `/`, `/mercado`, detalhe, `/login`, `/profile` (porta de login para quem não tem sessão) e `/cart`: **mobile 100 nas quatro categorias em todas as páginas**; desktop 100 em Performance, Best Practices e SEO, e Accessibility 100 exceto `/` e `/mercado` (97) e `/login` e `/profile` (96), todos acima da meta de 95. Agentic Browsing 4/4 em todas. LCP mobile entre 0,9 s (`/cart`) e 1,73 s; CLS e TBT zero.
+
+**Abaixo de 100:** a auditoria `target-size` falha no desktop (nas páginas com o hero, inclusive atrás do login) porque os pontos do carrossel do hero ficaram com 16 px de largura a partir de 1024 px (`lg:w-4` em `src/features/catalog/Hero.tsx`), para aproximar o espaçamento de 13 px entre centros do frame. Voltar para a área de 24 px recupera o 100 e afasta os pontos do desenho.
 
 **Como:** o LCP é uma imagem que depende de dados. Enquanto a página dependia do JS para existir, a cadeia HTML → ~300 kB de JS → boot do backend simulado → renderização → imagem deixava o LCP em ~3,6 s no 4G lento simulado.
 
@@ -264,7 +272,10 @@ Mediana atual: **100 em Performance, Accessibility, Best Practices e SEO** no in
 - **Depois do carregamento.** `afterLoad` espera o `load`, mais 2 s de folga para a primeira pintura com dados ter acontecido em aparelhos lentos, e um `requestIdleCallback` (teto de 1,5 s). Conexão Socket.IO, toasts e painel de cenários esperam essa promessa, então nunca disputam banda ou CPU com a primeira pintura com dados. Os toasts carregam o `sonner` na primeira notificação.
 - **Mocks em paralelo.** Na demo, o backend simulado entra por import dinâmico, que o navegador só descobriria depois de executar o chunk de entrada; o plugin `kurio:preload-mocks` do `vite.config.ts` adiciona `modulepreload` desse chunk e das dependências no HTML, e os dois baixam em paralelo.
 - **Sem animação no LCP.** O carrossel do hero só faz crossfade depois que o visitante escolhe um destaque; no mobile, a arte do hero pede o mesmo arquivo do primeiro card do catálogo (a imagem pré-carregada). A ordenação usa `select` nativo: mesmo visual do frame, acessível e sem runtime de popover no caminho crítico do início.
-- **Outras URLs.** O fallback de SPA (carrinho, checkout, conta) e o início com filtros na URL recebem esse HTML marcado como desatualizado antes da primeira pintura: o conteúdo pré-renderizado fica oculto e o app carrega na hora, então o catálogo padrão nunca aparece no lugar do pedido.
+- **Páginas de entrada condicionais.** Além de `/`, `/mercado` e `/nft/<id>`, o build gera `/login`, `/signup`, `/cart` e uma "porta" de login para cada rota privada (`/profile`, `/profile/wallets`, `/checkout`, `/favorites`). A porta é a tela renderizada em `/login?redirect=<rota>` e gravada no caminho da rota privada. O guard `requireAuth` leva exatamente a essa URL e a essa marcação, então a troca não desloca nada. Cada uma declara em `data-prerender-when` quando é verdadeira: `signed-out` (sem sessão e sem aviso de expiração pendente) para login, cadastro e portas; `new-visitor` (sem sessão e sem `kurio:guest-id`) para o carrinho vazio, porque sem id de visitante não pode existir carrinho. Se a condição falha, o script inline marca a página como desatualizada e o app carrega na hora. Antes, essas rotas ficavam em ~85 no mobile (LCP de 4,4 s esperando JS, boot do MSW e a busca do catálogo).
+- **Diálogo de login sem portal.** O Radix `Portal` não renderiza no servidor. O `AuthDialog` usa `DialogContent portal={false}` (overlay e conteúdo no lugar, ainda `fixed`), igual no servidor e no cliente, para o formulário existir no HTML.
+- **Nada digitado se perde.** O `createRoot` substitui o DOM pré-renderizado. Antes disso, `src/lib/prerender-inputs.ts` guarda os valores dos campos e o foco; depois da primeira renderização, ele os devolve com o setter nativo mais um evento `input`, então o React Hook Form registra o valor.
+- **Outras URLs.** `/orders/<id>`, rotas inexistentes e o início com filtros na URL recebem o HTML marcado como desatualizado antes da primeira pintura: o conteúdo pré-renderizado fica oculto e o app carrega na hora, então o catálogo padrão nunca aparece no lugar do pedido.
 - **Demais otimizações:**
   - latência padrão de 20 ms (o cenário `slow` mantém 2,5 s);
   - preload responsivo da arte LCP de cada página;
@@ -277,6 +288,13 @@ Mediana atual: **100 em Performance, Accessibility, Best Practices e SEO** no in
 - **Limitação:** o HTML estático reflete o seed padrão. Num navegador com dados simulados alterados (preços mudados por cenário, por exemplo), os valores pré-renderizados aparecem por um instante até a revalidação em segundo plano.
 
 A auditoria usa o mesmo build publicado, com imagens, fontes e funcionalidades completas.
+
+## Agentes de IA (Agentic Browsing e WebMCP)
+
+- **Descoberta:** `public/llms.txt` (Markdown com título, resumo e links), `public/agent-skills/kurio-marketplace.md` (skill com rotas, parâmetros e ferramentas) e um manifesto ARD idêntico em `/.well-known/ard.json` (Lighthouse 13.6) e `/.well-known/ai-catalog.json` (local legado, o único lido pelo Lighthouse 13.5 do DevTools atual). O manifesto tem `specVersion: "1.0"`, exigido pela 13.5 e ignorado pela 13.6, e o tipo `text/markdown; profile="urn:air:agent-skills"`, aceito pelas duas versões. Foi validado com o `ConformanceTester` de cada uma, sem erros nem avisos. Sem esses arquivos, as URLs caíam no fallback da SPA (HTML) e reprovavam.
+- **Ferramentas WebMCP** (`src/agent/webmcp.ts`): `search_nfts`, `get_nft`, `add_to_cart`, `get_cart` e `open_page`. São registradas depois do `afterLoad` e só quando o navegador expõe `navigator.modelContext`, então o módulo nem é baixado nos demais navegadores. O `inputSchema` vem dos mesmos contratos Zod (`z.toJSONSchema`), e a entrada é validada de novo antes de executar. Cada ferramenta chama `src/api/*` (Axios → MSW) e atualiza o cache do TanStack Query como as mutations da interface. Erros voltam como resultado (`isError`), não como exceção. `open_page` passa por `safeRedirect`. Não existe ferramenta de compra: a finalização continua exigindo a revisão e a confirmação de uma pessoa. Um carrinho alterado por agente é anunciado na live region.
+- **Formulários declarativos:** busca, login, cadastro, cupom, checkout, perfil, senha e carteiras têm `toolname` e `tooldescription`; o `Field` repassa o rótulo como `toolparamtitle` a cada campo. Nenhum usa `toolautosubmit`: o envio fica com a pessoa.
+- **Limitação:** o Chrome usado na auditoria não expõe WebMCP, então as auditorias de WebMCP aparecem como "não se aplica". O comportamento das ferramentas é coberto por `tests/e2e/agentic.spec.ts`, que injeta um `navigator.modelContext` de teste e confere o efeito na interface.
 
 ## Testes
 
@@ -292,19 +310,19 @@ Cada item do enunciado ([junglegaming/frontend-challenge](https://github.com/jun
 | Requisito | Onde | Verificação |
 |---|---|---|
 | Stack obrigatória com uso efetivo | `package.json`; Router em `src/routes`, Query em `src/queries`, Axios em `src/lib/http.ts`, Socket.IO em `src/realtime`, Tailwind em `src/index.css`, shadcn/ui em `src/components/ui`, MSW em `src/mocks` | todos os specs E2E passam por essas camadas; `lighthouse/` |
-| Início: destaques, catálogo, busca, filtros, ordenação, navegação ao NFT | `src/features/catalog`, `src/routes/index.tsx`, `src/routes/mercado.tsx` | `catalog.spec.ts`, `marketplace.spec.ts` |
+| Início: destaques, catálogo, busca, filtros, ordenação, navegação ao NFT | `src/features/catalog` (ordenação em `CatalogSort.tsx`, no cabeçalho do catálogo e na gaveta de filtros mobile), `src/routes/index.tsx`, `src/routes/mercado.tsx` | `catalog.spec.ts`, `marketplace.spec.ts` |
 | Estado na URL, filtros combináveis, paginação reinicia, histórico | `validateSearch` das rotas `src/routes/index.tsx` e `src/routes/mercado.tsx` com o esquema de `src/features/catalog/search.ts` | `catalog.spec.ts` (filtros combinados, histórico, paginação reinicia) |
 | Resultado vazio, falha e respostas fora de ordem | chaves de query por parâmetros + `AbortSignal`, cenários `empty-catalog`, `http-500`, `flaky-catalog`, `jitter` | `catalog.spec.ts` (busca vazia, fora de ordem), `loading.spec.ts` |
 | Detalhe: acesso direto, inexistente, edição esgotada, limite de quantidade | `src/features/nft/DetailPage.tsx` | `nft-detail.spec.ts`, `prerender.spec.ts` |
 | Favoritos persistentes com atualização otimista e rollback | `src/queries/favorites.ts` | `favorites.spec.ts` |
-| Carrinho: quantidades, remoção, cupom, refresh, itens do visitante ao autenticar | `src/features/cart`, `src/mocks/domain/cart.ts` | `cart.spec.ts` |
-| ETH como string decimal com precisão | `src/lib/eth.ts`, contratos Zod | `src/lib/eth.test.ts` |
+| Carrinho: quantidades, remoção, cupom, refresh, itens do visitante ao autenticar | `src/features/cart`, `src/mocks/domain/cart.ts` | `cart.spec.ts` (inclusive cupom que vence com o carrinho aberto) |
+| ETH como string decimal com precisão | `src/lib/eth.ts` (inclusive o filtro de preço, em centésimos inteiros), contratos Zod | `src/lib/eth.test.ts` |
 | Pagamento: validação, revisão, carteira e rede, conexão, recusa e desconexão | `src/features/checkout/CheckoutPage.tsx`, `ReviewDialog.tsx` | `wallet.spec.ts`, `purchase.spec.ts`, `auth.spec.ts` (dados mantidos após expirar) |
 | Revalidação de cotação e nova confirmação | quote com versão, 409 `QUOTE_STALE` / `AVAILABILITY_CONFLICT` | `realtime.spec.ts` (cotação desatualizada, preço alterado no envio, edição esgotada no envio) |
-| Sem pedido duplicado (cliques repetidos, timeout) e idempotência | `Idempotency-Key` por payload, trava do envio | `purchase-failures.spec.ts` |
+| Sem pedido duplicado (cliques repetidos, timeout) e idempotência | `Idempotency-Key` por payload, trava do envio, 409 `CONFLICT` para segundo pedido com um pendente | `purchase-failures.spec.ts` (timeout recupera o mesmo id) |
 | Pedido pendente, confirmado e recusado, recuperação após refresh ou reconexão | `src/features/checkout/OrderPage.tsx`, `order.updated` | `purchase-failures.spec.ts`, `realtime.spec.ts` (desconexão com pedido pendente) |
 | Recibo só para pedido confirmado, snapshot imutável, remove só o comprado | `src/mocks/domain/orders.ts` | `purchase.spec.ts`, `purchase-failures.spec.ts` (pagamento recusado mantém o carrinho) |
-| Cadastro, login, logout, sessão recuperável, expiração na navegação e no checkout | `src/lib/session-store.ts`, `src/lib/auth-flow.ts`, `requireAuth` | `auth.spec.ts`, `src/lib/auth-flow.test.ts`, `src/lib/redirect.test.ts` |
+| Cadastro, login, logout, sessão recuperável, expiração na navegação, no carrinho e no checkout | `src/lib/session-store.ts`, `src/lib/auth-flow.ts`, `requireAuth`, `src/mocks/http.ts` | `auth.spec.ts`, `src/lib/auth-flow.test.ts`, `src/lib/redirect.test.ts` |
 | Logout e troca de usuário limpam cache privado e subscriptions | cache em `['private', userId]`, socket recriado por sessão | `auth.spec.ts` (troca de usuário), `realtime.spec.ts` (eventos da sessão anterior não chegam ao próximo usuário) |
 | Perfil, avatar, senha e carteiras com erros da API; senhas sem texto claro | `src/features/account`, PBKDF2 em `src/mocks/db/state.ts` | `account.spec.ts` |
 | Contratos tipados entre transporte, estado e UI | `src/contracts` (Zod) validando cada resposta em `src/api` | `pnpm typecheck`, `src/lib/api-error.test.ts` |
@@ -315,8 +333,8 @@ Cada item do enunciado ([junglegaming/frontend-challenge](https://github.com/jun
 | Eventos com identidade e versão, duplicatas e antigos ignorados, reconciliação | `src/realtime/ledger.ts` | `src/realtime/ledger.test.ts`, `realtime.spec.ts` (eventos duplicados ou antigos) |
 | Cenário carrinho → mudança de preço → aviso → checkout bloqueado | `CartPage.tsx`, `CheckoutPage.tsx` | `realtime.spec.ts` (mudança de preço no carrinho, cotação desatualizada) |
 | Fidelidade ao Figma, desktop, tablet e mobile | seção "Fidelidade ao Figma" acima | `visual.spec.ts`, `layout.spec.ts`, `responsive.spec.ts` (320, 390, 768, 1440), `pnpm figma:compare`, `pnpm figma:geometry` |
-| Skeletons com shimmer, sem deslocamento, movimento reduzido | `src/components/ui/skeleton.tsx`, `src/index.css` | `loading.spec.ts` (skeletons, movimento reduzido), CLS 0 no Lighthouse |
-| Teclado, foco, diálogos, labels, erros associados, feedback acessível | `src/components/layout/LiveRegion.tsx`, shadcn/Radix | `a11y.spec.ts` (axe, foco, diálogo, erros), live region em `realtime.spec.ts` |
+| Skeletons com shimmer, sem deslocamento, movimento reduzido | `src/components/ui/skeleton.tsx`, `src/index.css` | `loading.spec.ts` (skeletons, tamanho igual ao conteúdo no catálogo e no resumo, movimento reduzido), CLS 0 no Lighthouse |
+| Teclado, foco, diálogos, labels, erros associados, feedback acessível | `src/components/layout/LiveRegion.tsx`, shadcn/Radix | `a11y.spec.ts` (axe nas telas públicas e privadas, revisão e recibo; contorno de foco visível; foco preso no diálogo de busca; erros), `catalog.spec.ts` (foco preso e devolvido na gaveta de filtros mobile), live region em `realtime.spec.ts` |
 | Testes isolados, relógio e eventos controlados, relatório HTML e traces | `playwright.config.ts`, `tests/e2e/fixtures.ts` | `playwright-report/` versionado; traces em `test-results/` nas falhas |
 | Lighthouse: 3 execuções, mediana, HTML/JSON, LCP/CLS/TBT | `lighthouse/` | `lighthouse/reports/summary.md` (100 em todas as categorias) |
 | Deploy público com mocks, tempo real, acesso direto e refresh | `vercel.json`, `scripts/prerender.ts` | `PLAYWRIGHT_BASE_URL=<url> pnpm test:e2e`, `security.spec.ts` |
@@ -327,4 +345,10 @@ Cada item do enunciado ([junglegaming/frontend-challenge](https://github.com/jun
 - Os dados simulados são por navegador (`localStorage`); não há sincronização entre dispositivos.
 - Tempo real entre abas não é propagado (cada aba tem o próprio servidor simulado).
 - Uploads de avatar ficam como data URL (até 1 MB) no armazenamento local.
+- `/orders/<id>` não tem página de entrada pré-renderizada (rota dinâmica); com acesso direto, carrega como as demais rotas do app.
+- O carrinho pré-renderizado vale só para visitante novo; quem já tem id de visitante recebe o carrinho do app, que espera o backend simulado.
+- Duas abas abertas mantêm cada uma o próprio banco simulado em memória; a última a gravar sobrescreve o snapshot da outra.
+- A galeria do detalhe repete a mesma arte nas miniaturas: as fixtures têm uma imagem por NFT, como os assets do Figma.
+- O "NFT em destaque" vindo da API só aparece a partir de 1024 px, como nos frames; no mobile o hero é a arte do primeiro card.
+- Não há cenário de timeout para leituras (GET): `slow` usa 2,5 s, abaixo do timeout HTTP; o timeout é exercitado no envio do pedido (`order-timeout`).
 - A regressão visual depende do renderizador do Chromium; baselines geradas em macOS podem precisar de `pnpm test:e2e:update` em outro sistema.
