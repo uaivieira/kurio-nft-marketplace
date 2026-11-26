@@ -32,7 +32,7 @@ export function DetailSkeleton() {
   const { t } = useTranslation()
   return (
     <div role="status" aria-busy="true" aria-label={t('detail.loading')} data-testid="detail-skeleton" className="mx-auto min-h-dvh max-w-page px-5 pt-5">
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
         <div className="hidden gap-3 xl:grid">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="aspect-square w-full" />)}</div>
         <Skeleton className="aspect-square w-full" />
         <div className="space-y-4">
@@ -209,7 +209,7 @@ function DetailContent({ nft }: { nft: NftDetail }) {
       <MobileTopBar className="pt-[23px] pb-0" action={<FavoriteButton nft={nft} className="size-[35px] rounded-full border border-border bg-elevated" />} />
       <article className="mx-auto max-w-page px-7 pb-16 md:px-5 lg:pb-[43px]">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market') }]} />
-      <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
+        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,0.55fr)_minmax(0,1.45fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
           <Gallery nft={nft} />
           <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px]">
             <div className="flex flex-wrap items-start justify-between gap-3">
