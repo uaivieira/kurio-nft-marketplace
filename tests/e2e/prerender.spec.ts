@@ -94,7 +94,7 @@ test.describe('prerendered pages', () => {
       await held
       await route.continue()
     })
-    await page.goto('/login')
+    await page.goto('/login', { waitUntil: 'domcontentloaded' })
     const email = page.locator('input[name="email"]')
     await email.fill(USERS.ana.email)
     await page.locator('input[name="password"]').fill(USERS.ana.password)

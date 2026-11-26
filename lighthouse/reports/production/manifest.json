@@ -1,9 +1,19 @@
 [
   {
+    "url": "https://nft-marketplace-one-nu.vercel.app/cart",
+    "htmlPath": "lighthouse/reports/production/cart.report.html",
+    "jsonPath": "lighthouse/reports/production/cart.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
     "url": "https://nft-marketplace-one-nu.vercel.app/",
-    "isRepresentativeRun": true,
-    "htmlPath": "lighthouse/reports/production/nft_marketplace_one_nu_vercel_app--2026_11_26_17_01_00.report.html",
-    "jsonPath": "lighthouse/reports/production/nft_marketplace_one_nu_vercel_app--2026_11_26_17_01_00.report.json",
+    "htmlPath": "lighthouse/reports/production/home.report.html",
+    "jsonPath": "lighthouse/reports/production/home.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
@@ -13,9 +23,19 @@
   },
   {
     "url": "https://nft-marketplace-one-nu.vercel.app/nft/emerald-ape-042",
-    "isRepresentativeRun": true,
-    "htmlPath": "lighthouse/reports/production/nft_marketplace_one_nu_vercel_app-nft_emerald_ape_042-2026_11_26_17_01_13.report.html",
-    "jsonPath": "lighthouse/reports/production/nft_marketplace_one_nu_vercel_app-nft_emerald_ape_042-2026_11_26_17_01_13.report.json",
+    "htmlPath": "lighthouse/reports/production/nft_emerald-ape-042.report.html",
+    "jsonPath": "lighthouse/reports/production/nft_emerald-ape-042.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    }
+  },
+  {
+    "url": "https://nft-marketplace-one-nu.vercel.app/profile",
+    "htmlPath": "lighthouse/reports/production/profile.report.html",
+    "jsonPath": "lighthouse/reports/production/profile.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,

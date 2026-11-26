@@ -2,7 +2,7 @@
 
 Gerado em 2026-11-26T21:40:46.652Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
 
-Commit auditado: `d1167cfe4f448be631d2f628b2d798ece7c4e06a` com alterações locais não commitadas em código de aplicação.
+Código auditado: o mesmo do commit `790e32dc147354721d564e6efd2aa85c14b7a5d5` (build gerado antes do commit, a partir dessas alterações).
 
 | Page | Profile | Performance | Accessibility | Best Practices | SEO | Agentic Browsing | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|---|
