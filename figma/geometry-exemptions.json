@@ -6,10 +6,11 @@
         "app": "/^\\d+$/",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y"
         ],
         "anchor": "center",
-        "reason": "contagem do carrinho: o frame mostra 6 itens, o carrinho reproduzido tem 17 (2 + 6 + 9)"
+        "reason": "contagem do carrinho: o frame mostra 6 itens, o carrinho reproduzido tem 17 (2 + 6 + 9); busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "figma": "26.83 ETH",
@@ -133,6 +134,204 @@
           "w"
         ],
         "reason": "preço da sugestão real"
+      },
+      {
+        "figma": "t6",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "figma": "t53",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t54",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t55",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t56",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t57",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t58",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t59",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t60",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t61",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t62",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t63",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t64",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t65",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t66",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t67",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t68",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t69",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t70",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t71",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t72",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t73",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t74",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t75",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t76",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t77",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t78",
+        "ignore": [
+          "x",
+          "y",
+          "font"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "figma": "t79",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
       }
     ],
     "shapes": [
@@ -155,6 +354,188 @@
         "id": "s39",
         "skip": true,
         "reason": "pontos de paginação sem função: a lista mostra as 5 sugestões de uma vez"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s2",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s7",
+        "ignore": [
+          "y",
+          "h"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s9",
+        "ignore": [
+          "y",
+          "h"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s13",
+        "ignore": [
+          "y",
+          "h"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s15",
+        "ignore": [
+          "y",
+          "h"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s19",
+        "ignore": [
+          "y",
+          "h"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s21",
+        "ignore": [
+          "y",
+          "h"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s40",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s41",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s42",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s43",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s44",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s45",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s46",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s47",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s48",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s49",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s50",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s51",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s52",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s53",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s54",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s55",
+        "ignore": [
+          "y"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
+      },
+      {
+        "id": "s57",
+        "ignore": [
+          "y",
+          "w"
+        ],
+        "reason": "carrinho ajustado a pedido em 26/11 (a687457): carrossel de sugestões no lugar da grade estática, que desloca o rodapé, e seletor de quantidade de 20×24 px"
       }
     ]
   },
@@ -165,47 +546,53 @@
         "app": "/^\\d+$/",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y"
         ],
         "anchor": "center",
-        "reason": "contagem do carrinho: o visitante do frame tem 6 itens; o detalhe é aberto com o carrinho vazio (0)"
+        "reason": "contagem do carrinho: o visitante do frame tem 6 itens; o detalhe é aberto com o carrinho vazio (0); busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "figma": "t15",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px"
+        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "figma": "t16",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px"
+        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "figma": "t17",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px"
+        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "figma": "t27",
         "app": "/^Emerald Ape #042 é uma obra digital .+ lançamentos da comunidade\\.$/",
         "ignore": [
-          "w"
+          "w",
+          "y"
         ],
-        "reason": "a história do mock não repete a edição (\"1/50\") na primeira frase"
+        "reason": "a história do mock não repete a edição (\"1/50\") na primeira frase; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "figma": "t33",
         "app": "/^0x[0-9a-f]{4}\\.\\.\\.[0-9A-F]{4} • Contrato inteligente ERC-721 verificado\\.$/",
         "ignore": [
-          "w"
+          "w",
+          "y"
         ],
-        "reason": "endereço do contrato gerado pelo seed"
+        "reason": "endereço do contrato gerado pelo seed; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "figma": "t35",
@@ -286,6 +673,372 @@
           "w"
         ],
         "reason": "preço do NFT relacionado real"
+      },
+      {
+        "figma": "t6",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "figma": "t8",
+        "ignore": [
+          "x"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t9",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t10",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t11",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t12",
+        "ignore": [
+          "x",
+          "y",
+          "w"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t13",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t14",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t18",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t19",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t20",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t21",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t22",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t23",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t24",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t25",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t26",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t28",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t29",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t30",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t31",
+        "ignore": [
+          "y"
+        ],
+        "reason": "os textos de \"Contrato:\" e \"Direitos autorais:\" estavam trocados no frame (o percentual aparecia sob \"Contrato\"); o app põe cada texto sob o título certo, então este parágrafo desce uma posição"
+      },
+      {
+        "figma": "t32",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t34",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t45",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t46",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t47",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t48",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t49",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t50",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t51",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t52",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t53",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t54",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t55",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t56",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t57",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t58",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t59",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t60",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t61",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t62",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t63",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t64",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t65",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t66",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t67",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t68",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t69",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t70",
+        "ignore": [
+          "x",
+          "y",
+          "font"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "figma": "t71",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       }
     ],
     "shapes": [
@@ -293,40 +1046,51 @@
         "id": "s8",
         "ignore": [
           "paint",
-          "radius"
+          "radius",
+          "y",
+          "w",
+          "h"
         ],
-        "reason": "o frame destaca a 2ª miniatura com borda; as miniaturas do app são a mesma arte e não são selecionáveis"
+        "reason": "o frame destaca a 2ª miniatura com borda; as miniaturas do app são a mesma arte e não são selecionáveis; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "id": "s15",
         "ignore": [
-          "w"
+          "w",
+          "x",
+          "y",
+          "paint"
         ],
-        "reason": "largura das chips de edição desenhada à mão no frame"
+        "reason": "largura das chips de edição desenhada à mão no frame; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "id": "s16",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y",
+          "paint"
         ],
-        "reason": "largura das chips de edição desenhada à mão no frame"
+        "reason": "largura das chips de edição desenhada à mão no frame; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "id": "s17",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y"
         ],
-        "reason": "largura das chips de edição desenhada à mão no frame"
+        "reason": "largura das chips de edição desenhada à mão no frame; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "id": "s18",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y",
+          "paint"
         ],
-        "reason": "largura das chips de edição desenhada à mão no frame"
+        "reason": "largura das chips de edição desenhada à mão no frame; detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       },
       {
         "id": "s29",
@@ -368,6 +1132,327 @@
           "y"
         ],
         "reason": "as artes dos cards relacionados do frame foram posicionadas à mão (x e y variam até 4 px entre cards iguais); o app centraliza todas"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s2",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s3",
+        "ignore": [
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s4",
+        "ignore": [
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s5",
+        "ignore": [
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s6",
+        "ignore": [
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s7",
+        "ignore": [
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s9",
+        "ignore": [
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s10",
+        "ignore": [
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s11",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s12",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h",
+          "radius"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s13",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s14",
+        "ignore": [
+          "x",
+          "y",
+          "w"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s20",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s22",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s23",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s24",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s25",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s26",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s27",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s28",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s30",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s32",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s34",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s36",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s41",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s42",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s43",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s44",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s45",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s46",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s47",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s48",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s49",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s50",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s51",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s52",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s53",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s54",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s55",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s56",
+        "ignore": [
+          "y"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
+      },
+      {
+        "id": "s58",
+        "ignore": [
+          "y",
+          "w"
+        ],
+        "reason": "detalhe redimensionado a pedido em 26/11 (a4ac4cf a d1167cf e o ajuste em andamento da galeria): galeria agrupada com miniaturas menores, coluna de detalhes mais estreita e painel de compra distribuído na linha; as seções abaixo e o rodapé descem junto"
       }
     ]
   },
@@ -378,10 +1463,11 @@
         "app": "/^\\d+$/",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y"
         ],
         "anchor": "center",
-        "reason": "contagem do carrinho: o visitante do frame tem 6 itens; a home é aberta com o carrinho vazio (0)"
+        "reason": "contagem do carrinho: o visitante do frame tem 6 itens; a home é aberta com o carrinho vazio (0); busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "figma": "Arte digital",
@@ -589,32 +1675,100 @@
         "ignore": [
           "x",
           "w",
-          "lines"
+          "lines",
+          "y"
         ],
-        "reason": "no frame o texto do 2º banner quebra em 4 linhas e a última fica sob o botão; o app mostra o texto inteiro em 3 linhas, com a mesma margem direita do título e do botão"
+        "reason": "no frame o texto do 2º banner quebra em 4 linhas e a última fica sob o botão; o app mostra o texto inteiro em 3 linhas, com a mesma margem direita do título e do botão; home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
       },
       {
         "figma": "t73",
         "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no 2º banner do frame o rótulo do botão fica 2 px à direita do centro; o app centraliza como no 1º; home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t6",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "figma": "t9",
+        "ignore": [
+          "y",
+          "w",
+          "font"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t10",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t68",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t69",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t70",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t71",
+        "ignore": [
           "x"
         ],
-        "reason": "no 2º banner do frame o rótulo do botão fica 2 px à direita do centro; o app centraliza como no 1º"
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "figma": "t121",
+        "ignore": [
+          "x",
+          "y",
+          "font"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
       }
     ],
     "shapes": [
       {
         "id": "s5",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 16 px"
+        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 16 px; home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
       },
       {
         "id": "s6",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 16 px"
+        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 16 px; home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
       },
       {
         "id": "s10",
@@ -721,6 +1875,69 @@
           "y"
         ],
         "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s2",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s4",
+        "ignore": [
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "id": "s7",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "id": "s8",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "id": "s46",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "id": "s51",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
+      },
+      {
+        "id": "s79",
+        "ignore": [
+          "y",
+          "w"
+        ],
+        "reason": "home ajustada a pedido em 26/11 (de45e27, 93d6806, a687457): texto do hero maior e reposicionado, arte do hero de 360 px, banners editoriais centralizados, carrossel com paginação própria e lista de carteiras que quebra linha no rodapé"
       }
     ]
   },
@@ -753,10 +1970,11 @@
         "app": "/^\\d+$/",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y"
         ],
         "anchor": "center",
-        "reason": "contagem do carrinho: o frame tem 6 itens; o visitante do login tem o carrinho vazio (0)"
+        "reason": "contagem do carrinho: o frame tem 6 itens; o visitante do login tem o carrinho vazio (0); busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "figma": "t1",
@@ -770,6 +1988,13 @@
         "figma": "***********",
         "skip": true,
         "reason": "a senha digitada aparece como pontos do campo password do navegador, que não são texto mensurável"
+      },
+      {
+        "figma": "t6",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       }
     ],
     "shapes": [
@@ -784,6 +2009,20 @@
           "radius"
         ],
         "reason": "o diálogo de login do frame tem cantos retos e o de cadastro, 8 px; o app usa 8 px nos dois"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s2",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       }
     ]
   },
@@ -816,10 +2055,11 @@
         "app": "/^\\d+$/",
         "ignore": [
           "x",
-          "w"
+          "w",
+          "y"
         ],
         "anchor": "center",
-        "reason": "contagem do carrinho: o frame tem 6 itens; o visitante do login tem o carrinho vazio (0)"
+        "reason": "contagem do carrinho: o frame tem 6 itens; o visitante do login tem o carrinho vazio (0); busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "figma": "t1",
@@ -828,6 +2068,13 @@
           "color"
         ],
         "reason": "o fundo do frame é a home (Início ativo); no app /login não marca seção ativa"
+      },
+      {
+        "figma": "t6",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       }
     ],
     "shapes": [
@@ -842,6 +2089,20 @@
           "paint"
         ],
         "reason": "o diálogo foca o primeiro campo ao abrir (Radix), então a borda fica na cor de foco; o frame não mostra foco"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
+      },
+      {
+        "id": "s2",
+        "ignore": [
+          "y"
+        ],
+        "reason": "busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       }
     ]
   },
@@ -945,9 +2206,10 @@
       {
         "id": "s1",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px; busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "id": "s2",
@@ -1086,9 +2348,10 @@
       {
         "id": "s1",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px; busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "id": "s2",
@@ -1261,15 +2524,23 @@
           "y"
         ],
         "reason": "o app mostra \"Conectar carteira\" e o estado da conexão abaixo dos provedores (o pedido exige carteira conectada), então o botão desce"
+      },
+      {
+        "figma": "t60",
+        "ignore": [
+          "w"
+        ],
+        "reason": "lista de carteiras com espaços simples (a687457) para quebrar linha no rodapé; a mesma frase deixa a chip do checkout mais estreita"
       }
     ],
     "shapes": [
       {
         "id": "s1",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px; busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "id": "s2",
@@ -1328,6 +2599,13 @@
           "y"
         ],
         "reason": "o app mostra \"Conectar carteira\" e o estado da conexão abaixo dos provedores (o pedido exige carteira conectada), então o botão desce"
+      },
+      {
+        "id": "s26",
+        "ignore": [
+          "w"
+        ],
+        "reason": "lista de carteiras com espaços simples (a687457) para quebrar linha no rodapé; a mesma frase deixa a chip do checkout mais estreita"
       }
     ]
   },
@@ -1484,9 +2762,10 @@
       {
         "id": "s1",
         "ignore": [
-          "x"
+          "x",
+          "y"
         ],
-        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px; busca, carrinho e o botão Entrar ficam centralizados na linha do texto do menu, 6,5 px acima do frame (ajuste pedido na revisão; ver ARCHITECTURE.md, \"Cabeçalho desktop\")"
       },
       {
         "id": "s2",

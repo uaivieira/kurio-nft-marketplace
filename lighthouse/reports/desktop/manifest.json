@@ -2,109 +2,235 @@
   {
     "url": "http://127.0.0.1:4174/",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_26_16_58_29.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_26_16_58_29.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1--2026_11_26_21_37_50.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1--2026_11_26_21_37_50.report.json",
     "summary": {
       "performance": 1,
-      "accessibility": 1,
+      "accessibility": 0.97,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_26_16_58_49.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_26_16_58_49.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1--2026_11_26_21_38_10.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1--2026_11_26_21_38_10.report.json",
     "summary": {
       "performance": 1,
-      "accessibility": 1,
+      "accessibility": 0.97,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/mercado",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_16_59_09.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_16_59_09.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_21_38_19.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_21_38_19.report.json",
     "summary": {
       "performance": 1,
-      "accessibility": 1,
+      "accessibility": 0.97,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/mercado",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_16_59_19.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_16_59_19.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_21_38_29.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_21_38_29.report.json",
     "summary": {
       "performance": 1,
-      "accessibility": 1,
+      "accessibility": 0.97,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/nft/emerald-ape-042",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_16_59_39.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_16_59_39.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_21_38_59.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_21_38_59.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/nft/emerald-ape-042",
     "isRepresentativeRun": false,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_16_59_48.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_16_59_48.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_21_39_09.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_21_39_09.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/login",
+    "isRepresentativeRun": false,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-login-2026_11_26_21_39_19.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-login-2026_11_26_21_39_19.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/login",
+    "isRepresentativeRun": false,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-login-2026_11_26_21_39_28.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-login-2026_11_26_21_39_28.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/profile",
+    "isRepresentativeRun": false,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-profile-2026_11_26_21_39_48.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-profile-2026_11_26_21_39_48.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/profile",
+    "isRepresentativeRun": false,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-profile-2026_11_26_21_40_08.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-profile-2026_11_26_21_40_08.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/cart",
+    "isRepresentativeRun": false,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-cart-2026_11_26_21_40_28.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-cart-2026_11_26_21_40_28.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/cart",
+    "isRepresentativeRun": false,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-cart-2026_11_26_21_40_38.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-cart-2026_11_26_21_40_38.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/",
     "isRepresentativeRun": true,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_26_16_58_40.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1--2026_11_26_16_58_40.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1--2026_11_26_21_38_00.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1--2026_11_26_21_38_00.report.json",
     "summary": {
       "performance": 1,
-      "accessibility": 1,
+      "accessibility": 0.97,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/mercado",
     "isRepresentativeRun": true,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_16_58_59.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_16_58_59.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_21_38_39.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-mercado-2026_11_26_21_38_39.report.json",
     "summary": {
       "performance": 1,
-      "accessibility": 1,
+      "accessibility": 0.97,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
     }
   },
   {
     "url": "http://127.0.0.1:4174/nft/emerald-ape-042",
     "isRepresentativeRun": true,
-    "htmlPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_16_59_29.report.html",
-    "jsonPath": "/Users/uaiviiera/projects/nft-marketplace/lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_16_59_29.report.json",
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_21_38_49.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-nft_emerald_ape_042-2026_11_26_21_38_49.report.json",
     "summary": {
       "performance": 1,
       "accessibility": 1,
       "best-practices": 1,
-      "seo": 1
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/login",
+    "isRepresentativeRun": true,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-login-2026_11_26_21_39_38.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-login-2026_11_26_21_39_38.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/profile",
+    "isRepresentativeRun": true,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-profile-2026_11_26_21_39_58.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-profile-2026_11_26_21_39_58.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 0.96,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
+    }
+  },
+  {
+    "url": "http://127.0.0.1:4174/cart",
+    "isRepresentativeRun": true,
+    "htmlPath": "lighthouse/reports/desktop/127_0_0_1-cart-2026_11_26_21_40_18.report.html",
+    "jsonPath": "lighthouse/reports/desktop/127_0_0_1-cart-2026_11_26_21_40_18.report.json",
+    "summary": {
+      "performance": 1,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1,
+      "agentic-browsing": 1
     }
   }
 ]

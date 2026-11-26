@@ -1,15 +1,23 @@
 # Lighthouse — medians (3 runs per page and profile)
 
-Gerado em 2026-11-26T16:59:57.318Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
+Gerado em 2026-11-26T21:40:46.652Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
 
-| Page | Profile | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
-|---|---|---|---|---|---|---|---|---|
-| / | mobile | 100 | 100 | 100 | 100 | 1.76 s | 0.000 | 63 ms |
-| /mercado | mobile | 100 | 100 | 100 | 100 | 1.61 s | 0.000 | 61 ms |
-| /nft/emerald-ape-042 | mobile | 100 | 100 | 100 | 100 | 1.54 s | 0.000 | 66 ms |
-| / | desktop | 100 | 100 | 100 | 100 | 0.41 s | 0.000 | 0 ms |
-| /mercado | desktop | 100 | 100 | 100 | 100 | 0.37 s | 0.000 | 0 ms |
-| /nft/emerald-ape-042 | desktop | 100 | 100 | 100 | 100 | 0.36 s | 0.000 | 0 ms |
+Commit auditado: `d1167cfe4f448be631d2f628b2d798ece7c4e06a` com alterações locais não commitadas em código de aplicação.
+
+| Page | Profile | Performance | Accessibility | Best Practices | SEO | Agentic Browsing | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|---|---|
+| / | mobile | 100 | 100 | 100 | 100 | 4/4 | 1.73 s | 0.000 | 0 ms |
+| /mercado | mobile | 100 | 100 | 100 | 100 | 4/4 | 1.58 s | 0.000 | 0 ms |
+| /nft/emerald-ape-042 | mobile | 100 | 100 | 100 | 100 | 4/4 | 1.66 s | 0.000 | 0 ms |
+| /login | mobile | 100 | 100 | 100 | 100 | 4/4 | 1.73 s | 0.000 | 0 ms |
+| /profile | mobile | 100 | 100 | 100 | 100 | 4/4 | 1.73 s | 0.000 | 0 ms |
+| /cart | mobile | 100 | 100 | 100 | 100 | 4/4 | 0.91 s | 0.000 | 0 ms |
+| / | desktop | 100 | 97 | 100 | 100 | 4/4 | 0.41 s | 0.000 | 0 ms |
+| /mercado | desktop | 100 | 97 | 100 | 100 | 4/4 | 0.37 s | 0.000 | 0 ms |
+| /nft/emerald-ape-042 | desktop | 100 | 100 | 100 | 100 | 4/4 | 0.40 s | 0.000 | 0 ms |
+| /login | desktop | 100 | 96 | 100 | 100 | 4/4 | 0.41 s | 0.000 | 0 ms |
+| /profile | desktop | 100 | 96 | 100 | 100 | 4/4 | 0.40 s | 0.000 | 0 ms |
+| /cart | desktop | 100 | 100 | 100 | 100 | 4/4 | 0.37 s | 0.000 | 0 ms |
 
 ## Environment
 
@@ -17,3 +25,4 @@ Gerado em 2026-11-26T16:59:57.318Z por `pnpm lighthouse` (build otimizado servid
 - Node v26.8.2, Darwin 27.0.0 arm64, Apple M5
 - Perfil mobile: emulação padrão do Lighthouse (Moto G Power, 4G lento simulado, CPU 4x). Perfil desktop: preset `desktop`.
 - Relatórios HTML/JSON de cada execução: `lighthouse/reports/<perfil>/`.
+- Agentic Browsing conta só as auditorias aplicáveis; as de WebMCP aparecem como "não se aplica" quando o Chrome não expõe `navigator.modelContext` (as ferramentas são cobertas por `tests/e2e/agentic.spec.ts`).
