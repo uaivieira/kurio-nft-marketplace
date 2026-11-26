@@ -16,6 +16,7 @@ import { FavoriteButton, NftCard } from '@/features/catalog/NftCard'
 import { errorMessage, isApiError } from '@/lib/api-error'
 import { formatEth } from '@/lib/eth'
 import { cn } from '@/lib/utils'
+import { useReveal } from '@/lib/use-reveal'
 import { announce } from '@/realtime/announcer'
 import { useAddToCart } from '@/queries/cart'
 import { useNft } from '@/queries/catalog'
@@ -172,6 +173,7 @@ function Gallery({ nft }: { nft: NftDetail }) {
 
 export function DetailPage({ nftId }: { nftId: string }) {
   const { data: nft, isPending, isError, error, refetch } = useNft(nftId)
+  const reveal = useReveal(isPending)
 
   if (isPending) return <DetailSkeleton />
   if (isError) {
@@ -187,7 +189,11 @@ export function DetailPage({ nftId }: { nftId: string }) {
     )
   }
 
-  return <DetailContent key={nft.id} nft={nft} />
+  return (
+    <div className={reveal}>
+      <DetailContent key={nft.id} nft={nft} />
+    </div>
+  )
 }
 
 function DetailContent({ nft }: { nft: NftDetail }) {

@@ -30,7 +30,7 @@ export function FavoriteButton({ nft, className, showLabel = false }: { nft: Pic
       onClick={onClick}
       aria-pressed={active}
       aria-label={active ? `Remover ${nft.name} dos favoritos` : `Favoritar ${nft.name}`}
-      className={cn('relative z-10 flex size-9 cursor-pointer items-center justify-center rounded-sm bg-card/90 text-primary transition-colors hover:bg-card', className)}
+      className={cn('relative z-10 flex size-9 cursor-pointer items-center justify-center rounded-sm bg-card/90 text-primary transition-[background-color,transform] duration-200 hover:bg-card active:scale-90', className)}
     >
       {active ? <HeartFilledIcon className="size-5" /> : <HeartIcon className="size-5" />}
       {showLabel && <span aria-hidden="true">{active ? 'Favoritado' : 'Favoritar'}</span>}
@@ -43,14 +43,14 @@ export function NftCard({ nft, sizes = '(min-width: 1024px) 250px, 45vw', priori
   const soldOut = nft.totalAvailable === 0
   return (
     <article className="group relative flex flex-col max-md:rounded-2xl max-md:bg-card max-md:p-1.5 max-md:pb-3" data-testid="nft-card">
-      <div className="relative flex aspect-[258/300] items-center justify-center bg-card px-1 max-md:aspect-square max-md:px-0">
-        <NftImage artwork={nft.artwork} alt={`Arte de ${nft.name}`} sizes={sizes} priority={priority} className="rounded-2xl" />
+      <div className="relative flex aspect-[258/300] items-center justify-center overflow-hidden bg-card px-1 max-md:aspect-square max-md:px-0">
+        <NftImage artwork={nft.artwork} alt={`Arte de ${nft.name}`} sizes={sizes} priority={priority} className="rounded-2xl transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
         {nft.badge && <span className="absolute top-6 left-0 bg-primary px-3 py-1 text-base font-medium text-primary-foreground uppercase">Raro</span>}
         {soldOut && <span className="absolute bottom-6 left-1 bg-background/90 px-2 py-1 text-xs font-bold uppercase">Esgotado</span>}
-        <FavoriteButton nft={nft} className="absolute top-8 right-4 md:opacity-0 md:group-focus-within:opacity-100 md:group-hover:opacity-100 md:aria-pressed:opacity-100" />
+        <FavoriteButton nft={nft} className="absolute top-8 right-4 transition-opacity duration-200 md:opacity-0 md:group-focus-within:opacity-100 md:group-hover:opacity-100 md:aria-pressed:opacity-100" />
       </div>
       <h3 className="mt-3 text-base leading-4 max-md:mt-2.5 max-md:px-1.5 max-md:text-md">
-        <Link to="/nft/$nftId" params={{ nftId: nft.id }} className="after:absolute after:inset-0 hover:text-highlight">
+        <Link to="/nft/$nftId" params={{ nftId: nft.id }} className="transition-colors duration-200 after:absolute after:inset-0 hover:text-highlight">
           {nft.name}
         </Link>
       </h3>

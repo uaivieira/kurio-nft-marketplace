@@ -9,6 +9,9 @@ export function createAppRouter(history?: RouterHistory) {
     routeTree,
     history,
     defaultPreload: 'intent',
+    // Crossfade between pages where the browser supports View Transitions (no-op elsewhere). Search
+    // param changes on the same page (filters, sort, pagination) update in place, without a crossfade.
+    defaultViewTransition: { types: ({ pathChanged }) => (pathChanged ? ['page'] : false) },
     scrollRestoration: true,
     defaultNotFoundComponent: () => <NotFound />,
     defaultErrorComponent: RouteError,

@@ -1,4 +1,6 @@
 @import 'tailwindcss' source('.');
+/* Enter/exit keyframes used by the shadcn/ui dialogs, drawers and popovers (animate-in, fade-in, zoom-in…). */
+@import 'tw-animate-css';
 
 @font-face {
   font-family: 'Roboto Mono';
@@ -117,7 +119,20 @@
   }
 }
 
+/* Route changes crossfade through the View Transitions API (enabled on the router). */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 220ms;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

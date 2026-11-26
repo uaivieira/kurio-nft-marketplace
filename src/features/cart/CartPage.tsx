@@ -10,6 +10,8 @@ import { Skeleton } from '@/components/ui/skeleton'
 import type { CartLine, QuoteIssue } from '@/contracts/cart'
 import { NftCard } from '@/features/catalog/NftCard'
 import { errorMessage } from '@/lib/api-error'
+import { useReveal } from '@/lib/use-reveal'
+import { cn } from '@/lib/utils'
 import { formatEth, mulEth } from '@/lib/eth'
 import { useSession } from '@/lib/session-store'
 import { announce } from '@/realtime/announcer'
@@ -77,6 +79,7 @@ export function CartPage() {
   const acknowledge = useAcknowledgePrices()
   const suggestions = useCatalog({})
   const busy = setQuantity.isPending || removeLine.isPending
+  const reveal = useReveal(cart.isPending)
 
   const finalize = () => void navigate(session ? { to: '/checkout' } : { to: '/login', search: { redirect: '/checkout' } })
   const blocked = quote.data ? !quote.data.purchasable : true
@@ -113,7 +116,7 @@ export function CartPage() {
         <div className="mb-3 hidden h-7 md:grid-cols-[minmax(0,2.2fr)_1fr_1fr_1fr_24px] lg:grid-cols-[311px_139px_136px_148px_24px] border-b border-border text-base leading-4 font-bold md:grid" aria-hidden="true">
           <span>NFTs</span><span>Preço</span><span>Edições</span><span>Total</span><span />
         </div>
-        <ul className="space-y-5 md:space-y-3" aria-label="Itens do carrinho">
+        <ul className={cn(reveal, 'space-y-5 md:space-y-3')} aria-label="Itens do carrinho">
           {cart.data.lines.map((line) => (
             <LineRow
               key={line.id}

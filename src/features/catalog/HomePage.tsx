@@ -9,6 +9,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { CATALOG_PAGE_SIZE, CATALOG_SORTS, CATALOG_TABS, type CatalogQuery } from '@/contracts/nft'
 import { errorMessage } from '@/lib/api-error'
 import { cn } from '@/lib/utils'
+import { useReveal } from '@/lib/use-reveal'
 import { useCatalog } from '@/queries/catalog'
 import { CatalogFilters } from './CatalogFilters'
 import { CatalogPagination } from './CatalogPagination'
@@ -54,6 +55,7 @@ function SearchField({ search }: { search: CatalogSearch }) {
 
 function ResultsGrid({ search, query }: { search: CatalogSearch; query: CatalogQuery }) {
   const { data, isPending, isError, error, refetch, isFetching, isPlaceholderData } = useCatalog(query)
+  const reveal = useReveal(isPending)
 
   if (isError && !data) {
     return (
@@ -98,7 +100,7 @@ function ResultsGrid({ search, query }: { search: CatalogSearch; query: CatalogQ
       <ul
         aria-busy={isFetching}
         data-testid="catalog-grid"
-        className={cn('grid grid-cols-2 gap-x-4 gap-y-8 transition-opacity md:grid-cols-3 md:gap-x-[34px] md:gap-y-[72px] [&>li:nth-child(even)]:mt-8 md:[&>li:nth-child(even)]:mt-0', isPlaceholderData && 'opacity-60')}
+        className={cn(reveal, 'grid grid-cols-2 gap-x-4 gap-y-8 transition-opacity duration-200 md:grid-cols-3 md:gap-x-[34px] md:gap-y-[72px] [&>li:nth-child(even)]:mt-8 md:[&>li:nth-child(even)]:mt-0', isPlaceholderData && 'opacity-60')}
       >
         {data.items.map((nft, index) => (
           <li key={nft.id}>

@@ -6,7 +6,7 @@ import { login, signup } from '@/api/auth'
 import { loginInput, signupInput, type LoginInput, type SignupInput } from '@/contracts/auth'
 import { applyApiErrors } from '@/components/form/api-errors'
 import { Field, PasswordInput } from '@/components/form/Field'
-import { FacebookIcon, GoogleIcon } from '@/components/icons'
+import { FacebookLogoIcon, GoogleLogoIcon } from '@/components/icons'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
@@ -29,8 +29,8 @@ function SocialButtons() {
         <span className="relative bg-card px-3">Ou continue com</span>
       </p>
       {[
-        { provider: 'Google', icon: <GoogleIcon className="size-[18px] text-[#4285F4]" /> },
-        { provider: 'Facebook', icon: <FacebookIcon className="size-[18px] text-[#1877F2]" /> },
+        { provider: 'Google', icon: <GoogleLogoIcon className="size-5" /> },
+        { provider: 'Facebook', icon: <FacebookLogoIcon className="size-5" /> },
       ].map(({ provider, icon }) => (
         <button
           key={provider}
