@@ -6,11 +6,11 @@ module.exports = {
     collect: {
       startServerCommand: 'pnpm exec vite preview --host 127.0.0.1 --port 4174',
       startServerReadyPattern: '4174',
-      url: [`${BASE}/`, `${BASE}/mercado`, `${BASE}/nft/emerald-ape-042`],
+      url: [`${BASE}/`, `${BASE}/mercado`, `${BASE}/nft/emerald-ape-042`, `${BASE}/login`, `${BASE}/profile`, `${BASE}/cart`],
       numberOfRuns: 3,
       settings: {
         ...(profile === 'desktop' ? { preset: 'desktop' } : {}),
-        onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo'],
+        onlyCategories: ['performance', 'accessibility', 'best-practices', 'seo', 'agentic-browsing'],
         chromeFlags: '--headless=new --no-sandbox',
       },
     },

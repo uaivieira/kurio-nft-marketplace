@@ -68,7 +68,7 @@ function LoginForm({ onDone }: { onDone: () => void }) {
   const { errors } = form.formState
 
   return (
-    <form noValidate onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-3">
+    <form noValidate toolname="log_in" tooldescription="Log in to Kurio with the email and password of an existing account. The user submits the form." onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-3">
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
       <Field hideLabel label={t('common.fields.email')} error={errors.email?.message}>
         {(props) => <Input {...props} className="pl-[15px] max-md:h-[50px] max-md:rounded-[10px] md:rounded-[5px]" type="email" autoComplete="email" placeholder={t('auth.emailPlaceholder')} {...form.register('email')} />}
@@ -102,7 +102,7 @@ function SignupForm({ onDone }: { onDone: () => void }) {
   const { errors } = form.formState
 
   return (
-    <form noValidate onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-3">
+    <form noValidate toolname="sign_up" tooldescription="Create a Kurio account with a username, email and password. The user submits the form." onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-3">
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
       <Field hideLabel label={t('common.fields.username')} error={errors.username?.message}>
         {(props) => <Input {...props} className="pl-[15px] max-md:h-[50px] max-md:rounded-[10px] md:rounded-[5px]" autoComplete="username" placeholder={t('common.fields.username')} {...form.register('username')} />}
@@ -136,6 +136,7 @@ export function AuthDialog({ mode, redirect, expired }: AuthDialogProps) {
         className={cn(isLogin ? 'md:top-40' : 'md:top-[158px]', "max-md:top-0 max-md:left-0 max-md:h-dvh max-md:max-w-none max-md:translate-x-0 max-md:translate-y-0 max-md:content-start max-md:overflow-y-auto max-md:pt-[129px] max-md:px-7 max-md:rounded-none max-md:border-b-0 max-md:bg-background md:min-h-[600px] md:max-w-[500px] md:translate-y-0 md:content-start md:gap-5 md:rounded-lg md:border-b-[10px] md:px-0 md:pt-11 md:pb-[66px] [&>[data-slot=dialog-close]]:top-[9px] [&>[data-slot=dialog-close]]:right-3 [&>[data-slot=dialog-close]]:text-primary! [&>[data-slot=dialog-close]]:opacity-100 [&>[data-slot=dialog-close]_svg]:size-[18px]")}
         aria-describedby="auth-description"
         overlayClassName="md:bg-transparent"
+        portal={false}
       >
         <p aria-hidden="true" className="hidden pt-[1.5px] pl-[0.1em] text-center text-[32px] leading-9 font-bold tracking-label max-md:block">KURIO</p>
         <p aria-hidden="true" className={cn('hidden pt-[66.5px] pb-[19px] text-center font-bold max-md:block', isLogin ? 'text-xl' : 'text-lg')}>{isLogin ? t('auth.login') : t('auth.signupMobileTitle')}</p>

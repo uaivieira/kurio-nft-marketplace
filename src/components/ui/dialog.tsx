@@ -53,14 +53,17 @@ function DialogContent({
   children,
   showCloseButton = true,
   overlayClassName,
+  portal = true,
   ...props
 }: React.ComponentProps<typeof DialogPrimitive.Content> & {
   showCloseButton?: boolean
   overlayClassName?: string
+  portal?: boolean
 }) {
   const { t } = useTranslation()
+  const Container = portal ? DialogPortal : React.Fragment
   return (
-    <DialogPortal data-slot="dialog-portal">
+    <Container>
       <DialogOverlay className={overlayClassName} />
       <DialogPrimitive.Content
         data-slot="dialog-content"
@@ -81,7 +84,7 @@ function DialogContent({
           </DialogPrimitive.Close>
         )}
       </DialogPrimitive.Content>
-    </DialogPortal>
+    </Container>
   )
 }
 

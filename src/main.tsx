@@ -10,11 +10,14 @@ import { markBackendReady, markRealtimeReady } from '@/lib/backend-ready'
 import { queryClient } from '@/lib/query-client'
 import { RealtimeProvider } from '@/realtime/RealtimeProvider'
 import { RevealPrerender } from '@/components/RevealPrerender'
+import { afterLoad } from '@/lib/after-load'
+import { capturePrerenderedInputs } from '@/lib/prerender-inputs'
 import { router } from './router'
 import './index.css'
 
 function adoptPrerenderedState() {
   const json = document.getElementById('kurio-state')?.textContent
+  if (import.meta.env.VITE_ENABLE_MOCKS === 'false') document.documentElement.setAttribute('data-prerender-stale', '')
   if (!json || document.documentElement.hasAttribute('data-prerender-stale')) return false
   const state = JSON.parse(json) as DehydratedState
   hydrate(queryClient, {
@@ -39,9 +42,15 @@ async function bootstrap() {
     void router.navigate({ to: '/login', search: { redirect: href, reason: 'expired' } })
   })
 
+  if ('modelContext' in navigator) {
+    void afterLoad.then(() => import('@/agent/webmcp')).then(({ registerWebMcpTools }) => registerWebMcpTools(queryClient, (href) => router.navigate({ href })))
+  }
+
   if (adoptPrerenderedState()) await router.load()
 
-  const root = createRoot(document.getElementById('root')!)
+  const container = document.getElementById('root')!
+  capturePrerenderedInputs(container)
+  const root = createRoot(container)
   startTransition(() => {
     root.render(
       <StrictMode>

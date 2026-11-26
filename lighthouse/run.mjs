@@ -17,7 +17,14 @@ for (const profile of PROFILES) {
     env: { ...process.env, LH_PROFILE: profile },
   })
   rmSync('.lighthouseci', { recursive: true, force: true })
+  const manifestPath = `lighthouse/reports/${profile}/manifest.json`
+  const relative = (file) => path.relative(process.cwd(), file).split(path.sep).join('/')
+  const entries = JSON.parse(readFileSync(manifestPath, 'utf8')).map((entry) => ({ ...entry, htmlPath: relative(entry.htmlPath), jsonPath: relative(entry.jsonPath) }))
+  writeFileSync(manifestPath, `${JSON.stringify(entries, null, 2)}\n`)
 }
+
+const commit = execSync('git rev-parse HEAD', { encoding: 'utf8' }).trim()
+const dirty = execSync('git status --porcelain -- src scripts public index.html vite.config.ts vercel.json', { encoding: 'utf8' }).trim() !== ''
 
 let lighthouseVersion = ''
 let chromeVersion = ''
@@ -31,7 +38,11 @@ for (const profile of PROFILES) {
     chromeVersion = reports[0].environment.hostUserAgent.match(/Chrome\/([\d.]+)/)?.[1] ?? ''
     const score = (id) => Math.round(median(reports.map((r) => r.categories[id].score)) * 100)
     const metric = (id) => median(reports.map((r) => r.audits[id].numericValue))
-    rows.push(`| ${page} | ${profile} | ${CATEGORIES.map(score).join(' | ')} | ${(metric('largest-contentful-paint') / 1000).toFixed(2)} s | ${metric('cumulative-layout-shift').toFixed(3)} | ${Math.round(metric('total-blocking-time'))} ms |`)
+    const agentic = (report) => {
+      const applicable = report.categories['agentic-browsing'].auditRefs.map((ref) => report.audits[ref.id]).filter((audit) => audit.scoreDisplayMode !== 'notApplicable' && audit.scoreDisplayMode !== 'informative' && audit.score !== null)
+      return `${applicable.filter((audit) => audit.score === 1).length}/${applicable.length}`
+    }
+    rows.push(`| ${page} | ${profile} | ${CATEGORIES.map(score).join(' | ')} | ${agentic(reports[0])} | ${(metric('largest-contentful-paint') / 1000).toFixed(2)} s | ${metric('cumulative-layout-shift').toFixed(3)} | ${Math.round(metric('total-blocking-time'))} ms |`)
   }
 }
 
@@ -39,8 +50,10 @@ const summary = `# Lighthouse — medians (3 runs per page and profile)
 
 Gerado em ${new Date().toISOString()} por \`pnpm lighthouse\` (build otimizado servido por \`vite preview\`, cenário de mocks \`default\`).
 
-| Page | Profile | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
-|---|---|---|---|---|---|---|---|---|
+Commit auditado: \`${commit}\`${dirty ? ' com alterações locais não commitadas em código de aplicação' : ''}.
+
+| Page | Profile | Performance | Accessibility | Best Practices | SEO | Agentic Browsing | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|---|---|
 ${rows.join('\n')}
 
 ## Environment
@@ -49,6 +62,7 @@ ${rows.join('\n')}
 - Node ${process.version}, ${os.type()} ${os.release()} ${os.arch()}, ${os.cpus()[0]?.model ?? ''}
 - Perfil mobile: emulação padrão do Lighthouse (Moto G Power, 4G lento simulado, CPU 4x). Perfil desktop: preset \`desktop\`.
 - Relatórios HTML/JSON de cada execução: \`lighthouse/reports/<perfil>/\`.
+- Agentic Browsing conta só as auditorias aplicáveis; as de WebMCP aparecem como "não se aplica" quando o Chrome não expõe \`navigator.modelContext\` (as ferramentas são cobertas por \`tests/e2e/agentic.spec.ts\`).
 `
 writeFileSync('lighthouse/reports/summary.md', summary)
 console.log(summary)

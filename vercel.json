@@ -6,7 +6,7 @@
     {
       "src": "/(.*)",
       "headers": {
-        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'sha256-R6NKEaHW85LmUmX0UDH1uzuINWfo9mCdlVRCcY/x7Oo=' 'sha256-ih7R26F6aoGgA6aAGTISKaBZcVSgkp8c5EJ/JtAFO/I=' 'sha256-zFML+AEdb/HsbX66VlYzBOqJKNNHs5/WNGYP8JiblyY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+        "Content-Security-Policy": "default-src 'self'; script-src 'self' 'sha256-0JHLd1H2EdJlcZEipWEYhCYP3bm9a1KawLcg832/cmE=' 'sha256-ih7R26F6aoGgA6aAGTISKaBZcVSgkp8c5EJ/JtAFO/I=' 'sha256-zFML+AEdb/HsbX66VlYzBOqJKNNHs5/WNGYP8JiblyY='; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
         "X-Frame-Options": "DENY",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "strict-origin-when-cross-origin",
@@ -29,6 +29,11 @@
     {
       "src": "/nft/([a-z0-9-]+)",
       "dest": "/nft/$1.html",
+      "check": true
+    },
+    {
+      "src": "/(login|signup|cart|checkout|favorites|profile|profile/wallets)",
+      "dest": "/$1.html",
       "check": true
     },
     {

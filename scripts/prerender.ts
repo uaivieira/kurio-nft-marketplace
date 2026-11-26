@@ -2,9 +2,10 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { cspDirective, cspHash, executableInlineScripts, LOADER_SCRIPT, securityHeaders, STALE_CHECK_SCRIPT } from './csp'
-import { fillPage, LCP_PRELOAD_MARKER } from './prerender-page'
+import { fillPage, LCP_PRELOAD_MARKER, type PrerenderCondition } from './prerender-page'
 
 const DIST = path.resolve(process.argv[2] ?? 'dist')
+const PRIVATE_ROUTES = ['/profile', '/profile/wallets', '/checkout', '/favorites']
 const SSR_DIR = path.resolve('dist-ssr')
 
 interface PrerenderModule {
@@ -31,12 +32,21 @@ async function main() {
 
   const mod = (await import(pathToFileURL(path.join(SSR_DIR, 'entry-prerender.js')).href)) as PrerenderModule
   const ids = await mod.seed()
-  const routes = ['/', '/mercado', ...ids.map((id) => `/nft/${id}`)]
+  const gate = (path: string) => ({ path, url: `/login?redirect=${encodeURIComponent(path)}`, when: 'signed-out' as const })
+  const routes: Array<{ path: string; url?: string; when?: PrerenderCondition }> = [
+    { path: '/' },
+    { path: '/mercado' },
+    ...ids.map((id) => ({ path: `/nft/${id}` })),
+    { path: '/login', when: 'signed-out' },
+    { path: '/signup', when: 'signed-out' },
+    ...PRIVATE_ROUTES.map(gate),
+    { path: '/cart', when: 'new-visitor' },
+  ]
   const allowed = new Set(cspDirective(securityHeaders()['Content-Security-Policy'] ?? '', 'script-src'))
   const missing = new Set<string>()
 
-  for (const route of routes) {
-    const { html, state } = await mod.prerender(route)
+  for (const { path: route, url = route, when } of routes) {
+    const { html, state } = await mod.prerender(url)
     const detail = state.queries.find((query) => query.queryKey[0] === 'nft')?.state.data as { artwork?: string } | undefined
     const preload = detail?.artwork
       ? artworkPreload(detail.artwork, '(min-width: 768px) 404px, 100vw')
@@ -49,7 +59,7 @@ async function main() {
     <script type="application/json" id="kurio-boot">${json({ entry, preloads })}</script>
     <script>${LOADER_SCRIPT}</script>`
 
-    const page = fillPage(base, { route, head, root: `<div id="root">${html}</div>\n    ${loader}` })
+    const page = fillPage(base, { route, when, head, root: `<div id="root">${html}</div>\n    ${loader}` })
     for (const script of executableInlineScripts(page)) if (!allowed.has(cspHash(script))) missing.add(cspHash(script))
     const file = route === '/' ? path.join(DIST, 'index.html') : path.join(DIST, `${route}.html`)
     await mkdir(path.dirname(file), { recursive: true })
