@@ -2,10 +2,10 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { cspDirective, cspHash, executableInlineScripts, LOADER_SCRIPT, securityHeaders, STALE_CHECK_SCRIPT } from './csp'
+import { fillPage, LCP_PRELOAD_MARKER } from './prerender-page'
 
 const DIST = path.resolve(process.argv[2] ?? 'dist')
 const SSR_DIR = path.resolve('dist-ssr')
-const LCP_PRELOAD_MARKER = '%kurio:lcp-preload%'
 
 interface PrerenderModule {
   seed: () => Promise<string[]>
@@ -13,7 +13,6 @@ interface PrerenderModule {
 }
 
 const json = (value: unknown) => JSON.stringify(value).replace(/</g, '\\u003c')
-const attribute = (value: string) => value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
 
 function artworkPreload(artwork: string, sizes: string) {
   const set = [160, 320, 480].map((width) => `/nft/${artwork}-${width}.avif ${width}w`).join(', ')
@@ -50,11 +49,7 @@ async function main() {
     <script type="application/json" id="kurio-boot">${json({ entry, preloads })}</script>
     <script>${LOADER_SCRIPT}</script>`
 
-    const page = base
-      .replace('<html lang="pt-BR">', `<html lang="pt-BR" data-prerender-path="${attribute(route)}">`)
-      .replace(LCP_PRELOAD_MARKER, head)
-      .replace('<div id="root"></div>', `<div id="root">${html}</div>\n    ${loader}`)
-    if (!page.includes('data-prerender-path=')) throw new Error('<html lang="pt-BR"> not found in dist/index.html')
+    const page = fillPage(base, { route, head, root: `<div id="root">${html}</div>\n    ${loader}` })
     for (const script of executableInlineScripts(page)) if (!allowed.has(cspHash(script))) missing.add(cspHash(script))
     const file = route === '/' ? path.join(DIST, 'index.html') : path.join(DIST, `${route}.html`)
     await mkdir(path.dirname(file), { recursive: true })

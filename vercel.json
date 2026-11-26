@@ -35,6 +35,10 @@
       "handle": "filesystem"
     },
     {
+      "src": "/(assets|fonts)/(.*)",
+      "status": 404
+    },
+    {
       "src": "/(.*)",
       "dest": "/index.html"
     }

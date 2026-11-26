@@ -1,6 +1,6 @@
 # Lighthouse — medians (3 runs per page and profile)
 
-Gerado em 2026-11-26T15:02:48.390Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
+Gerado em 2026-11-26T15:24:05.024Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
 
 | Page | Profile | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
@@ -9,7 +9,7 @@ Gerado em 2026-11-26T15:02:48.390Z por `pnpm lighthouse` (build otimizado servid
 | /nft/emerald-ape-042 | mobile | 100 | 100 | 100 | 100 | 1.51 s | 0.000 | 0 ms |
 | / | desktop | 100 | 100 | 100 | 100 | 0.41 s | 0.000 | 0 ms |
 | /mercado | desktop | 100 | 100 | 100 | 100 | 0.37 s | 0.000 | 0 ms |
-| /nft/emerald-ape-042 | desktop | 100 | 100 | 100 | 100 | 0.34 s | 0.000 | 0 ms |
+| /nft/emerald-ape-042 | desktop | 100 | 100 | 100 | 100 | 0.35 s | 0.000 | 0 ms |
 
 ## Environment
 

@@ -37,7 +37,7 @@ export const addCartItemInput = z.object({
 export type AddCartItemInput = z.infer<typeof addCartItemInput>
 
 export const updateCartItemInput = z.object({ quantity: z.number().int().positive() })
-export const applyCouponInput = z.object({ code: z.string().trim().min(1, validation('couponRequired')).max(24) })
+export const applyCouponInput = z.object({ code: z.string().trim().min(1, validation('couponRequired')).max(24, validation('maxLength24')) })
 export const mergeCartInput = z.object({ guestId: z.string() })
 
 export const quoteRequest = z.object({ network: network.default('ethereum') })

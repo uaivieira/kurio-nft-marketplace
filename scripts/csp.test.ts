@@ -16,6 +16,13 @@ describe('vercel.json security headers', () => {
     expect(routes).toContainEqual({ src: '/(assets|fonts)/(.*)', headers: { 'cache-control': 'public, max-age=31536000, immutable' }, continue: true })
   })
 
+  it('answers 404 for a missing asset or font instead of the SPA fallback', () => {
+    const filesystem = routes.findIndex((route) => route.handle === 'filesystem')
+    const missing = routes.findIndex((route) => route.src === '/(assets|fonts)/(.*)' && route.status === 404)
+    expect(missing).toBeGreaterThan(filesystem)
+    expect(missing).toBeLessThan(routes.findIndex((route) => route.dest === '/index.html'))
+  })
+
   it('serves the prerendered marketplace and detail pages', () => {
     expect(routes).toContainEqual({ src: '/mercado', dest: '/mercado.html', check: true })
     expect(routes).toContainEqual({ src: '/nft/([a-z0-9-]+)', dest: '/nft/$1.html', check: true })

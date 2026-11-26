@@ -648,6 +648,7 @@ const ptBR = {
     addressRule: 'Endereço deve começar com 0x seguido de 40 caracteres hexadecimais',
     secondaryAddressRule: 'Informe um endereço 0x ou nome ENS válido',
     minLength2: 'Mínimo de 2 caracteres',
+    maxLength24: 'Máximo de 24 caracteres',
     maxLength30: 'Máximo de 30 caracteres',
     maxLength40: 'Máximo de 40 caracteres',
     maxLength500: 'Máximo de 500 caracteres',
