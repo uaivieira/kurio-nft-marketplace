@@ -18,7 +18,7 @@ function toggle<T>(list: T[] | undefined, value: T): T[] | undefined {
 }
 
 const optionClass = (active: boolean) =>
-  cn('flex h-10 w-full cursor-pointer items-center justify-between rounded-sm pr-2 pl-3 text-left text-md transition-colors hover:bg-primary/10', active ? 'text-highlight' : 'text-text-secondary')
+  cn('flex h-10 w-full cursor-pointer items-center justify-between rounded-sm pl-3 text-left text-md transition-colors hover:bg-primary/10', active ? 'text-highlight' : 'text-text-secondary')
 
 const formatPrice = (value: number) => new Intl.NumberFormat(i18n.language, { minimumFractionDigits: 2, maximumFractionDigits: 2, useGrouping: false }).format(value)
 
@@ -45,17 +45,17 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
   const count = (list: { value: string; count: number }[] | undefined, value: string) => list?.find((entry) => entry.value === value)?.count
 
   return (
-    <div className="space-y-6 bg-card px-5 pt-5 pb-5 text-md">
+    <div className="space-y-[34px] bg-card px-5 pt-3.5 pb-5 text-md">
       <fieldset>
         <legend className="mb-1.5 text-lg font-bold">{t('common.collections')}</legend>
-        <ul className="space-y-0.5">
+        <ul>
           {(Object.keys(COLLECTION_LABEL_KEYS) as Collection[]).map((value) => {
             const active = Boolean(search.collections?.includes(value))
             return (
               <li key={value}>
-                <button type="button" aria-pressed={active} onClick={() => update({ collections: toggle(search.collections, value) })} className={optionClass(active)}>
+                <button type="button" aria-pressed={active} onClick={() => update({ collections: toggle(search.collections, value) })} className={cn(optionClass(active), 'pr-3')}>
                   <span>{t(COLLECTION_LABEL_KEYS[value])}</span>
-                  <span className={cn('font-bold', active ? 'text-highlight' : 'text-foreground')}>({count(facets?.collections, value) ?? '–'})</span>
+                  <span className="font-bold">({count(facets?.collections, value) ?? '–'})</span>
                 </button>
               </li>
             )
@@ -64,7 +64,7 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
       </fieldset>
 
       <fieldset>
-        <legend className="mb-4 text-lg font-bold">{t('catalog.filters.priceRange')}</legend>
+        <legend className="mb-1.5 text-lg font-bold">{t('catalog.filters.priceRange')}</legend>
         <Slider
           min={floor}
           max={ceiling}
@@ -73,12 +73,13 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
           onValueChange={(value) => setRange([value[0] ?? floor, value[1] ?? ceiling])}
           minStepsBetweenThumbs={1}
           aria-label={t('catalog.filters.priceRangeLabel')}
+          className="ml-3 h-[21px] w-auto"
         />
-        <p className="mt-5 px-3 text-sm" aria-live="polite">
+        <p className="mt-3.5 px-3 text-foreground" aria-live="polite">
           {interpolate((slots) => t('catalog.filters.price', slots), { min: formatPrice(range[0]), max: formatPrice(range[1]) })}
         </p>
         <Button
-          className="mt-3 ml-3 h-9 px-3 text-base"
+          className="mt-3.5 ml-3 h-9 rounded-md px-3 text-base"
           onClick={() =>
             update({
               minPrice: range[0] > floor ? range[0].toFixed(2) : undefined,
@@ -92,7 +93,7 @@ export function CatalogFilters({ search, facets, onApplied }: { search: CatalogS
 
       <fieldset>
         <legend className="mb-1.5 text-lg font-bold">{t('catalog.filters.network')}</legend>
-        <ul className="space-y-0.5">
+        <ul>
           {(Object.keys(NETWORK_LABELS) as Network[]).map((value) => {
             const active = Boolean(search.networks?.includes(value))
             return (

@@ -25,7 +25,7 @@ export function MobileNav() {
         </Link>
         <SearchDialog
           trigger={
-            <button type="button" aria-label={t('layout.mobileNav.search')} className="absolute -top-[31px] left-1/2 flex size-[57px] -translate-x-1/2 cursor-pointer items-center justify-center rounded-full bg-cta text-foreground shadow-lg">
+            <button type="button" aria-label={t('layout.mobileNav.search')} className="absolute -top-[31px] left-1/2 flex size-[65px] -translate-x-1/2 cursor-pointer items-center justify-center rounded-full bg-fab text-foreground shadow-lg">
               <ScanIcon className="h-6 w-[27px]" />
             </button>
           }

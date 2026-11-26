@@ -16,7 +16,7 @@ const SOON: { label: SoonKey; icon: Icon }[] = [
   { label: 'account.support', icon: DangerIcon },
 ]
 
-const rowClass = 'flex min-h-[45px] items-center gap-3 px-3 py-2.5 text-md whitespace-nowrap text-highlight max-md:border-b-2 md:border-l-4'
+const rowClass = 'flex min-h-[45px] items-center gap-3 px-3 py-2.5 text-md whitespace-nowrap text-highlight max-md:border-b-2 md:gap-[11px] md:border-l-4'
 const itemClass = (active: boolean) => cn(rowClass, 'transition-colors hover:bg-primary/10', active ? 'border-primary' : 'border-transparent')
 
 function SoonItem({ label, icon: Icon }: { label: SoonKey; icon: Icon }) {
@@ -41,9 +41,9 @@ export function AccountLayout() {
   }
 
   return (
-    <div className="mx-auto grid max-w-page grid-cols-[minmax(0,1fr)] gap-7 px-5 pt-6 pb-28 md:grid-cols-[310px_minmax(0,1fr)] md:pt-7 md:pb-16">
+    <div className="mx-auto grid max-w-page grid-cols-[minmax(0,1fr)] gap-7 px-5 pt-6 pb-28 md:grid-cols-[310px_minmax(0,1fr)] md:pt-8 md:pb-16">
       <nav aria-label={t('account.nav')} className="h-fit min-w-0 bg-card">
-        <h2 className="px-2.5 pt-3 pb-2 text-lg font-bold md:pt-4 md:pb-1">{t('common.myProfile')}</h2>
+        <h2 className="px-2.5 pt-3 pb-2 text-lg font-bold md:pb-1">{t('common.myProfile')}</h2>
         <ul className="relative max-md:flex max-md:overflow-x-auto">
           <li><Link to="/profile" className={itemClass(pathname === '/profile')} aria-current={pathname === '/profile' ? 'page' : undefined}><UserIcon className="size-5" aria-hidden="true" />{t('account.profileData')}</Link></li>
           <li><Link to="/profile/wallets" className={itemClass(pathname === '/profile/wallets')} aria-current={pathname === '/profile/wallets' ? 'page' : undefined}><LocationIcon className="size-5" aria-hidden="true" />{t('account.wallets')}</Link></li>
@@ -51,11 +51,11 @@ export function AccountLayout() {
           <li><Link to="/favorites" className={itemClass(false)}><HeartIcon className="size-5" aria-hidden="true" />{t('common.favoritesList')}</Link></li>
           {SOON.map((item) => <SoonItem key={item.label} {...item} />)}
         </ul>
-        <button type="button" onClick={() => void onLogout()} className="flex min-h-[45px] w-full cursor-pointer items-center gap-3 border-t border-border px-3 py-3 text-sm font-bold text-highlight hover:bg-primary/10">
+        <button type="button" onClick={() => void onLogout()} className="flex min-h-[45px] w-full cursor-pointer items-center gap-3 border-t border-border px-3 py-3 text-sm font-bold text-highlight hover:bg-primary/10 md:h-12 md:items-start md:border-primary md:pt-[11px] md:pl-4 md:text-md">
           <LogoutIcon className="size-5" aria-hidden="true" />{t('account.logout')}
         </button>
       </nav>
-      <div className="min-w-0"><Outlet /></div>
+      <div className="min-w-0 md:-mt-1"><Outlet /></div>
       <MobileNav />
     </div>
   )

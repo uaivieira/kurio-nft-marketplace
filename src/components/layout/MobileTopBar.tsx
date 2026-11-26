@@ -9,11 +9,11 @@ export function MobileTopBar({ title, action, className }: { title?: string; act
   const router = useRouter()
   return (
     <div className={cn('flex items-center px-7 pt-8 pb-2 md:hidden', className)}>
-      <button type="button" onClick={() => router.history.back()} aria-label={t('common.back')} className="flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-full bg-card text-primary">
+      <button type="button" onClick={() => router.history.back()} aria-label={t('common.back')} className="flex size-[35px] shrink-0 cursor-pointer items-center justify-center rounded-full border border-border bg-elevated text-primary">
         <ArrowLeftIcon className="size-5" aria-hidden="true" />
       </button>
-      {title && <p className="flex-1 pr-3 text-center text-xl font-bold">{title}</p>}
-      {action && <div className="ml-auto flex size-9 items-center justify-center">{action}</div>}
+      {title && <p className="flex-1 pr-[9px] text-center text-xl font-bold">{title}</p>}
+      {action && <div className="-mr-[3px] ml-auto flex size-[35px] items-center justify-center">{action}</div>}
     </div>
   )
 }

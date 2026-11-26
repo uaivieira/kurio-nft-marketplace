@@ -67,7 +67,8 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | `pnpm lighthouse` | Auditoria Lighthouse (rode `pnpm build` antes): 3 execuções por página e perfil, relatórios em `lighthouse/reports/` |
 | `pnpm assets` | Regera as imagens AVIF/WebP em `public/nft/` a partir de `assets-src/` |
 | `pnpm figma:compare [filtro]` | Compara cada tela com o PNG do frame do Figma (rode `pnpm build` antes). Relatório e diffs em `figma/report/` |
-| `pnpm figma:geometry` | Confere posição e tamanho (±2 px), tamanho e peso de fonte de 156 elementos-chave das 15 telas contra as medidas do Figma em `figma/nodes/` (rode `pnpm build` antes). Relatório em `figma/report/geometry.md`; falha se algum elemento sair da tolerância |
+| `pnpm figma:extract` | Extrai textos e formas dos SVGs em `figma/svg/` para as referências em `figma/nodes/` |
+| `pnpm figma:geometry [filtro]` | Confere 954 nós nos 15 frames com tolerância de ±1 px, tipografia, cores, bordas e raios; exceções justificadas em `figma/geometry-exemptions.json`. Rode `pnpm build` antes; relatório em `figma/report/geometry.md` |
 
 ## Textos e idioma (i18n)
 

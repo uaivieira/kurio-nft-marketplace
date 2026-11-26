@@ -13,18 +13,19 @@ interface QuantityStepperProps {
   testId?: string
   className?: string
   buttonClassName?: string
+  outputClassName?: string
 }
 
 const button = {
-  sm: "h-[26px] w-[18px] before:absolute before:-inset-x-1 before:inset-y-0 before:content-['']",
-  lg: 'h-12 w-8',
-  adaptive: "h-[30px] w-5 before:absolute before:-inset-x-0.5 before:inset-y-0 before:content-[''] md:h-12 md:w-8 md:before:hidden",
+  sm: "h-[30px] w-5 border border-background",
+  lg: 'h-[49.5px] w-[33px] border border-background',
+  adaptive: "h-[30px] w-5 border border-background before:absolute before:-inset-x-0.5 before:inset-y-0 before:content-[''] md:h-[49.5px] md:w-[33px] md:before:hidden",
 } as const
 const glyph = { sm: 'size-3.5', lg: 'size-5', adaptive: 'size-3.5 md:size-5' } as const
-const gap = { sm: 'gap-2.5', lg: 'gap-3', adaptive: 'gap-2.5 md:gap-3' } as const
-const output = { sm: 'w-4 text-sm md:text-base', lg: 'w-[13px] text-xl', adaptive: 'w-4 text-lg md:w-[13px] md:text-xl' } as const
+const gap = { sm: 'gap-2.5', lg: 'gap-3', adaptive: 'gap-[9.5px] md:gap-3' } as const
+const output = { sm: 'w-[15px] text-sm md:text-[17px]', lg: 'w-[13px] text-xl', adaptive: 'w-4 text-lg font-medium md:w-[13px] md:text-xl md:font-normal' } as const
 
-export function QuantityStepper({ value, max, onChange, label, disabled = false, size = 'sm', live = false, testId, className, buttonClassName }: QuantityStepperProps) {
+export function QuantityStepper({ value, max, onChange, label, disabled = false, size = 'sm', live = false, testId, className, buttonClassName, outputClassName }: QuantityStepperProps) {
   const { t } = useTranslation()
   const buttonClass = cn('relative flex shrink-0 cursor-pointer items-center justify-center rounded-full bg-primary text-primary-foreground transition-opacity disabled:cursor-not-allowed disabled:opacity-40', button[size], buttonClassName)
   return (
@@ -32,7 +33,7 @@ export function QuantityStepper({ value, max, onChange, label, disabled = false,
       <button type="button" aria-label={label ? t('common.quantity.decreaseOf', { label }) : t('common.quantity.decrease')} disabled={disabled || value <= 1} onClick={() => onChange(value - 1)} className={buttonClass}>
         <MinusGlyph className={glyph[size]} aria-hidden="true" />
       </button>
-      <output aria-live={live ? 'polite' : undefined} data-testid={testId} className={cn('text-center', output[size])}>
+      <output aria-live={live ? 'polite' : undefined} data-testid={testId} className={cn('text-center', output[size], outputClassName)}>
         {value}
       </output>
       <button type="button" aria-label={label ? t('common.quantity.increaseOf', { label }) : t('common.quantity.increase')} disabled={disabled || value >= max} onClick={() => onChange(value + 1)} className={buttonClass}>

@@ -1,91 +1,414 @@
 {
-  "frame": "mobile-login",
-  "source": "figma/frames/mobile-login.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
-  "elements": [
+ "frame": "mobile-login",
+ "source": "figma/svg/mobile-login.svg",
+ "width": 414,
+ "height": 896,
+ "background": "#140d0a",
+ "texts": [
+  {
+   "id": "t0",
+   "z": 0,
+   "content": "KURIO",
+   "lines": [
     {
-      "id": "logo",
-      "selector": "role=dialog >> text=KURIO",
-      "measure": "ink",
-      "x": 154,
-      "y": 137,
-      "w": 106,
-      "h": 24
-    },
-    {
-      "id": "title",
-      "selector": "role=dialog >> text=\"Entrar\" >> nth=0",
-      "measure": "ink",
-      "x": 172,
-      "y": 257,
-      "w": 70,
-      "h": 15
-    },
-    {
-      "id": "email",
-      "selector": "role=dialog >> role=textbox[name=\"E-mail\"]",
-      "measure": "box",
-      "x": 28,
-      "y": 312,
-      "w": 358,
-      "h": 50
-    },
-    {
-      "id": "password",
-      "selector": "role=dialog >> role=textbox[name=\"Senha\"]",
-      "measure": "box",
-      "x": 28,
-      "y": 374,
-      "w": 358,
-      "h": 50
-    },
-    {
-      "id": "forgot",
-      "selector": "role=dialog >> text=\"Esqueceu a senha?\"",
-      "measure": "ink",
-      "x": 244,
-      "y": 438,
-      "w": 141,
-      "h": 14
-    },
-    {
-      "id": "submit",
-      "selector": "role=dialog >> role=button[name=\"Entrar\"]",
-      "measure": "box",
-      "x": 28,
-      "y": 492,
-      "w": 358,
-      "h": 60
-    },
-    {
-      "id": "divider",
-      "selector": "role=dialog >> text=\"Ou continue com\"",
-      "measure": "ink",
-      "x": 148,
-      "y": 595,
-      "w": 117,
-      "h": 10
-    },
-    {
-      "id": "google",
-      "selector": "role=dialog >> role=button[name=/Google/]",
-      "measure": "box",
-      "x": 28,
-      "y": 620,
-      "w": 358,
-      "h": 40
-    },
-    {
-      "id": "footer-link",
-      "selector": "role=dialog >> role=link[name=\"Novo na Kurio? Crie uma conta\"]",
-      "measure": "ink",
-      "x": 77,
-      "y": 761,
-      "w": 259,
-      "h": 11,
-      "font": {
-        "size": 15,
-        "weight": 400
-      }
+     "text": "KURIO",
+     "x": 152.553,
+     "baseline": 160.43,
+     "w": 112.016
     }
-  ]
+   ],
+   "box": {
+    "x": 152.553,
+    "y": 126.899,
+    "w": 112.016,
+    "h": 42.203
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 32,
+   "fontWeight": 700,
+   "letterSpacing": 3.2,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t1",
+   "z": 1,
+   "content": "Entrar",
+   "lines": [
+    {
+     "text": "Entrar",
+     "x": 170.5,
+     "baseline": 271.769,
+     "w": 72.012
+    }
+   ],
+   "box": {
+    "x": 170.5,
+    "y": 250.812,
+    "w": 72.012,
+    "h": 26.377
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 20,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t2",
+   "z": 3,
+   "content": "contato@email.com",
+   "lines": [
+    {
+     "text": "contato@email.com",
+     "x": 44,
+     "baseline": 342.438,
+     "w": 142.823
+    }
+   ],
+   "box": {
+    "x": 44,
+    "y": 327.768,
+    "w": 142.823,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t3",
+   "z": 5,
+   "content": "***********",
+   "lines": [
+    {
+     "text": "***********",
+     "x": 44,
+     "baseline": 405.215,
+     "w": 105.617
+    }
+   ],
+   "box": {
+    "x": 44,
+    "y": 388.449,
+    "w": 105.617,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t4",
+   "z": 6,
+   "content": "Esqueceu a senha?",
+   "lines": [
+    {
+     "text": "Esqueceu a senha?",
+     "x": 243,
+     "baseline": 449.438,
+     "w": 142.823
+    }
+   ],
+   "box": {
+    "x": 243,
+    "y": 434.768,
+    "w": 142.823,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t5",
+   "z": 8,
+   "content": "Entrar",
+   "lines": [
+    {
+     "text": "Entrar",
+     "x": 178,
+     "baseline": 528.215,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 178,
+    "y": 511.449,
+    "w": 57.609,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t6",
+   "z": 10,
+   "content": "Ou continue com",
+   "lines": [
+    {
+     "text": "Ou continue com",
+     "x": 148,
+     "baseline": 605.05,
+     "w": 117.019
+    }
+   ],
+   "box": {
+    "x": 148,
+    "y": 591.428,
+    "w": 117.019,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t7",
+   "z": 13,
+   "content": "Continuar com Google",
+   "lines": [
+    {
+     "text": "Continuar com Google",
+     "x": 135.924,
+     "baseline": 645.05,
+     "w": 156.025
+    }
+   ],
+   "box": {
+    "x": 135.924,
+    "y": 631.428,
+    "w": 156.025,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t8",
+   "z": 15,
+   "content": "Continuar com Facebook",
+   "lines": [
+    {
+     "text": "Continuar com Facebook",
+     "x": 128.116,
+     "baseline": 701.05,
+     "w": 171.628
+    }
+   ],
+   "box": {
+    "x": 128.116,
+    "y": 687.428,
+    "w": 171.628,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t9",
+   "z": 16,
+   "content": "Novo na Kurio? Crie uma conta",
+   "lines": [
+    {
+     "text": "Novo na Kurio? Crie uma conta",
+     "x": 76,
+     "baseline": 771.826,
+     "w": 261.042
+    }
+   ],
+   "box": {
+    "x": 76,
+    "y": 756.108,
+    "w": 261.042,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  }
+ ],
+ "shapes": [
+  {
+   "id": "s0",
+   "z": 2,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 312,
+    "w": 358,
+    "h": 50
+   },
+   "radius": 10,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s1",
+   "z": 4,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 374,
+    "w": 358,
+    "h": 50
+   },
+   "radius": 10,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s2",
+   "z": 7,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 492,
+    "w": 358,
+    "h": 60
+   },
+   "radius": 10,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s3",
+   "z": 9,
+   "kind": "line",
+   "box": {
+    "x": 28,
+    "y": 599,
+    "w": 110,
+    "h": 1
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s4",
+   "z": 11,
+   "kind": "line",
+   "box": {
+    "x": 276,
+    "y": 599,
+    "w": 110,
+    "h": 1
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s5",
+   "z": 12,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 620,
+    "w": 358,
+    "h": 40
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s6",
+   "z": 14,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 676,
+    "w": 358,
+    "h": 40
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  }
+ ]
 }

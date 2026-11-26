@@ -19,6 +19,7 @@
     "test:e2e:report": "playwright show-report",
     "lighthouse": "node lighthouse/run.mjs",
     "assets": "tsx scripts/build-assets.ts",
+    "figma:extract": "tsx scripts/figma-svg.ts",
     "figma:compare": "tsx scripts/figma-compare.ts",
     "figma:geometry": "tsx scripts/figma-compare.ts --geometry"
   },

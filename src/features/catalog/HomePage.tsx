@@ -51,7 +51,7 @@ function SearchField({ search }: { search: CatalogSearch }) {
         onChange={(event) => setValue(event.target.value)}
         maxLength={80}
         placeholder={t('catalog.search.placeholder')}
-        className="h-[45px] w-full rounded-xl bg-card pr-3 pl-10 text-sm font-bold placeholder:font-bold placeholder:text-muted-foreground md:h-10 md:rounded-sm md:border md:border-input md:bg-background md:font-normal md:placeholder:font-normal"
+        className="h-[45px] w-full rounded-[10px] bg-card pr-3 pl-[42px] text-sm font-bold placeholder:font-bold placeholder:text-muted-foreground md:h-10 md:rounded-sm md:border md:border-input md:bg-background md:font-normal md:placeholder:font-normal"
       />
     </div>
   )
@@ -106,7 +106,7 @@ function ResultsGrid({ search, query }: { search: CatalogSearch; query: CatalogQ
       <ul
         aria-busy={isFetching}
         data-testid="catalog-grid"
-        className={cn(reveal, 'grid grid-cols-2 gap-x-4 gap-y-8 transition-opacity duration-200 md:grid-cols-3 md:gap-x-[34px] md:gap-y-[72px] [&>li:nth-child(even)]:mt-8 md:[&>li:nth-child(even)]:mt-0', isPlaceholderData && 'opacity-60')}
+        className={cn(reveal, 'grid grid-cols-2 gap-x-4 gap-y-6 pb-8 transition-opacity duration-200 md:grid-cols-3 md:gap-x-[34px] md:gap-y-[72px] md:pb-0 max-md:[&>li:nth-child(even)]:translate-y-8', isPlaceholderData && 'opacity-60')}
       >
         {data.items.map((nft, index) => (
           <li key={nft.id}>
@@ -136,7 +136,7 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
     <>
       <div className="mx-auto flex max-w-page items-center gap-2 px-6 pt-10 md:gap-3 md:px-5 md:pt-8 lg:hidden">
         <SearchField search={search} />
-        <button type="button" aria-haspopup="dialog" aria-expanded={filtersOpen} ref={filtersButton} onClick={() => { setFiltersLoaded(true); setFiltersOpen(true) }} aria-label={t('catalog.filters.open')} className="flex size-[45px] shrink-0 cursor-pointer items-center justify-center rounded-xl bg-cta text-primary-foreground md:size-12 md:bg-none md:bg-primary/30 md:text-primary">
+        <button type="button" aria-haspopup="dialog" aria-expanded={filtersOpen} ref={filtersButton} onClick={() => { setFiltersLoaded(true); setFiltersOpen(true) }} aria-label={t('catalog.filters.open')} className="flex size-[45px] shrink-0 cursor-pointer items-center justify-center rounded-[14px] bg-filter text-primary-foreground md:size-12 md:rounded-xl md:bg-none md:bg-primary/30 md:text-primary">
               <FilterIcon className="size-5" aria-hidden="true" />
             </button>
         {filtersLoaded && (
@@ -148,14 +148,16 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
       <Hero />
 
-      <div id="catalogo" className="mx-auto mt-4 grid max-w-page scroll-mt-4 gap-8 px-6 pb-24 md:mt-24 md:px-5 lg:mt-[90px] md:pb-0 lg:grid-cols-[310px_1fr] lg:gap-12">
+      <div id="catalogo" className="mx-auto mt-4 grid max-w-page scroll-mt-4 gap-8 px-6 pb-24 md:mt-24 md:px-5 lg:mt-[96px] md:pb-0 lg:grid-cols-[310px_1fr] lg:gap-12">
         <aside className="hidden space-y-6 lg:block" aria-label={t('catalog.filters.aside')}>
           <CatalogFilters search={search} facets={data?.facets} />
           {home && (data?.featured ? (
-            <Link to="/nft/$nftId" params={{ nftId: data.featured.id }} className="relative block overflow-hidden bg-gradient-to-b from-card to-transparent pt-6">
+            <Link to="/nft/$nftId" params={{ nftId: data.featured.id }} className="relative block h-[470px] overflow-hidden bg-featured pt-6">
               <p className="px-5 text-2xl leading-8 font-bold text-highlight uppercase">{t('catalog.featured.title')}</p>
-              <p className="mt-4 px-5 text-center text-base font-bold">{t('catalog.featured.offer')}</p>
-              <NftImage artwork={data.featured.artwork} alt={t('catalog.featured.alt', { name: data.featured.name })} sizes="310px" className="mt-4 aspect-[310/368] rounded-2xl" />
+              <p className="mt-[9px] px-5 text-center text-[22px] leading-[normal] font-bold">{t('catalog.featured.offer')}</p>
+              <NftImage artwork={data.featured.artwork} alt={t('catalog.featured.alt', { name: data.featured.name })} sizes="310px" className="mt-[9.5px] aspect-[310/368] rounded-[22px]" />
+              <span aria-hidden="true" className="absolute top-[105px] left-[38px] size-[15px] rounded-full bg-glow opacity-30" />
+              <span aria-hidden="true" className="absolute top-[343px] left-[248px] size-[45px] rounded-full bg-glow opacity-30" />
               <span className="sr-only">{data.featured.name}</span>
             </Link>
           ) : (
@@ -166,7 +168,7 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
         <section aria-labelledby="catalog-title" className="min-w-0">
           <h2 id="catalog-title" className="sr-only">{t('catalog.title')}</h2>
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pb-4 md:mb-8 md:min-h-[18px] md:items-start md:pb-0 xl:h-[18px]">
-            <div role="tablist" aria-label={t('catalog.tabs.label')} className="flex max-w-full gap-2.5 overflow-x-auto text-sm md:gap-5 md:text-md">
+            <div role="tablist" aria-label={t('catalog.tabs.label')} className="flex max-w-full gap-2.5 overflow-x-auto text-sm md:gap-[21px] md:text-md">
               {CATALOG_TABS.map((value) => (
                 <button
                   key={value}
@@ -174,13 +176,13 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
                   type="button"
                   aria-selected={tab === value}
                   onClick={() => void navigate({ to: path, search: (prev: CatalogSearch) => ({ ...prev, tab: value === 'all' ? undefined : value, page: undefined }), hash: 'catalogo' })}
-                  className={cn('-mb-px cursor-pointer border-b-2 pb-[3px] leading-4 whitespace-nowrap', tab === value ? 'border-primary font-medium text-highlight' : 'border-transparent')}
+                  className={cn('-mb-px cursor-pointer border-b-2 pb-[3px] leading-4 whitespace-nowrap md:pb-[5px] md:font-medium', tab === value ? 'border-primary font-bold text-highlight' : 'border-transparent')}
                 >
                   {t(`catalog.tabs.${value}`)}
                 </button>
               ))}
             </div>
-            <div className="hidden shrink-0 items-center gap-1 text-md whitespace-nowrap md:flex">
+            <div className="hidden shrink-0 items-center gap-1 text-md whitespace-nowrap md:-mt-0.5 md:flex">
               <label htmlFor="catalog-sort">{t('catalog.sort.label')}</label>
               <span className="relative inline-flex items-center">
                 <select

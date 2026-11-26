@@ -1,163 +1,3259 @@
 {
-  "frame": "desktop-detail",
-  "source": "figma/frames/desktop-detail.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
-  "elements": [
+ "frame": "desktop-detail",
+ "source": "figma/svg/desktop-detail.svg",
+ "width": 1440,
+ "height": 2246,
+ "background": "#140d0a",
+ "texts": [
+  {
+   "id": "t0",
+   "z": 0,
+   "content": "KURIO",
+   "lines": [
     {
-      "id": "header-logo",
-      "selector": "role=banner >> role=link[name=\"Kurio, página inicial\"]",
-      "measure": "ink",
-      "x": 121,
-      "y": 36,
-      "w": 46,
-      "h": 11
-    },
-    {
-      "id": "header-nav-home",
-      "selector": "role=navigation[name=\"Principal\"] >> role=link[name=\"Início\"]",
-      "measure": "ink",
-      "x": 497,
-      "y": 29,
-      "w": 56,
-      "h": 12,
-      "ignore": [
-        "h"
-      ]
-    },
-    {
-      "id": "header-search",
-      "selector": "role=banner >> role=button[name=\"Buscar NFTs\"]",
-      "measure": "ink",
-      "x": 1113,
-      "y": 31,
-      "w": 20,
-      "h": 21
-    },
-    {
-      "id": "header-login",
-      "selector": "role=banner >> role=link[name=\"Entrar\"]",
-      "measure": "box",
-      "x": 1220,
-      "y": 24,
-      "w": 100,
-      "h": 34
-    },
-    {
-      "id": "breadcrumb",
-      "selector": "role=navigation[name=\"Trilha de navegação\"]",
-      "measure": "ink",
-      "x": 121,
-      "y": 103,
-      "w": 143,
-      "h": 13
-    },
-    {
-      "id": "thumbnail-1",
-      "selector": "role=list[name=/Miniaturas/] >> role=img >> nth=0",
-      "measure": "box",
-      "x": 120,
-      "y": 129,
-      "w": 100,
-      "h": 100
-    },
-    {
-      "id": "title",
-      "selector": "role=heading[level=1]",
-      "measure": "ink",
-      "x": 727,
-      "y": 137,
-      "w": 266,
-      "h": 27
-    },
-    {
-      "id": "price",
-      "selector": "data-testid=detail-price",
-      "measure": "ink",
-      "x": 727,
-      "y": 181,
-      "w": 103,
-      "h": 16,
-      "font": {
-        "size": 22,
-        "weight": 700
-      }
-    },
-    {
-      "id": "about",
-      "selector": "role=heading[name=\"Sobre este NFT:\"]",
-      "measure": "ink",
-      "x": 725,
-      "y": 226,
-      "w": 132,
-      "h": 12,
-      "font": {
-        "size": 15
-      }
-    },
-    {
-      "id": "description",
-      "selector": "role=heading[name=\"Sobre este NFT:\"] >> xpath=following-sibling::p[1]",
-      "measure": "ink",
-      "x": 726,
-      "y": 257,
-      "w": 559,
-      "h": 60
-    },
-    {
-      "id": "edition-legend",
-      "selector": "text=\"Edição:\"",
-      "measure": "ink",
-      "x": 726,
-      "y": 333,
-      "w": 59,
-      "h": 15
-    },
-    {
-      "id": "edition-chips",
-      "selector": "role=radiogroup",
-      "measure": "ink",
-      "x": 725,
-      "y": 358,
-      "w": 208,
-      "h": 27
-    },
-    {
-      "id": "buy",
-      "selector": "role=button[name=\"COMPRAR\"]",
-      "measure": "box",
-      "x": 1052,
-      "y": 400,
-      "w": 130,
-      "h": 40
-    },
-    {
-      "id": "favorite",
-      "selector": "data-testid=purchase-row >> role=button[name=\"Favoritar Emerald Ape #042\"]",
-      "measure": "box",
-      "x": 1190,
-      "y": 400,
-      "w": 130,
-      "h": 40
-    },
-    {
-      "id": "token-id",
-      "selector": "role=term >> nth=0 >> xpath=..",
-      "measure": "ink",
-      "x": 726,
-      "y": 468,
-      "w": 160,
-      "h": 11
-    },
-    {
-      "id": "tab-details",
-      "selector": "role=tab[name=\"Detalhes do NFT\"]",
-      "measure": "ink",
-      "x": 121,
-      "y": 675,
-      "w": 152,
-      "h": 13,
-      "ignore": [
-        "h"
-      ]
+     "text": "KURIO",
+     "x": 120,
+     "baseline": 46.588,
+     "w": 49.007
     }
-  ]
+   ],
+   "box": {
+    "x": 120,
+    "y": 31.918,
+    "w": 49.007,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 1.4,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t1",
+   "z": 1,
+   "content": "Início",
+   "lines": [
+    {
+     "text": "Início",
+     "x": 496,
+     "baseline": 40.715,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 496,
+    "y": 23.949,
+    "w": 57.609,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t2",
+   "z": 2,
+   "content": "Mercado",
+   "lines": [
+    {
+     "text": "Mercado",
+     "x": 594,
+     "baseline": 40.715,
+     "w": 67.211
+    }
+   ],
+   "box": {
+    "x": 594,
+    "y": 23.949,
+    "w": 67.211,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t3",
+   "z": 4,
+   "content": "Criadores",
+   "lines": [
+    {
+     "text": "Criadores",
+     "x": 702,
+     "baseline": 40.715,
+     "w": 86.414
+    }
+   ],
+   "box": {
+    "x": 702,
+    "y": 23.949,
+    "w": 86.414,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t4",
+   "z": 5,
+   "content": "Aprenda",
+   "lines": [
+    {
+     "text": "Aprenda",
+     "x": 829,
+     "baseline": 40.715,
+     "w": 67.211
+    }
+   ],
+   "box": {
+    "x": 829,
+    "y": 23.949,
+    "w": 67.211,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t5",
+   "z": 7,
+   "content": "6",
+   "lines": [
+    {
+     "text": "6",
+     "x": 1181,
+     "baseline": 41.384,
+     "w": 6.001
+    }
+   ],
+   "box": {
+    "x": 1181,
+    "y": 30.905,
+    "w": 6.001,
+    "h": 13.188
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 10,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t6",
+   "z": 9,
+   "content": "Entrar",
+   "lines": [
+    {
+     "text": "Entrar",
+     "x": 1253,
+     "baseline": 47.715,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 1253,
+    "y": 30.949,
+    "w": 57.609,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t7",
+   "z": 10,
+   "content": "Início / Mercado",
+   "lines": [
+    {
+     "text": "Início / Mercado",
+     "x": 120,
+     "baseline": 114.826,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 99.108,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t8",
+   "z": 22,
+   "content": "Emerald Ape #042",
+   "lines": [
+    {
+     "text": "Emerald Ape #042",
+     "x": 725,
+     "baseline": 158.376,
+     "w": 268.844
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 129.036,
+    "w": 268.844,
+    "h": 36.928
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 28,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t9",
+   "z": 23,
+   "content": "1.19 ETH",
+   "lines": [
+    {
+     "text": "1.19 ETH",
+     "x": 725,
+     "baseline": 196.545,
+     "w": 105.617
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 173.492,
+    "w": 105.617,
+    "h": 29.015
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 22,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t10",
+   "z": 24,
+   "content": "19 avaliações de colecionadores",
+   "lines": [
+    {
+     "text": "19 avaliações de colecionadores",
+     "x": 1040,
+     "baseline": 193.826,
+     "w": 279.045
+    }
+   ],
+   "box": {
+    "x": 1040,
+    "y": 178.108,
+    "w": 279.045,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t11",
+   "z": 26,
+   "content": "Sobre este NFT:",
+   "lines": [
+    {
+     "text": "Sobre este NFT:",
+     "x": 725,
+     "baseline": 237.201,
+     "w": 135.022
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 221.483,
+    "w": 135.022,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t12",
+   "z": 27,
+   "content": "Um colecionável digital finalizado à mão da coleção Kurio Editions,\nverificado na Ethereum, com arte desbloqueável e acesso para\ncolecionadores.",
+   "lines": [
+    {
+     "text": "Um colecionável digital finalizado à mão da coleção Kurio Editions,",
+     "x": 725,
+     "baseline": 268.813,
+     "w": 562.892
+    },
+    {
+     "text": "verificado na Ethereum, com arte desbloqueável e acesso para",
+     "x": 725,
+     "baseline": 292.813,
+     "w": 504.082
+    },
+    {
+     "text": "colecionadores.",
+     "x": 725,
+     "baseline": 316.813,
+     "w": 126.021
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 254.143,
+    "w": 562.892,
+    "h": 66.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 24,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t13",
+   "z": 28,
+   "content": "Edição:",
+   "lines": [
+    {
+     "text": "Edição:",
+     "x": 725,
+     "baseline": 344.576,
+     "w": 63.01
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 328.858,
+    "w": 63.01,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t14",
+   "z": 30,
+   "content": "1/1",
+   "lines": [
+    {
+     "text": "1/1",
+     "x": 730,
+     "baseline": 378.188,
+     "w": 25.204
+    }
+   ],
+   "box": {
+    "x": 730,
+    "y": 363.518,
+    "w": 25.204,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t15",
+   "z": 32,
+   "content": "1/10",
+   "lines": [
+    {
+     "text": "1/10",
+     "x": 771.183,
+     "baseline": 378.188,
+     "w": 33.605
+    }
+   ],
+   "box": {
+    "x": 771.183,
+    "y": 363.518,
+    "w": 33.605,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t16",
+   "z": 34,
+   "content": "1/50",
+   "lines": [
+    {
+     "text": "1/50",
+     "x": 821.183,
+     "baseline": 378.188,
+     "w": 33.605
+    }
+   ],
+   "box": {
+    "x": 821.183,
+    "y": 363.518,
+    "w": 33.605,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t17",
+   "z": 36,
+   "content": "ABERTA",
+   "lines": [
+    {
+     "text": "ABERTA",
+     "x": 874.775,
+     "baseline": 378.188,
+     "w": 50.408
+    }
+   ],
+   "box": {
+    "x": 874.775,
+    "y": 363.518,
+    "w": 50.408,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t18",
+   "z": 39,
+   "content": "1",
+   "lines": [
+    {
+     "text": "1",
+     "x": 770,
+     "baseline": 432.644,
+     "w": 12.002
+    }
+   ],
+   "box": {
+    "x": 770,
+    "y": 411.687,
+    "w": 12.002,
+    "h": 26.377
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 20,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t19",
+   "z": 43,
+   "content": "COMPRAR",
+   "lines": [
+    {
+     "text": "COMPRAR",
+     "x": 1087.5,
+     "baseline": 425.563,
+     "w": 58.81
+    }
+   ],
+   "box": {
+    "x": 1087.5,
+    "y": 410.893,
+    "w": 58.81,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t20",
+   "z": 45,
+   "content": "Favoritar",
+   "lines": [
+    {
+     "text": "Favoritar",
+     "x": 1231,
+     "baseline": 425.563,
+     "w": 75.612
+    }
+   ],
+   "box": {
+    "x": 1231,
+    "y": 410.893,
+    "w": 75.612,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t21",
+   "z": 46,
+   "content": "ID do token: #0042",
+   "lines": [
+    {
+     "text": "ID do token: #0042",
+     "x": 725,
+     "baseline": 478.826,
+     "w": 162.026
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 463.108,
+    "w": 162.026,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t22",
+   "z": 47,
+   "content": "Coleção: Kurio Apes",
+   "lines": [
+    {
+     "text": "Coleção: Kurio Apes",
+     "x": 725,
+     "baseline": 510.826,
+     "w": 171.028
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 495.108,
+    "w": 171.028,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t23",
+   "z": 48,
+   "content": "Atributos: Óculos, Esmeralda, Raro",
+   "lines": [
+    {
+     "text": "Atributos: Óculos, Esmeralda, Raro",
+     "x": 725,
+     "baseline": 542.826,
+     "w": 306.05
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 527.108,
+    "w": 306.05,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t24",
+   "z": 49,
+   "content": "Compartilhar este NFT:",
+   "lines": [
+    {
+     "text": "Compartilhar este NFT:",
+     "x": 725,
+     "baseline": 573.826,
+     "w": 198.032
+    }
+   ],
+   "box": {
+    "x": 725,
+    "y": 558.108,
+    "w": 198.032,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t25",
+   "z": 50,
+   "content": "Detalhes do NFT",
+   "lines": [
+    {
+     "text": "Detalhes do NFT",
+     "x": 120,
+     "baseline": 687.603,
+     "w": 153.025
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 669.79,
+    "w": 153.025,
+    "h": 22.42
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 17,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t26",
+   "z": 52,
+   "content": "Avaliações de colecionadores (19)",
+   "lines": [
+    {
+     "text": "Avaliações de colecionadores (19)",
+     "x": 313,
+     "baseline": 687.603,
+     "w": 336.655
+    }
+   ],
+   "box": {
+    "x": 313,
+    "y": 669.79,
+    "w": 336.655,
+    "h": 22.42
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 17,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t27",
+   "z": 54,
+   "content": "Emerald Ape #042 é uma obra digital 1/50 finalizada à mão da coleção Kurio Editions. Cada atributo fica armazenado nos metadados do token e\nverificado na Ethereum. A obra explora identidade, movimento e luz em um mundo digital sem fronteiras.\nA propriedade inclui a arte em alta resolução, lançamentos exclusivos para colecionadores e um registro permanente de procedência registrada\nna rede. Nova Sato recebe 5% de direitos autorais nas vendas secundárias, apoiando novos trabalhos e lançamentos da comunidade.",
+   "lines": [
+    {
+     "text": "Emerald Ape #042 é uma obra digital 1/50 finalizada à mão da coleção Kurio Editions. Cada atributo fica armazenado nos metadados do token e",
+     "x": 120,
+     "baseline": 730.438,
+     "w": 1167.79
+    },
+    {
+     "text": "verificado na Ethereum. A obra explora identidade, movimento e luz em um mundo digital sem fronteiras.",
+     "x": 120,
+     "baseline": 754.438,
+     "w": 856.939
+    },
+    {
+     "text": "A propriedade inclui a arte em alta resolução, lançamentos exclusivos para colecionadores e um registro permanente de procedência registrada",
+     "x": 120,
+     "baseline": 802.438,
+     "w": 1176.191
+    },
+    {
+     "text": "na rede. Nova Sato recebe 5% de direitos autorais nas vendas secundárias, apoiando novos trabalhos e lançamentos da comunidade.",
+     "x": 120,
+     "baseline": 826.438,
+     "w": 1066.974
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 715.768,
+    "w": 1176.191,
+    "h": 114.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 24,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t28",
+   "z": 55,
+   "content": "Rede:",
+   "lines": [
+    {
+     "text": "Rede:",
+     "x": 120,
+     "baseline": 862.438,
+     "w": 42.007
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 847.768,
+    "w": 42.007,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t29",
+   "z": 56,
+   "content": "Cunhado na Ethereum com procedência imutável e metadados armazenados no IPFS.",
+   "lines": [
+    {
+     "text": "Cunhado na Ethereum com procedência imutável e metadados armazenados no IPFS.",
+     "x": 120,
+     "baseline": 886.438,
+     "w": 646.905
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 871.768,
+    "w": 646.905,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t30",
+   "z": 57,
+   "content": "Contrato:",
+   "lines": [
+    {
+     "text": "Contrato:",
+     "x": 120,
+     "baseline": 922.438,
+     "w": 75.612
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 907.768,
+    "w": 75.612,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t31",
+   "z": 58,
+   "content": "Direitos autorais do criador: 5% nas vendas secundárias, pagos automaticamente pelos mercados compatíveis.",
+   "lines": [
+    {
+     "text": "Direitos autorais do criador: 5% nas vendas secundárias, pagos automaticamente pelos mercados compatíveis.",
+     "x": 120,
+     "baseline": 946.438,
+     "w": 890.545
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 931.768,
+    "w": 890.545,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t32",
+   "z": 59,
+   "content": "Direitos autorais:",
+   "lines": [
+    {
+     "text": "Direitos autorais:",
+     "x": 120,
+     "baseline": 982.438,
+     "w": 151.225
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 967.768,
+    "w": 151.225,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t33",
+   "z": 60,
+   "content": "0x7A42...19E8 • Contrato inteligente ERC-721 verificado.",
+   "lines": [
+    {
+     "text": "0x7A42...19E8 • Contrato inteligente ERC-721 verificado.",
+     "x": 120,
+     "baseline": 1006.44,
+     "w": 470.477
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 991.77,
+    "w": 470.477,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t34",
+   "z": 61,
+   "content": "Mais desta coleção",
+   "lines": [
+    {
+     "text": "Mais desta coleção",
+     "x": 120,
+     "baseline": 1123.6,
+     "w": 183.63
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 1105.787,
+    "w": 183.63,
+    "h": 22.42
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 17,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t35",
+   "z": 65,
+   "content": "Cosmic Bloom #118",
+   "lines": [
+    {
+     "text": "Cosmic Bloom #118",
+     "x": 120,
+     "baseline": 1451.83,
+     "w": 153.025
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 1436.112,
+    "w": 153.025,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t36",
+   "z": 66,
+   "content": "1.29 ETH",
+   "lines": [
+    {
+     "text": "1.29 ETH",
+     "x": 120,
+     "baseline": 1470.22,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 120,
+    "y": 1453.454,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t37",
+   "z": 69,
+   "content": "Violet Nomad #314",
+   "lines": [
+    {
+     "text": "Violet Nomad #314",
+     "x": 365,
+     "baseline": 1451.83,
+     "w": 153.025
+    }
+   ],
+   "box": {
+    "x": 365,
+    "y": 1436.112,
+    "w": 153.025,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t38",
+   "z": 70,
+   "content": "1.39 ETH",
+   "lines": [
+    {
+     "text": "1.39 ETH",
+     "x": 365,
+     "baseline": 1470.22,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 365,
+    "y": 1453.454,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t39",
+   "z": 73,
+   "content": "Ivory Baron #088",
+   "lines": [
+    {
+     "text": "Ivory Baron #088",
+     "x": 611,
+     "baseline": 1451.83,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 611,
+    "y": 1436.112,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t40",
+   "z": 74,
+   "content": "1.79 ETH",
+   "lines": [
+    {
+     "text": "1.79 ETH",
+     "x": 611,
+     "baseline": 1470.22,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 611,
+    "y": 1453.454,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t41",
+   "z": 77,
+   "content": "Golden Beat #207",
+   "lines": [
+    {
+     "text": "Golden Beat #207",
+     "x": 856,
+     "baseline": 1451.83,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 856,
+    "y": 1436.112,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t42",
+   "z": 78,
+   "content": "0.99 ETH",
+   "lines": [
+    {
+     "text": "0.99 ETH",
+     "x": 856,
+     "baseline": 1470.22,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 856,
+    "y": 1453.454,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t43",
+   "z": 81,
+   "content": "Golden Signal #160",
+   "lines": [
+    {
+     "text": "Golden Signal #160",
+     "x": 1101,
+     "baseline": 1451.83,
+     "w": 162.026
+    }
+   ],
+   "box": {
+    "x": 1101,
+    "y": 1436.112,
+    "w": 162.026,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t44",
+   "z": 82,
+   "content": "0.39 ETH",
+   "lines": [
+    {
+     "text": "0.39 ETH",
+     "x": 1101,
+     "baseline": 1470.22,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 1101,
+    "y": 1453.454,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t45",
+   "z": 88,
+   "content": "W",
+   "lines": [
+    {
+     "text": "W",
+     "x": 197.793,
+     "baseline": 1690.32,
+     "w": 14.402
+    }
+   ],
+   "box": {
+    "x": 197.793,
+    "y": 1665.172,
+    "w": 14.402,
+    "h": 31.652
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 24,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t46",
+   "z": 89,
+   "content": "Segurança da carteira",
+   "lines": [
+    {
+     "text": "Segurança da carteira",
+     "x": 168,
+     "baseline": 1744.6,
+     "w": 214.235
+    }
+   ],
+   "box": {
+    "x": 168,
+    "y": 1726.787,
+    "w": 214.235,
+    "h": 22.42
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 17,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t47",
+   "z": 90,
+   "content": "Proteja sua carteira e\ncolecione arte digital\nverificada com\nconfiança.",
+   "lines": [
+    {
+     "text": "Proteja sua carteira e",
+     "x": 168,
+     "baseline": 1774.44,
+     "w": 184.83
+    },
+    {
+     "text": "colecione arte digital",
+     "x": 168,
+     "baseline": 1796.44,
+     "w": 184.83
+    },
+    {
+     "text": "verificada com",
+     "x": 168,
+     "baseline": 1818.44,
+     "w": 117.619
+    },
+    {
+     "text": "confiança.",
+     "x": 168,
+     "baseline": 1840.44,
+     "w": 84.014
+    }
+   ],
+   "box": {
+    "x": 168,
+    "y": 1759.77,
+    "w": 184.83,
+    "h": 84.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t48",
+   "z": 93,
+   "content": "C",
+   "lines": [
+    {
+     "text": "C",
+     "x": 463.167,
+     "baseline": 1690.32,
+     "w": 14.402
+    }
+   ],
+   "box": {
+    "x": 463.167,
+    "y": 1665.172,
+    "w": 14.402,
+    "h": 31.652
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 24,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t49",
+   "z": 94,
+   "content": "Criadores em destaque",
+   "lines": [
+    {
+     "text": "Criadores em destaque",
+     "x": 433.667,
+     "baseline": 1744.6,
+     "w": 214.235
+    }
+   ],
+   "box": {
+    "x": 433.667,
+    "y": 1726.787,
+    "w": 214.235,
+    "h": 22.42
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 17,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t50",
+   "z": 95,
+   "content": "Conheça artistas,\nestúdios e comunidades\nque moldam a cultura\ndigital na rede.",
+   "lines": [
+    {
+     "text": "Conheça artistas,",
+     "x": 433.667,
+     "baseline": 1774.44,
+     "w": 142.823
+    },
+    {
+     "text": "estúdios e comunidades",
+     "x": 433.667,
+     "baseline": 1796.44,
+     "w": 184.83
+    },
+    {
+     "text": "que moldam a cultura",
+     "x": 433.667,
+     "baseline": 1818.44,
+     "w": 168.027
+    },
+    {
+     "text": "digital na rede.",
+     "x": 433.667,
+     "baseline": 1840.44,
+     "w": 134.422
+    }
+   ],
+   "box": {
+    "x": 433.667,
+    "y": 1759.77,
+    "w": 184.83,
+    "h": 84.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t51",
+   "z": 98,
+   "content": "D",
+   "lines": [
+    {
+     "text": "D",
+     "x": 728.833,
+     "baseline": 1690.32,
+     "w": 14.402
+    }
+   ],
+   "box": {
+    "x": 728.833,
+    "y": 1665.172,
+    "w": 14.402,
+    "h": 31.652
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 24,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t52",
+   "z": 99,
+   "content": "Alertas de lançamentos",
+   "lines": [
+    {
+     "text": "Alertas de lançamentos",
+     "x": 699.333,
+     "baseline": 1744.6,
+     "w": 224.437
+    }
+   ],
+   "box": {
+    "x": 699.333,
+    "y": 1726.787,
+    "w": 224.437,
+    "h": 22.42
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 17,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t53",
+   "z": 100,
+   "content": "Receba calendários de\ncunhagem, novidades de\nlistas de acesso e\nanálises do mercado.",
+   "lines": [
+    {
+     "text": "Receba calendários de",
+     "x": 699.333,
+     "baseline": 1774.44,
+     "w": 176.429
+    },
+    {
+     "text": "cunhagem, novidades de",
+     "x": 699.333,
+     "baseline": 1796.44,
+     "w": 184.83
+    },
+    {
+     "text": "listas de acesso e",
+     "x": 699.333,
+     "baseline": 1818.44,
+     "w": 151.225
+    },
+    {
+     "text": "análises do mercado.",
+     "x": 699.333,
+     "baseline": 1840.44,
+     "w": 168.027
+    }
+   ],
+   "box": {
+    "x": 699.333,
+    "y": 1759.77,
+    "w": 184.83,
+    "h": 84.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t54",
+   "z": 102,
+   "content": "Antecipe-se ao próximo\nlançamento",
+   "lines": [
+    {
+     "text": "Antecipe-se ao próximo",
+     "x": 965,
+     "baseline": 1658.99,
+     "w": 237.639
+    },
+    {
+     "text": "lançamento",
+     "x": 965,
+     "baseline": 1674.99,
+     "w": 108.018
+    }
+   ],
+   "box": {
+    "x": 965,
+    "y": 1640.129,
+    "w": 237.639,
+    "h": 39.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": 16,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t55",
+   "z": 104,
+   "content": "digite seu e-mail...",
+   "lines": [
+    {
+     "text": "digite seu e-mail...",
+     "x": 977,
+     "baseline": 1717.44,
+     "w": 168.027
+    }
+   ],
+   "box": {
+    "x": 977,
+    "y": 1702.77,
+    "w": 168.027,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t56",
+   "z": 106,
+   "content": "Enviar",
+   "lines": [
+    {
+     "text": "Enviar",
+     "x": 1221,
+     "baseline": 1718.99,
+     "w": 64.811
+    }
+   ],
+   "box": {
+    "x": 1221,
+    "y": 1700.129,
+    "w": 64.811,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t57",
+   "z": 107,
+   "content": "Receba lançamentos selecionados,\nhistórias de criadores e novidades do\nmercado.",
+   "lines": [
+    {
+     "text": "Receba lançamentos selecionados,",
+     "x": 965,
+     "baseline": 1760.05,
+     "w": 249.641
+    },
+    {
+     "text": "histórias de criadores e novidades do",
+     "x": 965,
+     "baseline": 1782.05,
+     "w": 288.647
+    },
+    {
+     "text": "mercado.",
+     "x": 965,
+     "baseline": 1804.05,
+     "w": 62.41
+    }
+   ],
+   "box": {
+    "x": 965,
+    "y": 1746.428,
+    "w": 288.647,
+    "h": 61.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t58",
+   "z": 109,
+   "content": "KURIO",
+   "lines": [
+    {
+     "text": "KURIO",
+     "x": 152,
+     "baseline": 1911.44,
+     "w": 49.007
+    }
+   ],
+   "box": {
+    "x": 152,
+    "y": 1896.77,
+    "w": 49.007,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 1.4,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t59",
+   "z": 110,
+   "content": "Feito para colecionadores,\ncriadores e cultura",
+   "lines": [
+    {
+     "text": "Feito para colecionadores,",
+     "x": 454.667,
+     "baseline": 1900.44,
+     "w": 218.436
+    },
+    {
+     "text": "criadores e cultura",
+     "x": 454.667,
+     "baseline": 1922.44,
+     "w": 159.626
+    }
+   ],
+   "box": {
+    "x": 454.667,
+    "y": 1885.77,
+    "w": 218.436,
+    "h": 40.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t60",
+   "z": 111,
+   "content": "contato@email.com",
+   "lines": [
+    {
+     "text": "contato@email.com",
+     "x": 757.333,
+     "baseline": 1911.44,
+     "w": 142.823
+    }
+   ],
+   "box": {
+    "x": 757.333,
+    "y": 1896.77,
+    "w": 142.823,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t61",
+   "z": 112,
+   "content": "+55 11 4002 8922",
+   "lines": [
+    {
+     "text": "+55 11 4002 8922",
+     "x": 1060,
+     "baseline": 1911.44,
+     "w": 134.422
+    }
+   ],
+   "box": {
+    "x": 1060,
+    "y": 1896.77,
+    "w": 134.422,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t62",
+   "z": 114,
+   "content": "Meu perfil",
+   "lines": [
+    {
+     "text": "Meu perfil",
+     "x": 152,
+     "baseline": 1996.99,
+     "w": 108.018
+    }
+   ],
+   "box": {
+    "x": 152,
+    "y": 1978.129,
+    "w": 108.018,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t63",
+   "z": 115,
+   "content": "Meu perfil\nMinha coleção\nAtividade\nEstúdio do criador\nLista de interesse",
+   "lines": [
+    {
+     "text": "Meu perfil",
+     "x": 152,
+     "baseline": 2026.44,
+     "w": 84.014
+    },
+    {
+     "text": "Minha coleção",
+     "x": 152,
+     "baseline": 2056.44,
+     "w": 109.218
+    },
+    {
+     "text": "Atividade",
+     "x": 152,
+     "baseline": 2086.44,
+     "w": 75.612
+    },
+    {
+     "text": "Estúdio do criador",
+     "x": 152,
+     "baseline": 2116.44,
+     "w": 151.225
+    },
+    {
+     "text": "Lista de interesse",
+     "x": 152,
+     "baseline": 2146.44,
+     "w": 151.225
+    }
+   ],
+   "box": {
+    "x": 152,
+    "y": 2011.77,
+    "w": 151.225,
+    "h": 138.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 30,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t64",
+   "z": 116,
+   "content": "Central de ajuda",
+   "lines": [
+    {
+     "text": "Central de ajuda",
+     "x": 454.667,
+     "baseline": 1996.99,
+     "w": 172.828
+    }
+   ],
+   "box": {
+    "x": 454.667,
+    "y": 1978.129,
+    "w": 172.828,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t65",
+   "z": 117,
+   "content": "Central de ajuda\nComo comprar NFTs\nCarteira e segurança\nPolítica do mercado\nDenunciar item",
+   "lines": [
+    {
+     "text": "Central de ajuda",
+     "x": 454.667,
+     "baseline": 2026.44,
+     "w": 134.422
+    },
+    {
+     "text": "Como comprar NFTs",
+     "x": 454.667,
+     "baseline": 2056.44,
+     "w": 142.823
+    },
+    {
+     "text": "Carteira e segurança",
+     "x": 454.667,
+     "baseline": 2086.44,
+     "w": 168.027
+    },
+    {
+     "text": "Política do mercado",
+     "x": 454.667,
+     "baseline": 2116.44,
+     "w": 159.626
+    },
+    {
+     "text": "Denunciar item",
+     "x": 454.667,
+     "baseline": 2146.44,
+     "w": 117.619
+    }
+   ],
+   "box": {
+    "x": 454.667,
+    "y": 2011.77,
+    "w": 168.027,
+    "h": 138.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 30,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t66",
+   "z": 118,
+   "content": "Coleções",
+   "lines": [
+    {
+     "text": "Coleções",
+     "x": 757.333,
+     "baseline": 1996.99,
+     "w": 86.414
+    }
+   ],
+   "box": {
+    "x": 757.333,
+    "y": 1978.129,
+    "w": 86.414,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t67",
+   "z": 119,
+   "content": "Arte digital\nFotografia\nMúsica\nArte 3D\nUtilidade",
+   "lines": [
+    {
+     "text": "Arte digital",
+     "x": 757.333,
+     "baseline": 2026.44,
+     "w": 100.816
+    },
+    {
+     "text": "Fotografia",
+     "x": 757.333,
+     "baseline": 2056.44,
+     "w": 84.014
+    },
+    {
+     "text": "Música",
+     "x": 757.333,
+     "baseline": 2086.44,
+     "w": 50.408
+    },
+    {
+     "text": "Arte 3D",
+     "x": 757.333,
+     "baseline": 2116.44,
+     "w": 58.81
+    },
+    {
+     "text": "Utilidade",
+     "x": 757.333,
+     "baseline": 2146.44,
+     "w": 75.612
+    }
+   ],
+   "box": {
+    "x": 757.333,
+    "y": 2011.77,
+    "w": 100.816,
+    "h": 138.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 30,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t68",
+   "z": 120,
+   "content": "Redes sociais",
+   "lines": [
+    {
+     "text": "Redes sociais",
+     "x": 1060,
+     "baseline": 1996.99,
+     "w": 140.423
+    }
+   ],
+   "box": {
+    "x": 1060,
+    "y": 1978.129,
+    "w": 140.423,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t69",
+   "z": 126,
+   "content": "Carteiras compatíveis",
+   "lines": [
+    {
+     "text": "Carteiras compatíveis",
+     "x": 1060,
+     "baseline": 2094.99,
+     "w": 226.837
+    }
+   ],
+   "box": {
+    "x": 1060,
+    "y": 2076.129,
+    "w": 226.837,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t70",
+   "z": 129,
+   "content": "METAMASK  •  WALLETCONNECT  •  COINBASE",
+   "lines": [
+    {
+     "text": "METAMASK  •  WALLETCONNECT  •  COINBASE",
+     "x": 1070.5,
+     "baseline": 2124.5,
+     "w": 214.534
+    }
+   ],
+   "box": {
+    "x": 1070.5,
+    "y": 2115.069,
+    "w": 214.534,
+    "h": 11.87
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 9,
+   "fontWeight": 700,
+   "letterSpacing": 0.1,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t71",
+   "z": 130,
+   "content": "© 2026 Kurio. Propriedade digital para todos.",
+   "lines": [
+    {
+     "text": "© 2026 Kurio. Propriedade digital para todos.",
+     "x": 530.815,
+     "baseline": 2212.44,
+     "w": 378.062
+    }
+   ],
+   "box": {
+    "x": 530.815,
+    "y": 2197.77,
+    "w": 378.062,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  }
+ ],
+ "shapes": [
+  {
+   "id": "s0",
+   "z": 3,
+   "kind": "line",
+   "box": {
+    "x": 594,
+    "y": 66,
+    "w": 68,
+    "h": 3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s1",
+   "z": 6,
+   "kind": "circle",
+   "box": {
+    "x": 1174,
+    "y": 27.5,
+    "w": 20,
+    "h": 20
+   },
+   "radius": 10,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": "#140d0a",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s2",
+   "z": 8,
+   "kind": "rect",
+   "box": {
+    "x": 1220,
+    "y": 24,
+    "w": 100,
+    "h": 35
+   },
+   "radius": 6,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s3",
+   "z": 11,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 129,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 6,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s4",
+   "z": 12,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 245,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 6,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s5",
+   "z": 13,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 361,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 6,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s6",
+   "z": 14,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 477,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 6,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s7",
+   "z": 15,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 129,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s8",
+   "z": 16,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 245,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s9",
+   "z": 17,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 361,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s10",
+   "z": 18,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 477,
+    "w": 100,
+    "h": 100
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s11",
+   "z": 19,
+   "kind": "rect",
+   "box": {
+    "x": 248,
+    "y": 131,
+    "w": 444,
+    "h": 444
+   },
+   "radius": 6,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s12",
+   "z": 20,
+   "kind": "rect",
+   "box": {
+    "x": 268,
+    "y": 151,
+    "w": 404,
+    "h": 404
+   },
+   "radius": 24,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s13",
+   "z": 21,
+   "kind": "circle",
+   "box": {
+    "x": 650,
+    "y": 144,
+    "w": 30,
+    "h": 30
+   },
+   "radius": 15,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s14",
+   "z": 25,
+   "kind": "line",
+   "box": {
+    "x": 725,
+    "y": 209.7,
+    "w": 573,
+    "h": 0.3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 0.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s15",
+   "z": 29,
+   "kind": "ellipse",
+   "box": {
+    "x": 724,
+    "y": 357.75,
+    "w": 38,
+    "h": 30
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s16",
+   "z": 31,
+   "kind": "ellipse",
+   "box": {
+    "x": 766,
+    "y": 357.75,
+    "w": 44,
+    "h": 30
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s17",
+   "z": 33,
+   "kind": "ellipse",
+   "box": {
+    "x": 814,
+    "y": 357.75,
+    "w": 48,
+    "h": 30
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s18",
+   "z": 35,
+   "kind": "ellipse",
+   "box": {
+    "x": 866,
+    "y": 357.75,
+    "w": 68,
+    "h": 30
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s19",
+   "z": 37,
+   "kind": "rect",
+   "box": {
+    "x": 725,
+    "y": 400.125,
+    "w": 33,
+    "h": 49.5
+   },
+   "radius": 16.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false,
+   "mergedInto": "s20"
+  },
+  {
+   "id": "s20",
+   "z": 38,
+   "kind": "rect",
+   "box": {
+    "x": 725,
+    "y": 400.125,
+    "w": 33,
+    "h": 49.5
+   },
+   "radius": 16.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": "#140d0a",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s21",
+   "z": 40,
+   "kind": "rect",
+   "box": {
+    "x": 795,
+    "y": 400.125,
+    "w": 33,
+    "h": 49.5
+   },
+   "radius": 16.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false,
+   "mergedInto": "s22"
+  },
+  {
+   "id": "s22",
+   "z": 41,
+   "kind": "rect",
+   "box": {
+    "x": 795,
+    "y": 400.125,
+    "w": 33,
+    "h": 49.5
+   },
+   "radius": 16.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": "#140d0a",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s23",
+   "z": 42,
+   "kind": "rect",
+   "box": {
+    "x": 1052,
+    "y": 400.125,
+    "w": 130,
+    "h": 40
+   },
+   "radius": 6,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s24",
+   "z": 44,
+   "kind": "rect",
+   "box": {
+    "x": 1190,
+    "y": 400.125,
+    "w": 130,
+    "h": 40
+   },
+   "radius": 6,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s25",
+   "z": 51,
+   "kind": "line",
+   "box": {
+    "x": 120,
+    "y": 698,
+    "w": 161,
+    "h": 3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s26",
+   "z": 53,
+   "kind": "line",
+   "box": {
+    "x": 120,
+    "y": 700.7,
+    "w": 1200,
+    "h": 0.3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 0.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s27",
+   "z": 62,
+   "kind": "line",
+   "box": {
+    "x": 120,
+    "y": 1136.7,
+    "w": 1200,
+    "h": 0.3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 0.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s28",
+   "z": 63,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 1169,
+    "w": 219,
+    "h": 255
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s29",
+   "z": 64,
+   "kind": "rect",
+   "box": {
+    "x": 140,
+    "y": 1173,
+    "w": 190,
+    "h": 243
+   },
+   "radius": 11,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s30",
+   "z": 67,
+   "kind": "rect",
+   "box": {
+    "x": 365,
+    "y": 1169,
+    "w": 220,
+    "h": 255
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s31",
+   "z": 68,
+   "kind": "rect",
+   "box": {
+    "x": 369,
+    "y": 1189,
+    "w": 212,
+    "h": 212
+   },
+   "radius": 13,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s32",
+   "z": 71,
+   "kind": "rect",
+   "box": {
+    "x": 611,
+    "y": 1169,
+    "w": 219,
+    "h": 255
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s33",
+   "z": 72,
+   "kind": "rect",
+   "box": {
+    "x": 615,
+    "y": 1189,
+    "w": 212,
+    "h": 212
+   },
+   "radius": 13,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s34",
+   "z": 75,
+   "kind": "rect",
+   "box": {
+    "x": 856,
+    "y": 1169,
+    "w": 219,
+    "h": 255
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s35",
+   "z": 76,
+   "kind": "rect",
+   "box": {
+    "x": 860,
+    "y": 1185,
+    "w": 213,
+    "h": 213
+   },
+   "radius": 13,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s36",
+   "z": 79,
+   "kind": "rect",
+   "box": {
+    "x": 1101,
+    "y": 1169,
+    "w": 219,
+    "h": 255
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s37",
+   "z": 80,
+   "kind": "rect",
+   "box": {
+    "x": 1105,
+    "y": 1185,
+    "w": 213,
+    "h": 213
+   },
+   "radius": 13,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s38",
+   "z": 83,
+   "kind": "circle",
+   "box": {
+    "x": 694,
+    "y": 1504,
+    "w": 12,
+    "h": 12
+   },
+   "radius": 6,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s39",
+   "z": 84,
+   "kind": "circle",
+   "box": {
+    "x": 714,
+    "y": 1504,
+    "w": 12,
+    "h": 12
+   },
+   "radius": 6,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s40",
+   "z": 85,
+   "kind": "circle",
+   "box": {
+    "x": 734,
+    "y": 1504,
+    "w": 12,
+    "h": 12
+   },
+   "radius": 6,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s41",
+   "z": 86,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 1612,
+    "w": 1200,
+    "h": 250
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s42",
+   "z": 87,
+   "kind": "rect",
+   "box": {
+    "x": 168,
+    "y": 1644,
+    "w": 74,
+    "h": 74
+   },
+   "radius": 37,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s43",
+   "z": 91,
+   "kind": "rect",
+   "box": {
+    "x": 416.667,
+    "y": 1644,
+    "w": 1,
+    "h": 202
+   },
+   "radius": 0,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s44",
+   "z": 92,
+   "kind": "rect",
+   "box": {
+    "x": 433.667,
+    "y": 1644,
+    "w": 74,
+    "h": 74
+   },
+   "radius": 37,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s45",
+   "z": 96,
+   "kind": "rect",
+   "box": {
+    "x": 682.333,
+    "y": 1644,
+    "w": 1,
+    "h": 202
+   },
+   "radius": 0,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s46",
+   "z": 97,
+   "kind": "rect",
+   "box": {
+    "x": 699.333,
+    "y": 1644,
+    "w": 74,
+    "h": 74
+   },
+   "radius": 37,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s47",
+   "z": 101,
+   "kind": "rect",
+   "box": {
+    "x": 948,
+    "y": 1644,
+    "w": 1,
+    "h": 202
+   },
+   "radius": 0,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s48",
+   "z": 103,
+   "kind": "rect",
+   "box": {
+    "x": 965,
+    "y": 1692,
+    "w": 325,
+    "h": 40
+   },
+   "radius": 6,
+   "fill": "#38220f",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s49",
+   "z": 105,
+   "kind": "path",
+   "box": {
+    "x": 1205,
+    "y": 1692,
+    "w": 85,
+    "h": 40
+   },
+   "radius": null,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s50",
+   "z": 108,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 1862,
+    "w": 1200,
+    "h": 88
+   },
+   "radius": 0,
+   "fill": "#38220f",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s51",
+   "z": 113,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 1950,
+    "w": 1200,
+    "h": 236
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s52",
+   "z": 121,
+   "kind": "rect",
+   "box": {
+    "x": 1059,
+    "y": 2017,
+    "w": 32,
+    "h": 32
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s53",
+   "z": 122,
+   "kind": "rect",
+   "box": {
+    "x": 1099,
+    "y": 2017,
+    "w": 32,
+    "h": 32
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s54",
+   "z": 123,
+   "kind": "rect",
+   "box": {
+    "x": 1139,
+    "y": 2017,
+    "w": 32,
+    "h": 32
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s55",
+   "z": 124,
+   "kind": "rect",
+   "box": {
+    "x": 1179,
+    "y": 2017,
+    "w": 32,
+    "h": 32
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s56",
+   "z": 125,
+   "kind": "rect",
+   "box": {
+    "x": 1219,
+    "y": 2017,
+    "w": 32,
+    "h": 32
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s57",
+   "z": 127,
+   "kind": "rect",
+   "box": {
+    "x": 1060.5,
+    "y": 2108.5,
+    "w": 227,
+    "h": 25
+   },
+   "radius": 5.5,
+   "fill": "#38220f",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false,
+   "mergedInto": "s58"
+  },
+  {
+   "id": "s58",
+   "z": 128,
+   "kind": "rect",
+   "box": {
+    "x": 1060,
+    "y": 2108,
+    "w": 228,
+    "h": 26
+   },
+   "radius": 6,
+   "fill": "#38220f",
+   "gradient": null,
+   "image": false,
+   "stroke": "#55321f",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  }
+ ]
 }

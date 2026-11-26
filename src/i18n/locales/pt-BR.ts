@@ -140,6 +140,7 @@ const ptBR = {
       },
       social: 'Redes sociais',
       wallets: 'Carteiras compatíveis',
+      walletList: 'MetaMask\u00a0\u00a0•\u00a0\u00a0WalletConnect\u00a0\u00a0•\u00a0\u00a0Coinbase',
       copyright: '© 2026 Kurio. Propriedade digital para todos.',
     },
   },
@@ -257,7 +258,8 @@ const ptBR = {
     journal: {
       title: 'Diário da Cunhagem',
       text: 'Histórias, guias e insights para colecionadores sobre o universo da propriedade digital.',
-      readMore: 'Ler mais →',
+      readMore: 'Ler mais',
+      readMoreArrow: '→',
       ownership: {
         date: '12 de setembro',
         read: 'Leitura de 6 min',
@@ -331,7 +333,7 @@ const ptBR = {
     },
     royalties: {
       title: 'Direitos autorais:',
-      text: '{{address}} · Contrato inteligente ERC-721 verificado.',
+      text: '{{address}} • Contrato inteligente ERC-721 verificado.',
     },
     reviewsUnavailable: 'As avaliações detalhadas não estão disponíveis nesta demonstração.',
     related: 'Mais desta coleção',

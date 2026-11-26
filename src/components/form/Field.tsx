@@ -17,12 +17,13 @@ interface FieldProps {
   hideLabel?: boolean
   error?: string
   hint?: string
+  hintClassName?: string
   required?: boolean
   className?: string
   children: (props: ControlProps) => ReactNode
 }
 
-export function Field({ label, hideLabel, error, hint, required, className, children }: FieldProps) {
+export function Field({ label, hideLabel, error, hint, hintClassName, required, className, children }: FieldProps) {
   const { t } = useTranslation()
   const id = useId()
   const errorId = `${id}-error`
@@ -30,13 +31,13 @@ export function Field({ label, hideLabel, error, hint, required, className, chil
   const describedBy = [error ? errorId : null, hint ? hintId : null].filter(Boolean).join(' ') || undefined
   return (
     <div className={cn('flex flex-col gap-1.5', className)}>
-      <label htmlFor={id} className={cn('text-base leading-4', hideLabel && 'sr-only')}>
+      <label htmlFor={id} className={cn('text-md leading-4', hideLabel && 'sr-only')}>
         {label}
-        {required && <span aria-hidden="true" className="ml-0.5 text-highlight">*</span>}
+        {required && <span aria-hidden="true" className="relative top-[2.7px] ml-px text-[22px] leading-[0] text-coral">*</span>}
         {required && <span className="sr-only">{` ${t('common.required')}`}</span>}
       </label>
       {children({ id, 'aria-invalid': Boolean(error), 'aria-describedby': describedBy, 'aria-required': required || undefined })}
-      {hint && !error && <p id={hintId} className="text-xs text-muted-foreground">{hint}</p>}
+      {hint && !error && <p id={hintId} className={cn('text-xs text-muted-foreground', hintClassName)}>{hint}</p>}
       {error && <p id={errorId} role="alert" className="text-xs text-destructive">{translateMessage(error)}</p>}
     </div>
   )

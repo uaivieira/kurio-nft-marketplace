@@ -42,7 +42,7 @@ function WalletForm({ idPrefix, wallet, onSave, saving }: { idPrefix: string; wa
       }
     })}>
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
-      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-[27px] lg:[&>div]:gap-1">
+      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-[30px] lg:[&>div]:gap-[3px]">
         <Field label={t('common.fields.displayName')} required error={errors.displayName?.message}>{(p) => <Input {...p} {...form.register('displayName')} />}</Field>
         <Field label={t('common.fields.walletNickname')} required error={errors.nickname?.message}>{(p) => <Input {...p} {...form.register('nickname')} />}</Field>
         <Field label={t('common.fields.network')} required error={errors.network?.message}>
@@ -72,10 +72,10 @@ function WalletForm({ idPrefix, wallet, onSave, saving }: { idPrefix: string; wa
         <Field label={t('common.fields.email')} required error={errors.email?.message}>{(p) => <Input {...p} type="email" {...form.register('email')} />}</Field>
         <Field label={t('common.fields.ensName')} required error={errors.ensLabel?.message}>
           {(p) => (
-            <div className="flex gap-2">
+            <div className="flex gap-2 md:gap-2.5">
               <Controller control={form.control} name="ensSuffix" render={({ field }) => (
                 <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger aria-label={t('common.fields.ensSuffix')} className="w-24"><SelectValue /></SelectTrigger>
+                  <SelectTrigger aria-label={t('common.fields.ensSuffix')} className="w-24 md:w-[78px] md:pl-2.5 md:text-md"><SelectValue /></SelectTrigger>
                   <SelectContent>{ENS_SUFFIXES.map((suffix) => <SelectItem key={suffix} value={suffix}>{suffix}</SelectItem>)}</SelectContent>
                 </Select>
               )} />
@@ -84,7 +84,7 @@ function WalletForm({ idPrefix, wallet, onSave, saving }: { idPrefix: string; wa
           )}
         </Field>
       </div>
-      <Button type="submit" disabled={saving}>{saving ? t('common.saving') : t('account.walletsPage.submit')}</Button>
+      <Button type="submit" disabled={saving} className="lg:mt-4 lg:w-[131px] lg:px-0">{saving ? t('common.saving') : t('account.walletsPage.submit')}</Button>
     </form>
   )
 }
@@ -108,19 +108,20 @@ export function WalletsPage() {
   const saved = (message: string) => { notify.success(message); announce(message) }
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-10 lg:space-y-[27px]">
       <section aria-labelledby="primary-title">
         <h1 id="primary-title" className="text-base font-bold lg:text-[17px]">{t('account.walletsPage.primaryTitle')}</h1>
-        <p className="mt-1 mb-5 text-xs text-muted-foreground lg:mt-0 lg:mb-[35px] lg:text-sm">{t('account.walletsPage.primaryText')}</p>
+        <p className="mt-1 mb-5 text-xs text-muted-foreground lg:mt-0 lg:mb-[35.5px] lg:text-sm lg:text-text-secondary">{t('account.walletsPage.primaryText')}</p>
         <WalletForm idPrefix="primary-wallet" wallet={primary} saving={savePrimary.isPending} onSave={(values) => savePrimary.mutateAsync(values).then(() => saved(t('account.walletsPage.primarySaved')))} />
       </section>
 
       <section aria-labelledby="secondary-title">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <h2 id="secondary-title" className="text-base font-bold">{t('account.walletsPage.secondaryTitle')}</h2>
-          <div className="flex items-center gap-4 text-xs">
+          <h2 id="secondary-title" className="text-base font-bold lg:text-[17px]">{t('account.walletsPage.secondaryTitle')}</h2>
+          <div className="flex items-center gap-4 text-xs lg:gap-[8.5px] lg:text-sm">
             <label className="flex cursor-pointer items-center gap-2">
               <Checkbox
+                className="lg:rounded-full lg:border-[1.5px] lg:border-primary"
                 checked={secondarySameAsPrimary}
                 disabled={!primary || saveSecondary.isPending}
                 onCheckedChange={(checked) => saveSecondary.mutate(checked === true ? { sameAsPrimary: true } : { sameAsPrimary: false, wallet: null }, { onSuccess: () => saved(checked ? t('account.walletsPage.linked') : t('account.walletsPage.unlinked')), onError: (e) => notify.error(errorMessage(e)) })}
@@ -128,7 +129,7 @@ export function WalletsPage() {
               {t('account.walletsPage.sameAsPrimary')}
             </label>
             {!secondary && !secondarySameAsPrimary && !addingSecondary && (
-              <button type="button" onClick={() => setAddingSecondary(true)} className="cursor-pointer text-base font-bold text-highlight">{t('common.add')}</button>
+              <button type="button" onClick={() => setAddingSecondary(true)} className="cursor-pointer text-base font-bold text-highlight lg:font-medium">{t('common.add')}</button>
             )}
           </div>
         </div>

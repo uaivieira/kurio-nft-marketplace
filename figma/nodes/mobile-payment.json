@@ -1,97 +1,895 @@
 {
-  "frame": "mobile-payment",
-  "source": "figma/frames/mobile-payment.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
-  "elements": [
+ "frame": "mobile-payment",
+ "source": "figma/svg/mobile-payment.svg",
+ "width": 414,
+ "height": 896,
+ "background": "#140d0a",
+ "texts": [
+  {
+   "id": "t0",
+   "z": 1,
+   "content": "Pagamento com carteira",
+   "lines": [
     {
-      "id": "back-button",
-      "selector": "role=button[name=\"Voltar\"]",
-      "measure": "box",
-      "x": 28,
-      "y": 32,
-      "w": 36,
-      "h": 36
-    },
-    {
-      "id": "title",
-      "selector": "text=\"Pagamento com carteira\" >> visible=true",
-      "measure": "ink",
-      "x": 88,
-      "y": 42,
-      "w": 262,
-      "h": 19,
-      "font": {
-        "size": 20,
-        "weight": 700,
-        "lineHeight": 28
-      }
-    },
-    {
-      "id": "connected-title",
-      "selector": "role=heading[name=\"Carteira conectada\"]",
-      "measure": "ink",
-      "x": 28,
-      "y": 94,
-      "w": 172,
-      "h": 12,
-      "font": {
-        "size": 16,
-        "weight": 700,
-        "lineHeight": 24
-      }
-    },
-    {
-      "id": "change-wallet",
-      "selector": "role=link[name=\"Trocar carteira\"]",
-      "measure": "ink",
-      "x": 259,
-      "y": 94,
-      "w": 125,
-      "h": 11
-    },
-    {
-      "id": "wallet-1",
-      "selector": "role=radiogroup[name=\"Carteira conectada\"] >> label >> nth=0",
-      "measure": "box",
-      "x": 28,
-      "y": 124,
-      "w": 358,
-      "h": 93
-    },
-    {
-      "id": "wallet-2",
-      "selector": "role=radiogroup[name=\"Carteira conectada\"] >> label >> nth=1",
-      "measure": "box",
-      "x": 28,
-      "y": 237,
-      "w": 358,
-      "h": 93
-    },
-    {
-      "id": "wallet-and-network",
-      "selector": "text=\"Carteira e rede\" >> visible=true",
-      "measure": "ink",
-      "x": 28,
-      "y": 348,
-      "w": 144,
-      "h": 12
-    },
-    {
-      "id": "provider-1",
-      "selector": "role=group[name=\"Carteira e rede\"] >> label >> nth=0",
-      "measure": "box",
-      "x": 28,
-      "y": 378,
-      "w": 358,
-      "h": 64
-    },
-    {
-      "id": "provider-2",
-      "selector": "role=group[name=\"Carteira e rede\"] >> label >> nth=1",
-      "measure": "box",
-      "x": 28,
-      "y": 459,
-      "w": 358,
-      "h": 64
+     "text": "Pagamento com carteira",
+     "x": 87,
+     "baseline": 56.769,
+     "w": 264.043
     }
-  ]
+   ],
+   "box": {
+    "x": 87,
+    "y": 35.812,
+    "w": 264.043,
+    "h": 26.377
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 20,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t1",
+   "z": 2,
+   "content": "Carteira conectada",
+   "lines": [
+    {
+     "text": "Carteira conectada",
+     "x": 28,
+     "baseline": 106.215,
+     "w": 172.828
+    }
+   ],
+   "box": {
+    "x": 28,
+    "y": 89.449,
+    "w": 172.828,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t2",
+   "z": 3,
+   "content": "Trocar carteira",
+   "lines": [
+    {
+     "text": "Trocar carteira",
+     "x": 259,
+     "baseline": 105.438,
+     "w": 126.021
+    }
+   ],
+   "box": {
+    "x": 259,
+    "y": 90.768,
+    "w": 126.021,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t3",
+   "z": 5,
+   "content": "Reserva",
+   "lines": [
+    {
+     "text": "Reserva",
+     "x": 82,
+     "baseline": 153.215,
+     "w": 67.211
+    }
+   ],
+   "box": {
+    "x": 82,
+    "y": 136.449,
+    "w": 67.211,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t4",
+   "z": 6,
+   "content": "nova.kurio.eth\nRede Polygon",
+   "lines": [
+    {
+     "text": "nova.kurio.eth",
+     "x": 82,
+     "baseline": 178.438,
+     "w": 117.619
+    },
+    {
+     "text": "Rede Polygon",
+     "x": 82,
+     "baseline": 200.438,
+     "w": 100.816
+    }
+   ],
+   "box": {
+    "x": 82,
+    "y": 163.768,
+    "w": 117.619,
+    "h": 40.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t5",
+   "z": 13,
+   "content": "Principal",
+   "lines": [
+    {
+     "text": "Principal",
+     "x": 82,
+     "baseline": 267.215,
+     "w": 86.414
+    }
+   ],
+   "box": {
+    "x": 82,
+    "y": 250.449,
+    "w": 86.414,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t6",
+   "z": 14,
+   "content": "0xA91F…E82C\nRede principal Ethereum",
+   "lines": [
+    {
+     "text": "0xA91F…E82C",
+     "x": 82,
+     "baseline": 291.438,
+     "w": 92.415
+    },
+    {
+     "text": "Rede principal Ethereum",
+     "x": 82,
+     "baseline": 313.438,
+     "w": 193.231
+    }
+   ],
+   "box": {
+    "x": 82,
+    "y": 276.768,
+    "w": 193.231,
+    "h": 40.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 22,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t7",
+   "z": 19,
+   "content": "Carteira e rede",
+   "lines": [
+    {
+     "text": "Carteira e rede",
+     "x": 28,
+     "baseline": 360.215,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 28,
+    "y": 343.449,
+    "w": 144.023,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t8",
+   "z": 22,
+   "content": "WalletConnect",
+   "lines": [
+    {
+     "text": "WalletConnect",
+     "x": 93,
+     "baseline": 416.438,
+     "w": 109.218
+    }
+   ],
+   "box": {
+    "x": 93,
+    "y": 401.768,
+    "w": 109.218,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t9",
+   "z": 24,
+   "content": "W",
+   "lines": [
+    {
+     "text": "W",
+     "x": 55,
+     "baseline": 416.438,
+     "w": 8.401
+    }
+   ],
+   "box": {
+    "x": 55,
+    "y": 401.768,
+    "w": 8.401,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t10",
+   "z": 27,
+   "content": "MetaMask",
+   "lines": [
+    {
+     "text": "MetaMask",
+     "x": 93,
+     "baseline": 497.438,
+     "w": 67.211
+    }
+   ],
+   "box": {
+    "x": 93,
+    "y": 482.768,
+    "w": 67.211,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t11",
+   "z": 29,
+   "content": "M",
+   "lines": [
+    {
+     "text": "M",
+     "x": 56,
+     "baseline": 497.438,
+     "w": 8.401
+    }
+   ],
+   "box": {
+    "x": 56,
+    "y": 482.768,
+    "w": 8.401,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t12",
+   "z": 32,
+   "content": "Coinbase Wallet",
+   "lines": [
+    {
+     "text": "Coinbase Wallet",
+     "x": 93,
+     "baseline": 578.438,
+     "w": 126.021
+    }
+   ],
+   "box": {
+    "x": 93,
+    "y": 563.768,
+    "w": 126.021,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t13",
+   "z": 35,
+   "content": "Total:",
+   "lines": [
+    {
+     "text": "Total:",
+     "x": 202,
+     "baseline": 635.215,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 202,
+    "y": 618.449,
+    "w": 57.609,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t14",
+   "z": 36,
+   "content": "8.936 ETH",
+   "lines": [
+    {
+     "text": "8.936 ETH",
+     "x": 288.705,
+     "baseline": 635.992,
+     "w": 97.216
+    }
+   ],
+   "box": {
+    "x": 288.705,
+    "y": 617.131,
+    "w": 97.216,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t15",
+   "z": 38,
+   "content": "Confirmar compra",
+   "lines": [
+    {
+     "text": "Confirmar compra",
+     "x": 134.93,
+     "baseline": 839.826,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 134.93,
+    "y": 824.108,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  }
+ ],
+ "shapes": [
+  {
+   "id": "s0",
+   "z": 0,
+   "kind": "circle",
+   "box": {
+    "x": 28,
+    "y": 32,
+    "w": 35,
+    "h": 35
+   },
+   "radius": 17.5,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s1",
+   "z": 4,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 124,
+    "w": 358,
+    "h": 93
+   },
+   "radius": 14,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s2",
+   "z": 7,
+   "kind": "circle",
+   "box": {
+    "x": 364,
+    "y": 163,
+    "w": 3,
+    "h": 3
+   },
+   "radius": 1.5,
+   "fill": "#b39463",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s3",
+   "z": 8,
+   "kind": "circle",
+   "box": {
+    "x": 364,
+    "y": 169,
+    "w": 3,
+    "h": 3
+   },
+   "radius": 1.5,
+   "fill": "#b39463",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s4",
+   "z": 9,
+   "kind": "circle",
+   "box": {
+    "x": 364,
+    "y": 175,
+    "w": 3,
+    "h": 3
+   },
+   "radius": 1.5,
+   "fill": "#b39463",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s5",
+   "z": 10,
+   "kind": "circle",
+   "box": {
+    "x": 47,
+    "y": 163,
+    "w": 16,
+    "h": 16
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1.2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s6",
+   "z": 11,
+   "kind": "circle",
+   "box": {
+    "x": 51,
+    "y": 167,
+    "w": 8,
+    "h": 8
+   },
+   "radius": 4,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s7",
+   "z": 12,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 237,
+    "w": 358,
+    "h": 93
+   },
+   "radius": 14,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s8",
+   "z": 15,
+   "kind": "circle",
+   "box": {
+    "x": 364,
+    "y": 276,
+    "w": 3,
+    "h": 3
+   },
+   "radius": 1.5,
+   "fill": "#b39463",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s9",
+   "z": 16,
+   "kind": "circle",
+   "box": {
+    "x": 364,
+    "y": 282,
+    "w": 3,
+    "h": 3
+   },
+   "radius": 1.5,
+   "fill": "#b39463",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s10",
+   "z": 17,
+   "kind": "circle",
+   "box": {
+    "x": 364,
+    "y": 288,
+    "w": 3,
+    "h": 3
+   },
+   "radius": 1.5,
+   "fill": "#b39463",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s11",
+   "z": 18,
+   "kind": "circle",
+   "box": {
+    "x": 47,
+    "y": 275,
+    "w": 16,
+    "h": 16
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#55321f",
+   "strokeWidth": 1.2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s12",
+   "z": 20,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 378,
+    "w": 359,
+    "h": 65
+   },
+   "radius": 15,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "s13",
+   "z": 21,
+   "kind": "circle",
+   "box": {
+    "x": 42,
+    "y": 391,
+    "w": 40,
+    "h": 40
+   },
+   "radius": 20,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s14",
+   "z": 23,
+   "kind": "circle",
+   "box": {
+    "x": 354,
+    "y": 403,
+    "w": 16,
+    "h": 16
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#55321f",
+   "strokeWidth": 1.2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s15",
+   "z": 25,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 459,
+    "w": 359,
+    "h": 65
+   },
+   "radius": 15,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "s16",
+   "z": 26,
+   "kind": "circle",
+   "box": {
+    "x": 42,
+    "y": 472,
+    "w": 40,
+    "h": 40
+   },
+   "radius": 20,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s17",
+   "z": 28,
+   "kind": "circle",
+   "box": {
+    "x": 354,
+    "y": 484,
+    "w": 16,
+    "h": 16
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#55321f",
+   "strokeWidth": 1.2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s18",
+   "z": 30,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 540,
+    "w": 359,
+    "h": 65
+   },
+   "radius": 15,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "s19",
+   "z": 31,
+   "kind": "circle",
+   "box": {
+    "x": 42,
+    "y": 553,
+    "w": 40,
+    "h": 40
+   },
+   "radius": 20,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s20",
+   "z": 33,
+   "kind": "circle",
+   "box": {
+    "x": 354,
+    "y": 565,
+    "w": 16,
+    "h": 16
+   },
+   "radius": 8,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 1.2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s21",
+   "z": 34,
+   "kind": "circle",
+   "box": {
+    "x": 358,
+    "y": 569,
+    "w": 8,
+    "h": 8
+   },
+   "radius": 4,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s22",
+   "z": 37,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 804,
+    "w": 358,
+    "h": 60
+   },
+   "radius": 30,
+   "fill": null,
+   "gradient": [
+    "#d28a4c",
+    "#d28a4c/0.8"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  }
+ ]
 }

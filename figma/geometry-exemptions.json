@@ -1,0 +1,2062 @@
+{
+  "desktop-cart": {
+    "texts": [
+      {
+        "figma": "t5",
+        "app": "/^\\d+$/",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "anchor": "center",
+        "reason": "contagem do carrinho: o frame mostra 6 itens, o carrinho reproduzido tem 17 (2 + 6 + 9)"
+      },
+      {
+        "figma": "26.83 ETH",
+        "app": "/^\\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w",
+          "y"
+        ],
+        "anchor": "right",
+        "reason": "mesmas casas decimais em todas as linhas (26.830 ETH); no frame o valor do subtotal fica 0,8 px acima do rótulo e o da taxa 1,2 px abaixo, e o app centraliza todas as linhas do mesmo jeito"
+      },
+      {
+        "figma": "(-) 00.00",
+        "app": "/^\\(-\\) \\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "desconto zero com ETH e as mesmas casas das outras linhas"
+      },
+      {
+        "figma": "ID do token: #0042",
+        "app": "/^ID do token: #\\d{4} · .+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "o app acrescenta a edição da linha ao ID do token, e o ID real vem do número do NFT (#0314, #0088)"
+      },
+      {
+        "figma": "ID do token: #0009",
+        "app": "/^ID do token: #\\d{4} · .+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "o app acrescenta a edição da linha ao ID do token, e o ID real vem do número do NFT (#0314, #0088)"
+      },
+      {
+        "figma": "ID do token: #0552",
+        "app": "/^ID do token: #\\d{4} · .+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "o app acrescenta a edição da linha ao ID do token, e o ID real vem do número do NFT (#0314, #0088)"
+      },
+      {
+        "figma": "t43",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "sugestões reais: os 5 primeiros NFTs do catálogo, não os do frame"
+      },
+      {
+        "figma": "t44",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço da sugestão real"
+      },
+      {
+        "figma": "t45",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "sugestões reais: os 5 primeiros NFTs do catálogo, não os do frame"
+      },
+      {
+        "figma": "t46",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço da sugestão real"
+      },
+      {
+        "figma": "t47",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "sugestões reais: os 5 primeiros NFTs do catálogo, não os do frame"
+      },
+      {
+        "figma": "t48",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço da sugestão real"
+      },
+      {
+        "figma": "t49",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "sugestões reais: os 5 primeiros NFTs do catálogo, não os do frame"
+      },
+      {
+        "figma": "t50",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço da sugestão real"
+      },
+      {
+        "figma": "t51",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "sugestões reais: os 5 primeiros NFTs do catálogo, não os do frame"
+      },
+      {
+        "figma": "t52",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço da sugestão real"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s28",
+        "skip": true,
+        "reason": "a arte do primeiro card do frame é retrato (190×243); as artes do app são quadradas"
+      },
+      {
+        "id": "s37",
+        "skip": true,
+        "reason": "pontos de paginação sem função: a lista mostra as 5 sugestões de uma vez"
+      },
+      {
+        "id": "s38",
+        "skip": true,
+        "reason": "pontos de paginação sem função: a lista mostra as 5 sugestões de uma vez"
+      },
+      {
+        "id": "s39",
+        "skip": true,
+        "reason": "pontos de paginação sem função: a lista mostra as 5 sugestões de uma vez"
+      }
+    ]
+  },
+  "desktop-detail": {
+    "texts": [
+      {
+        "figma": "t5",
+        "app": "/^\\d+$/",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "anchor": "center",
+        "reason": "contagem do carrinho: o visitante do frame tem 6 itens; o detalhe é aberto com o carrinho vazio (0)"
+      },
+      {
+        "figma": "t15",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px"
+      },
+      {
+        "figma": "t16",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px"
+      },
+      {
+        "figma": "t17",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as chips de edição do frame têm folgas desenhadas à mão (3,2 a 6,8 px); o app usa o mesmo padding em todas, e as seguintes andam até 10 px"
+      },
+      {
+        "figma": "t27",
+        "app": "/^Emerald Ape #042 é uma obra digital .+ lançamentos da comunidade\\.$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "a história do mock não repete a edição (\"1/50\") na primeira frase"
+      },
+      {
+        "figma": "t33",
+        "app": "/^0x[0-9a-f]{4}\\.\\.\\.[0-9A-F]{4} • Contrato inteligente ERC-721 verificado\\.$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "endereço do contrato gerado pelo seed"
+      },
+      {
+        "figma": "t35",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "NFTs relacionados reais (mesma coleção primeiro), não os do frame"
+      },
+      {
+        "figma": "t36",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço do NFT relacionado real"
+      },
+      {
+        "figma": "t37",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "NFTs relacionados reais (mesma coleção primeiro), não os do frame"
+      },
+      {
+        "figma": "t38",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço do NFT relacionado real"
+      },
+      {
+        "figma": "t39",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "NFTs relacionados reais (mesma coleção primeiro), não os do frame"
+      },
+      {
+        "figma": "t40",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço do NFT relacionado real"
+      },
+      {
+        "figma": "t41",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "NFTs relacionados reais (mesma coleção primeiro), não os do frame"
+      },
+      {
+        "figma": "t42",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço do NFT relacionado real"
+      },
+      {
+        "figma": "t43",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "NFTs relacionados reais (mesma coleção primeiro), não os do frame"
+      },
+      {
+        "figma": "t44",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "preço do NFT relacionado real"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s8",
+        "ignore": [
+          "paint",
+          "radius"
+        ],
+        "reason": "o frame destaca a 2ª miniatura com borda; as miniaturas do app são a mesma arte e não são selecionáveis"
+      },
+      {
+        "id": "s15",
+        "ignore": [
+          "w"
+        ],
+        "reason": "largura das chips de edição desenhada à mão no frame"
+      },
+      {
+        "id": "s16",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "largura das chips de edição desenhada à mão no frame"
+      },
+      {
+        "id": "s17",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "largura das chips de edição desenhada à mão no frame"
+      },
+      {
+        "id": "s18",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "largura das chips de edição desenhada à mão no frame"
+      },
+      {
+        "id": "s29",
+        "skip": true,
+        "reason": "a arte do primeiro card do frame é retrato (190×243); as artes do app são quadradas"
+      },
+      {
+        "id": "s38",
+        "skip": true,
+        "reason": "pontos de paginação sem função: a lista mostra os 5 relacionados de uma vez"
+      },
+      {
+        "id": "s39",
+        "skip": true,
+        "reason": "pontos de paginação sem função: a lista mostra os 5 relacionados de uma vez"
+      },
+      {
+        "id": "s40",
+        "skip": true,
+        "reason": "pontos de paginação sem função: a lista mostra os 5 relacionados de uma vez"
+      },
+      {
+        "id": "s33",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as artes dos cards relacionados do frame foram posicionadas à mão (x e y variam até 4 px entre cards iguais); o app centraliza todas"
+      },
+      {
+        "id": "s35",
+        "ignore": [
+          "y"
+        ],
+        "reason": "as artes dos cards relacionados do frame foram posicionadas à mão (x e y variam até 4 px entre cards iguais); o app centraliza todas"
+      },
+      {
+        "id": "s37",
+        "ignore": [
+          "y"
+        ],
+        "reason": "as artes dos cards relacionados do frame foram posicionadas à mão (x e y variam até 4 px entre cards iguais); o app centraliza todas"
+      }
+    ]
+  },
+  "desktop-home": {
+    "texts": [
+      {
+        "figma": "t5",
+        "app": "/^\\d+$/",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "anchor": "center",
+        "reason": "contagem do carrinho: o visitante do frame tem 6 itens; a home é aberta com o carrinho vazio (0)"
+      },
+      {
+        "figma": "Arte digital",
+        "ignore": [
+          "color"
+        ],
+        "reason": "o frame destaca a primeira coleção sem filtro aplicado; no app o destaque marca só a coleção filtrada"
+      },
+      {
+        "figma": "(33)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w",
+          "color"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed; o frame destaca a primeira coleção sem filtro aplicado"
+      },
+      {
+        "figma": "(12)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(65)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(39)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(23)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(17)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(19)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(13)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(18)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por coleção no seed"
+      },
+      {
+        "figma": "(119)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por rede no seed"
+      },
+      {
+        "figma": "(78)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por rede no seed"
+      },
+      {
+        "figma": "(86)",
+        "app": "/^\\(\\d+\\)$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "contagem real de NFTs por rede no seed"
+      },
+      {
+        "figma": "Ordenar por:",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a seta do seletor fica sobre o fim de \"recentemente\"; o app põe a seta depois do texto e alinha o conjunto à direita, 22 px antes"
+      },
+      {
+        "figma": "Listados recentemente",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a seta do seletor fica sobre o fim de \"recentemente\"; o app põe a seta depois do texto e alinha o conjunto à direita, 20 px antes"
+      },
+      {
+        "figma": "t55",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t57",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t59",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t60",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t61",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t62",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t63",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "figma": "t64",
+        "ignore": [
+          "x"
+        ],
+        "reason": "o seed tem 6 páginas (o frame desenha 4), então a página ativa fica 86 px à esquerda"
+      },
+      {
+        "figma": "t65",
+        "app": "/^\\d$/",
+        "reason": "o seed tem 6 páginas (o frame desenha 4): na mesma posição o app mostra as páginas 4, 5 e 6"
+      },
+      {
+        "figma": "t66",
+        "app": "/^\\d$/",
+        "reason": "o seed tem 6 páginas (o frame desenha 4): na mesma posição o app mostra as páginas 4, 5 e 6"
+      },
+      {
+        "figma": "t67",
+        "app": "/^\\d$/",
+        "reason": "o seed tem 6 páginas (o frame desenha 4): na mesma posição o app mostra as páginas 4, 5 e 6"
+      },
+      {
+        "figma": "t72",
+        "ignore": [
+          "x",
+          "w",
+          "lines"
+        ],
+        "reason": "no frame o texto do 2º banner quebra em 4 linhas e a última fica sob o botão; o app mostra o texto inteiro em 3 linhas, com a mesma margem direita do título e do botão"
+      },
+      {
+        "figma": "t73",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no 2º banner do frame o rótulo do botão fica 2 px à direita do centro; o app centraliza como no 1º"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s5",
+        "ignore": [
+          "x"
+        ],
+        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 16 px"
+      },
+      {
+        "id": "s6",
+        "ignore": [
+          "x"
+        ],
+        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 16 px"
+      },
+      {
+        "id": "s10",
+        "skip": true,
+        "reason": "o frame desenha a trilha do slider em dois segmentos em volta dos marcadores; no app é uma barra única atrás deles"
+      },
+      {
+        "id": "s12",
+        "skip": true,
+        "reason": "o frame desenha a trilha do slider em dois segmentos em volta dos marcadores; no app é uma barra única atrás deles"
+      },
+      {
+        "id": "s11",
+        "ignore": [
+          "x"
+        ],
+        "reason": "o marcador máximo fica no teto real da faixa de preço (o frame o desenha a 75% com o texto dizendo 12,30)"
+      },
+      {
+        "id": "s17",
+        "skip": true,
+        "reason": "contorno decorativo com gradiente verde a 20% de opacidade sobre a arte do destaque; não reproduzido"
+      },
+      {
+        "id": "s20",
+        "ignore": [
+          "w"
+        ],
+        "reason": "o sublinhado da aba ativa do frame (101 px) é mais curto que o rótulo (117 px); no app ele acompanha o rótulo"
+      },
+      {
+        "id": "s22",
+        "ignore": [
+          "y"
+        ],
+        "reason": "arte posicionada à mão no frame (6 px abaixo do centro do card)"
+      },
+      {
+        "id": "s28",
+        "skip": true,
+        "reason": "a arte do card do frame é retrato (224×286); as artes do app são quadradas"
+      },
+      {
+        "id": "s39",
+        "ignore": [
+          "x"
+        ],
+        "reason": "o seed tem 6 páginas (o frame desenha 4), então a página ativa fica 86 px à esquerda"
+      },
+      {
+        "id": "s45",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "a arte do 1º banner do frame sai 5 px para fora do card (292 px); no app ela começa na borda, com 290 px"
+      },
+      {
+        "id": "s50",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "a arte do 2º banner do frame começa 2 px para dentro (287 px); no app ela começa na borda, com 290 px"
+      },
+      {
+        "id": "s33",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "id": "s34",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "id": "s35",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "id": "s36",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "id": "s37",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      },
+      {
+        "id": "s38",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o frame espaça as linhas da grade de forma desigual (428 e 422 px) e põe o preço a 29 px do título na 1ª linha e a 23 px nas outras; o app usa um espaçamento único, o da 1ª linha"
+      }
+    ]
+  },
+  "desktop-login": {
+    "regions": {
+      "boxes": [
+        {
+          "box": [
+            0,
+            0,
+            1440,
+            72
+          ]
+        },
+        {
+          "box": [
+            470,
+            160,
+            500,
+            600
+          ],
+          "above": "s40"
+        }
+      ],
+      "reason": "o frame desenha atrás do diálogo uma variação da home (hero, filtros e grade em outras posições, com outras contagens e artes); o app mostra a página Mercado. Só o cabeçalho e o diálogo são conferidos"
+    },
+    "texts": [
+      {
+        "figma": "t5",
+        "app": "/^\\d+$/",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "anchor": "center",
+        "reason": "contagem do carrinho: o frame tem 6 itens; o visitante do login tem o carrinho vazio (0)"
+      },
+      {
+        "figma": "t1",
+        "ignore": [
+          "font",
+          "color"
+        ],
+        "reason": "o fundo do frame é a home (Início ativo); no app /login não marca seção ativa"
+      },
+      {
+        "figma": "***********",
+        "skip": true,
+        "reason": "a senha digitada aparece como pontos do campo password do navegador, que não são texto mensurável"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s0",
+        "skip": true,
+        "reason": "o fundo do frame é a home (Início ativo); no app /login não marca seção ativa"
+      },
+      {
+        "id": "s40",
+        "ignore": [
+          "radius"
+        ],
+        "reason": "o diálogo de login do frame tem cantos retos e o de cadastro, 8 px; o app usa 8 px nos dois"
+      }
+    ]
+  },
+  "desktop-signup": {
+    "regions": {
+      "boxes": [
+        {
+          "box": [
+            0,
+            0,
+            1440,
+            72
+          ]
+        },
+        {
+          "box": [
+            470,
+            158,
+            500,
+            656
+          ],
+          "above": "s40"
+        }
+      ],
+      "reason": "o frame desenha atrás do diálogo uma variação da home (hero, filtros e grade em outras posições, com outras contagens e artes); o app mostra a página Mercado. Só o cabeçalho e o diálogo são conferidos"
+    },
+    "texts": [
+      {
+        "figma": "t5",
+        "app": "/^\\d+$/",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "anchor": "center",
+        "reason": "contagem do carrinho: o frame tem 6 itens; o visitante do login tem o carrinho vazio (0)"
+      },
+      {
+        "figma": "t1",
+        "ignore": [
+          "font",
+          "color"
+        ],
+        "reason": "o fundo do frame é a home (Início ativo); no app /login não marca seção ativa"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s0",
+        "skip": true,
+        "reason": "o fundo do frame é a home (Início ativo); no app /login não marca seção ativa"
+      },
+      {
+        "id": "s42",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "o diálogo foca o primeiro campo ao abrir (Radix), então a borda fica na cor de foco; o frame não mostra foco"
+      }
+    ]
+  },
+  "desktop-profile": {
+    "texts": [
+      {
+        "figma": "t1",
+        "ignore": [
+          "font",
+          "color"
+        ],
+        "reason": "o cabeçalho do frame é o da home (Início ativo); na área da conta o app não marca seção ativa"
+      },
+      {
+        "figma": "t5",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil, mais largo, e o carrinho anda 36 px"
+      },
+      {
+        "figma": "t6",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil com o nome"
+      },
+      {
+        "figma": "Dados do perfil",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a distância entre ícone e rótulo varia por item (o rótulo começa entre 164 e 170 px); o app usa o mesmo espaçamento em todos (167 px)"
+      },
+      {
+        "figma": "Lista de interesse",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a distância entre ícone e rótulo varia por item (o rótulo começa entre 164 e 170 px); o app usa o mesmo espaçamento em todos (167 px)"
+      },
+      {
+        "figma": "Sair",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a distância entre ícone e rótulo varia por item (o rótulo começa entre 164 e 170 px); o app usa o mesmo espaçamento em todos (167 px)"
+      },
+      {
+        "figma": "Remover",
+        "ignore": [
+          "color"
+        ],
+        "reason": "sem avatar cadastrado o botão Remover fica desabilitado (50% de opacidade); o frame o desenha ativo"
+      },
+      {
+        "figma": "Alterar senha",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "figma": "Senha atual",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "figma": "Nova senha",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "figma": "Confirmar nova senha",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "figma": "Salvar",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "figma": "t24",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o asterisco de \"Nome ENS\" fica 5 px depois do rótulo; nos outros campos, 1 px, como no app"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s0",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o da home (Início ativo); na área da conta o app não marca seção ativa"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "x"
+        ],
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+      },
+      {
+        "id": "s2",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar preenchido); logado, o app mostra o link do perfil com borda"
+      },
+      {
+        "id": "s15",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "id": "s16",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "id": "s17",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      },
+      {
+        "id": "s18",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém o botão Salvar dos dados do perfil logo abaixo do formulário e um botão próprio para a senha (erros de um não bloqueiam o outro), então a seção de senha começa mais abaixo que no frame, que tem um único Salvar no fim"
+      }
+    ]
+  },
+  "desktop-wallets": {
+    "texts": [
+      {
+        "figma": "t1",
+        "ignore": [
+          "font",
+          "color"
+        ],
+        "reason": "o cabeçalho do frame é o da home (Início ativo); na área da conta o app não marca seção ativa"
+      },
+      {
+        "figma": "t5",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil, mais largo, e o carrinho anda 36 px"
+      },
+      {
+        "figma": "t6",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil com o nome"
+      },
+      {
+        "figma": "Dados do perfil",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a distância entre ícone e rótulo varia por item (o rótulo começa entre 164 e 170 px); o app usa o mesmo espaçamento em todos (167 px)"
+      },
+      {
+        "figma": "Lista de interesse",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a distância entre ícone e rótulo varia por item (o rótulo começa entre 164 e 170 px); o app usa o mesmo espaçamento em todos (167 px)"
+      },
+      {
+        "figma": "Sair",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a distância entre ícone e rótulo varia por item (o rótulo começa entre 164 e 170 px); o app usa o mesmo espaçamento em todos (167 px)"
+      },
+      {
+        "figma": "t17",
+        "skip": true,
+        "reason": "o formulário principal serve para cadastrar e editar; \"Adicionar\" existe só na carteira secundária"
+      },
+      {
+        "figma": "Selecione uma rede",
+        "skip": true,
+        "reason": "a Ana já tem a carteira principal cadastrada (o formulário vem preenchido) e uma secundária; o frame mostra o formulário vazio e nenhuma secundária"
+      },
+      {
+        "figma": "Endereço 0x da carteira",
+        "skip": true,
+        "reason": "a Ana já tem a carteira principal cadastrada (o formulário vem preenchido) e uma secundária; o frame mostra o formulário vazio e nenhuma secundária"
+      },
+      {
+        "figma": "Selecione uma carteira",
+        "skip": true,
+        "reason": "a Ana já tem a carteira principal cadastrada (o formulário vem preenchido) e uma secundária; o frame mostra o formulário vazio e nenhuma secundária"
+      },
+      {
+        "figma": "t45",
+        "skip": true,
+        "reason": "a Ana já tem a carteira principal cadastrada (o formulário vem preenchido) e uma secundária; o frame mostra o formulário vazio e nenhuma secundária"
+      },
+      {
+        "figma": "Você ainda não adicionou uma carteira secundária.",
+        "skip": true,
+        "reason": "a Ana já tem a carteira principal cadastrada (o formulário vem preenchido) e uma secundária; o frame mostra o formulário vazio e nenhuma secundária"
+      },
+      {
+        "figma": "Igual à carteira principal",
+        "ignore": [
+          "x"
+        ],
+        "reason": "sem o botão Adicionar (a Ana já tem secundária), a opção encosta na margem direita, 100 px depois"
+      },
+      {
+        "figma": "t40",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o asterisco de \"Nome ENS\" fica 5 px depois do rótulo; nos outros campos, 1 px, como no app"
+      },
+      {
+        "figma": "t24",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o asterisco de \"Rede\" fica 5 px depois do rótulo; nos outros campos, 1 px, como no app"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s0",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o da home (Início ativo); na área da conta o app não marca seção ativa"
+      },
+      {
+        "id": "s1",
+        "ignore": [
+          "x"
+        ],
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+      },
+      {
+        "id": "s2",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar preenchido); logado, o app mostra o link do perfil com borda"
+      },
+      {
+        "id": "s18",
+        "ignore": [
+          "x"
+        ],
+        "reason": "sem o botão Adicionar (a Ana já tem secundária), a opção encosta na margem direita, 100 px depois"
+      }
+    ]
+  },
+  "desktop-payment": {
+    "regions": {
+      "boxes": [
+        {
+          "box": [
+            0,
+            0,
+            1440,
+            1000
+          ]
+        }
+      ],
+      "reason": "o rodapé do pagamento desce junto com o botão Confirmar compra (ver acima); a geometria do rodapé é conferida nos frames da home, do detalhe e do carrinho"
+    },
+    "texts": [
+      {
+        "figma": "t5",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil, mais largo, e o carrinho anda 36 px"
+      },
+      {
+        "figma": "t6",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil com o nome"
+      },
+      {
+        "figma": "Selecione uma rede",
+        "skip": true,
+        "reason": "a Ana tem dados de perfil e carteira cadastrados, então os campos vêm preenchidos; o frame mostra os placeholders"
+      },
+      {
+        "figma": "Endereço 0x da carteira",
+        "skip": true,
+        "reason": "a Ana tem dados de perfil e carteira cadastrados, então os campos vêm preenchidos; o frame mostra os placeholders"
+      },
+      {
+        "figma": "Selecione uma carteira",
+        "skip": true,
+        "reason": "a Ana tem dados de perfil e carteira cadastrados, então os campos vêm preenchidos; o frame mostra os placeholders"
+      },
+      {
+        "figma": "ENS ou carteira secundária (opcional)",
+        "ignore": [
+          "x"
+        ],
+        "reason": "o placeholder do frame começa a 22 px da borda; nos outros campos, a 12 px, como no app"
+      },
+      {
+        "figma": "t12",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o asterisco de \"Rede\" fica 5 px depois do rótulo; nos outros campos, 1 px, como no app"
+      },
+      {
+        "figma": "t30",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o asterisco de \"Nome ENS\" fica 5 px depois do rótulo; nos outros campos, 1 px, como no app"
+      },
+      {
+        "figma": "t41",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t43",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t44",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t45",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t47",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t48",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "ID do token: #0314",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "ID do token: #0088",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "26.83 ETH",
+        "app": "/^\\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "todas as linhas do resumo usam o mesmo número de casas decimais (26.830 ETH)"
+      },
+      {
+        "figma": "(-) 00.00",
+        "app": "/^\\(-\\) \\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "desconto zero com ETH e as mesmas casas das outras linhas"
+      },
+      {
+        "figma": "Coinbase Wallet",
+        "ignore": [
+          "x",
+          "color"
+        ],
+        "reason": "a carteira da Ana é MetaMask: Coinbase Wallet fica desabilitada (50%) e MetaMask selecionada; no frame Coinbase está selecionada e seu rótulo começa 29 px mais à direita"
+      },
+      {
+        "figma": "Confirmar compra",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mostra \"Conectar carteira\" e o estado da conexão abaixo dos provedores (o pedido exige carteira conectada), então o botão desce"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s1",
+        "ignore": [
+          "x"
+        ],
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+      },
+      {
+        "id": "s2",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar preenchido); logado, o app mostra o link do perfil com borda"
+      },
+      {
+        "id": "s19",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "id": "s21",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "no frame as linhas 2 e 3 dos NFTs têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "id": "s27",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "a carteira da Ana é MetaMask, que vem selecionada (borda primária); no frame Coinbase está selecionada"
+      },
+      {
+        "id": "s29",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "Coinbase Wallet fica desabilitada para a carteira MetaMask da Ana; no frame está selecionada"
+      },
+      {
+        "id": "s30",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o rádio da 3ª opção fica 4 px à direita dos outros"
+      },
+      {
+        "id": "s31",
+        "skip": true,
+        "reason": "o ponto interno do rádio selecionado é desenhado com sombra interna no próprio campo"
+      },
+      {
+        "id": "s32",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mostra \"Conectar carteira\" e o estado da conexão abaixo dos provedores (o pedido exige carteira conectada), então o botão desce"
+      }
+    ]
+  },
+  "desktop-confirmation": {
+    "regions": {
+      "boxes": [
+        {
+          "box": [
+            0,
+            0,
+            1440,
+            72
+          ]
+        },
+        {
+          "box": [
+            431,
+            166,
+            578,
+            821
+          ],
+          "above": "s51"
+        }
+      ],
+      "reason": "o frame desenha o recibo sobre a página de pagamento esmaecida; o app mostra o recibo como página própria, com o cartão na mesma posição. Só o cabeçalho e o recibo são conferidos"
+    },
+    "texts": [
+      {
+        "figma": "t5",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil, mais largo, e o carrinho anda 36 px"
+      },
+      {
+        "figma": "t6",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar); logado, o app mostra o link do perfil com o nome"
+      },
+      {
+        "figma": "0xA91F…E82C",
+        "app": "/^0x[0-9a-fA-F]{4}…[0-9a-fA-F]{4}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "hash da transação gerado no pedido"
+      },
+      {
+        "figma": "29 Jul, 2026",
+        "app": "/^\\d{1,2} [A-Z][a-z]{2}, \\d{4}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "data real do pedido, no formato do frame com o mês em português"
+      },
+      {
+        "figma": "t108",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t109",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t110",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t111",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t112",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t113",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t114",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t115",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "figma": "t116",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "figma": "t117",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "figma": "t118",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "figma": "t119",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "figma": "t120",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "figma": "t121",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s1",
+        "ignore": [
+          "x"
+        ],
+        "reason": "logado, o link do perfil é mais largo que o botão Entrar e o selo do carrinho anda 36 px"
+      },
+      {
+        "id": "s2",
+        "skip": true,
+        "reason": "o cabeçalho do frame é o de visitante (botão Entrar preenchido); logado, o app mostra o link do perfil com borda"
+      },
+      {
+        "id": "s62",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "id": "s64",
+        "ignore": [
+          "x",
+          "y",
+          "w",
+          "h"
+        ],
+        "reason": "no frame as linhas 2 e 3 têm arte menor (66 e 65 px) e nome, quantidade e preço posicionados à mão; o app usa a geometria da 1ª linha em todas"
+      },
+      {
+        "id": "s65",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "id": "s66",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "id": "s67",
+        "ignore": [
+          "y"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      },
+      {
+        "id": "s51",
+        "ignore": [
+          "h"
+        ],
+        "reason": "o app mantém a linha Subtotal no recibo (o frame só tem taxa e total), então o que vem depois desce 30 px"
+      }
+    ]
+  },
+  "mobile-home": {
+    "texts": [
+      {
+        "figma": "Novos lançamentos",
+        "ignore": [
+          "x"
+        ],
+        "reason": "o frame espaça as abas de forma desigual (5 e 16 px); o app usa 10 px, que acerta a 3ª aba"
+      },
+      {
+        "figma": "t10",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "x",
+          "y",
+          "w"
+        ],
+        "reason": "a 2ª linha do frame repete os NFTs da 1ª, com o texto 3 px à direita e 1 px abaixo; o app mostra os NFTs seguintes do catálogo"
+      },
+      {
+        "figma": "t11",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "x",
+          "y",
+          "w"
+        ],
+        "reason": "a 2ª linha do frame repete os NFTs da 1ª, com o texto 3 px à direita e 1 px abaixo; o app mostra os NFTs seguintes do catálogo"
+      },
+      {
+        "figma": "t15",
+        "app": "/^[A-Z][a-z]+ [A-Z][a-z]+ #\\d{3}$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "a 2ª linha do frame repete os NFTs da 1ª; o app mostra os NFTs seguintes do catálogo"
+      },
+      {
+        "figma": "t16",
+        "app": "/^\\d+\\.\\d{2} ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "a 2ª linha do frame repete os NFTs da 1ª; o app mostra os NFTs seguintes do catálogo"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s7",
+        "ignore": [
+          "x"
+        ],
+        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 13 px"
+      },
+      {
+        "id": "s9",
+        "ignore": [
+          "x"
+        ],
+        "reason": "pontos do carrossel com 24 px de área de toque (WCAG 2.5.8): centros a 24 px, não a 13 px"
+      },
+      {
+        "id": "s16",
+        "ignore": [
+          "y"
+        ],
+        "reason": "artes dos cards posicionadas à mão no frame (topo a 12, 16 ou 20 px do card); o app centraliza todas a 12 px"
+      },
+      {
+        "id": "s20",
+        "ignore": [
+          "y"
+        ],
+        "reason": "artes dos cards posicionadas à mão no frame (topo a 12, 16 ou 20 px do card); o app centraliza todas a 12 px"
+      },
+      {
+        "id": "s23",
+        "ignore": [
+          "y"
+        ],
+        "reason": "artes dos cards posicionadas à mão no frame (topo a 12, 16 ou 20 px do card); o app centraliza todas a 12 px"
+      }
+    ]
+  },
+  "mobile-detail": {
+    "shift": {
+      "anchor": "t3",
+      "from": 540,
+      "to": 730,
+      "reason": "a descrição do mock tem 4 linhas (o frame mostra uma versão mais curta, em 3); o que vem abaixo dela é conferido a partir da última linha da descrição"
+    },
+    "texts": [
+      {
+        "figma": "t3",
+        "app": "/^Um colecionável digital .+$/",
+        "ignore": [
+          "w",
+          "lines"
+        ],
+        "reason": "a descrição do mock é mais longa que a do frame (sem \"1/50\" e com mais uma frase)"
+      },
+      {
+        "figma": "4.8",
+        "app": "/^\\d\\.\\d$/",
+        "ignore": [
+          "x"
+        ],
+        "reason": "a nota real do seed é 4.5; no frame o selo de avaliação é mais estreito que o conteúdo (o \"(19)\" passa da borda)"
+      },
+      {
+        "figma": "(19)",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o selo de avaliação é mais estreito que o conteúdo (o \"(19)\" passa da borda); no app o selo envolve estrela, nota e contagem"
+      },
+      {
+        "figma": "t5",
+        "app": "/^1\\/1$/",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "o frame repete \"1/10\" na primeira chip; o NFT real tem as edições 1/1, 1/10, 1/50 e Aberta"
+      },
+      {
+        "figma": "t6",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      },
+      {
+        "figma": "t7",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      },
+      {
+        "figma": "t8",
+        "ignore": [
+          "x"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      },
+      {
+        "figma": "Comprar NFT",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o rótulo fica 1,8 px à direita do centro do botão; o app centraliza"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s1",
+        "skip": true,
+        "reason": "indicador de carrossel sem função: o detalhe mobile mostra uma única arte"
+      },
+      {
+        "id": "s2",
+        "skip": true,
+        "reason": "indicador de carrossel sem função: o detalhe mobile mostra uma única arte"
+      },
+      {
+        "id": "s3",
+        "skip": true,
+        "reason": "indicador de carrossel sem função: o detalhe mobile mostra uma única arte"
+      },
+      {
+        "id": "s9",
+        "ignore": [
+          "h"
+        ],
+        "reason": "o painel continua abaixo da dobra no app (a página rola); o frame mostra só a tela"
+      },
+      {
+        "id": "s10",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "no frame o selo de avaliação é mais estreito que o conteúdo; no app ele envolve estrela, nota e contagem"
+      },
+      {
+        "id": "s11",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      },
+      {
+        "id": "s12",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      },
+      {
+        "id": "s13",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      },
+      {
+        "id": "s14",
+        "ignore": [
+          "x",
+          "w"
+        ],
+        "reason": "as chips de edição do frame têm larguras desenhadas à mão (44, 44, 48 e 68 px); o app usa o mesmo padding em todas"
+      }
+    ]
+  },
+  "mobile-cart": {
+    "texts": [
+      {
+        "figma": "+",
+        "skip": true,
+        "reason": "o app desenha os sinais de menos e mais como ícones SVG; no frame são uma linha e um caractere \"+\""
+      },
+      {
+        "figma": "Edição: 1/1",
+        "app": "/^Edição: .+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "o carrinho reproduzido usa a edição 1/50 em todas as linhas (as de preço igual ao frame); o frame mostra 1/1 e 1/10 em duas delas"
+      },
+      {
+        "figma": "Edição: 1/10",
+        "app": "/^Edição: .+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "o carrinho reproduzido usa a edição 1/50 em todas as linhas (as de preço igual ao frame); o frame mostra 1/1 e 1/10 em duas delas"
+      },
+      {
+        "figma": "8.92 ETH",
+        "app": "/^\\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w",
+          "y"
+        ],
+        "anchor": "right",
+        "reason": "o subtotal do frame soma errado (8.92 em vez de 8.14) e tem casas diferentes das outras linhas; no frame o valor também fica 1,6 px acima do rótulo, e o app centraliza todas as linhas"
+      },
+      {
+        "figma": "(-) 00.00",
+        "app": "/^\\(-\\) \\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "desconto zero com ETH e as mesmas casas das outras linhas"
+      },
+      {
+        "figma": "8.936 ETH",
+        "app": "/^\\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w"
+        ],
+        "anchor": "right",
+        "reason": "total real (8.156 ETH): o frame parte do subtotal com erro de soma"
+      },
+      {
+        "figma": "t4",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o \"1\" do seletor fica 1,3 px à direita do centro; o \"2\", centralizado como no app"
+      },
+      {
+        "figma": "t9",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o \"1\" do seletor fica 1,3 px à direita do centro; o \"2\", centralizado como no app"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s5",
+        "skip": true,
+        "reason": "o app desenha os sinais de menos e mais como ícones SVG; no frame são uma linha e um caractere \"+\""
+      },
+      {
+        "id": "s11",
+        "skip": true,
+        "reason": "o app desenha os sinais de menos e mais como ícones SVG; no frame são uma linha e um caractere \"+\""
+      },
+      {
+        "id": "s16",
+        "skip": true,
+        "reason": "o app desenha os sinais de menos e mais como ícones SVG; no frame são uma linha e um caractere \"+\""
+      },
+      {
+        "id": "s23",
+        "skip": true,
+        "reason": "o app desenha os sinais de menos e mais como ícones SVG; no frame são uma linha e um caractere \"+\""
+      },
+      {
+        "id": "s3",
+        "ignore": [
+          "y"
+        ],
+        "reason": "no frame a arte da 1ª linha começa 2 px abaixo do card; nas outras, no topo"
+      },
+      {
+        "id": "s25",
+        "ignore": [
+          "h"
+        ],
+        "reason": "o painel do resumo continua abaixo da dobra no app (a página rola); o frame mostra só a tela"
+      },
+      {
+        "id": "s18",
+        "skip": true,
+        "reason": "camada duplicada da arte da 3ª linha no frame (uma 2 px acima da outra); a camada principal (s14) é conferida"
+      }
+    ]
+  },
+  "mobile-payment": {
+    "texts": [
+      {
+        "figma": "Reserva",
+        "app": "/^(Principal|Reserva)$/",
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida",
+        "ignore": [
+          "w"
+        ]
+      },
+      {
+        "figma": "Principal",
+        "app": "/^(Principal|Reserva)$/",
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida",
+        "ignore": [
+          "w"
+        ]
+      },
+      {
+        "figma": "nova.kurio.eth\nRede Polygon",
+        "app": "/^\\S+ Rede \\S+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida"
+      },
+      {
+        "figma": "0xA91F…E82C\nRede principal Ethereum",
+        "app": "/^\\S+ Rede \\S+$/",
+        "ignore": [
+          "w"
+        ],
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida"
+      },
+      {
+        "figma": "Coinbase Wallet",
+        "ignore": [
+          "color"
+        ],
+        "reason": "Coinbase Wallet fica desabilitada (50%) para a carteira MetaMask da Ana"
+      },
+      {
+        "figma": "Total:",
+        "ignore": [
+          "x",
+          "y"
+        ],
+        "reason": "no mobile o app mantém o bloco Dados do colecionador e o botão Conectar carteira (o pedido exige dados válidos e carteira conectada), então Total e Confirmar compra ficam no fluxo da página, abaixo deles"
+      },
+      {
+        "figma": "8.936 ETH",
+        "app": "/^\\d+\\.\\d+ ETH$/",
+        "ignore": [
+          "w",
+          "y"
+        ],
+        "anchor": "right",
+        "reason": "total real (8.156 ETH); no mobile o app mantém o bloco Dados do colecionador e o botão Conectar carteira (o pedido exige dados válidos e carteira conectada), então Total e Confirmar compra ficam no fluxo da página, abaixo deles"
+      },
+      {
+        "figma": "Confirmar compra",
+        "ignore": [
+          "y"
+        ],
+        "reason": "no mobile o app mantém o bloco Dados do colecionador e o botão Conectar carteira (o pedido exige dados válidos e carteira conectada), então Total e Confirmar compra ficam no fluxo da página, abaixo deles"
+      },
+      {
+        "figma": "W",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a inicial do provedor não fica centralizada no círculo (2 a 3 px à esquerda); o app centraliza"
+      },
+      {
+        "figma": "M",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame a inicial do provedor não fica centralizada no círculo (2 a 3 px à esquerda); o app centraliza"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s2",
+        "skip": true,
+        "reason": "ícone de menu (três pontos) sem função no frame; não reproduzido"
+      },
+      {
+        "id": "s3",
+        "skip": true,
+        "reason": "ícone de menu (três pontos) sem função no frame; não reproduzido"
+      },
+      {
+        "id": "s4",
+        "skip": true,
+        "reason": "ícone de menu (três pontos) sem função no frame; não reproduzido"
+      },
+      {
+        "id": "s8",
+        "skip": true,
+        "reason": "ícone de menu (três pontos) sem função no frame; não reproduzido"
+      },
+      {
+        "id": "s9",
+        "skip": true,
+        "reason": "ícone de menu (três pontos) sem função no frame; não reproduzido"
+      },
+      {
+        "id": "s10",
+        "skip": true,
+        "reason": "ícone de menu (três pontos) sem função no frame; não reproduzido"
+      },
+      {
+        "id": "s5",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida"
+      },
+      {
+        "id": "s11",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida"
+      },
+      {
+        "id": "s6",
+        "skip": true,
+        "reason": "o ponto interno do rádio selecionado é desenhado com sombra interna no próprio campo"
+      },
+      {
+        "id": "s21",
+        "skip": true,
+        "reason": "o ponto interno do rádio selecionado é desenhado com sombra interna no próprio campo"
+      },
+      {
+        "id": "s17",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida"
+      },
+      {
+        "id": "s20",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "a carteira da Ana é MetaMask (Principal), que vem primeiro e selecionada; o frame mostra a Reserva selecionada no topo e Coinbase Wallet escolhida"
+      },
+      {
+        "id": "s22",
+        "ignore": [
+          "y"
+        ],
+        "reason": "no mobile o app mantém o bloco Dados do colecionador e o botão Conectar carteira (o pedido exige dados válidos e carteira conectada), então Total e Confirmar compra ficam no fluxo da página, abaixo deles"
+      }
+    ]
+  },
+  "mobile-signup": {
+    "texts": [
+      {
+        "figma": "Nome de usuário",
+        "ignore": [
+          "x"
+        ],
+        "reason": "no frame o placeholder do primeiro campo está centralizado e os demais alinhados à esquerda; o app alinha todos à esquerda"
+      }
+    ],
+    "shapes": [
+      {
+        "id": "s0",
+        "ignore": [
+          "paint"
+        ],
+        "reason": "a tela foca o primeiro campo ao abrir (Radix), então a borda fica na cor de foco; o frame não mostra foco"
+      }
+    ]
+  },
+  "mobile-login": {
+    "texts": [
+      {
+        "figma": "***********",
+        "skip": true,
+        "reason": "a senha digitada aparece como pontos do campo password do navegador, que não são texto mensurável"
+      }
+    ],
+    "shapes": []
+  }
+}

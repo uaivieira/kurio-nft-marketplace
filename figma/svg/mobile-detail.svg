@@ -1,0 +1,130 @@
+<svg width="414" height="896" viewBox="0 0 414 896" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<rect width="414" height="896" fill="#1E1E1E"/>
+<g clip-path="url(#clip0_0_1)">
+<rect width="414" height="896" rx="40" fill="#140D0A"/>
+<rect width="414" height="506" fill="url(#paint0_linear_0_1)"/>
+<circle cx="217.5" cy="368.5" r="3.5" fill="#D28A4C"/>
+<circle cx="231.5" cy="368.5" r="3.5" fill="#D28A4C"/>
+<rect x="179" y="365" width="28" height="7" rx="3.5" fill="#D28A4C"/>
+<rect x="28.5" y="23.5" width="34" height="34" rx="17" fill="#2F1D15"/>
+<rect x="28.5" y="23.5" width="34" height="34" rx="17" stroke="#3F2319"/>
+<path d="M48.9167 46.8332C48.9167 46.8332 43.0834 43.3798 43.0834 40.9998C43.0834 38.6207 48.9167 35.1665 48.9167 35.1665" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#CFB28C"/>
+<rect x="354.5" y="23.5" width="34" height="34" rx="17" fill="#2F1D15"/>
+<rect x="354.5" y="23.5" width="34" height="34" rx="17" stroke="#3F2319"/>
+<path d="M371.5 47.6177C371.272 47.6177 371.053 47.5352 370.881 47.3853C370.235 46.8201 369.612 46.2889 369.062 45.8204L369.059 45.818C367.447 44.4443 366.055 43.2581 365.087 42.0895C364.004 40.7831 363.5 39.5444 363.5 38.1913C363.5 36.8766 363.951 35.6637 364.769 34.7759C365.598 33.8776 366.734 33.3828 367.97 33.3828C368.893 33.3828 369.739 33.6748 370.484 34.2506C370.859 34.5413 371.2 34.897 371.5 35.3119C371.8 34.897 372.141 34.5413 372.516 34.2506C373.261 33.6748 374.107 33.3828 375.03 33.3828C376.266 33.3828 377.403 33.8776 378.231 34.7759C379.049 35.6637 379.5 36.8766 379.5 38.1913C379.5 39.5444 378.996 40.7831 377.913 42.0894C376.945 43.2581 375.553 44.4442 373.941 45.8177C373.39 46.287 372.766 46.819 372.118 47.3855C371.947 47.5352 371.728 47.6177 371.5 47.6177V47.6177ZM367.97 34.3201C366.999 34.3201 366.107 34.7075 365.458 35.4111C364.8 36.1254 364.437 37.1127 364.437 38.1913C364.437 39.3293 364.86 40.3472 365.808 41.4915C366.725 42.5975 368.089 43.7594 369.667 45.1047L369.67 45.1072C370.222 45.5775 370.848 46.1107 371.499 46.6801C372.154 46.1096 372.78 45.5756 373.333 45.1045C374.912 43.7592 376.275 42.5975 377.192 41.4915C378.14 40.3472 378.563 39.3293 378.563 38.1913C378.563 37.1127 378.2 36.1254 377.542 35.4111C376.893 34.7075 376.001 34.3201 375.03 34.3201C374.319 34.3201 373.666 34.5461 373.09 34.9919C372.576 35.3894 372.218 35.8918 372.008 36.2434C371.9 36.4242 371.71 36.5321 371.5 36.5321C371.29 36.5321 371.1 36.4242 370.992 36.2434C370.782 35.8918 370.424 35.3894 369.91 34.9919C369.334 34.5461 368.681 34.3201 367.97 34.3201V34.3201Z" fill="#E89B55"/>
+<rect x="28" y="66" width="361" height="356" rx="24" fill="url(#pattern0_0_1)"/>
+<path d="M0 423C0 405.879 13.8792 392 31 392H383C400.121 392 414 405.879 414 423V896H0V423Z" fill="#241612"/>
+<g clip-path="url(#clip1_0_1)">
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="24" y="445.269">Emerald Ape #042</tspan></text>
+<path d="M323.452 438.353C323.301 438.5 323.232 438.712 323.266 438.919L323.785 441.789C323.829 442.033 323.726 442.279 323.522 442.419C323.323 442.565 323.058 442.583 322.84 442.466L320.256 441.118C320.167 441.071 320.067 441.045 319.965 441.042H319.807C319.752 441.05 319.698 441.068 319.649 441.095L317.065 442.448C316.937 442.513 316.793 442.535 316.651 442.513C316.305 442.447 316.075 442.118 316.132 441.771L316.651 438.901C316.685 438.692 316.616 438.479 316.465 438.33L314.358 436.288C314.182 436.118 314.121 435.861 314.201 435.629C314.28 435.398 314.479 435.23 314.72 435.192L317.619 434.771C317.84 434.748 318.033 434.614 318.132 434.416L319.41 431.797C319.44 431.738 319.479 431.685 319.527 431.639L319.579 431.598C319.607 431.568 319.638 431.543 319.673 431.523L319.737 431.499L319.836 431.458H320.081C320.301 431.481 320.494 431.612 320.595 431.808L321.889 434.416C321.982 434.607 322.164 434.739 322.373 434.771L325.272 435.192C325.517 435.227 325.722 435.396 325.803 435.629C325.88 435.863 325.814 436.12 325.634 436.288L323.452 438.353Z" fill="#E3A44E"/>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="356" y="443.438">(19)</tspan></text>
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" font-weight="500" letter-spacing="0em"><tspan x="331" y="443.438">4.8</tspan></text>
+<rect x="307.922" y="424.5" width="79.1562" height="26" rx="13" stroke="#D28A4C"/>
+</g>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="24" y="480.438">Um colecion&#xe1;vel digital 1/50 finalizado &#xe0; </tspan><tspan x="24" y="504.438">m&#xe3;o da cole&#xe7;&#xe3;o Kurio Editions, verificado </tspan><tspan x="24" y="528.438">na Ethereum.</tspan></text>
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="15" font-weight="bold" letter-spacing="0em"><tspan x="24" y="559.826">Edi&#xe7;&#xe3;o:</tspan></text>
+<mask id="stroke0_0_1" fill="white">
+<path d="M66 584C66 591.732 56.598 598 45 598C33.402 598 24 591.732 24 584C24 576.268 33.402 570 45 570C56.598 570 66 576.268 66 584Z"/>
+</mask>
+<ellipse cx="45" cy="584" rx="21" ry="14" stroke-width="2" stroke="#3F2319" mask="url(#stroke0_0_1)"/>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="28.1836" y="589.438">1/10</tspan></text>
+<mask id="stroke1_0_1" fill="white">
+<path d="M120 584C120 591.732 110.598 598 99 598C87.402 598 78 591.732 78 584C78 576.268 87.402 570 99 570C110.598 570 120 576.268 120 584Z"/>
+</mask>
+<ellipse cx="99" cy="584" rx="21" ry="14" stroke-width="2" stroke="#3F2319" mask="url(#stroke1_0_1)"/>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="82.1836" y="589.438">1/10</tspan></text>
+<mask id="stroke2_0_1" fill="white">
+<path d="M178 584C178 591.732 167.703 598 155 598C142.297 598 132 591.732 132 584C132 576.268 142.297 570 155 570C167.703 570 178 576.268 178 584Z"/>
+</mask>
+<ellipse cx="155" cy="584" rx="23" ry="14" stroke-width="2" stroke="#D28A4C" mask="url(#stroke2_0_1)"/>
+<text fill="#E89B55" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" font-weight="500" letter-spacing="0em"><tspan x="138.184" y="589.438">1/50</tspan></text>
+<mask id="stroke3_0_1" fill="white">
+<path d="M256 584C256 591.732 241.225 598 223 598C204.775 598 190 591.732 190 584C190 576.268 204.775 570 223 570C241.225 570 256 576.268 256 584Z"/>
+</mask>
+<ellipse cx="223" cy="584" rx="33" ry="14" stroke-width="2" stroke="#3F2319" mask="url(#stroke3_0_1)"/>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="197.775" y="589.438">ABERTA</tspan></text>
+<g clip-path="url(#clip2_0_1)">
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="15" letter-spacing="0em"><tspan x="24" y="625.826">ID do token: #0042</tspan></text>
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="15" letter-spacing="0em"><tspan x="24" y="657.826">Cole&#xe7;&#xe3;o: Kurio Apes</tspan></text>
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="15" letter-spacing="0em"><tspan x="24" y="689.826">Atributos: &#xd3;culos, Esmeralda, Raro</tspan></text>
+</g>
+<g filter="url(#filter0_d_0_1)">
+<path d="M0 772C0 749.909 17.9086 732 40 732H374C396.091 732 414 749.909 414 772V896H0V772Z" fill="#241612" shape-rendering="crispEdges"/>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="15" font-weight="500" letter-spacing="0em"><tspan x="24" y="772.826">Qtd.</tspan></text>
+<g filter="url(#filter1_d_0_1)">
+<rect x="69" y="752" width="20" height="30" rx="10" fill="#D28A4C" shape-rendering="crispEdges"/>
+<rect x="69.5" y="752.5" width="19" height="29" rx="9.5" stroke="#140D0A" shape-rendering="crispEdges"/>
+<path d="M74.3332 767.667V766.333H83.6665V767.667H74.3332Z" fill="black"/>
+</g>
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="18" font-weight="500" letter-spacing="0em"><tspan x="101" y="773.992">1</tspan></text>
+<g filter="url(#filter2_d_0_1)">
+<rect x="124" y="752" width="20" height="30" rx="10" fill="#D28A4C" shape-rendering="crispEdges"/>
+<rect x="124.5" y="752.5" width="19" height="29" rx="9.5" stroke="#140D0A" shape-rendering="crispEdges"/>
+<path d="M133.333 767.667H129.333V766.333H133.333V762.333H134.667V766.333H138.667V767.667H134.667V771.667H133.333V767.667Z" fill="black"/>
+</g>
+<text fill="#E89B55" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="20" font-weight="bold" letter-spacing="0em"><tspan x="293.906" y="774.769">1.19 ETH</tspan></text>
+<rect x="24" y="802" width="196" height="60" rx="30" fill="url(#paint1_linear_0_1)"/>
+<text fill="#140D0A" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="71" y="838.215">Comprar NFT</tspan></text>
+<rect x="232.5" y="802.5" width="59" height="59" rx="29.5" fill="#2F1D15"/>
+<rect x="232.5" y="802.5" width="59" height="59" rx="29.5" stroke="#3F2319"/>
+<path d="M270.333 828.801L269.39 834.778C269.218 835.956 268.275 836.714 267.074 836.714H258.838C257.723 836.714 256.694 835.872 256.522 834.778L255.493 827.791L255.235 825.855C255.15 825.35 254.721 825.013 254.12 825.013H253.52C253.177 825.013 252.833 824.677 252.833 824.34C252.833 824.003 253.177 823.667 253.52 823.667H254.12C255.321 823.667 256.351 824.508 256.436 825.687L256.608 827.034H268.789C269.218 827.034 269.647 827.202 269.904 827.539C270.248 827.875 270.333 828.38 270.333 828.801Z" fill="#B39463"/>
+<path d="M267.245 840.333C267.719 840.333 268.103 839.956 268.103 839.491C268.103 839.027 267.719 838.65 267.245 838.65C266.771 838.65 266.387 839.027 266.387 839.491C266.387 839.956 266.771 840.333 267.245 840.333Z" fill="#B39463"/>
+<path d="M258.667 840.333C259.14 840.333 259.525 839.956 259.525 839.491C259.525 839.027 259.14 838.65 258.667 838.65C258.193 838.65 257.809 839.027 257.809 839.491C257.809 839.956 258.193 840.333 258.667 840.333Z" fill="#B39463"/>
+</g>
+</g>
+<defs>
+<pattern id="pattern0_0_1" patternContentUnits="objectBoundingBox" width="1" height="1">
+<use xlink:href="#image0_0_1" transform="matrix(0.000797448 0 0 0.000808648 0 -0.00702247)"/>
+</pattern>
+<filter id="filter0_d_0_1" x="-20" y="712" width="454" height="204" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset/>
+<feGaussianBlur stdDeviation="10"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0392157 0 0 0 0 0.0235294 0 0 0 0 0.0156863 0 0 0 0.45 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<filter id="filter1_d_0_1" x="59" y="746" width="40" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2" operator="erode" in="SourceAlpha" result="effect1_dropShadow_0_1"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="6"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0784314 0 0 0 0 0.0509804 0 0 0 0 0.0392157 0 0 0 0.14902 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<filter id="filter2_d_0_1" x="114" y="746" width="40" height="50" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="2" operator="erode" in="SourceAlpha" result="effect1_dropShadow_0_1"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="6"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0784314 0 0 0 0 0.0509804 0 0 0 0 0.0392157 0 0 0 0.14902 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_0_1" x1="-47.5862" y1="-62.6238" x2="474.082" y2="509.479" gradientUnits="userSpaceOnUse">
+<stop stop-color="#241612"/>
+<stop offset="1" stop-color="#2F1D15"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_1" x1="18" y1="790" x2="270.195" y2="836.133" gradientUnits="userSpaceOnUse">
+<stop stop-color="#D28A4C"/>
+<stop offset="1" stop-color="#D28A4C" stop-opacity="0.8"/>
+</linearGradient>
+<clipPath id="clip0_0_1">
+<rect width="414" height="896" rx="40" fill="white"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<rect width="366" height="27" fill="white" transform="translate(24 424)"/>
+</clipPath>
+<clipPath id="clip2_0_1">
+<rect width="307" height="84" fill="white" transform="translate(24 610)"/>
+</clipPath>
+<image id="image0_0_1" width="1254" height="1254" preserveAspectRatio="none" xlink:href=""/>
+</defs>
+</svg>

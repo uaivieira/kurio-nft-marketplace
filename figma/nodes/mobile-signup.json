@@ -1,67 +1,479 @@
 {
-  "frame": "mobile-signup",
-  "source": "figma/frames/mobile-signup.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
-  "elements": [
+ "frame": "mobile-signup",
+ "source": "figma/svg/mobile-signup.svg",
+ "width": 414,
+ "height": 896,
+ "background": "#140d0a",
+ "texts": [
+  {
+   "id": "t0",
+   "z": 0,
+   "content": "KURIO",
+   "lines": [
     {
-      "id": "logo",
-      "selector": "role=dialog >> text=KURIO",
-      "measure": "ink",
-      "x": 154,
-      "y": 137,
-      "w": 106,
-      "h": 24
-    },
-    {
-      "id": "title",
-      "selector": "role=dialog >> text=\"Criar perfil de colecionador\"",
-      "measure": "ink",
-      "x": 56,
-      "y": 257,
-      "w": 301,
-      "h": 15,
-      "font": {
-        "size": 18,
-        "weight": 700
-      },
-      "ignore": [
-        "h"
-      ]
-    },
-    {
-      "id": "username",
-      "selector": "role=dialog >> role=textbox[name=\"Nome de usuário\"]",
-      "measure": "box",
-      "x": 28,
-      "y": 312,
-      "w": 358,
-      "h": 50
-    },
-    {
-      "id": "submit",
-      "selector": "role=dialog >> role=button[name=\"Criar perfil\"]",
-      "measure": "box",
-      "x": 28,
-      "y": 588,
-      "w": 358,
-      "h": 60
-    },
-    {
-      "id": "google",
-      "selector": "role=dialog >> role=button[name=/Google/]",
-      "measure": "box",
-      "x": 28,
-      "y": 716,
-      "w": 358,
-      "h": 40
-    },
-    {
-      "id": "footer-link",
-      "selector": "role=dialog >> role=link[name=/Já tem uma conta/]",
-      "measure": "ink",
-      "x": 103,
-      "y": 857,
-      "w": 207,
-      "h": 11
+     "text": "KURIO",
+     "x": 152.553,
+     "baseline": 160.43,
+     "w": 112.016
     }
-  ]
+   ],
+   "box": {
+    "x": 152.553,
+    "y": 126.899,
+    "w": 112.016,
+    "h": 42.203
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 32,
+   "fontWeight": 700,
+   "letterSpacing": 3.2,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t1",
+   "z": 1,
+   "content": "Criar perfil de colecionador",
+   "lines": [
+    {
+     "text": "Criar perfil de colecionador",
+     "x": 55.5,
+     "baseline": 270.992,
+     "w": 302.449
+    }
+   ],
+   "box": {
+    "x": 55.5,
+    "y": 252.131,
+    "w": 302.449,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t2",
+   "z": 3,
+   "content": "Nome de usuário",
+   "lines": [
+    {
+     "text": "Nome de usuário",
+     "x": 143.5,
+     "baseline": 342.438,
+     "w": 126.021
+    }
+   ],
+   "box": {
+    "x": 143.5,
+    "y": 327.768,
+    "w": 126.021,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t3",
+   "z": 5,
+   "content": "Digite seu e-mail",
+   "lines": [
+    {
+     "text": "Digite seu e-mail",
+     "x": 44,
+     "baseline": 404.438,
+     "w": 142.823
+    }
+   ],
+   "box": {
+    "x": 44,
+    "y": 389.768,
+    "w": 142.823,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t4",
+   "z": 7,
+   "content": "Senha",
+   "lines": [
+    {
+     "text": "Senha",
+     "x": 44,
+     "baseline": 465.438,
+     "w": 42.007
+    }
+   ],
+   "box": {
+    "x": 44,
+    "y": 450.768,
+    "w": 42.007,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t5",
+   "z": 9,
+   "content": "Confirmar senha",
+   "lines": [
+    {
+     "text": "Confirmar senha",
+     "x": 44,
+     "baseline": 528.438,
+     "w": 126.021
+    }
+   ],
+   "box": {
+    "x": 44,
+    "y": 513.768,
+    "w": 126.021,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t6",
+   "z": 11,
+   "content": "Criar perfil",
+   "lines": [
+    {
+     "text": "Criar perfil",
+     "x": 149,
+     "baseline": 624.215,
+     "w": 115.219
+    }
+   ],
+   "box": {
+    "x": 149,
+    "y": 607.449,
+    "w": 115.219,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t7",
+   "z": 13,
+   "content": "Ou continue com",
+   "lines": [
+    {
+     "text": "Ou continue com",
+     "x": 148,
+     "baseline": 701.05,
+     "w": 117.019
+    }
+   ],
+   "box": {
+    "x": 148,
+    "y": 687.428,
+    "w": 117.019,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t8",
+   "z": 16,
+   "content": "Continuar com Google",
+   "lines": [
+    {
+     "text": "Continuar com Google",
+     "x": 135.924,
+     "baseline": 741.05,
+     "w": 156.025
+    }
+   ],
+   "box": {
+    "x": 135.924,
+    "y": 727.428,
+    "w": 156.025,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t9",
+   "z": 18,
+   "content": "Continuar com Facebook",
+   "lines": [
+    {
+     "text": "Continuar com Facebook",
+     "x": 128.116,
+     "baseline": 797.05,
+     "w": 171.628
+    }
+   ],
+   "box": {
+    "x": 128.116,
+    "y": 783.428,
+    "w": 171.628,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t10",
+   "z": 19,
+   "content": "Já tem uma conta? Entre",
+   "lines": [
+    {
+     "text": "Já tem uma conta? Entre",
+     "x": 103,
+     "baseline": 867.826,
+     "w": 207.034
+    }
+   ],
+   "box": {
+    "x": 103,
+    "y": 852.108,
+    "w": 207.034,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  }
+ ],
+ "shapes": [
+  {
+   "id": "s0",
+   "z": 2,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 312,
+    "w": 358,
+    "h": 50
+   },
+   "radius": 10,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s1",
+   "z": 4,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 374,
+    "w": 358,
+    "h": 50
+   },
+   "radius": 10,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s2",
+   "z": 6,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 436,
+    "w": 358,
+    "h": 50
+   },
+   "radius": 10,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s3",
+   "z": 8,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 498,
+    "w": 358,
+    "h": 50
+   },
+   "radius": 10,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s4",
+   "z": 10,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 588,
+    "w": 358,
+    "h": 60
+   },
+   "radius": 10,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s5",
+   "z": 12,
+   "kind": "line",
+   "box": {
+    "x": 28,
+    "y": 695,
+    "w": 110,
+    "h": 1
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s6",
+   "z": 14,
+   "kind": "line",
+   "box": {
+    "x": 276,
+    "y": 695,
+    "w": 110,
+    "h": 1
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s7",
+   "z": 15,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 716,
+    "w": 358,
+    "h": 40
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s8",
+   "z": 17,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 772,
+    "w": 358,
+    "h": 40
+   },
+   "radius": 5,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  }
+ ]
 }

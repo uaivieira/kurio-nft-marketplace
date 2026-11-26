@@ -1,66 +1,1345 @@
 {
-  "frame": "desktop-profile",
-  "source": "figma/frames/desktop-profile.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
-  "elements": [
+ "frame": "desktop-profile",
+ "source": "figma/svg/desktop-profile.svg",
+ "width": 1440,
+ "height": 1080,
+ "background": "#140d0a",
+ "texts": [
+  {
+   "id": "t0",
+   "z": 0,
+   "content": "KURIO",
+   "lines": [
     {
-      "id": "sidebar-title",
-      "selector": "role=navigation[name=\"Conta\"] >> text=\"Meu perfil\"",
-      "measure": "ink",
-      "x": 130,
-      "y": 120,
-      "w": 107,
-      "h": 16,
-      "ignore": [
-        "w"
-      ]
-    },
-    {
-      "id": "title",
-      "selector": "role=heading[name=\"Perfil do colecionador\"]",
-      "measure": "ink",
-      "x": 459,
-      "y": 102,
-      "w": 210,
-      "h": 13
-    },
-    {
-      "id": "first-label",
-      "selector": "text=/^Nome de exibição/ >> nth=0",
-      "measure": "ink",
-      "x": 459,
-      "y": 156,
-      "w": 157,
-      "h": 16,
-      "ignore": [
-        "w"
-      ]
-    },
-    {
-      "id": "first-input",
-      "selector": "role=textbox[name=/Nome de exibição/]",
-      "measure": "box",
-      "x": 458,
-      "y": 188,
-      "w": 417,
-      "h": 40
-    },
-    {
-      "id": "second-label",
-      "selector": "text=/^E-mail/ >> nth=0",
-      "measure": "ink",
-      "x": 459,
-      "y": 259,
-      "w": 66,
-      "h": 13
-    },
-    {
-      "id": "second-input",
-      "selector": "role=textbox[name=/E-mail/]",
-      "measure": "box",
-      "x": 458,
-      "y": 291,
-      "w": 417,
-      "h": 40
+     "text": "KURIO",
+     "x": 120,
+     "baseline": 46.588,
+     "w": 49.007
     }
-  ]
+   ],
+   "box": {
+    "x": 120,
+    "y": 31.918,
+    "w": 49.007,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 1.4,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t1",
+   "z": 1,
+   "content": "Início",
+   "lines": [
+    {
+     "text": "Início",
+     "x": 496,
+     "baseline": 40.715,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 496,
+    "y": 23.949,
+    "w": 57.609,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t2",
+   "z": 3,
+   "content": "Mercado",
+   "lines": [
+    {
+     "text": "Mercado",
+     "x": 594,
+     "baseline": 40.715,
+     "w": 67.211
+    }
+   ],
+   "box": {
+    "x": 594,
+    "y": 23.949,
+    "w": 67.211,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t3",
+   "z": 4,
+   "content": "Criadores",
+   "lines": [
+    {
+     "text": "Criadores",
+     "x": 702,
+     "baseline": 40.715,
+     "w": 86.414
+    }
+   ],
+   "box": {
+    "x": 702,
+    "y": 23.949,
+    "w": 86.414,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t4",
+   "z": 5,
+   "content": "Aprenda",
+   "lines": [
+    {
+     "text": "Aprenda",
+     "x": 829,
+     "baseline": 40.715,
+     "w": 67.211
+    }
+   ],
+   "box": {
+    "x": 829,
+    "y": 23.949,
+    "w": 67.211,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t5",
+   "z": 7,
+   "content": "6",
+   "lines": [
+    {
+     "text": "6",
+     "x": 1181,
+     "baseline": 41.384,
+     "w": 6.001
+    }
+   ],
+   "box": {
+    "x": 1181,
+    "y": 30.905,
+    "w": 6.001,
+    "h": 13.188
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 10,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t6",
+   "z": 9,
+   "content": "Entrar",
+   "lines": [
+    {
+     "text": "Entrar",
+     "x": 1253,
+     "baseline": 47.715,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 1253,
+    "y": 30.949,
+    "w": 57.609,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t7",
+   "z": 12,
+   "content": "Meu perfil",
+   "lines": [
+    {
+     "text": "Meu perfil",
+     "x": 130,
+     "baseline": 133.992,
+     "w": 108.018
+    }
+   ],
+   "box": {
+    "x": 130,
+    "y": 115.131,
+    "w": 108.018,
+    "h": 23.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t8",
+   "z": 13,
+   "content": "Dados do perfil",
+   "lines": [
+    {
+     "text": "Dados do perfil",
+     "x": 170,
+     "baseline": 173.326,
+     "w": 135.022
+    }
+   ],
+   "box": {
+    "x": 170,
+    "y": 157.608,
+    "w": 135.022,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t9",
+   "z": 14,
+   "content": "Carteiras",
+   "lines": [
+    {
+     "text": "Carteiras",
+     "x": 168,
+     "baseline": 218.326,
+     "w": 81.013
+    }
+   ],
+   "box": {
+    "x": 168,
+    "y": 202.608,
+    "w": 81.013,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t10",
+   "z": 15,
+   "content": "Atividade",
+   "lines": [
+    {
+     "text": "Atividade",
+     "x": 166,
+     "baseline": 263.326,
+     "w": 81.013
+    }
+   ],
+   "box": {
+    "x": 166,
+    "y": 247.608,
+    "w": 81.013,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t11",
+   "z": 16,
+   "content": "Lista de interesse",
+   "lines": [
+    {
+     "text": "Lista de interesse",
+     "x": 164,
+     "baseline": 308.326,
+     "w": 162.026
+    }
+   ],
+   "box": {
+    "x": 164,
+    "y": 292.608,
+    "w": 162.026,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t12",
+   "z": 17,
+   "content": "Ofertas",
+   "lines": [
+    {
+     "text": "Ofertas",
+     "x": 166,
+     "baseline": 353.326,
+     "w": 63.01
+    }
+   ],
+   "box": {
+    "x": 166,
+    "y": 337.608,
+    "w": 63.01,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t13",
+   "z": 18,
+   "content": "Arquivos baixados",
+   "lines": [
+    {
+     "text": "Arquivos baixados",
+     "x": 166,
+     "baseline": 398.326,
+     "w": 153.025
+    }
+   ],
+   "box": {
+    "x": 166,
+    "y": 382.608,
+    "w": 153.025,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t14",
+   "z": 19,
+   "content": "Suporte",
+   "lines": [
+    {
+     "text": "Suporte",
+     "x": 166,
+     "baseline": 443.326,
+     "w": 63.01
+    }
+   ],
+   "box": {
+    "x": 166,
+    "y": 427.608,
+    "w": 63.01,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t15",
+   "z": 21,
+   "content": "Sair",
+   "lines": [
+    {
+     "text": "Sair",
+     "x": 164,
+     "baseline": 485.826,
+     "w": 36.006
+    }
+   ],
+   "box": {
+    "x": 164,
+    "y": 470.108,
+    "w": 36.006,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t16",
+   "z": 22,
+   "content": "Perfil do colecionador",
+   "lines": [
+    {
+     "text": "Perfil do colecionador",
+     "x": 458,
+     "baseline": 115.215,
+     "w": 211.234
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 98.449,
+    "w": 211.234,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t17",
+   "z": 23,
+   "content": "Nome de exibição",
+   "lines": [
+    {
+     "text": "Nome de exibição",
+     "x": 458,
+     "baseline": 169.326,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 153.608,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t18",
+   "z": 24,
+   "content": "*",
+   "lines": [
+    {
+     "text": "*",
+     "x": 603.787,
+     "baseline": 172.045,
+     "w": 13.202
+    }
+   ],
+   "box": {
+    "x": 603.787,
+    "y": 148.992,
+    "w": 13.202,
+    "h": 29.015
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 22,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f0805f",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t19",
+   "z": 26,
+   "content": "Nome de usuário",
+   "lines": [
+    {
+     "text": "Nome de usuário",
+     "x": 903,
+     "baseline": 169.326,
+     "w": 135.022
+    }
+   ],
+   "box": {
+    "x": 903,
+    "y": 153.608,
+    "w": 135.022,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t20",
+   "z": 27,
+   "content": "*",
+   "lines": [
+    {
+     "text": "*",
+     "x": 1039,
+     "baseline": 172.045,
+     "w": 13.202
+    }
+   ],
+   "box": {
+    "x": 1039,
+    "y": 148.992,
+    "w": 13.202,
+    "h": 29.015
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 22,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f0805f",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t21",
+   "z": 29,
+   "content": "E-mail",
+   "lines": [
+    {
+     "text": "E-mail",
+     "x": 458,
+     "baseline": 272.326,
+     "w": 54.009
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 256.608,
+    "w": 54.009,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t22",
+   "z": 30,
+   "content": "*",
+   "lines": [
+    {
+     "text": "*",
+     "x": 513,
+     "baseline": 275.045,
+     "w": 13.202
+    }
+   ],
+   "box": {
+    "x": 513,
+    "y": 251.992,
+    "w": 13.202,
+    "h": 29.015
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 22,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f0805f",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t23",
+   "z": 32,
+   "content": "Nome ENS",
+   "lines": [
+    {
+     "text": "Nome ENS",
+     "x": 903,
+     "baseline": 272.326,
+     "w": 72.012
+    }
+   ],
+   "box": {
+    "x": 903,
+    "y": 256.608,
+    "w": 72.012,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t24",
+   "z": 33,
+   "content": "*",
+   "lines": [
+    {
+     "text": "*",
+     "x": 980,
+     "baseline": 275.045,
+     "w": 13.202
+    }
+   ],
+   "box": {
+    "x": 980,
+    "y": 251.992,
+    "w": 13.202,
+    "h": 29.015
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 22,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f0805f",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t25",
+   "z": 35,
+   "content": ".eth",
+   "lines": [
+    {
+     "text": ".eth",
+     "x": 913,
+     "baseline": 317.326,
+     "w": 36.006
+    }
+   ],
+   "box": {
+    "x": 913,
+    "y": 301.608,
+    "w": 36.006,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t26",
+   "z": 37,
+   "content": "Apelido da carteira",
+   "lines": [
+    {
+     "text": "Apelido da carteira",
+     "x": 458,
+     "baseline": 375.326,
+     "w": 171.028
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 359.608,
+    "w": 171.028,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t27",
+   "z": 38,
+   "content": "*",
+   "lines": [
+    {
+     "text": "*",
+     "x": 630.787,
+     "baseline": 378.045,
+     "w": 13.202
+    }
+   ],
+   "box": {
+    "x": 630.787,
+    "y": 354.992,
+    "w": 13.202,
+    "h": 29.015
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 22,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f0805f",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t28",
+   "z": 40,
+   "content": "Avatar",
+   "lines": [
+    {
+     "text": "Avatar",
+     "x": 903,
+     "baseline": 368.326,
+     "w": 54.009
+    }
+   ],
+   "box": {
+    "x": 903,
+    "y": 352.608,
+    "w": 54.009,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t29",
+   "z": 44,
+   "content": "Remover",
+   "lines": [
+    {
+     "text": "Remover",
+     "x": 1095,
+     "baseline": 410.438,
+     "w": 58.81
+    }
+   ],
+   "box": {
+    "x": 1095,
+    "y": 395.768,
+    "w": 58.81,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t30",
+   "z": 45,
+   "content": "Alterar",
+   "lines": [
+    {
+     "text": "Alterar",
+     "x": 1002,
+     "baseline": 410.438,
+     "w": 58.81
+    }
+   ],
+   "box": {
+    "x": 1002,
+    "y": 395.768,
+    "w": 58.81,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t31",
+   "z": 46,
+   "content": "Alterar senha",
+   "lines": [
+    {
+     "text": "Alterar senha",
+     "x": 458,
+     "baseline": 480.215,
+     "w": 124.82
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 463.449,
+    "w": 124.82,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t32",
+   "z": 47,
+   "content": "Senha atual",
+   "lines": [
+    {
+     "text": "Senha atual",
+     "x": 458,
+     "baseline": 519.326,
+     "w": 99.016
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 503.608,
+    "w": 99.016,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t33",
+   "z": 49,
+   "content": "Nova senha",
+   "lines": [
+    {
+     "text": "Nova senha",
+     "x": 458,
+     "baseline": 610.326,
+     "w": 90.015
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 594.608,
+    "w": 90.015,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t34",
+   "z": 51,
+   "content": "Confirmar nova senha",
+   "lines": [
+    {
+     "text": "Confirmar nova senha",
+     "x": 458,
+     "baseline": 701.326,
+     "w": 180.029
+    }
+   ],
+   "box": {
+    "x": 458,
+    "y": 685.608,
+    "w": 180.029,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t35",
+   "z": 54,
+   "content": "Salvar",
+   "lines": [
+    {
+     "text": "Salvar",
+     "x": 498,
+     "baseline": 812.438,
+     "w": 50.408
+    }
+   ],
+   "box": {
+    "x": 498,
+    "y": 797.768,
+    "w": 50.408,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  }
+ ],
+ "shapes": [
+  {
+   "id": "s0",
+   "z": 2,
+   "kind": "line",
+   "box": {
+    "x": 496,
+    "y": 66,
+    "w": 58,
+    "h": 3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s1",
+   "z": 6,
+   "kind": "circle",
+   "box": {
+    "x": 1174,
+    "y": 27.5,
+    "w": 20,
+    "h": 20
+   },
+   "radius": 10,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": "#140d0a",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s2",
+   "z": 8,
+   "kind": "rect",
+   "box": {
+    "x": 1220,
+    "y": 24,
+    "w": 100,
+    "h": 35
+   },
+   "radius": 6,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s3",
+   "z": 10,
+   "kind": "line",
+   "box": {
+    "x": 120,
+    "y": 68.7,
+    "w": 1200,
+    "h": 0.3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 0.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s4",
+   "z": 11,
+   "kind": "rect",
+   "box": {
+    "x": 120,
+    "y": 101,
+    "w": 310,
+    "h": 407
+   },
+   "radius": 0,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s5",
+   "z": 20,
+   "kind": "line",
+   "box": {
+    "x": 120,
+    "y": 459.7,
+    "w": 310,
+    "h": 0.3
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 0.3,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s6",
+   "z": 25,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 188,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s7",
+   "z": 28,
+   "kind": "rect",
+   "box": {
+    "x": 903,
+    "y": 188,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s8",
+   "z": 31,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 291,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s9",
+   "z": 34,
+   "kind": "rect",
+   "box": {
+    "x": 903,
+    "y": 291,
+    "w": 78,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s10",
+   "z": 36,
+   "kind": "rect",
+   "box": {
+    "x": 991,
+    "y": 291,
+    "w": 329,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s11",
+   "z": 39,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 394,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s12",
+   "z": 41,
+   "kind": "rect",
+   "box": {
+    "x": 903.5,
+    "y": 380.5,
+    "w": 49,
+    "h": 49
+   },
+   "radius": 24.5,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false,
+   "mergedInto": "s13"
+  },
+  {
+   "id": "s13",
+   "z": 42,
+   "kind": "rect",
+   "box": {
+    "x": 903,
+    "y": 380,
+    "w": 50,
+    "h": 50
+   },
+   "radius": 25,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s14",
+   "z": 43,
+   "kind": "rect",
+   "box": {
+    "x": 977,
+    "y": 385,
+    "w": 98,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s15",
+   "z": 48,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 533,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s16",
+   "z": 50,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 624,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s17",
+   "z": 52,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 715,
+    "w": 417,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s18",
+   "z": 53,
+   "kind": "rect",
+   "box": {
+    "x": 458,
+    "y": 787,
+    "w": 131,
+    "h": 40
+   },
+   "radius": 3,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  }
+ ]
 }

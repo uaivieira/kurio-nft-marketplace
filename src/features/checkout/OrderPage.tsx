@@ -32,30 +32,30 @@ function failureMessage(failure: OrderFailure) {
 function Lines({ order }: { order: Order }) {
   const { t } = useTranslation()
   const decimals = decimalsFor(order.subtotal, order.discount, order.networkFee, order.total)
-  const row = 'flex items-baseline justify-between gap-3'
+  const row = 'flex items-baseline justify-between gap-3 md:min-h-6 md:items-center md:*:leading-[normal]'
   return (
     <section aria-labelledby="order-lines" className="px-6 pb-2 md:px-11">
       <h2 id="order-lines" className="pt-7 text-md leading-4 font-bold md:pt-5">{t('order.transactionDetails')}</h2>
-      <div className="mt-3 grid h-7 grid-cols-[minmax(0,1fr)_auto] border-b border-border text-md leading-4 font-bold sm:grid-cols-[minmax(0,1fr)_4.5rem_6.5rem]" aria-hidden="true"><span>{t('common.nfts')}</span><span className="text-center max-sm:hidden">{t('common.editions')}</span><span className="text-right">{t('common.subtotal')}</span></div>
-      <ul>
+      <div className="mt-3 grid h-7 grid-cols-[minmax(0,1fr)_auto] border-b border-border text-md leading-4 font-bold sm:grid-cols-[minmax(0,1fr)_4.5rem_6.5rem] md:grid-cols-[minmax(0,1fr)_116px_77px] md:border-primary md:text-base" aria-hidden="true"><span>{t('common.nfts')}</span><span className="text-center max-sm:hidden md:text-left">{t('common.editions')}</span><span className="text-right md:text-left md:font-medium">{t('common.subtotal')}</span></div>
+      <ul className="md:mt-3 md:space-y-3">
         {order.lines.map((line) => (
-          <li key={line.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 pt-3 sm:grid-cols-[minmax(0,1fr)_4.5rem_6.5rem]" data-testid="receipt-line">
+          <li key={line.id} className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2 pt-3 sm:grid-cols-[minmax(0,1fr)_4.5rem_6.5rem] md:-mr-[5px] md:h-[70px] md:grid-cols-[minmax(0,1fr)_116px_66px] md:gap-0 md:bg-card md:pt-0 md:pr-4" data-testid="receipt-line">
             <div className="flex min-w-0 items-center gap-3">
-              <div className="w-[4.375rem] shrink-0"><NftImage artwork={line.artwork} alt={t('common.artOf', { name: line.name })} sizes="70px" size={160} className="rounded-md" /></div>
-              <div className="min-w-0"><p className="truncate text-base leading-5 font-bold">{line.name}</p><p className="truncate text-sm text-muted-foreground"><span className="sm:hidden">{t('common.tokenIdShort')}</span><span className="max-sm:hidden">{t('common.tokenId')}</span>: #{line.tokenId}</p></div>
+              <div className="w-[4.375rem] shrink-0"><NftImage artwork={line.artwork} alt={t('common.artOf', { name: line.name })} sizes="70px" size={160} className="rounded-md md:rounded-lg" /></div>
+              <div className="min-w-0"><p className="truncate text-base leading-5 font-bold md:leading-4">{line.name}</p><p className="truncate text-sm text-muted-foreground md:mt-1.5 md:leading-4"><span className="sm:hidden">{t('common.tokenIdShort')}</span><span className="max-sm:hidden">{t('common.tokenId')}</span>: #{line.tokenId}</p></div>
             </div>
             <div className="flex flex-col items-end sm:contents">
-              <p className="text-sm sm:text-center">(x {line.quantity})</p>
-              <p className="text-right text-lg font-bold whitespace-nowrap text-highlight">{formatEth(line.lineTotal)}</p>
+              <p className="text-sm sm:text-center md:pl-[5px] md:text-left md:text-text-secondary">(x {line.quantity})</p>
+              <p className="text-right text-lg font-bold whitespace-nowrap text-highlight md:justify-self-end">{formatEth(line.lineTotal)}</p>
             </div>
           </li>
         ))}
       </ul>
-      <dl className="mt-3 space-y-2 border-b border-border pt-2 pb-3 text-md">
+      <dl className="mt-3 space-y-2 border-b border-border pt-2 pb-3 text-md md:mt-0 md:ml-[169px] md:space-y-1.5 md:border-primary md:pt-2.5 md:pb-2">
         <div className={row}><dt>{t('common.subtotal')}</dt><dd>{formatEth(order.subtotal, decimals)}</dd></div>
         {order.couponCode && <div className={row}><dt>{t('order.discount', { code: order.couponCode })}</dt><dd>(-) {formatEth(order.discount, decimals)}</dd></div>}
-        <div className={row}><dt>{t('common.networkFee')}</dt><dd>{formatEth(order.networkFee, decimals)}</dd></div>
-        <div className={`${row} text-lg font-bold`}><dt>{t('common.total')}</dt><dd className="text-highlight" data-testid="receipt-total">{formatEth(order.total, decimals)}</dd></div>
+        <div className={row}><dt>{t('common.networkFee')}</dt><dd className="md:text-lg">{formatEth(order.networkFee, decimals)}</dd></div>
+        <div className={`${row} text-lg font-bold`}><dt className="md:text-base">{t('common.total')}</dt><dd className="text-highlight" data-testid="receipt-total">{formatEth(order.total, decimals)}</dd></div>
       </dl>
     </section>
   )
@@ -130,21 +130,21 @@ export function OrderPage({ orderId }: { orderId: string }) {
 
   return (
     <Frame title={t('order.confirmed.title')}>
-      <div className="flex flex-col items-center gap-3 border-b border-primary px-8 pt-10 pb-5 text-center md:pt-[22px]">
+      <div className="flex flex-col items-center gap-3 border-b border-primary px-8 pt-10 pb-5 text-center md:pt-[22px] md:pb-[18px]">
         <ThankYouIcon className="size-20 text-primary" />
         <p className="text-base font-bold text-text-secondary" data-testid="order-confirmed">{t('order.confirmed.heading')}</p>
       </div>
-      <dl className="grid grid-cols-2 gap-y-3 border-b border-primary px-6 py-3 text-sm md:pt-[11px] leading-5 md:grid-cols-[repeat(4,auto)] md:justify-between md:divide-x md:divide-primary md:px-5 [&>div]:px-3 md:[&>div]:px-4">
+      <dl className="grid grid-cols-2 gap-y-3 border-b border-primary px-6 py-3 text-sm leading-5 md:grid-cols-[180.67px_144.33px_126.33px_minmax(0,1fr)] md:px-0 md:pt-[13px] md:pb-[16.5px] md:text-text-secondary [&>div]:px-3 md:[&>div]:relative md:[&>div]:pl-[17.67px] md:[&>div:first-child]:pl-9 md:[&_dd]:text-md md:[&_dd]:leading-4 md:[&_dt]:text-text-secondary">
         <div><dt className="font-bold text-muted-foreground">{t('order.confirmed.transactionId')}</dt><dd data-testid="receipt-hash" title={order.transactionHash ?? undefined}>{order.transactionHash ? shortHash(order.transactionHash) : '—'}</dd></div>
-        <div><dt className="text-muted-foreground">{t('order.confirmed.date')}</dt><dd>{formatDate(order.updatedAt)}</dd></div>
-        <div><dt className="text-muted-foreground">{t('common.total')}</dt><dd>{formatEth(order.total)}</dd></div>
-        <div><dt className="font-bold text-muted-foreground">{t('order.confirmed.wallet')}</dt><dd>{WALLET_PROVIDER_LABELS[order.wallet.provider]}</dd></div>
+        <div><span aria-hidden="true" className="absolute top-1 left-0 hidden h-[31px] w-px bg-primary md:block" /><dt className="text-muted-foreground">{t('order.confirmed.date')}</dt><dd>{formatDate(order.updatedAt)}</dd></div>
+        <div><span aria-hidden="true" className="absolute top-1 left-0 hidden h-[31px] w-px bg-primary md:block" /><dt className="text-muted-foreground">{t('common.total')}</dt><dd>{formatEth(order.total)}</dd></div>
+        <div><span aria-hidden="true" className="absolute top-1 left-0 hidden h-[31px] w-px bg-primary md:block" /><dt className="font-bold text-muted-foreground">{t('order.confirmed.wallet')}</dt><dd>{WALLET_PROVIDER_LABELS[order.wallet.provider]}</dd></div>
       </dl>
       <Lines order={order} />
       <p className="px-11 py-4 text-center text-sm leading-[22px] text-text-secondary">{t('order.confirmed.text')}</p>
       <div className="flex justify-center pb-8">
         <Dialog>
-          <DialogTrigger asChild><Button className="md:h-12 md:w-[186px] md:text-base">{t('order.confirmed.explorer')}</Button></DialogTrigger>
+          <DialogTrigger asChild><Button className="md:h-12 md:w-[186px] md:rounded-[5px] md:text-base">{t('order.confirmed.explorer')}</Button></DialogTrigger>
           <DialogContent>
             <DialogTitle>{t('order.confirmed.explorerTitle')}</DialogTitle>
             <DialogDescription>{t('order.confirmed.explorerDescription')}</DialogDescription>

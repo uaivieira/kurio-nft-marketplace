@@ -1,0 +1,64 @@
+<svg width="414" height="896" viewBox="0 0 414 896" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="414" height="896" fill="#1E1E1E"/>
+<rect width="414" height="896" rx="40" fill="#140D0A"/>
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="32" font-weight="bold" letter-spacing="0.1em"><tspan x="152.553" y="160.43">KURIO</tspan></text>
+<g clip-path="url(#clip0_0_1)">
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="18" font-weight="bold" letter-spacing="0em"><tspan x="55.5" y="270.992">Criar perfil de colecionador</tspan></text>
+</g>
+<g clip-path="url(#clip1_0_1)">
+<rect x="28.5" y="312.5" width="357" height="49" rx="9.5" stroke="#3F2319"/>
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="143.5" y="342.438">Nome de usu&#xe1;rio</tspan></text>
+<rect x="28.5" y="374.5" width="357" height="49" rx="9.5" stroke="#3F2319"/>
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="44" y="404.438">Digite seu e-mail</tspan></text>
+<rect x="28.5" y="436.5" width="357" height="49" rx="9.5" stroke="#3F2319"/>
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="44" y="465.438">Senha</tspan></text>
+<path d="M356.815 465.297C355.143 464.202 354.062 462.552 354.062 461.105C354.062 458.645 357.167 455.63 361 455.63C362.567 455.63 364.023 456.132 365.193 456.912" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M366.887 458.458C367.556 459.305 367.945 460.243 367.945 461.105C367.945 463.565 364.832 466.58 361 466.58C360.317 466.58 359.651 466.483 359.027 466.31" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M359.324 462.775C358.878 462.334 358.628 461.731 358.631 461.104C358.628 459.795 359.687 458.731 360.996 458.729C361.626 458.728 362.231 458.977 362.676 459.423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M363.332 461.524C363.157 462.493 362.398 463.253 361.429 463.431" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M366.919 455.188L355.088 467.018" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<rect x="28.5" y="498.5" width="357" height="49" rx="9.5" stroke="#3F2319"/>
+<text fill="#B39463" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="14" letter-spacing="0em"><tspan x="44" y="528.438">Confirmar senha</tspan></text>
+<path d="M356.815 527.297C355.143 526.202 354.062 524.552 354.062 523.105C354.062 520.645 357.167 517.63 361 517.63C362.567 517.63 364.023 518.132 365.193 518.912" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M366.887 520.458C367.556 521.305 367.945 522.243 367.945 523.105C367.945 525.565 364.832 528.58 361 528.58C360.317 528.58 359.651 528.483 359.027 528.31" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M359.324 524.775C358.878 524.334 358.628 523.731 358.631 523.104C358.628 521.795 359.687 520.731 360.996 520.729C361.626 520.728 362.231 520.977 362.676 521.423" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M363.332 523.524C363.157 524.493 362.398 525.253 361.429 525.431" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+<path d="M366.919 517.188L355.088 529.018" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" stroke="#55321F"/>
+</g>
+<rect x="28" y="588" width="358" height="60" rx="10" fill="#D28A4C"/>
+<text fill="#140D0A" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="16" font-weight="bold" letter-spacing="0em"><tspan x="149" y="624.215">Criar perfil</tspan></text>
+<g clip-path="url(#clip2_0_1)">
+<line x1="28" y1="695.5" x2="138" y2="695.5" stroke="#3F2319"/>
+<text fill="#F5F1EB" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="13" letter-spacing="0em"><tspan x="148" y="701.05">Ou continue com</tspan></text>
+<line x1="276" y1="695.5" x2="386" y2="695.5" stroke="#3F2319"/>
+<rect x="28.5" y="716.5" width="357" height="39" rx="4.5" stroke="#3F2319"/>
+<g clip-path="url(#clip3_0_1)">
+<path d="M119.934 743.605C118.199 745.07 115.949 746 113.5 746C109.855 746 106.656 743.992 104.922 741.063L105.571 738.069L108.449 737.535C109.117 739.691 111.133 741.273 113.5 741.273C114.648 741.273 115.715 740.91 116.594 740.266L119.359 740.688L119.934 743.605Z" fill="#59C36A"/>
+<path d="M119.934 743.605L119.359 740.687L116.594 740.266C115.715 740.91 114.648 741.273 113.5 741.273V746C115.949 746 118.199 745.07 119.934 743.605Z" fill="#00A66C"/>
+<path d="M108.227 736C108.227 736.539 108.309 737.055 108.449 737.535L104.922 741.062C104.043 739.586 103.5 737.852 103.5 736C103.5 734.148 104.043 732.414 104.922 730.938L107.753 731.425L108.449 734.465C108.309 734.945 108.227 735.461 108.227 736Z" fill="#FFDA2D"/>
+<path d="M123.5 736C123.5 739.047 122.09 741.777 119.934 743.605L116.594 740.266C117.273 739.773 117.848 739.117 118.223 738.344H113.5C113.172 738.344 112.914 738.086 112.914 737.758V734.242C112.914 733.914 113.172 733.656 113.5 733.656H122.75C123.031 733.656 123.277 733.855 123.324 734.137C123.441 734.746 123.5 735.379 123.5 736V736Z" fill="#4086F4"/>
+<path d="M118.223 738.344C117.848 739.117 117.273 739.773 116.594 740.266L119.934 743.605C122.09 741.777 123.5 739.047 123.5 736C123.5 735.379 123.441 734.746 123.324 734.137C123.277 733.855 123.031 733.656 122.75 733.656H113.5V738.344H118.223Z" fill="#4175DF"/>
+<path d="M120.098 728.793C120.109 728.957 120.039 729.109 119.934 729.227L117.426 731.723C117.227 731.934 116.898 731.957 116.664 731.781C115.738 731.09 114.648 730.727 113.5 730.727C111.133 730.727 109.117 732.309 108.449 734.465L104.922 730.937C106.656 728.008 109.855 726 113.5 726C115.832 726 118.105 726.859 119.887 728.359C120.016 728.465 120.086 728.629 120.098 728.793V728.793Z" fill="#FF641A"/>
+<path d="M116.664 731.781C116.898 731.957 117.227 731.934 117.426 731.723L119.934 729.227C120.039 729.109 120.109 728.957 120.098 728.793C120.086 728.629 120.016 728.465 119.887 728.359C118.105 726.859 115.832 726 113.5 726V730.727C114.648 730.727 115.738 731.09 116.664 731.781Z" fill="#F0805F"/>
+</g>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="135.924" y="741.05">Continuar com Google</tspan></text>
+<rect x="28.5" y="772.5" width="357" height="39" rx="4.5" stroke="#3F2319"/>
+<path d="M109.331 785.321H111.157V782.141C110.842 782.097 109.759 782 108.497 782C102.72 782 104.292 788.542 104.062 789.5H101.156V793.055H104.061V802H107.623V793.056H110.41L110.853 789.501H107.622C107.779 787.148 106.988 785.321 109.331 785.321V785.321Z" fill="#3B5999"/>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="13" font-weight="500" letter-spacing="0em"><tspan x="128.116" y="797.05">Continuar com Facebook</tspan></text>
+</g>
+<text fill="#CFB28C" style="white-space: pre" xml:space="preserve" font-family="Roboto Mono" font-size="15" letter-spacing="0em"><tspan x="103" y="867.826">J&#xe1; tem uma conta? Entre</tspan></text>
+<defs>
+<clipPath id="clip0_0_1">
+<rect width="358" height="16" fill="white" transform="translate(28 256)"/>
+</clipPath>
+<clipPath id="clip1_0_1">
+<rect width="358" height="236" fill="white" transform="translate(28 312)"/>
+</clipPath>
+<clipPath id="clip2_0_1">
+<rect width="358" height="124" fill="white" transform="translate(28 688)"/>
+</clipPath>
+<clipPath id="clip3_0_1">
+<rect width="20" height="20" fill="white" transform="translate(103.5 726)"/>
+</clipPath>
+</defs>
+</svg>

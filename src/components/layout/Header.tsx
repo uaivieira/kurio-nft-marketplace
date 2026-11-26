@@ -16,7 +16,7 @@ export function CartLink({ className }: { className?: string }) {
   return (
     <Link to="/cart" aria-label={t('layout.header.cart', { count })} className={cn('relative inline-flex size-10 items-center justify-center rounded-sm', className)}>
       <CartIcon className="size-6" aria-hidden="true" />
-      <span aria-hidden="true" className="absolute top-1 right-0.5 flex size-3.5 items-center justify-center rounded-full bg-primary text-tiny font-medium text-primary-foreground">
+      <span aria-hidden="true" className="absolute top-[9.5px] -right-1.5 flex size-5 items-center justify-center rounded-full border-2 border-background bg-primary text-tiny leading-none font-medium text-primary-foreground">
         {count > 99 ? '99+' : count}
       </span>
     </Link>
@@ -31,16 +31,16 @@ export function Header() {
   const home = pathname === '/'
 
   const navLink = (active: boolean) =>
-    cn('relative flex h-full items-start pt-[3px] text-base leading-4 transition-colors hover:text-highlight', active ? 'font-medium text-highlight' : 'text-foreground')
+    cn('relative flex h-full items-start pt-[3px] text-base leading-4 transition-colors hover:text-highlight', active ? 'font-bold text-highlight' : 'text-foreground')
   const underline = <span aria-hidden="true" className="absolute inset-x-0 -bottom-px h-[3px] bg-primary" />
 
   return (
     <header className="mx-auto hidden max-w-page px-5 pt-6 md:block">
-      <div className="grid h-[45px] grid-cols-[minmax(0,352px)_auto_1fr] items-stretch gap-x-6 border-b border-border">
-        <Link to="/" className="mt-2.5 self-start text-caption leading-none font-bold tracking-label" aria-label={t('layout.header.homeLabel')}>
+      <div className="grid h-[45px] grid-cols-[minmax(0,352px)_auto_1fr] items-stretch gap-x-6 border-b border-primary">
+        <Link to="/" className="mt-2.5 self-start text-sm leading-none font-bold tracking-label" aria-label={t('layout.header.homeLabel')}>
           KURIO
         </Link>
-        <nav aria-label={t('layout.header.nav')} className="flex gap-6 lg:gap-10">
+        <nav aria-label={t('layout.header.nav')} className="flex gap-6 lg:gap-[40.5px]">
           <Link to="/" className={navLink(home)} aria-current={home ? 'page' : undefined}>
             {t('common.home')}
             {home && underline}
@@ -62,7 +62,7 @@ export function Header() {
           />
           <CartLink className="-translate-y-1.5" />
           {session ? (
-            <Link to="/profile" aria-label={t('layout.header.profile', { name: session.user.displayName })} className="ml-4 inline-flex h-[34px] items-center gap-2 rounded-sm border border-primary px-2.5 text-base font-bold">
+            <Link to="/profile" aria-label={t('layout.header.profile', { name: session.user.displayName })} className="ml-4 inline-flex h-[35px] items-center gap-2 rounded-md border border-primary px-2.5 text-base font-medium">
               {session.user.avatarUrl ? (
                 <img src={session.user.avatarUrl} alt="" className="size-5 rounded-full object-cover" />
               ) : (
@@ -71,7 +71,7 @@ export function Header() {
               <span className="max-w-28 truncate">{session.user.displayName}</span>
             </Link>
           ) : (
-            <Link to="/login" search={{}} className="ml-4 inline-flex h-[34px] items-center gap-1 rounded-sm bg-primary px-2.5 text-base font-bold text-primary-foreground hover:bg-highlight">
+            <Link to="/login" search={{}} className="ml-4 inline-flex h-[35px] w-[100px] items-center gap-1 rounded-md bg-primary pl-[9px] text-base font-medium text-primary-foreground hover:bg-highlight">
               <LogoutIcon className="size-5" aria-hidden="true" />
               {t('layout.header.login')}
             </Link>

@@ -50,7 +50,7 @@ export function CouponForm({ cart }: { cart: Cart }) {
       })}
     >
       <label htmlFor="coupon-code" className="mb-1.5 block text-sm font-bold max-md:sr-only">{t('cart.coupon.label')}</label>
-      <div className="flex">
+      <div className="flex h-[50px] rounded-full border border-border bg-card has-aria-invalid:border-destructive md:h-10 md:rounded-sm md:border-primary md:bg-transparent">
         <input
           id="coupon-code"
           {...form.register('code', { onChange: () => setServerError(null) })}
@@ -58,9 +58,9 @@ export function CouponForm({ cart }: { cart: Cart }) {
           placeholder={t('cart.coupon.placeholder')}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? 'coupon-error' : undefined}
-          className="h-10 w-0 min-w-0 flex-1 rounded-l-sm border border-input bg-background px-3 text-xs placeholder:text-muted-foreground aria-invalid:border-destructive text-ellipsis max-[413px]:text-xs max-md:h-[50px] max-md:rounded-l-full max-md:border-r-0 max-md:px-4 max-md:text-sm"
+          className="w-0 min-w-0 flex-1 rounded-l-full bg-transparent pt-0.5 pr-2 pl-[15px] text-[13px] md:pt-0 placeholder:text-muted-foreground text-ellipsis md:rounded-l-sm md:pl-[7px] md:text-xs"
         />
-        <button type="submit" disabled={apply.isPending} className="h-10 cursor-pointer rounded-r-sm bg-primary px-5 text-sm font-bold text-primary-foreground hover:bg-highlight disabled:opacity-60 max-md:h-[50px] max-md:w-[97px] max-md:rounded-full max-md:-ml-6 max-md:bg-cta max-md:px-0 max-md:text-base">
+        <button type="submit" disabled={apply.isPending} className="-my-px -mr-px h-[50px] w-[97px] shrink-0 cursor-pointer rounded-full bg-apply text-md font-bold text-foreground hover:bg-highlight disabled:opacity-60 md:h-10 md:w-[102px] md:rounded-none md:rounded-r-sm md:bg-primary md:bg-none md:text-primary-foreground">
           {t('common.apply')}
         </button>
       </div>
@@ -73,33 +73,33 @@ export function CollapsibleCoupon({ cart }: { cart: Cart }) {
   const [open, setOpen] = useState(Boolean(cart.couponCode))
   if (open) return <CouponForm cart={cart} />
   return (
-    <button type="button" onClick={() => setOpen(true)} aria-expanded={false} className="w-full cursor-pointer text-center text-md hover:text-highlight">
+    <button type="button" onClick={() => setOpen(true)} aria-expanded={false} className="w-full cursor-pointer text-center text-md hover:text-highlight md:text-sm">
       <Trans i18nKey="cart.coupon.reveal" components={{ emphasis: <span className="underline-offset-4 hover:underline" /> }} />
     </button>
   )
 }
 
-export function TotalsRows({ quote, loading }: { quote: Quote | undefined; loading: boolean }) {
+export function TotalsRows({ quote, loading, className, variant = 'cart' }: { quote: Quote | undefined; loading: boolean; className?: string; variant?: 'cart' | 'checkout' }) {
   const { t } = useTranslation()
   if (!quote) {
     return (
-      <div role="status" aria-busy={loading} aria-label={t('cart.totals.loading')} className="space-y-3" data-testid="totals-skeleton">
+      <div role="status" aria-busy={loading} aria-label={t('cart.totals.loading')} className={cn('space-y-3', className)} data-testid="totals-skeleton">
         {[0, 1, 2].map((i) => <Skeleton key={i} className="h-6 w-full" />)}
         <Skeleton className="mt-4 h-7 w-full" />
       </div>
     )
   }
   const decimals = decimalsFor(quote.subtotal, quote.discount, quote.networkFee, quote.total)
-  const row = 'flex items-baseline justify-between gap-3 *:leading-5'
+  const row = 'flex min-h-6 items-center justify-between gap-3 *:leading-[normal]'
   return (
-    <dl className="space-y-3 text-base max-md:text-md max-md:leading-5 md:text-md" data-testid="totals">
+    <dl className={cn('space-y-2 text-base max-md:text-md md:text-md', className)} data-testid="totals">
       <div className={row}><dt>{t('common.subtotal')}</dt><dd data-testid="subtotal" className="whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.subtotal, decimals)}</dd></div>
       <div className={row}><dt>{t('cart.totals.discount')}</dt><dd data-testid="discount" className="whitespace-nowrap">(-) {formatEth(quote.discount, decimals)}</dd></div>
       <div>
         <div className={row}><dt>{t('common.networkFee')}</dt><dd data-testid="fee" className="whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.networkFee, decimals)}</dd></div>
-        <p className="mt-3 text-right text-xs text-highlight max-md:mt-0">{t('cart.totals.estimatedFee')}</p>
+        <p className={cn('mt-2.5 text-xs text-highlight max-md:-mt-0.5', variant === 'checkout' ? 'text-center' : 'text-right')}>{t('cart.totals.estimatedFee')}</p>
       </div>
-      <div className={cn(row, 'pt-2 text-lg font-bold max-md:-mt-1 max-md:pt-0')}><dt className="text-base">{t('common.total')}</dt><dd className="whitespace-nowrap text-highlight" data-testid="total">{formatEth(quote.total, decimals)}</dd></div>
+      <div className={cn(row, 'pt-3 text-lg font-bold max-md:pt-0', variant === 'checkout' && 'md:mt-3 md:border-t md:border-primary md:px-[42px] md:pt-[7px]')}><dt className="text-base">{t('common.total')}</dt><dd className="whitespace-nowrap text-highlight" data-testid="total">{formatEth(quote.total, decimals)}</dd></div>
     </dl>
   )
 }

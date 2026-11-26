@@ -1,105 +1,1010 @@
 {
-  "frame": "mobile-home",
-  "source": "figma/frames/mobile-home.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
-  "elements": [
+ "frame": "mobile-home",
+ "source": "figma/svg/mobile-home.svg",
+ "width": 414,
+ "height": 896,
+ "background": "#140d0a",
+ "texts": [
+  {
+   "id": "t0",
+   "z": 1,
+   "content": "Explorar coleções",
+   "lines": [
     {
-      "id": "search-input",
-      "selector": "role=searchbox[name=\"Buscar NFTs\"]",
-      "measure": "box",
-      "x": 24,
-      "y": 40,
-      "w": 313,
-      "h": 45
-    },
-    {
-      "id": "filters-button",
-      "selector": "role=button[name=\"Filtros\"]",
-      "measure": "box",
-      "x": 345,
-      "y": 40,
-      "w": 45,
-      "h": 45
-    },
-    {
-      "id": "hero-title",
-      "selector": "role=heading[level=1]",
-      "measure": "ink",
-      "x": 40,
-      "y": 137,
-      "w": 161,
-      "h": 43
-    },
-    {
-      "id": "tab-all",
-      "selector": "role=tab >> nth=0",
-      "measure": "ink",
-      "x": 24,
-      "y": 309,
-      "w": 110,
-      "h": 18
-    },
-    {
-      "id": "tab-trending",
-      "selector": "role=tab >> nth=2",
-      "measure": "ink",
-      "x": 298,
-      "y": 309,
-      "w": 57,
-      "h": 11
-    },
-    {
-      "id": "card-1",
-      "selector": "data-testid=nft-card >> nth=0 >> role=img",
-      "measure": "box",
-      "x": 28,
-      "y": 355,
-      "w": 167,
-      "h": 167
-    },
-    {
-      "id": "card-1-name",
-      "selector": "data-testid=nft-card >> nth=0 >> role=heading",
-      "measure": "ink",
-      "x": 33,
-      "y": 555,
-      "w": 142,
-      "h": 15,
-      "font": {
-        "size": 15,
-        "weight": 400
-      }
-    },
-    {
-      "id": "card-1-price",
-      "selector": "data-testid=nft-price >> nth=0",
-      "measure": "ink",
-      "x": 33,
-      "y": 573,
-      "w": 75,
-      "h": 12,
-      "font": {
-        "size": 16,
-        "weight": 700
-      }
-    },
-    {
-      "id": "nav-home",
-      "selector": "role=navigation[name=\"Navegação principal\"] >> role=link[name=\"Início\"]",
-      "measure": "box",
-      "x": 22,
-      "y": 827,
-      "w": 48,
-      "h": 48
-    },
-    {
-      "id": "nav-search",
-      "selector": "role=navigation[name=\"Navegação principal\"] >> role=button",
-      "measure": "box",
-      "x": 175,
-      "y": 770,
-      "w": 57,
-      "h": 57,
-      "tolerance": 4
+     "text": "Explorar coleções",
+     "x": 66,
+     "baseline": 68.438,
+     "w": 142.823
     }
-  ]
+   ],
+   "box": {
+    "x": 66,
+    "y": 53.768,
+    "w": 142.823,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#b39463",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t1",
+   "z": 6,
+   "content": "Bem-vindo à Kurio",
+   "lines": [
+    {
+     "text": "Bem-vindo à Kurio",
+     "x": 40,
+     "baseline": 119.161,
+     "w": 122.42
+    }
+   ],
+   "box": {
+    "x": 40,
+    "y": 106.587,
+    "w": 122.42,
+    "h": 15.826
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 12,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t2",
+   "z": 7,
+   "content": "SEJA DONO DA\nCULTURA DIGITAL",
+   "lines": [
+    {
+     "text": "SEJA DONO DA",
+     "x": 40,
+     "baseline": 149.992,
+     "w": 129.621
+    },
+    {
+     "text": "CULTURA DIGITAL",
+     "x": 40,
+     "baseline": 178.992,
+     "w": 162.026
+    }
+   ],
+   "box": {
+    "x": 40,
+    "y": 131.131,
+    "w": 162.026,
+    "h": 52.739
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 18,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": 29,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t3",
+   "z": 8,
+   "content": "Descubra NFTs selecionados\nde criadores do mundo\ntodo.",
+   "lines": [
+    {
+     "text": "Descubra NFTs selecionados",
+     "x": 40,
+     "baseline": 206.161,
+     "w": 187.23
+    },
+    {
+     "text": "de criadores do mundo",
+     "x": 40,
+     "baseline": 224.161,
+     "w": 151.225
+    },
+    {
+     "text": "todo.",
+     "x": 40,
+     "baseline": 242.161,
+     "w": 36.006
+    }
+   ],
+   "box": {
+    "x": 40,
+    "y": 193.587,
+    "w": 187.23,
+    "h": 51.826
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 12,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": 18,
+   "color": "#cfb28c",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t4",
+   "z": 9,
+   "content": "EXPLORAR",
+   "lines": [
+    {
+     "text": "EXPLORAR",
+     "x": 40,
+     "baseline": 259.161,
+     "w": 57.609
+    }
+   ],
+   "box": {
+    "x": 40,
+    "y": 246.587,
+    "w": 57.609,
+    "h": 15.826
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 12,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t5",
+   "z": 15,
+   "content": "Todos os NFTs",
+   "lines": [
+    {
+     "text": "Todos os NFTs",
+     "x": 24,
+     "baseline": 320.438,
+     "w": 109.218
+    }
+   ],
+   "box": {
+    "x": 24,
+    "y": 305.768,
+    "w": 109.218,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t6",
+   "z": 17,
+   "content": "Novos lançamentos",
+   "lines": [
+    {
+     "text": "Novos lançamentos",
+     "x": 138,
+     "baseline": 320.438,
+     "w": 142.823
+    }
+   ],
+   "box": {
+    "x": 138,
+    "y": 305.768,
+    "w": 142.823,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t7",
+   "z": 18,
+   "content": "Em alta",
+   "lines": [
+    {
+     "text": "Em alta",
+     "x": 297,
+     "baseline": 320.438,
+     "w": 58.81
+    }
+   ],
+   "box": {
+    "x": 297,
+    "y": 305.768,
+    "w": 58.81,
+    "h": 18.464
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 14,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t8",
+   "z": 23,
+   "content": "Emerald Ape #042",
+   "lines": [
+    {
+     "text": "Emerald Ape #042",
+     "x": 32,
+     "baseline": 566.826,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 32,
+    "y": 551.108,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t9",
+   "z": 24,
+   "content": "1.19 ETH",
+   "lines": [
+    {
+     "text": "1.19 ETH",
+     "x": 32,
+     "baseline": 585.215,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 32,
+    "y": 568.449,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t10",
+   "z": 25,
+   "content": "Emerald Ape #042",
+   "lines": [
+    {
+     "text": "Emerald Ape #042",
+     "x": 35,
+     "baseline": 835.826,
+     "w": 144.023
+    }
+   ],
+   "box": {
+    "x": 35,
+    "y": 820.108,
+    "w": 144.023,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t11",
+   "z": 26,
+   "content": "1.19 ETH",
+   "lines": [
+    {
+     "text": "1.19 ETH",
+     "x": 35,
+     "baseline": 854.215,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 35,
+    "y": 837.449,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "t12",
+   "z": 30,
+   "content": "RARO",
+   "lines": [
+    {
+     "text": "RARO",
+     "x": 32,
+     "baseline": 647.05,
+     "w": 31.205
+    }
+   ],
+   "box": {
+    "x": 32,
+    "y": 633.428,
+    "w": 31.205,
+    "h": 17.145
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 13,
+   "fontWeight": 500,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#140d0a",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t13",
+   "z": 34,
+   "content": "Sage Nomad #009",
+   "lines": [
+    {
+     "text": "Sage Nomad #009",
+     "x": 223,
+     "baseline": 598.826,
+     "w": 135.022
+    }
+   ],
+   "box": {
+    "x": 223,
+    "y": 583.108,
+    "w": 135.022,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t14",
+   "z": 35,
+   "content": "1.69 ETH",
+   "lines": [
+    {
+     "text": "1.69 ETH",
+     "x": 223,
+     "baseline": 617.215,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 223,
+    "y": 600.449,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t15",
+   "z": 39,
+   "content": "Sage Nomad #009",
+   "lines": [
+    {
+     "text": "Sage Nomad #009",
+     "x": 223,
+     "baseline": 866.826,
+     "w": 135.022
+    }
+   ],
+   "box": {
+    "x": 223,
+    "y": 851.108,
+    "w": 135.022,
+    "h": 19.783
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 15,
+   "fontWeight": 400,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#f5f1eb",
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "t16",
+   "z": 40,
+   "content": "1.69 ETH",
+   "lines": [
+    {
+     "text": "1.69 ETH",
+     "x": 223,
+     "baseline": 885.215,
+     "w": 76.813
+    }
+   ],
+   "box": {
+    "x": 223,
+    "y": 868.449,
+    "w": 76.813,
+    "h": 21.102
+   },
+   "fontFamily": "Roboto Mono",
+   "fontSize": 16,
+   "fontWeight": 700,
+   "letterSpacing": 0,
+   "lineHeight": null,
+   "color": "#e89b55",
+   "opacity": 1,
+   "clipped": true
+  }
+ ],
+ "shapes": [
+  {
+   "id": "s0",
+   "z": 0,
+   "kind": "rect",
+   "box": {
+    "x": 24,
+    "y": 40,
+    "w": 313,
+    "h": 45
+   },
+   "radius": 10,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s1",
+   "z": 2,
+   "kind": "rect",
+   "box": {
+    "x": 345,
+    "y": 40,
+    "w": 45,
+    "h": 45
+   },
+   "radius": 14,
+   "fill": null,
+   "gradient": [
+    "#d28a4c/0.45",
+    "#d28a4c"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s2",
+   "z": 3,
+   "kind": "rect",
+   "box": {
+    "x": 24,
+    "y": 101,
+    "w": 366,
+    "h": 190
+   },
+   "radius": 30,
+   "fill": null,
+   "gradient": [
+    "#d28a4c/0.2",
+    "#d28a4c/0.1"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s3",
+   "z": 4,
+   "kind": "circle",
+   "box": {
+    "x": -56,
+    "y": 70,
+    "w": 248,
+    "h": 248
+   },
+   "radius": 124,
+   "fill": null,
+   "gradient": [
+    "#dd9a5f/0.43",
+    "#d28a4c/0.04"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "s4",
+   "z": 5,
+   "kind": "circle",
+   "box": {
+    "x": 97,
+    "y": 91,
+    "w": 248,
+    "h": 248
+   },
+   "radius": 124,
+   "fill": null,
+   "gradient": [
+    "#dd9a5f/0.37",
+    "#d28a4c/0"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": true
+  },
+  {
+   "id": "s5",
+   "z": 10,
+   "kind": "rect",
+   "box": {
+    "x": 236,
+    "y": 111.5,
+    "w": 138,
+    "h": 138
+   },
+   "radius": 16,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s6",
+   "z": 11,
+   "kind": "rect",
+   "box": {
+    "x": 250,
+    "y": 199.5,
+    "w": 58,
+    "h": 58
+   },
+   "radius": 16,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s7",
+   "z": 12,
+   "kind": "circle",
+   "box": {
+    "x": 190.5,
+    "y": 278.5,
+    "w": 7,
+    "h": 7
+   },
+   "radius": 3.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s8",
+   "z": 13,
+   "kind": "circle",
+   "box": {
+    "x": 203.5,
+    "y": 278.5,
+    "w": 7,
+    "h": 7
+   },
+   "radius": 3.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s9",
+   "z": 14,
+   "kind": "circle",
+   "box": {
+    "x": 216.5,
+    "y": 278.5,
+    "w": 7,
+    "h": 7
+   },
+   "radius": 3.5,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s10",
+   "z": 16,
+   "kind": "line",
+   "box": {
+    "x": 24,
+    "y": 325,
+    "w": 110,
+    "h": 2
+   },
+   "radius": null,
+   "fill": null,
+   "gradient": null,
+   "image": false,
+   "stroke": "#d28a4c",
+   "strokeWidth": 2,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s11",
+   "z": 19,
+   "kind": "rect",
+   "box": {
+    "x": 24,
+    "y": 343,
+    "w": 175,
+    "h": 200
+   },
+   "radius": 20,
+   "fill": null,
+   "gradient": [
+    "#241612",
+    "#2f1d15"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s12",
+   "z": 20,
+   "kind": "rect",
+   "box": {
+    "x": 28,
+    "y": 355,
+    "w": 168,
+    "h": 168
+   },
+   "radius": 16,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s13",
+   "z": 21,
+   "kind": "rect",
+   "box": {
+    "x": 161.5,
+    "y": 355.5,
+    "w": 27,
+    "h": 27
+   },
+   "radius": 13.5,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false,
+   "mergedInto": "s14"
+  },
+  {
+   "id": "s14",
+   "z": 22,
+   "kind": "rect",
+   "box": {
+    "x": 161,
+    "y": 355,
+    "w": 28,
+    "h": 28
+   },
+   "radius": 14,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s15",
+   "z": 27,
+   "kind": "rect",
+   "box": {
+    "x": 24,
+    "y": 611,
+    "w": 175,
+    "h": 200
+   },
+   "radius": 20,
+   "fill": null,
+   "gradient": [
+    "#241612",
+    "#2f1d15"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s16",
+   "z": 28,
+   "kind": "rect",
+   "box": {
+    "x": 27.5,
+    "y": 627,
+    "w": 168,
+    "h": 168
+   },
+   "radius": 16,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s17",
+   "z": 29,
+   "kind": "rect",
+   "box": {
+    "x": 24,
+    "y": 627,
+    "w": 68,
+    "h": 32
+   },
+   "radius": 0,
+   "fill": "#d28a4c",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s18",
+   "z": 31,
+   "kind": "circle",
+   "box": {
+    "x": 351,
+    "y": 387,
+    "w": 28,
+    "h": 28
+   },
+   "radius": 14,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s19",
+   "z": 32,
+   "kind": "rect",
+   "box": {
+    "x": 215,
+    "y": 375,
+    "w": 175,
+    "h": 200
+   },
+   "radius": 20,
+   "fill": null,
+   "gradient": [
+    "#241612",
+    "#2f1d15"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s20",
+   "z": 33,
+   "kind": "rect",
+   "box": {
+    "x": 219,
+    "y": 395,
+    "w": 168,
+    "h": 168
+   },
+   "radius": 16,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s21",
+   "z": 36,
+   "kind": "circle",
+   "box": {
+    "x": 351,
+    "y": 655,
+    "w": 28,
+    "h": 28
+   },
+   "radius": 14,
+   "fill": "#2f1d15",
+   "gradient": null,
+   "image": false,
+   "stroke": "#3f2319",
+   "strokeWidth": 1,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s22",
+   "z": 37,
+   "kind": "rect",
+   "box": {
+    "x": 215,
+    "y": 643,
+    "w": 175,
+    "h": 200
+   },
+   "radius": 20,
+   "fill": null,
+   "gradient": [
+    "#241612",
+    "#2f1d15"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s23",
+   "z": 38,
+   "kind": "rect",
+   "box": {
+    "x": 219,
+    "y": 663,
+    "w": 168,
+    "h": 168
+   },
+   "radius": 16,
+   "fill": null,
+   "gradient": null,
+   "image": true,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s24",
+   "z": 41,
+   "kind": "path",
+   "box": {
+    "x": 0,
+    "y": 801,
+    "w": 414,
+    "h": 94.95
+   },
+   "radius": null,
+   "fill": "#241612",
+   "gradient": null,
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  },
+  {
+   "id": "s25",
+   "z": 42,
+   "kind": "circle",
+   "box": {
+    "x": 175,
+    "y": 770,
+    "w": 65,
+    "h": 65
+   },
+   "radius": 32.5,
+   "fill": null,
+   "gradient": [
+    "#d28a4c/0.4",
+    "#d28a4c"
+   ],
+   "image": false,
+   "stroke": null,
+   "strokeWidth": null,
+   "opacity": 1,
+   "clipped": false
+  }
+ ]
 }

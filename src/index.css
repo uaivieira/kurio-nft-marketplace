@@ -11,6 +11,13 @@
 @font-face {
   font-family: 'Roboto Mono';
   font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/roboto-mono-latin-500-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url('/fonts/roboto-mono-latin-700-normal.woff2') format('woff2');
@@ -18,7 +25,7 @@
 
 :root {
   --background: #140d0a;
-  --foreground: #f7f3ec;
+  --foreground: #f5f1eb;
   --card: #241612;
   --card-foreground: #f5f1eb;
   --popover: #241612;
@@ -31,16 +38,26 @@
   --muted-foreground: #b39463;
   --text-secondary: #cfb28c;
   --accent: #38220f;
+  --elevated: #2f1d15;
   --accent-foreground: #f5f1eb;
   --highlight: #e89b55;
   --destructive: #ff8a7a;
+  --coral: #f0805f;
   --success: #8fd19e;
   --border: #3f2319;
   --input: #55321f;
   --ring: #e89b55;
   --radius: 0.25rem;
-  --gradient-cta: linear-gradient(90deg, #d28a4c 0%, #a8723f 100%);
-  --gradient-hero: radial-gradient(circle at 46% 62%, rgb(255 214 170 / 0.1) 0 118px, transparent 119px), linear-gradient(100deg, #7a5232 0%, #55381f 45%, #281a11 100%);
+  --gradient-cta: linear-gradient(109deg, #d28a4c 0%, rgb(210 138 76 / 0.8) 100%);
+  --gradient-filter: linear-gradient(137deg, rgb(210 138 76 / 0.45) 0%, #d28a4c 100%);
+  --gradient-apply: linear-gradient(96deg, rgb(210 138 76 / 0.54) 0%, #d28a4c 100%);
+  --gradient-fab: linear-gradient(180deg, rgb(210 138 76 / 0.4) 0%, #d28a4c 100%);
+  --gradient-tile: linear-gradient(140deg, #241612 0%, #2f1d15 100%);
+  --gradient-hero-glow: linear-gradient(160deg, rgb(221 154 95 / 0.43) 0%, rgb(210 138 76 / 0.04) 100%);
+  --gradient-hero-glow-soft: linear-gradient(160deg, rgb(221 154 95 / 0.37) 0%, rgb(210 138 76 / 0) 100%);
+  --gradient-featured: linear-gradient(180deg, rgb(210 138 76 / 0.1) 0%, rgb(210 138 76 / 0.03) 100%);
+  --gradient-glow: linear-gradient(135deg, #d28a4c 0%, rgb(210 138 76 / 0) 100%);
+  --gradient-hero: linear-gradient(117deg, rgb(210 138 76 / 0.2) 0%, rgb(210 138 76 / 0.1) 100%);
 }
 
 @theme inline {
@@ -60,17 +77,19 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-text-secondary: var(--text-secondary);
   --color-accent: var(--accent);
+  --color-elevated: var(--elevated);
   --color-accent-foreground: var(--accent-foreground);
   --color-highlight: var(--highlight);
   --color-destructive: var(--destructive);
+  --color-coral: var(--coral);
   --color-success: var(--success);
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 4px);
-  --radius-xl: calc(var(--radius) + 12px);
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 16px;
   --container-page: 77.5rem;
 
   --text-micro: 0.5625rem;
@@ -141,6 +160,38 @@
 
 @utility bg-cta {
   background-image: var(--gradient-cta);
+}
+
+@utility bg-filter {
+  background-image: var(--gradient-filter);
+}
+
+@utility bg-apply {
+  background-image: var(--gradient-apply);
+}
+
+@utility bg-fab {
+  background-image: var(--gradient-fab);
+}
+
+@utility bg-tile {
+  background-image: var(--gradient-tile);
+}
+
+@utility bg-hero-glow {
+  background-image: var(--gradient-hero-glow);
+}
+
+@utility bg-hero-glow-soft {
+  background-image: var(--gradient-hero-glow-soft);
+}
+
+@utility bg-featured {
+  background-image: var(--gradient-featured);
+}
+
+@utility bg-glow {
+  background-image: var(--gradient-glow);
 }
 
 @utility bg-hero {

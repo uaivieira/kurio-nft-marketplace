@@ -34,15 +34,15 @@ function Avatar() {
   }
 
   return (
-    <div className="flex flex-col gap-2">
-      <span id="avatar-label" className="text-sm">{t('account.avatar.label')}</span>
-      <div className="flex items-center gap-4">
-        <span className="flex size-12 items-center justify-center overflow-hidden rounded-full border border-border bg-card">
+    <div className="flex flex-col gap-2 lg:-mt-[7px] lg:gap-2.5!">
+      <span id="avatar-label" className="text-md leading-4">{t('account.avatar.label')}</span>
+      <div className="flex items-center gap-4 md:gap-6">
+        <span className="flex size-12 items-center justify-center overflow-hidden rounded-full border border-border bg-elevated md:size-[50px]">
           {data?.avatarUrl ? <img src={data.avatarUrl} alt={t('account.avatar.alt')} className="size-full object-cover" data-testid="avatar-image" /> : <ImageIcon className="size-5 text-primary" aria-hidden="true" />}
         </span>
         <input ref={input} type="file" accept={AVATAR_TYPES.join(',')} className="sr-only" aria-labelledby="avatar-label" tabIndex={-1} data-testid="avatar-input" onChange={(event) => { pick(event.target.files?.[0]); event.target.value = '' }} />
-        <Button type="button" size="sm" disabled={update.isPending} onClick={() => input.current?.click()}>{t('account.avatar.change')}</Button>
-        <Button type="button" variant="ghost" size="sm" disabled={update.isPending || !data?.avatarUrl} onClick={() => update.mutate({ dataUrl: null }, { onSuccess: () => announce(t('realtime.avatarRemoved')), onError: (e) => setError(errorMessage(e)) })}>{t('common.remove')}</Button>
+        <Button type="button" size="sm" disabled={update.isPending} onClick={() => input.current?.click()} className="md:h-10 md:w-[98px] md:justify-start md:pl-[25px] md:text-sm">{t('account.avatar.change')}</Button>
+        <Button type="button" variant="ghost" size="sm" className="md:-ml-3.5 md:px-2.5 md:text-sm md:font-normal" disabled={update.isPending || !data?.avatarUrl} onClick={() => update.mutate({ dataUrl: null }, { onSuccess: () => announce(t('realtime.avatarRemoved')), onError: (e) => setError(errorMessage(e)) })}>{t('common.remove')}</Button>
       </div>
       {error && <p role="alert" className="text-xs text-destructive">{error}</p>}
     </div>
@@ -70,16 +70,16 @@ function ProfileForm() {
       })
     })}>
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
-      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-7 lg:[&>div]:gap-[19px]">
+      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-[30px] lg:[&>div]:gap-[17px]">
         <Field label={t('common.fields.displayName')} required error={errors.displayName?.message}>{(p) => <Input {...p} {...form.register('displayName')} />}</Field>
         <Field label={t('common.fields.username')} required error={errors.username?.message}>{(p) => <Input {...p} autoComplete="username" {...form.register('username')} />}</Field>
         <Field label={t('common.fields.email')} required error={errors.email?.message}>{(p) => <Input {...p} type="email" autoComplete="email" {...form.register('email')} />}</Field>
         <Field label={t('common.fields.ensName')} required error={errors.ensLabel?.message}>
           {(p) => (
-            <div className="flex gap-2">
+            <div className="flex gap-2 md:gap-2.5">
               <Controller control={form.control} name="ensSuffix" render={({ field }) => (
                 <Select value={field.value} onValueChange={field.onChange}>
-                  <SelectTrigger aria-label={t('common.fields.ensSuffix')} className="w-24"><SelectValue /></SelectTrigger>
+                  <SelectTrigger aria-label={t('common.fields.ensSuffix')} className="w-24 md:w-[78px] md:pl-2.5 md:text-md"><SelectValue /></SelectTrigger>
                   <SelectContent>{ENS_SUFFIXES.map((suffix) => <SelectItem key={suffix} value={suffix}>{suffix}</SelectItem>)}</SelectContent>
                 </Select>
               )} />
@@ -90,7 +90,7 @@ function ProfileForm() {
         <Field label={t('common.fields.walletNickname')} required error={errors.walletNickname?.message}>{(p) => <Input {...p} {...form.register('walletNickname')} />}</Field>
         <Avatar />
       </div>
-      <Button type="submit" disabled={update.isPending}>{update.isPending ? t('common.saving') : t('common.save')}</Button>
+      <Button type="submit" disabled={update.isPending} className="md:w-[131px]">{update.isPending ? t('common.saving') : t('common.save')}</Button>
     </form>
   )
 }
@@ -103,7 +103,7 @@ function PasswordForm() {
   const { errors } = form.formState
 
   return (
-    <form noValidate className="max-w-md space-y-4" onSubmit={form.handleSubmit((values) => {
+    <form noValidate className="max-w-[417px] space-y-4" onSubmit={form.handleSubmit((values) => {
       setFormError(null)
       change.mutate(values, {
         onSuccess: () => { form.reset(); notify.success(t('account.password.changed')); announce(t('realtime.passwordChanged')) },
@@ -135,7 +135,7 @@ export function ProfilePage() {
         )}
       </section>
       <section aria-labelledby="password-title">
-        <h2 id="password-title" className="mb-4 text-base font-bold">{t('account.password.title')}</h2>
+        <h2 id="password-title" className="mb-4 text-base font-medium">{t('account.password.title')}</h2>
         <PasswordForm />
       </section>
     </div>
