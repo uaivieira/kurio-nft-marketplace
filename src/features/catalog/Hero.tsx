@@ -23,9 +23,11 @@ export function Hero() {
   const [changed, setChanged] = useState(false)
   const enter = changed ? 'animate-in fade-in duration-500 ease-out' : ''
   const slide = SLIDES[index]!
+  const desktopText = t(slide.text)
+  const emeraldBreak = slide.artwork === 'emerald' ? desktopText.indexOf(' Colecione') : -1
   return (
     <section aria-roledescription={t('catalog.hero.roleDescription')} aria-label={t('catalog.hero.label')} className="mx-auto max-w-page px-6 pt-4 md:px-5 lg:pt-8">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary to-card max-md:rounded-[30px] max-md:bg-hero lg:grid lg:h-[450px] lg:grid-cols-[minmax(0,600px)_minmax(0,1fr)] lg:gap-6 lg:overflow-visible lg:rounded-none lg:bg-none lg:pl-10">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary to-card max-md:rounded-[30px] max-md:bg-hero lg:grid lg:h-[450px] lg:grid-cols-[minmax(0,600px)_minmax(0,1fr)] xl:grid-cols-[minmax(0,1fr)_minmax(0,450px)] lg:gap-6 lg:overflow-visible lg:rounded-none lg:bg-none lg:pl-10">
         <span aria-hidden="true" className="absolute top-[-31px] left-[-80px] size-[248px] rounded-full bg-hero-glow md:hidden" />
         <span aria-hidden="true" className="absolute top-[-10px] left-[73px] size-[248px] rounded-full bg-hero-glow-soft md:hidden" />
         <div className="relative z-10 px-3 pt-3 pb-7 pr-[40%] max-md:pt-[5px] max-md:pr-[44%] max-md:pb-[29px] max-md:pl-4 max-[389px]:pr-[36%]! lg:flex lg:h-[370px] lg:flex-col lg:self-center lg:p-0" aria-live="polite">
@@ -38,11 +40,14 @@ export function Hero() {
               <span key={line} className="block lg:hidden">{t(line)}</span>
             ))}
           </h1>
-          <p className="mt-2 line-clamp-3 max-w-[557px] max-md:mt-[5px] max-md:line-clamp-none text-xs leading-4 text-muted-foreground max-md:leading-[18px] max-md:text-text-secondary lg:mt-1 lg:line-clamp-none lg:text-sm lg:leading-6 lg:text-text-secondary">
+          <p className="mt-2 line-clamp-3 max-w-[557px] max-md:mt-[5px] max-md:line-clamp-none text-xs leading-4 text-muted-foreground max-md:leading-[18px] max-md:text-text-secondary lg:mt-1 lg:line-clamp-none lg:text-[1.05rem] lg:leading-7 lg:text-text-secondary xl:max-w-none">
             {slide.mobileText ? (
               <>
                 <span className="lg:hidden">{t(slide.mobileText)}</span>
-                <span className="max-lg:hidden">{t(slide.text)}</span>
+                <span className="max-lg:hidden">
+                  {emeraldBreak < 0 ? desktopText : desktopText.slice(0, emeraldBreak)}
+                  {emeraldBreak >= 0 && <><br className="hidden xl:block" /><span className="xl:hidden"> </span>{desktopText.slice(emeraldBreak + 1)}</>}
+                </span>
               </>
             ) : (
               t(slide.text)
@@ -51,7 +56,7 @@ export function Hero() {
           <Link to={path} hash="catalogo" className="mt-4 inline-flex items-center justify-center gap-2 text-xs font-bold text-primary uppercase max-md:mt-0 max-md:flex max-md:w-fit max-md:leading-4 max-md:text-highlight lg:mt-8 lg:h-10 lg:w-[140px] lg:rounded-md lg:bg-primary lg:px-0 lg:text-base lg:text-primary-foreground lg:hover:bg-highlight">
             {`${t('common.explore')} `}<ArrowRightIcon className="size-4 lg:hidden" aria-hidden="true" />
           </Link>
-          <div role="group" aria-label={t('catalog.hero.chooseSlide')} className="absolute bottom-1 left-1/2 flex -translate-x-1/2 max-md:-bottom-[3px] lg:static lg:mt-auto lg:translate-x-1 lg:translate-y-[5px] lg:justify-end lg:pr-0">
+          <div role="group" aria-label={t('catalog.hero.chooseSlide')} className="absolute bottom-1 left-1/2 flex -translate-x-1/2 max-md:-bottom-[3px] lg:static lg:mt-auto lg:-translate-x-1 lg:-translate-y-2 lg:justify-end lg:pr-0">
             {SLIDES.map((item, position) => (
               <button
                 key={item.artwork}
