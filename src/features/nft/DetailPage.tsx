@@ -31,9 +31,9 @@ const defaultEdition = (editions: Edition[]) => editions.find((edition) => editi
 export function DetailSkeleton() {
   const { t } = useTranslation()
   return (
-    <div role="status" aria-busy="true" aria-label={t('detail.loading')} data-testid="detail-skeleton" className="mx-auto min-h-dvh max-w-page px-5 pt-5 2xl:max-w-[1666px] 2xl:px-0">
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(505px,1fr)] 2xl:grid-cols-[134px_622px_minmax(0,1fr)]">
-        <div className="hidden gap-3 xl:grid 2xl:w-[134px]">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="aspect-square w-full" />)}</div>
+    <div role="status" aria-busy="true" aria-label={t('detail.loading')} data-testid="detail-skeleton" className="mx-auto min-h-dvh max-w-page px-5 pt-5">
+      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
+        <div className="hidden gap-3 xl:grid">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="aspect-square w-full" />)}</div>
         <Skeleton className="aspect-square w-full" />
         <div className="space-y-4">
           <Skeleton className="h-9 w-2/3" />
@@ -144,15 +144,15 @@ function Gallery({ nft }: { nft: NftDetail }) {
   const { t } = useTranslation()
   return (
     <>
-      <ul className="hidden gap-4 xl:grid xl:content-start 2xl:w-[134px] 2xl:gap-4" aria-label={t('detail.thumbnails')}>
+      <ul className="hidden gap-4 xl:grid xl:content-start" aria-label={t('detail.thumbnails')}>
         {[0, 1, 2, 3].map((i) => (
           <li key={i} className="rounded-md bg-card">
-            <NftImage artwork={nft.artwork} alt={t('detail.thumbnail', { name: nft.name, index: i + 1 })} sizes="(min-width: 1536px) 134px, 100px" size={160} className="rounded-lg" />
+            <NftImage artwork={nft.artwork} alt={t('detail.thumbnail', { name: nft.name, index: i + 1 })} sizes="100px" size={160} className="rounded-lg" />
           </li>
         ))}
       </ul>
-      <div className="relative bg-card max-md:-mr-[3px] max-md:bg-transparent md:flex md:aspect-square md:items-center md:justify-center md:rounded-md md:p-5 xl:mt-0.5 xl:self-start 2xl:w-[622px] 2xl:translate-x-[10px] 2xl:p-0">
-        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes="(min-width: 1536px) 596px, (min-width: 1280px) 404px, (min-width: 768px) 42vw, 100vw" size={480} priority className="rounded-2xl max-md:aspect-[361/356] max-md:rounded-3xl max-md:object-[50%_20%] md:max-w-[404px] md:rounded-3xl 2xl:ml-[26px] 2xl:w-[596px] 2xl:max-w-[596px] 2xl:translate-x-0.5" />
+      <div className="relative bg-card max-md:-mr-[3px] max-md:bg-transparent md:flex md:aspect-square md:items-center md:justify-center md:rounded-md md:p-5 xl:mt-0.5 xl:self-start">
+        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes="(min-width: 1280px) 404px, (min-width: 768px) 42vw, 100vw" size={480} priority className="rounded-2xl max-md:aspect-[361/356] max-md:rounded-3xl max-md:object-[50%_20%] md:max-w-[404px] md:rounded-3xl" />
         <Dialog>
           <DialogTrigger asChild>
             <button type="button" aria-label={t('detail.zoom')} className="absolute top-[13px] right-3 flex size-[30px] cursor-pointer items-center justify-center rounded-full border border-border bg-elevated max-md:hidden">
@@ -207,11 +207,11 @@ function DetailContent({ nft }: { nft: NftDetail }) {
     <>
       <span aria-hidden="true" className="absolute inset-x-0 top-0 -z-10 h-[506px] bg-tile md:hidden" />
       <MobileTopBar className="pt-[23px] pb-0" action={<FavoriteButton nft={nft} className="size-[35px] rounded-full border border-border bg-elevated" />} />
-      <article className="mx-auto max-w-page px-7 pb-16 md:px-5 lg:pb-[43px] 2xl:max-w-[1666px] 2xl:px-0">
+      <article className="mx-auto max-w-page px-7 pb-16 md:px-5 lg:pb-[43px]">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market') }]} />
-        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)] 2xl:grid-cols-[134px_622px_minmax(0,1fr)] 2xl:gap-x-7">
+        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-x-7 xl:grid-cols-[100px_minmax(0,444px)_minmax(0,1fr)]">
           <Gallery nft={nft} />
-          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px] 2xl:max-w-[770px] 2xl:pl-0">
+          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-[54px] max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[31px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px]">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <h1 className="text-xl font-bold md:text-title md:leading-[37px]">{nft.name}</h1>
               <p className="flex h-[27px] shrink-0 items-center gap-1 rounded-full border border-primary px-2 pt-1 text-sm leading-5 font-medium md:hidden">

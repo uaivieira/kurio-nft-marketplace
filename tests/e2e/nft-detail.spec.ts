@@ -1,5 +1,29 @@
 import { expect, test } from './fixtures'
 
+test('wide-screen detail stays aligned with the site header', async ({ app, isMobile }) => {
+  test.skip(isMobile, 'desktop widths are exercised explicitly')
+  const { page } = app
+  await app.open('/nft/ivory-baron-088')
+  for (const width of [1440, 1536, 1706, 1920, 2928]) {
+    await page.setViewportSize({ width, height: 900 })
+    const bounds = await page.evaluate(() => {
+      const header = document.querySelector('header')!.getBoundingClientRect()
+      const article = document.querySelector('article')!.getBoundingClientRect()
+      const image = document.querySelector('article img[fetchpriority="high"]')!.getBoundingClientRect()
+      return {
+        left: Math.abs(article.left - header.left),
+        right: Math.abs(article.right - header.right),
+        imageWidth: image.width,
+        overflow: document.documentElement.scrollWidth - window.innerWidth,
+      }
+    })
+    expect(bounds.left, `left alignment at ${width}px`).toBeLessThanOrEqual(1)
+    expect(bounds.right, `right alignment at ${width}px`).toBeLessThanOrEqual(1)
+    expect(bounds.imageWidth, `bounded gallery at ${width}px`).toBeLessThanOrEqual(444)
+    expect(bounds.overflow, `horizontal overflow at ${width}px`).toBeLessThanOrEqual(0)
+  }
+})
+
 test('direct access to the detail page', async ({ app }) => {
   await app.open('/nft/ivory-baron-088')
   await expect(app.page.getByRole('heading', { name: 'Ivory Baron #088' })).toBeVisible()
