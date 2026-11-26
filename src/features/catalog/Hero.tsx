@@ -74,7 +74,7 @@ export function Hero() {
             ))}
           </div>
         </div>
-        <div key={`art-${index}`} className={cn(enter, "absolute top-4 right-4 w-[34%] max-md:top-[11px] max-md:w-[37.7%] max-[389px]:w-[32%]! lg:static lg:w-full lg:max-w-[450px] lg:self-center lg:justify-self-end")}>
+        <div key={`art-${index}`} className={cn(enter, "absolute top-4 right-4 w-[34%] max-md:top-[11px] max-md:w-[37.7%] max-[389px]:w-[32%]! lg:static lg:w-4/5 lg:max-w-[450px] lg:self-center lg:justify-self-end")}>
           <NftImage artwork={slide.artwork} alt={t(slide.alt)} sizes="(min-width: 1024px) 450px, 45vw" size={480} priority className="rounded-2xl lg:rounded-3xl" />
           <div aria-hidden="true" className="absolute -bottom-2 -left-3 w-[45%] rounded-xl border-2 border-card max-md:left-3.5 max-md:w-[42%] max-md:border-0 lg:hidden">
             <NftImage artwork="sage" alt="" sizes="60px" size={160} className="rounded-xl max-md:rounded-2xl" />
