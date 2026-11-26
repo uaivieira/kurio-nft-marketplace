@@ -37,7 +37,7 @@ function SocialButtons() {
           type="button"
           disabled
           title="Indisponível nesta demonstração"
-          className="flex h-10 w-full cursor-not-allowed items-center justify-center gap-3 rounded-sm border border-border text-xs font-bold text-muted-foreground"
+          className="flex h-10 w-full cursor-not-allowed items-center justify-center gap-3 rounded-sm border border-border text-xs font-bold text-muted-foreground max-md:first-of-type:mb-4"
         >
           {icon}
           Continuar com {provider}
@@ -63,7 +63,7 @@ function LoginForm({ onDone }: { onDone: () => void }) {
   const { errors } = form.formState
 
   return (
-    <form noValidate onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-4">
+    <form noValidate onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-4 max-md:space-y-3">
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
       <Field hideLabel label="E-mail" error={errors.email?.message}>
         {(props) => <Input {...props} className="max-md:h-[50px] max-md:rounded-lg" type="email" autoComplete="email" placeholder="contato@email.com" {...form.register('email')} />}
@@ -71,7 +71,7 @@ function LoginForm({ onDone }: { onDone: () => void }) {
       <Field hideLabel label="Senha" error={errors.password?.message}>
         {(props) => <PasswordInput {...props} className="max-md:h-[50px] max-md:rounded-lg" autoComplete="current-password" placeholder="Senha" {...form.register('password')} />}
       </Field>
-      <p className="text-right text-xs">
+      <p className="text-right text-sm max-md:mb-[38px]">
         <span aria-disabled="true" title="Em breve" className="cursor-not-allowed text-highlight/70">Esqueceu a senha?<span className="sr-only"> (em breve)</span></span>
       </p>
       <Button type="submit" size="lg" className="w-full max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
@@ -110,7 +110,7 @@ function SignupForm({ onDone }: { onDone: () => void }) {
       <Field hideLabel label="Confirmar senha" error={errors.confirmPassword?.message}>
         {(props) => <PasswordInput {...props} className="max-md:h-[50px] max-md:rounded-lg" autoComplete="new-password" placeholder="Confirmar senha" {...form.register('confirmPassword')} />}
       </Field>
-      <Button type="submit" size="lg" className="mt-2 w-full max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
+      <Button type="submit" size="lg" className="mt-2 w-full max-md:mt-7 max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
         {mutation.isPending ? 'Criando conta…' : (<><span className="md:hidden">Criar perfil</span><span className="max-md:hidden">Criar conta</span></>)}
       </Button>
     </form>
@@ -131,8 +131,8 @@ export function AuthDialog({ mode, redirect, expired }: AuthDialogProps) {
         aria-describedby="auth-description"
         overlayClassName="md:bg-transparent"
       >
-        <p aria-hidden="true" className="hidden text-center text-3xl font-bold tracking-label max-md:block">KURIO</p>
-        <p aria-hidden="true" className="hidden pt-16 pb-4 text-center text-xl font-bold max-md:block">{isLogin ? 'Entrar' : 'Criar perfil de colecionador'}</p>
+        <p aria-hidden="true" className="hidden pt-3.5 text-center text-3xl font-bold tracking-label max-md:block">KURIO</p>
+        <p aria-hidden="true" className="hidden pt-[68px] pb-4 text-center text-xl font-bold max-md:block">{isLogin ? 'Entrar' : 'Criar perfil de colecionador'}</p>
         <div className="flex items-center justify-center gap-3 text-xl max-md:hidden">
           <DialogTitle className="sr-only">{isLogin ? 'Entrar' : 'Criar conta'}</DialogTitle>
           <Link to="/login" search={{ redirect }} replace aria-current={isLogin ? 'page' : undefined} className={cn(isLogin ? 'font-bold text-highlight' : 'font-bold')}>Entrar</Link>
@@ -143,10 +143,11 @@ export function AuthDialog({ mode, redirect, expired }: AuthDialogProps) {
           {isLogin ? 'Entre para gerenciar sua carteira, coleção e perfil de criador.' : 'Crie seu perfil de colecionador e conecte uma carteira quando quiser.'}
         </DialogDescription>
         {expired && <p role="status" className="rounded-sm border border-primary px-3 py-2 text-center text-xs">Sua sessão expirou. Entre novamente para retomar de onde parou.</p>}
-        <div className="mx-auto w-full max-w-[340px] space-y-5 max-md:max-w-none">
+        {/* Mobile rhythm of the login/signup frames: 40px around the social block, 16px between its buttons. */}
+        <div className="mx-auto w-full max-w-[340px] space-y-5 max-md:max-w-none max-md:space-y-10">
           {isLogin ? <LoginForm onDone={leave} /> : <SignupForm onDone={leave} />}
           <SocialButtons />
-          <p className="pt-6 text-center text-base text-text-secondary md:hidden">
+          <p className="text-center text-base text-text-secondary md:hidden">
             {isLogin ? (
               <Link to="/signup" search={{ redirect }} replace className="hover:text-highlight">Novo na Kurio? Crie uma conta</Link>
             ) : (

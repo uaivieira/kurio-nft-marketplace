@@ -29,16 +29,17 @@ export function Header() {
   const home = pathname === '/'
 
   const navLink = (active: boolean) =>
-    cn('relative flex h-full items-start pt-1 text-base transition-colors hover:text-highlight', active ? 'font-medium text-highlight' : 'text-foreground')
+    cn('relative flex h-full items-start pt-[3px] text-base leading-4 transition-colors hover:text-highlight', active ? 'font-medium text-highlight' : 'text-foreground')
   const underline = <span aria-hidden="true" className="absolute inset-x-0 -bottom-px h-[3px] bg-primary" />
 
   return (
     <header className="mx-auto hidden max-w-page px-5 pt-6 md:block">
-      <div className="grid h-[45px] grid-cols-[1fr_auto_1fr] items-stretch border-b border-border">
-        <Link to="/" className="self-center text-caption leading-none font-bold tracking-label" aria-label="Kurio, página inicial">
+      {/* At 1440 the nav starts 376px into the 1200px row (Header Row), left of centre; narrower rows give the logo column less room first. */}
+      <div className="grid h-[45px] grid-cols-[minmax(0,352px)_auto_1fr] items-stretch gap-x-6 border-b border-border">
+        <Link to="/" className="mt-2.5 self-start text-caption leading-none font-bold tracking-label" aria-label="Kurio, página inicial">
           KURIO
         </Link>
-        <nav aria-label="Principal" className="flex gap-10">
+        <nav aria-label="Principal" className="flex gap-6 lg:gap-10">
           <Link to="/" className={navLink(home)} aria-current={home ? 'page' : undefined}>
             Início
             {home && underline}
@@ -47,8 +48,8 @@ export function Header() {
             Mercado
             {inMarket && underline}
           </Link>
-          <SoonLabel className="pt-1 text-base">Criadores</SoonLabel>
-          <SoonLabel className="pt-1 text-base">Aprenda</SoonLabel>
+          <SoonLabel className="pt-[3px] text-base leading-4">Criadores</SoonLabel>
+          <SoonLabel className="pt-[3px] text-base leading-4">Aprenda</SoonLabel>
         </nav>
         <div className="flex items-start justify-end gap-4">
           <SearchDialog

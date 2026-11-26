@@ -7,7 +7,8 @@ import type { Cart, Quote } from '@/contracts/cart'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { errorMessage, isApiError } from '@/lib/api-error'
-import { formatEth, isZeroEth } from '@/lib/eth'
+import { decimalsFor, formatEth } from '@/lib/eth'
+import { cn } from '@/lib/utils'
 import { announce } from '@/realtime/announcer'
 import { useApplyCoupon, useRemoveCoupon } from '@/queries/cart'
 
@@ -54,7 +55,7 @@ export function CouponForm({ cart }: { cart: Cart }) {
           placeholder="Digite o código promocional..."
           aria-invalid={Boolean(error)}
           aria-describedby={error ? 'coupon-error' : undefined}
-          className="h-10 min-w-0 flex-1 rounded-l-sm border border-input bg-background px-3 text-xs placeholder:text-muted-foreground aria-invalid:border-destructive max-md:h-[50px] max-md:rounded-l-full max-md:border-r-0 max-md:px-4 max-md:text-sm"
+          className="h-10 w-0 min-w-0 flex-1 rounded-l-sm border border-input bg-background px-3 text-xs placeholder:text-muted-foreground aria-invalid:border-destructive max-md:h-[50px] max-md:rounded-l-full max-md:border-r-0 max-md:px-4 max-md:text-sm"
         />
         <button type="submit" disabled={apply.isPending} className="h-10 cursor-pointer rounded-r-sm bg-primary px-5 text-sm font-bold text-primary-foreground hover:bg-highlight disabled:opacity-60 max-md:h-[50px] max-md:rounded-full max-md:-ml-6 max-md:bg-cta max-md:px-6 max-md:text-base">
           Aplicar
@@ -85,15 +86,19 @@ export function TotalsRows({ quote, loading }: { quote: Quote | undefined; loadi
       </div>
     )
   }
+  // Every row shows "ETH" and the same decimals (the Figma "(-) 00.00" is placeholder text; see ARCHITECTURE).
+  const decimals = decimalsFor(quote.subtotal, quote.discount, quote.networkFee, quote.total)
+  // Labels and values share a baseline although the values use a larger size (Figma summary rows).
+  const row = 'flex items-baseline justify-between gap-3'
   return (
     <dl className="space-y-3 text-base md:text-md" data-testid="totals">
-      <div className="flex justify-between"><dt>Subtotal</dt><dd data-testid="subtotal" className="md:text-lg">{formatEth(quote.subtotal)}</dd></div>
-      <div className="flex justify-between gap-3"><dt>Desconto do lançamento</dt><dd data-testid="discount" className="whitespace-nowrap">(-) {isZeroEth(quote.discount) ? '00.00' : formatEth(quote.discount)}</dd></div>
+      <div className={row}><dt>Subtotal</dt><dd data-testid="subtotal" className="whitespace-nowrap md:text-lg">{formatEth(quote.subtotal, decimals)}</dd></div>
+      <div className={row}><dt>Desconto do lançamento</dt><dd data-testid="discount" className="whitespace-nowrap">(-) {formatEth(quote.discount, decimals)}</dd></div>
       <div>
-        <div className="flex justify-between"><dt>Taxa de rede</dt><dd data-testid="fee" className="md:text-lg">{formatEth(quote.networkFee)}</dd></div>
+        <div className={row}><dt>Taxa de rede</dt><dd data-testid="fee" className="whitespace-nowrap md:text-lg">{formatEth(quote.networkFee, decimals)}</dd></div>
         <p className="mt-0.5 text-right text-xs text-highlight">Taxa estimada</p>
       </div>
-      <div className="flex justify-between border-t border-border pt-4 text-lg font-bold"><dt>Total</dt><dd className="text-highlight" data-testid="total">{formatEth(quote.total)}</dd></div>
+      <div className={cn(row, 'pt-4 text-lg font-bold')}><dt>Total</dt><dd className="whitespace-nowrap text-highlight" data-testid="total">{formatEth(quote.total, decimals)}</dd></div>
     </dl>
   )
 }

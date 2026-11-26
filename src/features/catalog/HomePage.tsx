@@ -135,7 +135,8 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
   return (
     <>
-      <div className="mx-auto flex max-w-page items-center gap-3 px-6 pt-8 md:hidden">
+      {/* Search and filter sheet below lg: tablets have no filter sidebar either. */}
+      <div className="mx-auto flex max-w-page items-center gap-3 px-6 pt-8 md:px-5 lg:hidden">
         <SearchField search={search} />
         <button type="button" aria-haspopup="dialog" aria-expanded={filtersOpen} ref={filtersButton} onClick={() => { setFiltersLoaded(true); setFiltersOpen(true) }} aria-label="Filtros" className="flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-xl bg-primary/30 text-primary">
               <FilterIcon className="size-5" aria-hidden="true" />
@@ -166,7 +167,8 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
         <section aria-labelledby="catalog-title" className="min-w-0">
           <h2 id="catalog-title" className="sr-only">Catálogo de NFTs</h2>
-          <div className="flex flex-wrap items-center justify-between gap-3 pb-6 md:mb-8 md:h-[18px] md:flex-nowrap md:items-start md:pb-0">
+          {/* One 18px row as in the frame; a narrower catalog column wraps the sort below the tabs. */}
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pb-6 md:mb-8 md:min-h-[18px] md:items-start md:pb-0 xl:h-[18px]">
             <div role="tablist" aria-label="Seção do catálogo" className="flex max-w-full gap-5 overflow-x-auto text-sm md:text-md">
               {CATALOG_TABS.map((value) => (
                 <button
@@ -181,7 +183,7 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
                 </button>
               ))}
             </div>
-            <div className="hidden items-center gap-1 text-md md:flex">
+            <div className="hidden shrink-0 items-center gap-1 text-md whitespace-nowrap md:flex">
               <label htmlFor="catalog-sort">Ordenar por:</label>
               {/* Native select: same look as the frame, fully accessible, and no popover runtime on the home's critical path. */}
               <span className="relative inline-flex items-center">

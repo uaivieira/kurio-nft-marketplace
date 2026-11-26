@@ -12,7 +12,7 @@ const SLIDES: { artwork: Artwork; title: string[]; mobileTitle?: string[]; text:
   { artwork: 'golden', title: ['Música, arte e', 'cultura em um só lugar'], text: 'Explore coleções de som, imagem e experiências digitais verificadas por uma comunidade de colecionadores.', alt: 'Macaco laranja com fones de ouvido, arte do destaque Golden Beat' },
 ]
 
-/** Desktop "Hero" (1200×450): 600px text column 40px in, 450px artwork on the right. */
+/** Desktop "Hero" (1200×450): 600px text column 40px in, 450px artwork on the right (both shrink between 1024 and 1279). */
 export function Hero() {
   const path = useCatalogPath()
   const [index, setIndex] = useState(0)
@@ -22,7 +22,7 @@ export function Hero() {
   const slide = SLIDES[index]!
   return (
     <section aria-roledescription="carrossel" aria-label="Destaques" className="mx-auto max-w-page px-5 pt-4 lg:pt-8">
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary to-card lg:grid lg:h-[450px] lg:grid-cols-[600px_1fr] lg:overflow-visible lg:rounded-none lg:bg-none lg:pl-10">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-secondary to-card lg:grid lg:h-[450px] lg:grid-cols-[minmax(0,600px)_minmax(0,1fr)] lg:gap-6 lg:overflow-visible lg:rounded-none lg:bg-none lg:pl-10">
         <div className="relative z-10 px-3 pt-3 pb-7 pr-[40%] lg:flex lg:h-[364px] lg:flex-col lg:self-center lg:p-0" aria-live="polite">
           <p className="text-xs lg:text-base">Bem-vindo à Kurio</p>
           <h1 key={`title-${index}`} className={cn(enter, "mt-2 text-xl leading-tight font-bold uppercase lg:mt-1 lg:text-display lg:leading-[4.375rem]")}>
@@ -64,7 +64,7 @@ export function Hero() {
             ))}
           </div>
         </div>
-        <div key={`art-${index}`} className={cn(enter, "absolute top-4 right-4 w-[34%] lg:static lg:w-[450px] lg:justify-self-end")}>
+        <div key={`art-${index}`} className={cn(enter, "absolute top-4 right-4 w-[34%] lg:static lg:w-full lg:max-w-[450px] lg:self-center lg:justify-self-end")}>
           {/* Mobile asks for the same file as the first catalog card (shared, preloaded LCP image). */}
           <NftImage artwork={slide.artwork} alt={slide.alt} sizes="(min-width: 1024px) 450px, 45vw" size={480} priority className="rounded-2xl" />
           <div aria-hidden="true" className="absolute -bottom-2 -left-3 w-[45%] rounded-xl border-2 border-card lg:hidden">

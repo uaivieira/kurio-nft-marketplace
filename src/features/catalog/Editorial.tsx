@@ -22,7 +22,7 @@ export function PromoBanners() {
     <section aria-label="Campanhas" className="mx-auto mt-24 hidden max-w-page gap-7 px-5 md:grid lg:grid-cols-2">
       {PROMOS.map((banner) => (
         <div key={banner.title} className="flex h-[250px] overflow-hidden rounded-sm bg-card">
-          <NftImage artwork={banner.artwork} alt="" sizes="290px" className="aspect-auto h-[250px] w-[290px] shrink-0 rounded-2xl" />
+          <NftImage artwork={banner.artwork} alt="" sizes="290px" className="aspect-auto h-[250px] w-[290px] lg:max-xl:w-[220px] shrink-0 rounded-2xl" />
           <div className="flex flex-1 flex-col items-end justify-center gap-3 py-5 pr-7.5 text-right">
             <h2 className="text-lg leading-6 font-bold">{banner.title}</h2>
             <p className="line-clamp-3 text-sm leading-6 text-text-secondary">{banner.text}</p>

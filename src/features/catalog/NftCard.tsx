@@ -54,10 +54,10 @@ export function NftCard({ nft, sizes = '(min-width: 1024px) 250px, 45vw', priori
           {nft.name}
         </Link>
       </h3>
-      <p className="mt-3 flex items-baseline gap-2 text-base leading-4 font-bold text-highlight max-md:mt-1 max-md:px-1.5 max-md:text-md">
-        <span data-testid="nft-price">{formatEth(nft.price)}</span>
+      <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-base leading-4 font-bold text-highlight max-md:mt-1 max-md:px-1.5 max-md:text-md">
+        <span data-testid="nft-price" className="whitespace-nowrap">{formatEth(nft.price)}</span>
         {nft.compareAtPrice && (
-          <span className="font-normal text-muted-foreground line-through">
+          <span className="font-normal whitespace-nowrap text-muted-foreground line-through">
             <span className="sr-only">Preço anterior </span>
             {formatEth(nft.compareAtPrice)}
           </span>

@@ -49,7 +49,12 @@ export const compareEth = (a: EthString, b: EthString): -1 | 0 | 1 => {
   return diff === 0n ? 0 : diff > 0n ? 1 : -1
 }
 
-export const isZeroEth = (value: EthString) => toWei(value) === 0n
+/** Fraction digits that show every amount exactly, at least 2 (e.g. 2.38 and 0.016 need 3). */
+export const decimalsFor = (...values: EthString[]): number =>
+  Math.max(2, ...values.map((value) => fromWei(toWei(value)).split('.')[1]?.length ?? 0))
 
-/** Display format used across the UI: "1.19 ETH". */
-export const formatEth = (value: EthString) => `${fromWei(toWei(value))} ETH`
+/**
+ * Display format used across the UI: "1.19 ETH". `minDecimals` pads the fraction so the rows of a summary
+ * line up (pass `decimalsFor(...rows)`); digits are never dropped.
+ */
+export const formatEth = (value: EthString, minDecimals = 2) => `${fromWei(toWei(value), minDecimals)} ETH`

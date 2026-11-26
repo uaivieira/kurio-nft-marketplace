@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { addEth, compareEth, formatEth, fromWei, mulEth, percentOfEth, subEth, toWei } from './eth'
+import { addEth, compareEth, decimalsFor, formatEth, fromWei, mulEth, percentOfEth, subEth, toWei } from './eth'
 
 describe('eth arithmetic', () => {
   it('keeps decimal precision where floats fail', () => {
@@ -22,6 +22,16 @@ describe('eth arithmetic', () => {
     expect(compareEth('1.10', '1.1')).toBe(0)
     expect(compareEth('2', '1.99')).toBe(1)
     expect(formatEth('1.190')).toBe('1.19 ETH')
+  })
+
+  it('pads summary rows to one shared number of decimals', () => {
+    const decimals = decimalsFor('2.38', '0', '0.016', '2.396')
+    expect(decimals).toBe(3)
+    expect(formatEth('2.38', decimals)).toBe('2.380 ETH')
+    expect(formatEth('0', decimals)).toBe('0.000 ETH')
+    expect(formatEth('0.016', decimals)).toBe('0.016 ETH')
+    expect(decimalsFor('1.19', '1.39')).toBe(2)
+    expect(formatEth('1.2345', 3)).toBe('1.2345 ETH')
   })
 
   it('rejects malformed values', () => {

@@ -67,7 +67,8 @@ function ProfileForm() {
       })
     })}>
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
-      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-10">
+      {/* Figma "Perfil do colecionador": 16px between label and field, 30px between rows (same 103px pitch). */}
+      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-[30px] lg:[&>div]:gap-4">
         <Field label="Nome de exibição" required error={errors.displayName?.message}>{(p) => <Input {...p} {...form.register('displayName')} />}</Field>
         <Field label="Nome de usuário" required error={errors.username?.message}>{(p) => <Input {...p} autoComplete="username" {...form.register('username')} />}</Field>
         <Field label="E-mail" required error={errors.email?.message}>{(p) => <Input {...p} type="email" autoComplete="email" {...form.register('email')} />}</Field>

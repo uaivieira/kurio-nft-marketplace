@@ -1,12 +1,12 @@
 # Lighthouse — medianas (3 execuções por página e perfil)
 
-Gerado em 2026-11-26T00:53:24.074Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
+Gerado em 2026-11-26T11:46:11.622Z por `pnpm lighthouse` (build otimizado servido por `vite preview`, cenário de mocks `default`).
 
 | Página | Perfil | Performance | Accessibility | Best Practices | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|---|
-| / | mobile | 100 | 100 | 100 | 100 | 1.66 s | 0.000 | 18 ms |
-| /mercado | mobile | 100 | 100 | 100 | 100 | 1.43 s | 0.000 | 6 ms |
-| /nft/emerald-ape-042 | mobile | 100 | 100 | 100 | 100 | 1.36 s | 0.000 | 4 ms |
+| / | mobile | 100 | 100 | 100 | 100 | 1.66 s | 0.000 | 0 ms |
+| /mercado | mobile | 100 | 100 | 100 | 100 | 1.50 s | 0.000 | 0 ms |
+| /nft/emerald-ape-042 | mobile | 100 | 100 | 100 | 100 | 1.35 s | 0.000 | 0 ms |
 | / | desktop | 100 | 100 | 100 | 100 | 0.37 s | 0.000 | 0 ms |
 | /mercado | desktop | 100 | 100 | 100 | 100 | 0.33 s | 0.000 | 0 ms |
 | /nft/emerald-ape-042 | desktop | 100 | 100 | 100 | 100 | 0.33 s | 0.000 | 0 ms |

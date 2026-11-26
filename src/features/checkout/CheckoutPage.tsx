@@ -192,7 +192,12 @@ export function CheckoutPage() {
       }
       setSubmitError(errorMessage(error))
     },
-    onSettled: () => { locked.current = false },
+    // Unlock only after a failure. After success the order exists and its idempotency key is already
+    // forgotten, so a click that lands before the review closes and the route changes would create a
+    // second order with a fresh key.
+    onSettled: (_data, error) => {
+      if (error) locked.current = false
+    },
   })
 
   const hasPendingOrder = (pending.data?.length ?? 0) > 0
@@ -250,7 +255,8 @@ export function CheckoutPage() {
           </p>
         )}
 
-        <form noValidate onSubmit={(event) => { event.preventDefault(); void openReview() }} className="grid gap-8 pt-4 lg:grid-cols-[minmax(0,763px)_1fr] lg:gap-8">
+        {/* 763px form + 28px gap + 409px summary at 1440, shrinking proportionally (summary never below 320px). */}
+        <form noValidate onSubmit={(event) => { event.preventDefault(); void openReview() }} className="grid gap-8 pt-4 lg:grid-cols-[minmax(0,763fr)_minmax(320px,409fr)] lg:gap-x-7">
           <section aria-labelledby="buyer-title" className="max-md:order-2">
             <h2 id="buyer-title" className="mb-4 text-lg font-bold max-md:hidden">Perfil do colecionador</h2>
             <button type="button" aria-expanded={formOpen} aria-controls="buyer-fields" onClick={() => setFormOpen((open) => !open)} className="mb-4 flex w-full cursor-pointer items-center justify-between rounded-xl bg-card px-4 py-3 text-base font-bold md:hidden">
@@ -299,7 +305,7 @@ export function CheckoutPage() {
                       type="checkbox"
                       checked={selectedWallet?.slot === 'secondary'}
                       onChange={(event) => chooseWallet(registered.find((wallet) => wallet.slot === (event.target.checked ? 'secondary' : 'primary'))!.id)}
-                      className="size-4 rounded-full accent-[var(--primary)]"
+                      className="size-4 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-primary checked:bg-primary checked:shadow-[inset_0_0_0_2px_var(--background)]"
                     />
                     Usar outra carteira?
                   </label>
@@ -320,11 +326,11 @@ export function CheckoutPage() {
                 <li key={line.id} className="flex h-[70px] items-center gap-3 bg-card pr-4">
                   <div className="w-[4.375rem] shrink-0"><NftImage artwork={line.artwork} alt={`Arte de ${line.name}`} sizes="70px" size={160} className="rounded-sm" /></div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm leading-tight font-bold">{line.name}</p>
+                    <p className="truncate text-sm leading-tight font-bold" title={line.name}>{line.name}</p>
                     <p className="text-xs whitespace-nowrap text-muted-foreground">ID: #{line.tokenId}</p>
                   </div>
-                  <p className="text-xs">(x {line.quantity})</p>
-                  <p className="text-lg font-bold text-highlight">{formatEth(quote.data?.lines.find((item) => item.id === line.id)?.lineTotal ?? line.unitPrice)}</p>
+                  <p className="shrink-0 text-xs whitespace-nowrap">(x {line.quantity})</p>
+                  <p className="shrink-0 text-lg font-bold whitespace-nowrap text-highlight">{formatEth(quote.data?.lines.find((item) => item.id === line.id)?.lineTotal ?? line.unitPrice)}</p>
                 </li>
               ))}
             </ul>

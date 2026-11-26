@@ -1,10 +1,10 @@
 import { Link, useNavigate } from '@tanstack/react-router'
-import { MinusGlyph, PlusGlyph } from '@/components/icons/glyphs'
 import { DeleteIcon } from '@/components/icons'
 import { notify } from '@/lib/notify'
 import { Breadcrumbs } from '@/components/layout/Breadcrumbs'
 import { MobileTopBar } from '@/components/layout/MobileTopBar'
 import { NftImage } from '@/components/NftImage'
+import { QuantityStepper } from '@/components/QuantityStepper'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { CartLine, QuoteIssue } from '@/contracts/cart'
@@ -19,35 +19,30 @@ import { useAcknowledgePrices, useCart, useQuote, useRemoveLine, useSetQuantity 
 import { useCatalog } from '@/queries/catalog'
 import { CouponForm, TotalsRows } from './Totals'
 
+/** Table tracks of the desktop frame (311/139/136/148/24 in a 782px row) as fractions, so narrower columns shrink instead of overflowing. */
+const TABLE_COLUMNS = 'md:grid-cols-[minmax(0,311fr)_minmax(0,139fr)_minmax(0,136fr)_minmax(0,148fr)_24px]'
+
 function LineRow({ line, busy, onQuantity, onRemove }: { line: CartLine; busy: boolean; onQuantity: (quantity: number) => void; onRemove: () => void }) {
   const limit = Math.min(line.available, line.maxPerOrder)
   const priceChanged = line.unitPrice !== line.priceWhenAdded
   return (
-    <li data-testid="cart-line" className="grid grid-cols-[6.25rem_minmax(0,1fr)] items-center gap-x-3 gap-y-0 rounded-2xl bg-card p-0 pr-3 md:h-[70px] md:grid-cols-[minmax(0,2.2fr)_1fr_1fr_1fr_24px] lg:grid-cols-[311px_139px_136px_148px_24px] md:gap-0 md:rounded-none md:pr-6">
+    <li data-testid="cart-line" className={`grid grid-cols-[6.25rem_minmax(0,1fr)] items-center gap-x-3 gap-y-0 rounded-2xl bg-card p-0 pr-3 md:h-[70px] md:gap-0 md:rounded-none md:pr-6 ${TABLE_COLUMNS}`}>
       <div className="flex items-center gap-4 max-md:contents">
         <Link to="/nft/$nftId" params={{ nftId: line.nftId }} aria-label={`Ver ${line.name}`} className="w-25 shrink-0 max-md:row-span-3 max-md:row-start-1 md:w-[70px]">
           <NftImage artwork={line.artwork} alt={`Arte de ${line.name}`} sizes="(min-width: 768px) 70px, 100px" size={160} className="rounded-sm max-md:rounded-2xl" />
         </Link>
-        <div className="min-w-0 max-md:col-start-2 max-md:row-start-1">
-          <p className="truncate text-md font-bold md:text-base md:leading-4">{line.name}</p>
+        <div className="min-w-0 max-md:col-start-2 max-md:row-start-1 md:pr-3">
+          <p className="truncate text-md font-bold md:text-base md:leading-4" title={line.name}>{line.name}</p>
           <p className="text-sm text-muted-foreground md:hidden">Edição: {line.editionLabel}</p>
-          <p className="mt-1.5 hidden truncate text-sm leading-4 text-muted-foreground md:block">ID do token: #{line.tokenId} · {line.editionLabel}</p>
+          <p className="mt-1.5 hidden truncate text-sm leading-4 text-muted-foreground md:block"><span className="xl:hidden">ID</span><span className="max-xl:hidden">ID do token</span>: #{line.tokenId} · {line.editionLabel}</p>
         </div>
       </div>
-      <p className="text-lg font-bold text-highlight max-md:col-start-2 max-md:row-start-3 md:text-base md:leading-4" data-testid="line-unit">
+      <p className="text-lg font-bold whitespace-nowrap text-highlight max-md:col-start-2 max-md:row-start-3 max-md:pr-10 md:text-base md:leading-4" data-testid="line-unit">
         {formatEth(line.unitPrice)}
         {priceChanged && <span className="ml-2 text-xs font-normal text-muted-foreground line-through" data-testid="line-old-price">{formatEth(line.priceWhenAdded)}</span>}
       </p>
-      <div role="group" aria-label={`Quantidade de ${line.name}`} className="flex items-center gap-3 max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end">
-        <button type="button" aria-label={`Diminuir quantidade de ${line.name}`} disabled={busy || line.quantity <= 1} onClick={() => onQuantity(line.quantity - 1)} className="flex size-5 cursor-pointer items-center justify-center rounded-full bg-primary text-primary-foreground disabled:opacity-40 max-md:size-6 max-md:bg-background max-md:text-foreground">
-          <MinusGlyph className="size-3.5" aria-hidden="true" />
-        </button>
-        <output className="w-4 text-center text-sm md:text-base" data-testid="line-quantity">{line.quantity}</output>
-        <button type="button" aria-label={`Aumentar quantidade de ${line.name}`} disabled={busy || line.quantity >= limit} onClick={() => onQuantity(line.quantity + 1)} className="flex size-5 cursor-pointer items-center justify-center rounded-full bg-primary text-primary-foreground disabled:opacity-40 max-md:size-6 max-md:bg-background max-md:text-foreground">
-          <PlusGlyph className="size-3.5" aria-hidden="true" />
-        </button>
-      </div>
-      <p className="hidden text-base leading-4 font-bold text-highlight md:block" data-testid="line-total">{formatEth(mulEth(line.unitPrice, line.quantity))}</p>
+      <QuantityStepper value={line.quantity} max={limit} onChange={onQuantity} label={line.name} disabled={busy} testId="line-quantity" className="max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end" buttonClassName="max-md:size-6 max-md:bg-background max-md:text-foreground max-md:before:hidden" />
+      <p className="hidden text-base leading-4 font-bold whitespace-nowrap text-highlight md:block" data-testid="line-total">{formatEth(mulEth(line.unitPrice, line.quantity))}</p>
       <button type="button" aria-label={`Remover ${line.name} do carrinho`} disabled={busy} onClick={onRemove} className="flex size-8 cursor-pointer items-center justify-center text-primary max-md:col-start-2 max-md:row-start-3 max-md:justify-self-end md:size-6">
         <DeleteIcon className="size-5" aria-hidden="true" />
       </button>
@@ -113,7 +108,7 @@ export function CartPage() {
     }
     return (
       <>
-        <div className="mb-3 hidden h-7 md:grid-cols-[minmax(0,2.2fr)_1fr_1fr_1fr_24px] lg:grid-cols-[311px_139px_136px_148px_24px] border-b border-border text-base leading-4 font-bold md:grid" aria-hidden="true">
+        <div className={`mb-3 hidden h-7 border-b border-border pr-6 text-base leading-4 font-bold md:grid ${TABLE_COLUMNS}`} aria-hidden="true">
           <span>NFTs</span><span>Preço</span><span>Edições</span><span>Total</span><span />
         </div>
         <ul className={cn(reveal, 'space-y-5 md:space-y-3')} aria-label="Itens do carrinho">
@@ -138,12 +133,13 @@ export function CartPage() {
       <MobileTopBar title="Carrinho de NFTs" />
       <div className="mx-auto max-w-page px-5 pb-16">
         <Breadcrumbs items={[{ label: 'Início', to: '/' }, { label: 'Mercado', to: '/mercado' }, { label: 'Carrinho' }]} />
-        <div className="grid gap-8 pt-3 lg:grid-cols-[1fr_20.75rem] lg:gap-[86px]">
+        {/* 782px table + 86px gap + 332px summary at 1440; the gap and the table shrink first below that. */}
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-8 pt-3 lg:grid-cols-[minmax(0,1fr)_20.75rem] lg:gap-x-[min(86px,6vw)]">
           <section aria-label="Itens" className="min-w-0">
             {quote.data && <Issues issues={quote.data.issues} onAcknowledge={() => acknowledge.mutate(undefined, { onError: (e) => notify.error(errorMessage(e)) })} pending={acknowledge.isPending} />}
             {content}
           </section>
-          <aside aria-labelledby="summary-title" className="max-md:-mx-5 max-md:rounded-t-3xl max-md:bg-card max-md:p-5">
+          <aside aria-labelledby="summary-title" className="min-w-0 max-md:-mx-5 max-md:rounded-t-3xl max-md:bg-card max-md:p-5">
             <h2 id="summary-title" className="hidden h-7 border-b border-border text-lg leading-4 font-bold md:block">Resumo da carteira</h2>
             <div className="space-y-5 md:mt-6">
               {cart.data && hasLines && <CouponForm cart={cart.data} />}

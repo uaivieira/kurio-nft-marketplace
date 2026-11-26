@@ -32,7 +32,8 @@ export function Footer() {
 
   return (
     <footer className="mx-auto mt-24 hidden w-full max-w-page px-5 pb-6 md:block">
-      <div className="grid grid-cols-2 gap-y-8 bg-card px-8 pt-8 pb-4 lg:grid-cols-[249px_266px_266px_1fr] lg:gap-y-0 lg:px-12">
+      {/* Fractions of the 1104px inner width at 1440 (249/266/266/323px); they shrink proportionally below that. */}
+      <div className="grid grid-cols-2 gap-y-8 bg-card px-8 pt-8 pb-4 lg:grid-cols-[minmax(0,249fr)_minmax(0,266fr)_minmax(0,266fr)_minmax(0,323fr)] lg:gap-y-0 lg:px-12">
         {FEATURES.map(({ letter, title, text }) => (
           <div key={title} className="pr-4 lg:border-r lg:border-primary lg:not-first:pl-4">
             <span aria-hidden="true" className="flex size-[74px] items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
@@ -44,11 +45,11 @@ export function Footer() {
         ))}
         <div className="lg:pl-4">
           <h2 className="text-lg leading-4 font-bold">Antecipe-se ao próximo lançamento</h2>
-          <form onSubmit={onSubmit} className="mt-6 flex">
+          <form onSubmit={onSubmit} className="mt-6 flex min-w-0">
             <label htmlFor="newsletter-email" className="sr-only">
               E-mail para receber lançamentos
             </label>
-            <input id="newsletter-email" type="email" placeholder="digite seu e-mail..." className="h-10 min-w-0 flex-1 rounded-l-sm bg-secondary px-3 text-md placeholder:text-muted-foreground" />
+            <input id="newsletter-email" type="email" placeholder="digite seu e-mail..." className="h-10 w-0 min-w-0 flex-1 rounded-l-sm bg-secondary px-3 text-md placeholder:text-muted-foreground" />
             <button type="submit" className="h-10 cursor-pointer rounded-r-sm bg-primary px-4 text-lg font-bold text-primary-foreground">
               Enviar
             </button>
