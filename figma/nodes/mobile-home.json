@@ -1,0 +1,105 @@
+{
+  "frame": "mobile-home",
+  "source": "figma/frames/mobile-home.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
+  "elements": [
+    {
+      "id": "search-input",
+      "selector": "role=searchbox[name=\"Buscar NFTs\"]",
+      "measure": "box",
+      "x": 24,
+      "y": 40,
+      "w": 313,
+      "h": 45
+    },
+    {
+      "id": "filters-button",
+      "selector": "role=button[name=\"Filtros\"]",
+      "measure": "box",
+      "x": 345,
+      "y": 40,
+      "w": 45,
+      "h": 45
+    },
+    {
+      "id": "hero-title",
+      "selector": "role=heading[level=1]",
+      "measure": "ink",
+      "x": 40,
+      "y": 137,
+      "w": 161,
+      "h": 43
+    },
+    {
+      "id": "tab-all",
+      "selector": "role=tab >> nth=0",
+      "measure": "ink",
+      "x": 24,
+      "y": 309,
+      "w": 110,
+      "h": 18
+    },
+    {
+      "id": "tab-trending",
+      "selector": "role=tab >> nth=2",
+      "measure": "ink",
+      "x": 298,
+      "y": 309,
+      "w": 57,
+      "h": 11
+    },
+    {
+      "id": "card-1",
+      "selector": "data-testid=nft-card >> nth=0 >> role=img",
+      "measure": "box",
+      "x": 28,
+      "y": 355,
+      "w": 167,
+      "h": 167
+    },
+    {
+      "id": "card-1-name",
+      "selector": "data-testid=nft-card >> nth=0 >> role=heading",
+      "measure": "ink",
+      "x": 33,
+      "y": 555,
+      "w": 142,
+      "h": 15,
+      "font": {
+        "size": 15,
+        "weight": 400
+      }
+    },
+    {
+      "id": "card-1-price",
+      "selector": "data-testid=nft-price >> nth=0",
+      "measure": "ink",
+      "x": 33,
+      "y": 573,
+      "w": 75,
+      "h": 12,
+      "font": {
+        "size": 16,
+        "weight": 700
+      }
+    },
+    {
+      "id": "nav-home",
+      "selector": "role=navigation[name=\"Navegação principal\"] >> role=link[name=\"Início\"]",
+      "measure": "box",
+      "x": 22,
+      "y": 827,
+      "w": 48,
+      "h": 48
+    },
+    {
+      "id": "nav-search",
+      "selector": "role=navigation[name=\"Navegação principal\"] >> role=button",
+      "measure": "box",
+      "x": 175,
+      "y": 770,
+      "w": 57,
+      "h": 57,
+      "tolerance": 4
+    }
+  ]
+}

@@ -35,24 +35,24 @@ export function Footer() {
 
   return (
     <footer className="mx-auto mt-24 hidden w-full max-w-page px-5 pb-6 md:block">
-      <div className="grid grid-cols-2 gap-y-8 bg-card px-8 pt-8 pb-4 lg:grid-cols-[minmax(0,249fr)_minmax(0,266fr)_minmax(0,266fr)_minmax(0,323fr)] lg:gap-y-0 lg:px-12">
+      <div className="grid grid-cols-2 gap-y-8 bg-card px-8 pt-8 pb-4 lg:grid-cols-[minmax(0,249fr)_minmax(0,266fr)_minmax(0,266fr)_minmax(0,323fr)] lg:gap-y-0 lg:px-12 lg:max-xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_280px] lg:max-xl:px-10">
         {FEATURES.map(({ letter, id }) => (
           <div key={id} className="pr-4 lg:border-r lg:border-primary lg:not-first:pl-4">
             <span aria-hidden="true" className="flex size-[74px] items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
               {letter}
             </span>
-            <h2 className="mt-3 text-lg font-bold">{t(`layout.footer.features.${id}.title`)}</h2>
-            <p className="mt-2.5 text-md leading-[22px] text-text-secondary">{t(`layout.footer.features.${id}.text`)}</p>
+            <h2 className="mt-2 text-[17px] font-bold lg:max-xl:text-[13px]">{t(`layout.footer.features.${id}.title`)}</h2>
+            <p className="mt-2.5 text-md leading-[22px] text-text-secondary lg:max-w-[190px] lg:text-sm">{t(`layout.footer.features.${id}.text`)}</p>
           </div>
         ))}
         <div className="lg:pl-4">
           <h2 className="text-lg leading-4 font-bold">{t('layout.footer.newsletter.title')}</h2>
-          <form onSubmit={onSubmit} className="mt-6 flex min-w-0">
+          <form onSubmit={onSubmit} className="mt-[18px] flex min-w-0">
             <label htmlFor="newsletter-email" className="sr-only">
               {t('layout.footer.newsletter.label')}
             </label>
-            <input id="newsletter-email" type="email" placeholder={t('layout.footer.newsletter.placeholder')} className="h-10 w-0 min-w-0 flex-1 rounded-l-sm bg-secondary px-3 text-md placeholder:text-muted-foreground" />
-            <button type="submit" className="h-10 cursor-pointer rounded-r-sm bg-primary px-4 text-lg font-bold text-primary-foreground">
+            <input id="newsletter-email" type="email" placeholder={t('layout.footer.newsletter.placeholder')} className="h-10 w-0 min-w-0 flex-1 rounded-l-sm bg-secondary px-3 text-md placeholder:text-muted-foreground lg:max-xl:px-2 lg:max-xl:text-sm" />
+            <button type="submit" className="h-10 cursor-pointer rounded-r-sm bg-primary px-4 text-lg font-bold text-primary-foreground lg:max-xl:px-2.5 lg:max-xl:text-base">
               {t('layout.footer.newsletter.submit')}
             </button>
           </form>
@@ -65,14 +65,14 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 items-center gap-4 bg-secondary px-8 py-5 text-md leading-[22px] lg:h-[88px] lg:grid-cols-4 lg:py-0">
+      <div className="grid grid-cols-2 items-center gap-4 bg-secondary px-8 py-5 text-md leading-[22px] lg:h-[88px] lg:grid-cols-4 lg:py-0 lg:max-xl:text-sm">
         <span className="font-bold tracking-label">KURIO</span>
-        <span className="max-w-60">{t('layout.footer.tagline')}</span>
+        <span className="max-w-60 lg:max-xl:max-w-[210px] lg:max-xl:text-[13px]">{t('layout.footer.tagline')}</span>
         <span>{t('layout.footer.contactEmail')}</span>
         <span>{t('layout.footer.contactPhone')}</span>
       </div>
 
-      <div className="grid grid-cols-2 gap-y-8 bg-card px-8 pt-8 pb-9 lg:grid-cols-4 lg:gap-y-0">
+      <div className="grid grid-cols-2 gap-y-8 bg-card px-8 pt-8 pb-9 lg:grid-cols-[minmax(0,302fr)_minmax(0,302fr)_minmax(0,302fr)_minmax(232px,230fr)] xl:grid-cols-[minmax(0,302fr)_minmax(0,302fr)_minmax(0,302fr)_minmax(0,230fr)] lg:gap-y-0 lg:pt-6">
         <nav aria-label={t('common.myProfile')}>
           <h2 className={columnTitle}>{t('common.myProfile')}</h2>
           <ul className={columnList}>
@@ -114,8 +114,8 @@ export function Footer() {
               </li>
             ))}
           </ul>
-          <h2 className={`${columnTitle} mt-8`}>{t('layout.footer.wallets')}</h2>
-          <p className="inline-block rounded-sm border border-primary/40 bg-secondary px-2.5 py-1.5 text-micro font-bold tracking-wide text-primary uppercase">
+          <h2 className={`${columnTitle} mt-8 lg:mt-6 lg:mb-[7px]`}>{t('layout.footer.wallets')}</h2>
+          <p className="inline-flex h-[26px] items-center rounded-sm border border-primary/40 bg-secondary px-2 text-micro font-bold whitespace-nowrap text-primary uppercase">
             MetaMask &nbsp;·&nbsp; WalletConnect &nbsp;·&nbsp; Coinbase
           </p>
         </div>

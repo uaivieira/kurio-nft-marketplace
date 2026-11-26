@@ -28,24 +28,25 @@ function LineRow({ line, busy, onQuantity, onRemove }: { line: CartLine; busy: b
   const limit = Math.min(line.available, line.maxPerOrder)
   const priceChanged = line.unitPrice !== line.priceWhenAdded
   return (
-    <li data-testid="cart-line" className={`grid grid-cols-[6.25rem_minmax(0,1fr)] items-center gap-x-3 gap-y-0 rounded-2xl bg-card p-0 pr-3 md:h-[70px] md:gap-0 md:rounded-none md:pr-6 ${TABLE_COLUMNS}`}>
+    <li data-testid="cart-line" className={`grid grid-cols-[6.25rem_minmax(0,1fr)_auto] items-start max-md:grid-rows-[auto_1fr] max-[389px]:grid-rows-[auto_auto_auto]! max-[389px]:pb-3! gap-x-2.5 gap-y-0 rounded-2xl bg-card p-0 pr-4 md:items-center md:h-[70px] md:gap-0 md:rounded-none md:pr-6 ${TABLE_COLUMNS}`}>
       <div className="flex items-center gap-4 max-md:contents">
-        <Link to="/nft/$nftId" params={{ nftId: line.nftId }} aria-label={t('cart.view', { name: line.name })} className="w-25 shrink-0 max-md:row-span-3 max-md:row-start-1 md:w-[70px]">
+        <Link to="/nft/$nftId" params={{ nftId: line.nftId }} aria-label={t('cart.view', { name: line.name })} className="w-25 shrink-0 max-md:row-span-2 max-md:row-start-1 max-[389px]:row-span-3! md:w-[70px]">
           <NftImage artwork={line.artwork} alt={t('common.artOf', { name: line.name })} sizes="(min-width: 768px) 70px, 100px" size={160} className="rounded-sm max-md:rounded-2xl" />
         </Link>
-        <div className="min-w-0 max-md:col-start-2 max-md:row-start-1 md:pr-3">
-          <p className="truncate text-md font-bold md:text-base md:leading-4" title={line.name}>{line.name}</p>
-          <p className="text-sm text-muted-foreground md:hidden">{t('cart.editionOf', { edition: line.editionLabel })}</p>
+        <div className="min-w-0 max-md:col-span-2 max-md:col-start-2 max-md:row-start-1 max-md:pt-[13px] md:pr-3">
+          <p className="truncate text-md leading-4 font-bold max-[389px]:whitespace-normal! md:text-base" title={line.name}>{line.name}</p>
+          <p className="mt-1 text-sm text-muted-foreground md:hidden">{t('cart.editionOf', { edition: line.editionLabel })}</p>
           <p className="mt-1.5 hidden truncate text-sm leading-4 text-muted-foreground md:block"><span className="xl:hidden">{t('common.tokenIdShort')}</span><span className="max-xl:hidden">{t('common.tokenId')}</span>: #{line.tokenId} · {line.editionLabel}</p>
         </div>
       </div>
-      <p className="text-lg font-bold whitespace-nowrap text-highlight max-md:col-start-2 max-md:row-start-3 max-md:pr-10 md:text-base md:leading-4" data-testid="line-unit">
-        {formatEth(line.unitPrice)}
+      <p className="text-lg font-bold whitespace-nowrap text-highlight max-md:col-start-2 max-md:row-start-2 max-md:mb-[9px] max-md:self-end max-[389px]:mt-1! max-[389px]:mb-0! max-[389px]:self-start! md:text-base md:leading-4" data-testid="line-unit">
+        <span className="md:hidden">{formatEth(mulEth(line.unitPrice, line.quantity))}</span>
+        <span className="max-md:hidden">{formatEth(line.unitPrice)}</span>
         {priceChanged && <span className="ml-2 text-xs font-normal text-muted-foreground line-through" data-testid="line-old-price">{formatEth(line.priceWhenAdded)}</span>}
       </p>
-      <QuantityStepper value={line.quantity} max={limit} onChange={onQuantity} label={line.name} disabled={busy} testId="line-quantity" className="max-md:col-start-2 max-md:row-start-2 max-md:justify-self-end" buttonClassName="max-md:size-6 max-md:bg-background max-md:text-foreground max-md:before:hidden" />
+      <QuantityStepper value={line.quantity} max={limit} onChange={onQuantity} label={line.name} disabled={busy} testId="line-quantity" className="max-md:col-start-3 max-md:row-start-1 max-md:mt-[38px] max-md:gap-2 max-md:justify-self-end max-[389px]:col-start-2! max-[389px]:row-start-3! max-[389px]:mt-1! max-[389px]:justify-self-start!" buttonClassName="max-md:size-6 max-md:bg-background max-md:text-foreground max-md:before:hidden" />
       <p className="hidden text-base leading-4 font-bold whitespace-nowrap text-highlight md:block" data-testid="line-total">{formatEth(mulEth(line.unitPrice, line.quantity))}</p>
-      <button type="button" aria-label={t('cart.removeLine', { name: line.name })} disabled={busy} onClick={onRemove} className="flex size-8 cursor-pointer items-center justify-center text-primary max-md:col-start-2 max-md:row-start-3 max-md:justify-self-end md:size-6">
+      <button type="button" aria-label={t('cart.removeLine', { name: line.name })} disabled={busy} onClick={onRemove} className="flex size-8 cursor-pointer items-center justify-center text-primary max-md:col-start-3 max-md:row-start-2 max-md:mb-1.5 max-md:self-end max-md:justify-self-end max-[389px]:row-start-3! max-[389px]:mb-0! max-[389px]:self-center! md:size-6">
         <DeleteIcon className="size-5" aria-hidden="true" />
       </button>
     </li>
@@ -135,28 +136,28 @@ export function CartPage() {
   return (
     <>
       <MobileTopBar title={t('cart.title')} />
-      <div className="mx-auto max-w-page px-5 pb-16">
+      <div className="mx-auto max-w-page px-7 pb-16 md:px-5">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market'), to: '/mercado' }, { label: t('cart.breadcrumb') }]} />
-        <div className="grid grid-cols-[minmax(0,1fr)] gap-8 pt-3 lg:grid-cols-[minmax(0,1fr)_20.75rem] lg:gap-x-[min(86px,6vw)]">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-[7px] pt-3 md:gap-8 xl:grid-cols-[minmax(0,1fr)_20.75rem] xl:gap-x-[min(86px,6vw)]">
           <section aria-label={t('cart.items')} className="min-w-0">
             {quote.data && <Issues issues={quote.data.issues} onAcknowledge={() => acknowledge.mutate(undefined, { onError: (e) => notify.error(errorMessage(e)) })} pending={acknowledge.isPending} />}
             {content}
           </section>
-          <aside aria-labelledby="summary-title" className="min-w-0 max-md:-mx-5 max-md:rounded-t-3xl max-md:bg-card max-md:p-5">
+          <aside aria-labelledby="summary-title" className="min-w-0 max-md:-mx-7 max-md:rounded-t-3xl max-md:bg-card max-md:px-6 max-md:pt-[23px] max-md:pb-5">
             <h2 id="summary-title" className="hidden h-7 border-b border-border text-lg leading-4 font-bold md:block">{t('cart.summary.title')}</h2>
-            <div className="space-y-5 md:mt-6">
+            <div className="space-y-3 md:mt-[22px] md:space-y-[23px]">
               {cart.data && hasLines && <CouponForm cart={cart.data} />}
               {cart.data && !hasLines ? <p className="text-sm text-muted-foreground">{t('cart.summary.empty')}</p> : <TotalsRows quote={quote.data} loading={quote.isPending} />}
               {blockingIssues.length > 0 && <p className="text-xs text-destructive" role="status">{t('cart.summary.blocked')}</p>}
-              <Button size="lg" className="w-full max-md:h-[60px] max-md:rounded-full max-md:bg-cta max-md:text-base md:h-10 md:text-md" disabled={!hasLines || blocked || quote.isFetching} onClick={finalize}>
+              <Button size="lg" className="w-full max-md:mt-5 max-md:h-[60px] max-md:rounded-full max-md:bg-cta max-md:text-base md:h-10 md:text-md" disabled={!hasLines || blocked || quote.isFetching} onClick={finalize}>
                 {t('cart.summary.checkout')}
               </Button>
-              <Link to="/" hash="catalogo" className="block text-center text-base text-highlight hover:underline">{t('cart.summary.continue')}</Link>
+              <Link to="/" hash="catalogo" className="block text-center text-base text-highlight hover:underline md:-mt-2.5 md:text-md">{t('cart.summary.continue')}</Link>
             </div>
           </aside>
         </div>
 
-        <section aria-labelledby="also-title" className="mt-24 hidden md:block">
+        <section aria-labelledby="also-title" className="mt-24 hidden md:block lg:mt-[99px]">
           <h2 id="also-title" className="h-7 border-b border-border text-base leading-4 font-bold text-highlight">{t('cart.alsoViewed')}</h2>
           <ul className="mt-8 grid grid-cols-3 gap-[26px] lg:grid-cols-5">
             {suggestions.data?.items.slice(0, 5).map((item) => <li key={item.id}><NftCard nft={item} sizes="220px" /></li>) ?? [0, 1, 2, 3, 4].map((i) => <li key={i}><Skeleton className="aspect-square" /></li>)}

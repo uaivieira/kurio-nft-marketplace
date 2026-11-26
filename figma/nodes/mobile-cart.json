@@ -1,0 +1,162 @@
+{
+  "frame": "mobile-cart",
+  "source": "figma/frames/mobile-cart.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
+  "elements": [
+    {
+      "id": "back-button",
+      "selector": "role=button[name=\"Voltar\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 32,
+      "w": 36,
+      "h": 36
+    },
+    {
+      "id": "title",
+      "selector": "text=\"Carrinho de NFTs\" >> visible=true",
+      "measure": "ink",
+      "x": 124,
+      "y": 42,
+      "w": 191,
+      "h": 16,
+      "font": {
+        "size": 20,
+        "weight": 700,
+        "lineHeight": 28
+      }
+    },
+    {
+      "id": "line-1",
+      "selector": "data-testid=cart-line >> nth=0",
+      "measure": "box",
+      "x": 28,
+      "y": 88,
+      "w": 358,
+      "h": 100
+    },
+    {
+      "id": "line-2",
+      "selector": "data-testid=cart-line >> nth=1",
+      "measure": "box",
+      "x": 28,
+      "y": 208,
+      "w": 358,
+      "h": 100
+    },
+    {
+      "id": "line-1-name",
+      "selector": "data-testid=cart-line >> nth=0 >> text=\"Emerald Ape #042\"",
+      "measure": "ink",
+      "x": 138,
+      "y": 103,
+      "w": 142,
+      "h": 14,
+      "font": {
+        "size": 15,
+        "weight": 700
+      }
+    },
+    {
+      "id": "line-1-edition",
+      "selector": "data-testid=cart-line >> nth=0 >> text=/^Edição/",
+      "measure": "ink",
+      "x": 138,
+      "y": 125,
+      "w": 99,
+      "h": 14,
+      "ignore": [
+        "w"
+      ]
+    },
+    {
+      "id": "line-1-price",
+      "selector": "data-testid=line-unit >> nth=0",
+      "measure": "ink",
+      "x": 138,
+      "y": 159,
+      "w": 85,
+      "h": 13
+    },
+    {
+      "id": "line-1-decrease",
+      "selector": "role=button[name=\"Diminuir quantidade de Emerald Ape #042\"]",
+      "measure": "box",
+      "x": 289,
+      "y": 126,
+      "w": 24,
+      "h": 24
+    },
+    {
+      "id": "line-1-increase",
+      "selector": "role=button[name=\"Aumentar quantidade de Emerald Ape #042\"]",
+      "measure": "box",
+      "x": 346,
+      "y": 126,
+      "w": 24,
+      "h": 24
+    },
+    {
+      "id": "coupon-apply",
+      "selector": "role=button[name=\"Aplicar\"]",
+      "measure": "box",
+      "x": 293,
+      "y": 578,
+      "w": 97,
+      "h": 50
+    },
+    {
+      "id": "subtotal-label",
+      "selector": "data-testid=totals >> text=Subtotal",
+      "measure": "ink",
+      "x": 25,
+      "y": 644,
+      "w": 70,
+      "h": 12
+    },
+    {
+      "id": "discount-label",
+      "selector": "data-testid=totals >> text=\"Desconto do lançamento\"",
+      "measure": "ink",
+      "x": 25,
+      "y": 676,
+      "w": 197,
+      "h": 15
+    },
+    {
+      "id": "fee-label",
+      "selector": "data-testid=totals >> text=\"Taxa de rede\"",
+      "measure": "ink",
+      "x": 24,
+      "y": 708,
+      "w": 107,
+      "h": 12
+    },
+    {
+      "id": "fee-note",
+      "selector": "data-testid=totals >> text=\"Taxa estimada\"",
+      "measure": "ink",
+      "x": 296,
+      "y": 728,
+      "w": 93,
+      "h": 9
+    },
+    {
+      "id": "total-label",
+      "selector": "data-testid=totals >> text=/^Total$/",
+      "measure": "ink",
+      "x": 24,
+      "y": 754,
+      "w": 47,
+      "h": 12
+    },
+    {
+      "id": "checkout-button",
+      "selector": "role=button[name=\"Conectar e finalizar\"]",
+      "measure": "box",
+      "x": 24,
+      "y": 800,
+      "w": 366,
+      "h": 60
+    }
+  ]
+}

@@ -55,7 +55,7 @@ export function Header() {
         <div className="flex items-start justify-end gap-4">
           <SearchDialog
             trigger={
-              <button type="button" aria-label={t('layout.header.search')} className="inline-flex size-10 -translate-y-1.5 cursor-pointer items-center justify-center rounded-sm">
+              <button type="button" aria-label={t('layout.header.search')} className="-mr-3 inline-flex size-10 -translate-y-[3px] cursor-pointer items-center justify-center rounded-sm">
                 <SearchIcon className="size-6" aria-hidden="true" />
               </button>
             }

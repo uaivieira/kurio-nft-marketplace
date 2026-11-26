@@ -4,14 +4,14 @@
   { "name": "desktop-cart", "nodeId": "11:1278", "width": 1440, "route": "/cart", "setup": "cart" },
   { "name": "desktop-payment", "nodeId": "11:2862", "width": 1440, "route": "/checkout", "setup": "ana-cart" },
   { "name": "desktop-confirmation", "nodeId": "11:4385", "width": 1440, "route": "/orders/:order", "setup": "ana-order" },
-  { "name": "desktop-login", "nodeId": "9:115", "width": 1440, "route": "/login", "setup": "guest" },
+  { "name": "desktop-login", "nodeId": "9:115", "width": 1440, "route": "/login", "setup": "guest", "fill": [["role=dialog >> role=textbox[name=\"Senha\"]", "Kurio#2026x"]] },
   { "name": "desktop-signup", "nodeId": "9:1022", "width": 1440, "route": "/signup", "setup": "guest" },
   { "name": "desktop-profile", "nodeId": "9:1238", "width": 1440, "route": "/profile", "setup": "ana" },
   { "name": "desktop-wallets", "nodeId": "9:1670", "width": 1440, "route": "/profile/wallets", "setup": "ana" },
   { "name": "mobile-home", "nodeId": "14:5226", "width": 414, "route": "/", "setup": "guest" },
   { "name": "mobile-detail", "nodeId": "15:5536", "width": 414, "route": "/nft/emerald-ape-042", "setup": "guest" },
-  { "name": "mobile-cart", "nodeId": "16:360", "width": 414, "route": "/cart", "setup": "cart" },
+  { "name": "mobile-cart", "nodeId": "16:360", "width": 414, "route": "/cart", "setup": "cart", "cart": [["emerald-ape-042", 1], ["violet-nomad-314", 1], ["ivory-baron-088", 2], ["golden-beat-207", 2]] },
   { "name": "mobile-payment", "nodeId": "16:748", "width": 414, "route": "/checkout", "setup": "ana-cart" },
-  { "name": "mobile-login", "nodeId": "16:1022", "width": 414, "route": "/login", "setup": "guest" },
+  { "name": "mobile-login", "nodeId": "16:1022", "width": 414, "route": "/login", "setup": "guest", "fill": [["role=dialog >> role=textbox[name=\"Senha\"]", "Kurio#2026x"]] },
   { "name": "mobile-signup", "nodeId": "16:1228", "width": 414, "route": "/signup", "setup": "guest" }
 ]

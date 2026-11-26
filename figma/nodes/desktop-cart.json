@@ -1,0 +1,176 @@
+{
+  "frame": "desktop-cart",
+  "source": "figma/frames/desktop-cart.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
+  "elements": [
+    {
+      "id": "header-logo",
+      "selector": "role=banner >> role=link[name=\"Kurio, página inicial\"]",
+      "measure": "ink",
+      "x": 121,
+      "y": 36,
+      "w": 46,
+      "h": 11
+    },
+    {
+      "id": "header-nav-home",
+      "selector": "role=navigation[name=\"Principal\"] >> role=link[name=\"Início\"]",
+      "measure": "ink",
+      "x": 497,
+      "y": 29,
+      "w": 56,
+      "h": 12,
+      "ignore": [
+        "h"
+      ]
+    },
+    {
+      "id": "header-search",
+      "selector": "role=banner >> role=button[name=\"Buscar NFTs\"]",
+      "measure": "ink",
+      "x": 1113,
+      "y": 31,
+      "w": 20,
+      "h": 21
+    },
+    {
+      "id": "header-login",
+      "selector": "role=banner >> role=link[name=\"Entrar\"]",
+      "measure": "box",
+      "x": 1220,
+      "y": 24,
+      "w": 100,
+      "h": 34
+    },
+    {
+      "id": "breadcrumb",
+      "selector": "role=navigation[name=\"Trilha de navegação\"]",
+      "measure": "ink",
+      "x": 121,
+      "y": 103,
+      "w": 214,
+      "h": 13,
+      "ignore": [
+        "w"
+      ]
+    },
+    {
+      "id": "line-1",
+      "selector": "data-testid=cart-line >> nth=0",
+      "measure": "box",
+      "x": 120,
+      "y": 169,
+      "w": 782,
+      "h": 70
+    },
+    {
+      "id": "summary-title",
+      "selector": "role=heading[name=\"Resumo da carteira\"]",
+      "measure": "ink",
+      "x": 989,
+      "y": 130,
+      "w": 193,
+      "h": 14,
+      "ignore": [
+        "w",
+        "h"
+      ]
+    },
+    {
+      "id": "coupon-label",
+      "selector": "text=\"Código promocional\"",
+      "measure": "ink",
+      "x": 988,
+      "y": 183,
+      "w": 151,
+      "h": 14
+    },
+    {
+      "id": "coupon-input",
+      "selector": "role=textbox[name=\"Código promocional\"]",
+      "measure": "box",
+      "x": 988,
+      "y": 205,
+      "w": 245,
+      "h": 40,
+      "ignore": [
+        "w"
+      ]
+    },
+    {
+      "id": "subtotal-label",
+      "selector": "data-testid=totals >> text=Subtotal",
+      "measure": "ink",
+      "x": 989,
+      "y": 273,
+      "w": 70,
+      "h": 12
+    },
+    {
+      "id": "fee-label",
+      "selector": "data-testid=totals >> text=\"Taxa de rede\"",
+      "measure": "ink",
+      "x": 988,
+      "y": 337,
+      "w": 107,
+      "h": 12
+    },
+    {
+      "id": "fee-note",
+      "selector": "data-testid=totals >> text=\"Taxa estimada\"",
+      "measure": "ink",
+      "x": 1226,
+      "y": 369,
+      "w": 93,
+      "h": 9
+    },
+    {
+      "id": "total-label",
+      "selector": "data-testid=totals >> text=/^Total$/",
+      "measure": "ink",
+      "x": 988,
+      "y": 407,
+      "w": 47,
+      "h": 12
+    },
+    {
+      "id": "total-value",
+      "selector": "data-testid=total",
+      "measure": "ink",
+      "x": 1212,
+      "y": 407,
+      "w": 107,
+      "h": 13
+    },
+    {
+      "id": "checkout",
+      "selector": "role=button[name=\"Conectar e finalizar\"]",
+      "measure": "box",
+      "x": 988,
+      "y": 445,
+      "w": 332,
+      "h": 40
+    },
+    {
+      "id": "continue",
+      "selector": "role=link[name=\"Continuar explorando\"]",
+      "measure": "ink",
+      "x": 1064,
+      "y": 501,
+      "w": 179,
+      "h": 15
+    },
+    {
+      "id": "also-viewed",
+      "selector": "role=heading[name=\"Colecionadores também viram\"]",
+      "measure": "ink",
+      "x": 120,
+      "y": 615,
+      "w": 275,
+      "h": 13,
+      "ignore": [
+        "w",
+        "h"
+      ]
+    }
+  ]
+}

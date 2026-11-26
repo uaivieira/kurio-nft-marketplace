@@ -1,0 +1,145 @@
+{
+  "frame": "mobile-detail",
+  "source": "figma/frames/mobile-detail.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
+  "elements": [
+    {
+      "id": "back-button",
+      "selector": "role=button[name=\"Voltar\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 22,
+      "w": 36,
+      "h": 36
+    },
+    {
+      "id": "image",
+      "selector": "role=main >> role=img >> nth=0",
+      "measure": "box",
+      "x": 28,
+      "y": 66,
+      "w": 358,
+      "h": 350
+    },
+    {
+      "id": "title",
+      "selector": "role=heading[level=1]",
+      "measure": "ink",
+      "x": 25,
+      "y": 430,
+      "w": 190,
+      "h": 20,
+      "font": {
+        "size": 20,
+        "weight": 700,
+        "lineHeight": 28
+      }
+    },
+    {
+      "id": "description",
+      "selector": "role=heading[level=1] >> xpath=../following-sibling::p[1]",
+      "measure": "ink",
+      "x": 24,
+      "y": 469,
+      "w": 344,
+      "h": 59,
+      "tolerance": 2,
+      "anchorOnly": true
+    },
+    {
+      "id": "edition-legend",
+      "selector": "text=\"Edição:\"",
+      "measure": "ink",
+      "x": 25,
+      "y": 548,
+      "w": 59,
+      "h": 16,
+      "relativeTo": {
+        "id": "description",
+        "edge": "bottom"
+      },
+      "font": {
+        "size": 15,
+        "weight": 700
+      }
+    },
+    {
+      "id": "edition-selected",
+      "selector": "role=radio[checked=true]",
+      "measure": "box",
+      "x": 132,
+      "y": 570,
+      "w": 46,
+      "h": 28,
+      "relativeTo": {
+        "id": "description",
+        "edge": "bottom"
+      },
+      "ignore": [
+        "x"
+      ]
+    },
+    {
+      "id": "token-id",
+      "selector": "role=term >> nth=0 >> xpath=..",
+      "measure": "ink",
+      "x": 25,
+      "y": 615,
+      "w": 160,
+      "h": 11,
+      "relativeTo": {
+        "id": "description",
+        "edge": "bottom"
+      }
+    },
+    {
+      "id": "quantity-label",
+      "selector": "data-testid=purchase-row >> text=\"Qtd.\"",
+      "measure": "ink",
+      "x": 24,
+      "y": 761,
+      "w": 33,
+      "h": 14
+    },
+    {
+      "id": "decrease",
+      "selector": "role=button[name=\"Diminuir quantidade\"]",
+      "measure": "box",
+      "x": 69,
+      "y": 752,
+      "w": 20,
+      "h": 30
+    },
+    {
+      "id": "price",
+      "selector": "data-testid=mobile-price",
+      "measure": "ink",
+      "x": 295,
+      "y": 760,
+      "w": 94,
+      "h": 16,
+      "font": {
+        "size": 20,
+        "weight": 700,
+        "lineHeight": 28
+      }
+    },
+    {
+      "id": "buy-button",
+      "selector": "role=button[name=\"Comprar NFT\"]",
+      "measure": "box",
+      "x": 24,
+      "y": 802,
+      "w": 196,
+      "h": 60
+    },
+    {
+      "id": "cart-button",
+      "selector": "role=button[name=\"Adicionar ao carrinho\"]",
+      "measure": "box",
+      "x": 232,
+      "y": 802,
+      "w": 60,
+      "h": 60
+    }
+  ]
+}

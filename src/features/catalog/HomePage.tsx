@@ -51,7 +51,7 @@ function SearchField({ search }: { search: CatalogSearch }) {
         onChange={(event) => setValue(event.target.value)}
         maxLength={80}
         placeholder={t('catalog.search.placeholder')}
-        className="h-12 w-full rounded-xl bg-card pr-3 pl-10 text-sm font-bold placeholder:font-bold placeholder:text-muted-foreground md:h-10 md:rounded-sm md:border md:border-input md:bg-background md:font-normal md:placeholder:font-normal"
+        className="h-[45px] w-full rounded-xl bg-card pr-3 pl-10 text-sm font-bold placeholder:font-bold placeholder:text-muted-foreground md:h-10 md:rounded-sm md:border md:border-input md:bg-background md:font-normal md:placeholder:font-normal"
       />
     </div>
   )
@@ -134,9 +134,9 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
   return (
     <>
-      <div className="mx-auto flex max-w-page items-center gap-3 px-6 pt-8 md:px-5 lg:hidden">
+      <div className="mx-auto flex max-w-page items-center gap-2 px-6 pt-10 md:gap-3 md:px-5 md:pt-8 lg:hidden">
         <SearchField search={search} />
-        <button type="button" aria-haspopup="dialog" aria-expanded={filtersOpen} ref={filtersButton} onClick={() => { setFiltersLoaded(true); setFiltersOpen(true) }} aria-label={t('catalog.filters.open')} className="flex size-12 shrink-0 cursor-pointer items-center justify-center rounded-xl bg-primary/30 text-primary">
+        <button type="button" aria-haspopup="dialog" aria-expanded={filtersOpen} ref={filtersButton} onClick={() => { setFiltersLoaded(true); setFiltersOpen(true) }} aria-label={t('catalog.filters.open')} className="flex size-[45px] shrink-0 cursor-pointer items-center justify-center rounded-xl bg-cta text-primary-foreground md:size-12 md:bg-none md:bg-primary/30 md:text-primary">
               <FilterIcon className="size-5" aria-hidden="true" />
             </button>
         {filtersLoaded && (
@@ -148,7 +148,7 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
       <Hero />
 
-      <div id="catalogo" className="mx-auto mt-8 grid max-w-page scroll-mt-4 gap-8 px-5 pb-24 md:mt-24 md:pb-0 lg:grid-cols-[310px_1fr] lg:gap-12">
+      <div id="catalogo" className="mx-auto mt-4 grid max-w-page scroll-mt-4 gap-8 px-6 pb-24 md:mt-24 md:px-5 lg:mt-[90px] md:pb-0 lg:grid-cols-[310px_1fr] lg:gap-12">
         <aside className="hidden space-y-6 lg:block" aria-label={t('catalog.filters.aside')}>
           <CatalogFilters search={search} facets={data?.facets} />
           {home && (data?.featured ? (
@@ -165,8 +165,8 @@ export function HomePage({ search, variant = 'home' }: { search: CatalogSearch; 
 
         <section aria-labelledby="catalog-title" className="min-w-0">
           <h2 id="catalog-title" className="sr-only">{t('catalog.title')}</h2>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pb-6 md:mb-8 md:min-h-[18px] md:items-start md:pb-0 xl:h-[18px]">
-            <div role="tablist" aria-label={t('catalog.tabs.label')} className="flex max-w-full gap-5 overflow-x-auto text-sm md:text-md">
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 pb-4 md:mb-8 md:min-h-[18px] md:items-start md:pb-0 xl:h-[18px]">
+            <div role="tablist" aria-label={t('catalog.tabs.label')} className="flex max-w-full gap-2.5 overflow-x-auto text-sm md:gap-5 md:text-md">
               {CATALOG_TABS.map((value) => (
                 <button
                   key={value}

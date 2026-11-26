@@ -5,6 +5,8 @@ Implementação do desafio frontend "NFT Marketplace" em React + TypeScript. Tod
 - **Demo pública:** https://nft-marketplace-one-nu.vercel.app (mocks e tempo real ativos; use `ana@kurio.test` / `Kurio#2026`)
 - **Repositório:** https://github.com/uaivieira/kurio-nft-marketplace
 - Arquitetura, contratos e decisões: [ARCHITECTURE.md](./ARCHITECTURE.md)
+- Figma: [arquivo original do desafio](https://www.figma.com/design/Ff0SksUi7UFtPWUO8kyNtw) e [cópia usada na implementação](https://www.figma.com/design/1PeEvVoeMKQICH8YbGntpR/Frontend-Challenge--Copy-?node-id=70484-240). Os frames exportados ficam em `figma/frames/` e a comparação com o app em `pnpm figma:compare`
+- Relatório HTML do Playwright da última execução: [playwright-report/index.html](./playwright-report/index.html) (`pnpm test:e2e:report` abre localmente)
 - Resultados do Lighthouse: [lighthouse/reports/summary.md](./lighthouse/reports/summary.md)
 - Licenças de terceiros: [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)
 
@@ -61,10 +63,15 @@ NFTs com casos de borda: `onyx-relic-404` (todas as edições esgotadas), `lunar
 | `pnpm test:unit` | Vitest (aritmética de ETH, ledger de eventos, redirecionamento seguro, rascunho do checkout entre usuários, mensagens de erro da API em pt-BR, cabeçalhos de segurança do `vercel.json`) |
 | `pnpm test:e2e` | Playwright em Chromium desktop (1440×900) e mobile (390×844), contra um build de produção |
 | `pnpm test:e2e:update` | Regera as baselines de regressão visual |
-| `pnpm test:e2e:report` | Abre o relatório HTML (`playwright-report/`). Traces de falhas ficam em `test-results/` |
+| `pnpm test:e2e:report` | Abre o relatório HTML (`playwright-report/`, versionado com a última execução). Em uma falha, o Playwright grava o trace (`trace: 'retain-on-failure'`) e o screenshot em `test-results/`, e o relatório HTML os anexa ao teste |
 | `pnpm lighthouse` | Auditoria Lighthouse (rode `pnpm build` antes): 3 execuções por página e perfil, relatórios em `lighthouse/reports/` |
 | `pnpm assets` | Regera as imagens AVIF/WebP em `public/nft/` a partir de `assets-src/` |
 | `pnpm figma:compare [filtro]` | Compara cada tela com o PNG do frame do Figma (rode `pnpm build` antes). Relatório e diffs em `figma/report/` |
+| `pnpm figma:geometry` | Confere posição e tamanho (±2 px), tamanho e peso de fonte de 156 elementos-chave das 15 telas contra as medidas do Figma em `figma/nodes/` (rode `pnpm build` antes). Relatório em `figma/report/geometry.md`; falha se algum elemento sair da tolerância |
+
+## Textos e idioma (i18n)
+
+A interface está preparada para i18n com i18next e react-i18next, hoje só em pt-BR. Todo texto exibido ao usuário fica em `src/i18n/locales/pt-BR.ts`, com chaves em inglês e tipadas: uma chave inexistente falha no `pnpm typecheck`. O código, os nomes de testes e as mensagens técnicas da API simulada são em inglês; o conteúdo dos dados simulados (nomes e descrições de NFTs, coleções) continua em português. Detalhes e como adicionar um idioma: [ARCHITECTURE.md](./ARCHITECTURE.md#internacionalização-i18n).
 
 ## Cenários simulados
 

@@ -1,0 +1,108 @@
+{
+  "frame": "desktop-login",
+  "source": "figma/frames/desktop-login.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
+  "elements": [
+    {
+      "id": "dialog",
+      "selector": "role=dialog",
+      "measure": "box",
+      "x": 470,
+      "y": 160,
+      "w": 500,
+      "h": 600
+    },
+    {
+      "id": "close",
+      "selector": "role=dialog >> role=button[name=\"Fechar\"]",
+      "measure": "ink",
+      "x": 943,
+      "y": 174,
+      "w": 12,
+      "h": 12
+    },
+    {
+      "id": "tabs",
+      "selector": "role=dialog >> role=link[name=\"Entrar\"] >> xpath=..",
+      "measure": "ink",
+      "x": 610,
+      "y": 208,
+      "w": 219,
+      "h": 20
+    },
+    {
+      "id": "description",
+      "selector": "role=dialog >> text=/^Entre para gerenciar/",
+      "measure": "ink",
+      "x": 522,
+      "y": 271,
+      "w": 397,
+      "h": 26,
+      "font": {
+        "size": 13
+      }
+    },
+    {
+      "id": "email",
+      "selector": "role=dialog >> role=textbox[name=\"E-mail\"]",
+      "measure": "box",
+      "x": 550,
+      "y": 324,
+      "w": 340,
+      "h": 40
+    },
+    {
+      "id": "password",
+      "selector": "role=dialog >> role=textbox[name=\"Senha\"]",
+      "measure": "box",
+      "x": 550,
+      "y": 376,
+      "w": 340,
+      "h": 40
+    },
+    {
+      "id": "forgot",
+      "selector": "role=dialog >> text=\"Esqueceu a senha?\"",
+      "measure": "ink",
+      "x": 748,
+      "y": 430,
+      "w": 141,
+      "h": 14
+    },
+    {
+      "id": "submit",
+      "selector": "role=dialog >> role=button[name=\"Entrar\"]",
+      "measure": "box",
+      "x": 550,
+      "y": 468,
+      "w": 340,
+      "h": 44
+    },
+    {
+      "id": "divider",
+      "selector": "role=dialog >> text=\"Ou continue com\"",
+      "measure": "ink",
+      "x": 661,
+      "y": 540,
+      "w": 117,
+      "h": 10
+    },
+    {
+      "id": "google",
+      "selector": "role=dialog >> role=button[name=/Google/]",
+      "measure": "box",
+      "x": 550,
+      "y": 565,
+      "w": 340,
+      "h": 40
+    },
+    {
+      "id": "facebook",
+      "selector": "role=dialog >> role=button[name=/Facebook/]",
+      "measure": "box",
+      "x": 550,
+      "y": 617,
+      "w": 340,
+      "h": 40
+    }
+  ]
+}

@@ -49,7 +49,7 @@ export function CouponForm({ cart }: { cart: Cart }) {
         })
       })}
     >
-      <label htmlFor="coupon-code" className="mb-2 block text-sm font-bold tracking-wide max-md:sr-only">{t('cart.coupon.label')}</label>
+      <label htmlFor="coupon-code" className="mb-1.5 block text-sm font-bold max-md:sr-only">{t('cart.coupon.label')}</label>
       <div className="flex">
         <input
           id="coupon-code"
@@ -58,9 +58,9 @@ export function CouponForm({ cart }: { cart: Cart }) {
           placeholder={t('cart.coupon.placeholder')}
           aria-invalid={Boolean(error)}
           aria-describedby={error ? 'coupon-error' : undefined}
-          className="h-10 w-0 min-w-0 flex-1 rounded-l-sm border border-input bg-background px-3 text-xs placeholder:text-muted-foreground aria-invalid:border-destructive max-md:h-[50px] max-md:rounded-l-full max-md:border-r-0 max-md:px-4 max-md:text-sm"
+          className="h-10 w-0 min-w-0 flex-1 rounded-l-sm border border-input bg-background px-3 text-xs placeholder:text-muted-foreground aria-invalid:border-destructive text-ellipsis max-[413px]:text-xs max-md:h-[50px] max-md:rounded-l-full max-md:border-r-0 max-md:px-4 max-md:text-sm"
         />
-        <button type="submit" disabled={apply.isPending} className="h-10 cursor-pointer rounded-r-sm bg-primary px-5 text-sm font-bold text-primary-foreground hover:bg-highlight disabled:opacity-60 max-md:h-[50px] max-md:rounded-full max-md:-ml-6 max-md:bg-cta max-md:px-6 max-md:text-base">
+        <button type="submit" disabled={apply.isPending} className="h-10 cursor-pointer rounded-r-sm bg-primary px-5 text-sm font-bold text-primary-foreground hover:bg-highlight disabled:opacity-60 max-md:h-[50px] max-md:w-[97px] max-md:rounded-full max-md:-ml-6 max-md:bg-cta max-md:px-0 max-md:text-base">
           {t('common.apply')}
         </button>
       </div>
@@ -90,16 +90,16 @@ export function TotalsRows({ quote, loading }: { quote: Quote | undefined; loadi
     )
   }
   const decimals = decimalsFor(quote.subtotal, quote.discount, quote.networkFee, quote.total)
-  const row = 'flex items-baseline justify-between gap-3'
+  const row = 'flex items-baseline justify-between gap-3 *:leading-5'
   return (
-    <dl className="space-y-3 text-base md:text-md" data-testid="totals">
-      <div className={row}><dt>{t('common.subtotal')}</dt><dd data-testid="subtotal" className="whitespace-nowrap md:text-lg">{formatEth(quote.subtotal, decimals)}</dd></div>
+    <dl className="space-y-3 text-base max-md:text-md max-md:leading-5 md:text-md" data-testid="totals">
+      <div className={row}><dt>{t('common.subtotal')}</dt><dd data-testid="subtotal" className="whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.subtotal, decimals)}</dd></div>
       <div className={row}><dt>{t('cart.totals.discount')}</dt><dd data-testid="discount" className="whitespace-nowrap">(-) {formatEth(quote.discount, decimals)}</dd></div>
       <div>
-        <div className={row}><dt>{t('common.networkFee')}</dt><dd data-testid="fee" className="whitespace-nowrap md:text-lg">{formatEth(quote.networkFee, decimals)}</dd></div>
-        <p className="mt-0.5 text-right text-xs text-highlight">{t('cart.totals.estimatedFee')}</p>
+        <div className={row}><dt>{t('common.networkFee')}</dt><dd data-testid="fee" className="whitespace-nowrap max-md:text-base md:text-lg">{formatEth(quote.networkFee, decimals)}</dd></div>
+        <p className="mt-3 text-right text-xs text-highlight max-md:mt-0">{t('cart.totals.estimatedFee')}</p>
       </div>
-      <div className={cn(row, 'pt-4 text-lg font-bold')}><dt>{t('common.total')}</dt><dd className="whitespace-nowrap text-highlight" data-testid="total">{formatEth(quote.total, decimals)}</dd></div>
+      <div className={cn(row, 'pt-2 text-lg font-bold max-md:-mt-1 max-md:pt-0')}><dt className="text-base">{t('common.total')}</dt><dd className="whitespace-nowrap text-highlight" data-testid="total">{formatEth(quote.total, decimals)}</dd></div>
     </dl>
   )
 }

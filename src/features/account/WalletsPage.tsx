@@ -42,7 +42,7 @@ function WalletForm({ idPrefix, wallet, onSave, saving }: { idPrefix: string; wa
       }
     })}>
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
-      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-10">
+      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-[27px] lg:[&>div]:gap-1">
         <Field label={t('common.fields.displayName')} required error={errors.displayName?.message}>{(p) => <Input {...p} {...form.register('displayName')} />}</Field>
         <Field label={t('common.fields.walletNickname')} required error={errors.nickname?.message}>{(p) => <Input {...p} {...form.register('nickname')} />}</Field>
         <Field label={t('common.fields.network')} required error={errors.network?.message}>
@@ -110,8 +110,8 @@ export function WalletsPage() {
   return (
     <div className="space-y-10">
       <section aria-labelledby="primary-title">
-        <h1 id="primary-title" className="text-base font-bold">{t('account.walletsPage.primaryTitle')}</h1>
-        <p className="mt-1 mb-5 text-xs text-muted-foreground">{t('account.walletsPage.primaryText')}</p>
+        <h1 id="primary-title" className="text-base font-bold lg:text-[17px]">{t('account.walletsPage.primaryTitle')}</h1>
+        <p className="mt-1 mb-5 text-xs text-muted-foreground lg:mt-0 lg:mb-[35px] lg:text-sm">{t('account.walletsPage.primaryText')}</p>
         <WalletForm idPrefix="primary-wallet" wallet={primary} saving={savePrimary.isPending} onSave={(values) => savePrimary.mutateAsync(values).then(() => saved(t('account.walletsPage.primarySaved')))} />
       </section>
 

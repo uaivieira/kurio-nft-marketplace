@@ -44,19 +44,19 @@ export function NftCard({ nft, sizes = '(min-width: 1024px) 250px, 45vw', priori
   const { t } = useTranslation()
   const soldOut = nft.totalAvailable === 0
   return (
-    <article className="group relative flex flex-col max-md:rounded-2xl max-md:bg-card max-md:p-1.5 max-md:pb-3" data-testid="nft-card">
-      <div className="relative flex aspect-[258/300] items-center justify-center overflow-hidden bg-card px-1 max-md:aspect-square max-md:px-0">
-        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes={sizes} priority={priority} className="rounded-2xl transition-transform duration-500 ease-out group-hover:scale-[1.03]" />
-        {nft.badge && <span className="absolute top-6 left-0 bg-primary px-3 py-1 text-base font-medium text-primary-foreground uppercase">{t('catalog.card.rare')}</span>}
+    <article className="group relative flex flex-col" data-testid="nft-card">
+      <div className="relative flex aspect-[258/300] items-center justify-center overflow-hidden bg-card px-1 max-md:aspect-[175/200] max-md:rounded-2xl max-md:pt-3 max-md:pb-5">
+        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes={sizes} priority={priority} className="rounded-2xl transition-transform duration-500 ease-out group-hover:scale-[1.03] max-md:aspect-square" />
+        {nft.badge && <span className="absolute top-6 left-0 bg-primary px-3 py-1 text-base font-medium text-primary-foreground uppercase max-md:top-4">{t('catalog.card.rare')}</span>}
         {soldOut && <span className="absolute bottom-6 left-1 bg-background/90 px-2 py-1 text-xs font-bold uppercase">{t('catalog.card.soldOut')}</span>}
-        <FavoriteButton nft={nft} className="absolute top-8 right-4 transition-opacity duration-200 md:opacity-0 md:group-focus-within:opacity-100 md:group-hover:opacity-100 md:aria-pressed:opacity-100" />
+        <FavoriteButton nft={nft} className="absolute top-8 right-4 max-md:top-3.5 max-md:right-[11px] max-md:size-7 max-md:rounded-full max-md:bg-background/80 max-md:[&_svg]:size-4 transition-opacity duration-200 md:opacity-0 md:group-focus-within:opacity-100 md:group-hover:opacity-100 md:aria-pressed:opacity-100" />
       </div>
-      <h3 className="mt-3 text-base leading-4 max-md:mt-2.5 max-md:px-1.5 max-md:text-md">
+      <h3 className="mt-3 text-base leading-4 max-md:mt-2.5 max-md:px-2 max-md:text-md">
         <Link to="/nft/$nftId" params={{ nftId: nft.id }} className="transition-colors duration-200 after:absolute after:inset-0 hover:text-highlight">
           {nft.name}
         </Link>
       </h3>
-      <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-base leading-4 font-bold text-highlight max-md:mt-1 max-md:px-1.5 max-md:text-md">
+      <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-base leading-4 font-bold text-highlight max-md:mt-0.5 max-md:px-2 max-md:text-base max-md:leading-4">
         <span data-testid="nft-price" className="whitespace-nowrap">{formatEth(nft.price)}</span>
         {nft.compareAtPrice && (
           <span className="font-normal whitespace-nowrap text-muted-foreground line-through">
@@ -72,7 +72,7 @@ export function NftCard({ nft, sizes = '(min-width: 1024px) 250px, 45vw', priori
 export function NftCardSkeleton() {
   return (
     <div aria-hidden="true">
-      <Skeleton className="aspect-[258/300] w-full rounded-none" />
+      <Skeleton className="aspect-[258/300] w-full rounded-none max-md:aspect-[175/200] max-md:rounded-2xl" />
       <Skeleton className="mt-3 h-4 w-3/4" />
       <Skeleton className="mt-3 h-4 w-1/3" />
     </div>

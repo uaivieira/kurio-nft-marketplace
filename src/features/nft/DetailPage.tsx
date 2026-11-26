@@ -86,8 +86,8 @@ function Purchase({ nft, edition, onEditionChange }: { nft: NftDetail; edition: 
 
   return (
     <>
-      <fieldset className="mt-3">
-        <legend className="mb-3 text-base leading-4 font-bold">{t('detail.editionLegend')}</legend>
+      <fieldset className="mt-[7px] max-md:mt-4">
+        <legend className="mb-3 text-md leading-4 font-bold max-md:mb-2">{t('detail.editionLegend')}</legend>
         <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label={t('detail.edition')}>
           {nft.editions.map((item) => {
             const out = item.available === 0
@@ -112,7 +112,7 @@ function Purchase({ nft, edition, onEditionChange }: { nft: NftDetail; edition: 
         {soldOut && <p role="status" className="mt-2 text-xs text-destructive">{t('detail.editionSoldOut')}</p>}
       </fieldset>
 
-      <div data-testid="purchase-row" className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 max-md:sticky max-md:bottom-0 max-md:z-20 max-md:order-last max-md:-mx-5 max-md:mt-6 max-md:rounded-t-[2rem] max-md:bg-card max-md:px-6 max-md:pt-6 max-md:pb-5 max-md:shadow-[0_-12px_32px_rgba(0,0,0,0.45)] md:mt-[13px] md:min-h-[49.5px] md:items-start">
+      <div data-testid="purchase-row" className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-3 max-md:gap-y-5 max-md:sticky max-md:bottom-0 max-md:z-20 max-md:order-last max-md:-mx-6 max-md:mt-6 max-md:rounded-t-[2rem] max-md:bg-card max-md:px-6 max-md:pt-6 max-md:pb-[34px] max-md:shadow-[0_-12px_32px_rgba(0,0,0,0.45)] md:mt-[13px] md:min-h-[49.5px] md:items-start">
         <div className="flex items-center gap-3">
           <span aria-hidden="true" className="text-sm md:hidden">{t('detail.quantityShort')}</span>
           <QuantityStepper value={quantity} max={limit} onChange={setQuantity} size="adaptive" live testId="quantity" />
@@ -120,11 +120,11 @@ function Purchase({ nft, edition, onEditionChange }: { nft: NftDetail; edition: 
         <p className="ml-auto text-xl font-bold text-highlight md:hidden" data-testid="mobile-price">{formatEth(edition.price)}</p>
         {!soldOut && quantity >= limit && <p className="basis-full text-xs text-muted-foreground md:order-last" role="status">{t('detail.limit', { count: limit })}</p>}
         <div className="flex w-full gap-3 md:ml-auto md:w-auto md:gap-2">
-          <Button size="lg" className="h-14 flex-1 rounded-full bg-cta max-md:max-w-[200px] md:h-10 md:w-[130px] md:flex-none md:rounded-sm md:bg-none md:bg-primary md:px-0 md:text-sm" disabled={soldOut || addToCart.isPending} onClick={() => submit(true)}>
+          <Button size="lg" className="h-[60px] flex-1 rounded-full bg-cta max-md:max-w-[196px] max-md:text-base md:h-10 md:w-[130px] md:flex-none md:rounded-sm md:bg-none md:bg-primary md:px-0 md:text-sm" disabled={soldOut || addToCart.isPending} onClick={() => submit(true)}>
             <span className="md:hidden">{t('detail.buyMobile')}</span>
             <span className="hidden md:inline">{t('detail.buy')}</span>
           </Button>
-          <Button type="button" variant="ghost" size="icon-lg" aria-label={t('detail.addToCart')} disabled={soldOut || addToCart.isPending} onClick={() => submit(false)} className="size-14 rounded-full border border-primary/40 bg-background text-primary md:hidden">
+          <Button type="button" variant="ghost" size="icon-lg" aria-label={t('detail.addToCart')} disabled={soldOut || addToCart.isPending} onClick={() => submit(false)} className="size-[60px] rounded-full border border-primary/40 bg-background text-primary md:hidden">
             <CartIcon className="size-6" />
           </Button>
           <FavoriteLabel nft={nft} />
@@ -151,7 +151,7 @@ function Gallery({ nft }: { nft: NftDetail }) {
         ))}
       </ul>
       <div className="relative bg-card max-md:bg-transparent md:flex md:h-[448px] md:items-center md:justify-center md:p-5 lg:aspect-square lg:h-auto lg:self-start">
-        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes="(min-width: 768px) 404px, 100vw" size={480} priority className="rounded-2xl max-md:aspect-[366/330] max-md:object-[50%_20%] md:max-w-[404px]" />
+        <NftImage artwork={nft.artwork} alt={t('common.artOf', { name: nft.name })} sizes="(min-width: 768px) 404px, 100vw" size={480} priority className="rounded-2xl max-md:aspect-[358/350] max-md:object-[50%_20%] md:max-w-[404px]" />
         <Dialog>
           <DialogTrigger asChild>
             <button type="button" aria-label={t('detail.zoom')} className="absolute top-6 right-6 flex size-9 cursor-pointer items-center justify-center rounded-full bg-background/80 max-md:hidden">
@@ -204,32 +204,32 @@ function DetailContent({ nft }: { nft: NftDetail }) {
 
   return (
     <>
-      <MobileTopBar action={<FavoriteButton nft={nft} className="size-10 rounded-full bg-card" />} />
-      <article className="mx-auto max-w-page px-5 pb-16">
+      <MobileTopBar className="pt-[22px] pb-0" action={<FavoriteButton nft={nft} className="size-9 rounded-full bg-card" />} />
+      <article className="mx-auto max-w-page px-7 pb-16 md:px-5">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market') }]} />
-        <div className="grid gap-6 pt-3 lg:grid-cols-[100px_minmax(0,444px)_minmax(505px,1fr)] lg:gap-x-7">
+        <div className="grid gap-6 pt-2 md:pt-3 lg:grid-cols-[100px_minmax(0,444px)_minmax(505px,1fr)] lg:gap-x-7">
           <Gallery nft={nft} />
-          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-5 max-md:-mt-12 max-md:flex max-md:flex-col max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px]">
-            <div className="flex items-start justify-between gap-3">
+          <div className="relative rounded-t-3xl bg-card p-5 max-md:-mx-7 max-md:-mt-12 max-md:flex max-md:flex-col max-md:px-6 max-md:pt-[30px] max-md:pb-0 md:bg-transparent md:p-0 lg:pl-[5px]">
+            <div className="flex flex-wrap items-start justify-between gap-3">
               <h1 className="text-xl font-bold md:text-title md:leading-[37px]">{nft.name}</h1>
               <p className="flex shrink-0 items-center gap-1 rounded-full border border-primary px-2 py-0.5 text-sm font-bold md:hidden">
                 <StarIcon className="size-3.5 text-primary" /> {nft.rating.toFixed(1)}<span className="font-normal">({nft.reviewCount})</span>
               </p>
             </div>
             <div className="mt-3 hidden flex-wrap items-center justify-between gap-x-4 gap-y-2 md:flex">
-              <p className="text-xl leading-4 font-bold whitespace-nowrap text-highlight" data-testid="detail-price">{formatEth(edition.price)}</p>
+              <p className="text-[22px] leading-4 font-bold whitespace-nowrap text-highlight" data-testid="detail-price">{formatEth(edition.price)}</p>
               <p className="flex items-center gap-1 text-base leading-5 whitespace-nowrap"><Stars rating={nft.rating} />{interpolate((slots) => t('detail.reviews', slots), { total: nft.reviewCount })}</p>
             </div>
             <div aria-hidden="true" className="mt-3 mr-[3.7%] hidden h-px bg-border md:block" />
-            <h2 className="mt-[13px] hidden text-base leading-4 font-bold md:block">{t('detail.about')}</h2>
-            <p className="mt-3 text-sm leading-[22px] text-text-secondary">{nft.description}</p>
+            <h2 className="mt-[13px] hidden text-md leading-4 font-bold md:block">{t('detail.about')}</h2>
+            <p className="mt-3 text-sm leading-[22px] text-text-secondary md:leading-6">{nft.description}</p>
             <Purchase nft={nft} edition={edition} onEditionChange={setEditionId} />
             <dl className="mt-[13px] space-y-3 text-md leading-5 text-text-secondary">
               <div><dt className="inline">{`${t('common.tokenId')}: `}</dt><dd className="inline">#{nft.tokenId}</dd></div>
               <div><dt className="inline">{`${t('detail.collection')} `}</dt><dd className="inline">{nft.collectionName}</dd></div>
               <div><dt className="inline">{`${t('detail.attributes')} `}</dt><dd className="inline">{nft.attributes.join(', ')}</dd></div>
             </dl>
-            <p className="mt-3 hidden items-center gap-2 text-base leading-4 font-bold md:flex">
+            <p className="mt-3 hidden items-center gap-2 text-md leading-4 font-bold md:flex">
               {t('detail.share.title')}
               <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`} target="_blank" rel="noopener noreferrer" aria-label={t('detail.share.linkedin')} className="flex size-6 items-center justify-center hover:text-highlight"><LinkedinIcon className="size-[15px]" /></a>
               <a href={`mailto:?subject=${encodeURIComponent(nft.name)}&body=${encodeURIComponent(shareUrl)}`} aria-label={t('detail.share.email')} className="flex size-6 items-center justify-center hover:text-highlight"><MessageIcon className="size-[18px]" /></a>
@@ -238,12 +238,12 @@ function DetailContent({ nft }: { nft: NftDetail }) {
           </div>
         </div>
 
-        <Tabs defaultValue="details" className="mt-24 hidden md:block">
+        <Tabs defaultValue="details" className="mt-[88px] hidden md:block">
           <TabsList className="h-7 w-full justify-start gap-8 rounded-none border-b border-border bg-transparent p-0">
-            <TabsTrigger value="details" className="flex-none rounded-none border-0 border-b-2 border-transparent px-0 pb-3 text-base leading-4 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:font-bold data-[state=active]:text-highlight">{t('detail.tabs.details')}</TabsTrigger>
-            <TabsTrigger value="reviews" className="flex-none rounded-none border-0 border-b-2 border-transparent px-0 pb-3 text-base leading-4 data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:font-bold data-[state=active]:text-highlight">{interpolate((slots) => t('detail.tabs.reviews', slots), { total: nft.reviewCount })}</TabsTrigger>
+            <TabsTrigger value="details" className="flex-none rounded-none border-0 border-b-2 border-transparent px-0 pb-3 text-[17px] leading-4 text-foreground data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:font-bold data-[state=active]:text-highlight">{t('detail.tabs.details')}</TabsTrigger>
+            <TabsTrigger value="reviews" className="flex-none rounded-none border-0 border-b-2 border-transparent px-0 pb-3 text-[17px] leading-4 text-foreground data-[state=active]:border-primary data-[state=active]:bg-transparent data-[state=active]:font-bold data-[state=active]:text-highlight">{interpolate((slots) => t('detail.tabs.reviews', slots), { total: nft.reviewCount })}</TabsTrigger>
           </TabsList>
-          <TabsContent value="details" className="space-y-3 pt-3 text-sm leading-6 text-text-secondary">
+          <TabsContent value="details" className="space-y-3 pt-[7px] text-sm leading-6 text-text-secondary">
             {nft.story.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
             <p><strong className="block text-foreground">{t('detail.network.title')}</strong>{t('detail.network.text')}</p>
             <p><strong className="block text-foreground">{t('detail.contract.title')}</strong>{interpolate((slots) => t('detail.contract.text', slots), { percent: nft.royaltiesPercent })}</p>

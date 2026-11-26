@@ -1,0 +1,67 @@
+{
+  "frame": "mobile-signup",
+  "source": "figma/frames/mobile-signup.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
+  "elements": [
+    {
+      "id": "logo",
+      "selector": "role=dialog >> text=KURIO",
+      "measure": "ink",
+      "x": 154,
+      "y": 137,
+      "w": 106,
+      "h": 24
+    },
+    {
+      "id": "title",
+      "selector": "role=dialog >> text=\"Criar perfil de colecionador\"",
+      "measure": "ink",
+      "x": 56,
+      "y": 257,
+      "w": 301,
+      "h": 15,
+      "font": {
+        "size": 18,
+        "weight": 700
+      },
+      "ignore": [
+        "h"
+      ]
+    },
+    {
+      "id": "username",
+      "selector": "role=dialog >> role=textbox[name=\"Nome de usuário\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 312,
+      "w": 358,
+      "h": 50
+    },
+    {
+      "id": "submit",
+      "selector": "role=dialog >> role=button[name=\"Criar perfil\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 588,
+      "w": 358,
+      "h": 60
+    },
+    {
+      "id": "google",
+      "selector": "role=dialog >> role=button[name=/Google/]",
+      "measure": "box",
+      "x": 28,
+      "y": 716,
+      "w": 358,
+      "h": 40
+    },
+    {
+      "id": "footer-link",
+      "selector": "role=dialog >> role=link[name=/Já tem uma conta/]",
+      "measure": "ink",
+      "x": 103,
+      "y": 857,
+      "w": 207,
+      "h": 11
+    }
+  ]
+}

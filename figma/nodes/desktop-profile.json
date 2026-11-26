@@ -1,0 +1,66 @@
+{
+  "frame": "desktop-profile",
+  "source": "figma/frames/desktop-profile.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
+  "elements": [
+    {
+      "id": "sidebar-title",
+      "selector": "role=navigation[name=\"Conta\"] >> text=\"Meu perfil\"",
+      "measure": "ink",
+      "x": 130,
+      "y": 120,
+      "w": 107,
+      "h": 16,
+      "ignore": [
+        "w"
+      ]
+    },
+    {
+      "id": "title",
+      "selector": "role=heading[name=\"Perfil do colecionador\"]",
+      "measure": "ink",
+      "x": 459,
+      "y": 102,
+      "w": 210,
+      "h": 13
+    },
+    {
+      "id": "first-label",
+      "selector": "text=/^Nome de exibição/ >> nth=0",
+      "measure": "ink",
+      "x": 459,
+      "y": 156,
+      "w": 157,
+      "h": 16,
+      "ignore": [
+        "w"
+      ]
+    },
+    {
+      "id": "first-input",
+      "selector": "role=textbox[name=/Nome de exibição/]",
+      "measure": "box",
+      "x": 458,
+      "y": 188,
+      "w": 417,
+      "h": 40
+    },
+    {
+      "id": "second-label",
+      "selector": "text=/^E-mail/ >> nth=0",
+      "measure": "ink",
+      "x": 459,
+      "y": 259,
+      "w": 66,
+      "h": 13
+    },
+    {
+      "id": "second-input",
+      "selector": "role=textbox[name=/E-mail/]",
+      "measure": "box",
+      "x": 458,
+      "y": 291,
+      "w": 417,
+      "h": 40
+    }
+  ]
+}

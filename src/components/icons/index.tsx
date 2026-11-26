@@ -212,6 +212,15 @@ export function UserIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+export function UserFilledIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false" {...props}>
+      <circle cx="12" cy="6.9" r="4.6" />
+      <path d="M12 13.6c-4.1 0-7.4 1.9-7.4 4.3 0 2.2 3.3 3.1 7.4 3.1s7.4-.9 7.4-3.1c0-2.4-3.3-4.3-7.4-4.3Z" />
+    </svg>
+  )
+}
+
 export function CartIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false" {...props}>

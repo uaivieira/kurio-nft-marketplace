@@ -75,6 +75,24 @@ test.describe('tablet and narrow desktop layout', () => {
         return [...list.querySelectorAll('dt')].map((term) => ({ label: term.textContent, delta: Math.abs(textBottom(term) - textBottom(term.nextElementSibling!)) }))
       })
       for (const { label, delta } of baselines) expect(delta, `baseline of "${label}"`).toBeLessThanOrEqual(2)
+
+      const truncatedNames = await page.getByTestId('cart-line').evaluateAll((lines) => lines.map((line) => line.querySelector('p[title]')!).filter((name) => name.scrollWidth > name.clientWidth).map((name) => name.textContent))
+      expect(truncatedNames, 'cart names fit on one line').toEqual([])
+
+      const footer = page.getByRole('contentinfo')
+      const chip = footer.getByText(/MetaMask/)
+      expect(await chip.evaluate((element) => element.getBoundingClientRect().height), 'wallet chip on one line').toBeLessThanOrEqual(26)
+      const newsletter = footer.getByRole('textbox')
+      expect(await newsletter.evaluate((input: HTMLInputElement) => {
+        input.value = input.placeholder
+        const clipped = input.scrollWidth > input.clientWidth
+        input.value = ''
+        return clipped
+      }), 'newsletter placeholder fits').toBe(false)
+      if (width >= 1024) {
+        const wrapped = await footer.getByRole('heading', { level: 2 }).evaluateAll((headings) => headings.slice(0, 3).filter((heading) => heading.getBoundingClientRect().height > parseFloat(getComputedStyle(heading).lineHeight) * 1.5).map((heading) => heading.textContent))
+        expect(wrapped, 'footer feature titles on one line').toEqual([])
+      }
     })
   }
 })

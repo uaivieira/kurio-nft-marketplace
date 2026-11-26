@@ -23,12 +23,12 @@ interface AuthDialogProps {
   expired?: boolean
 }
 
-function SocialButtons() {
+function SocialButtons({ spacious = false }: { spacious?: boolean }) {
   const { t } = useTranslation()
   return (
-    <div className="space-y-3">
-      <p className="relative text-center text-xs before:absolute before:top-1/2 before:left-0 before:h-px before:w-full before:bg-border">
-        <span className="relative bg-card px-3">{t('auth.social.divider')}</span>
+    <div className={cn('space-y-3 md:mb-0 md:pt-1', spacious && 'md:space-y-4')}>
+      <p className="relative text-center text-[13px] leading-4 before:absolute before:top-1/2 before:left-0 before:h-px before:w-full before:bg-border md:before:-left-20 md:before:w-[500px]">
+        <span className="relative bg-card px-3 max-md:bg-background">{t('auth.social.divider')}</span>
       </p>
       {[
         { provider: 'Google', icon: <GoogleLogoIcon className="size-5" /> },
@@ -39,7 +39,7 @@ function SocialButtons() {
           type="button"
           disabled
           title={t('auth.social.unavailable')}
-          className="flex h-10 w-full cursor-not-allowed items-center justify-center gap-3 rounded-sm border border-border text-xs font-bold text-muted-foreground max-md:first-of-type:mb-4"
+          className="flex h-10 w-full cursor-not-allowed items-center justify-center gap-3 rounded-sm border border-border text-[13px] font-bold text-text-secondary max-md:pr-5 max-md:first-of-type:mb-4"
         >
           {icon}
           {t('auth.social.continueWith', { provider })}
@@ -66,7 +66,7 @@ function LoginForm({ onDone }: { onDone: () => void }) {
   const { errors } = form.formState
 
   return (
-    <form noValidate onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-4 max-md:space-y-3">
+    <form noValidate onSubmit={form.handleSubmit((values) => { setFormError(null); mutation.mutate(values) })} className="space-y-3">
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
       <Field hideLabel label={t('common.fields.email')} error={errors.email?.message}>
         {(props) => <Input {...props} className="max-md:h-[50px] max-md:rounded-lg" type="email" autoComplete="email" placeholder={t('auth.emailPlaceholder')} {...form.register('email')} />}
@@ -74,10 +74,10 @@ function LoginForm({ onDone }: { onDone: () => void }) {
       <Field hideLabel label={t('common.fields.password')} error={errors.password?.message}>
         {(props) => <PasswordInput {...props} className="max-md:h-[50px] max-md:rounded-lg" autoComplete="current-password" placeholder={t('common.fields.password')} {...form.register('password')} />}
       </Field>
-      <p className="text-right text-sm max-md:mb-[38px]">
+      <p className="text-right text-sm max-md:mb-[35px] md:-mt-0.5 md:mb-[22px]">
         <span aria-disabled="true" title={t('common.soon')} className="cursor-not-allowed text-highlight/70">{t('auth.forgotPassword')}<span className="sr-only">{` ${t('common.soonSr')}`}</span></span>
       </p>
-      <Button type="submit" size="lg" className="w-full max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
+      <Button type="submit" size="lg" className="w-full text-base max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
         {mutation.isPending ? t('auth.loggingIn') : t('auth.login')}
       </Button>
     </form>
@@ -114,7 +114,7 @@ function SignupForm({ onDone }: { onDone: () => void }) {
       <Field hideLabel label={t('common.fields.confirmPassword')} error={errors.confirmPassword?.message}>
         {(props) => <PasswordInput {...props} className="max-md:h-[50px] max-md:rounded-lg" autoComplete="new-password" placeholder={t('common.fields.confirmPassword')} {...form.register('confirmPassword')} />}
       </Field>
-      <Button type="submit" size="lg" className="mt-2 w-full max-md:mt-7 max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
+      <Button type="submit" size="lg" className="mt-3 w-full text-base max-md:mt-7 max-md:h-[60px] max-md:rounded-lg" disabled={mutation.isPending}>
         {mutation.isPending ? t('auth.signingUp') : (<><span className="md:hidden">{t('auth.signupMobile')}</span><span className="max-md:hidden">{t('auth.signup')}</span></>)}
       </Button>
     </form>
@@ -131,26 +131,26 @@ export function AuthDialog({ mode, redirect, expired }: AuthDialogProps) {
   return (
     <Dialog open onOpenChange={(open) => !open && void navigate({ to: '/' })}>
       <DialogContent
-        className="max-md:top-0 max-md:left-0 max-md:h-dvh max-md:max-w-none max-md:translate-x-0 max-md:translate-y-0 max-md:[align-content:safe_center] max-md:overflow-y-auto max-md:px-7 max-md:rounded-none max-md:border-b-0 max-md:bg-background md:top-[158px] md:max-w-[500px] md:translate-y-0 md:gap-5 md:px-0 md:pt-12 md:pb-14"
+        className="max-md:top-0 max-md:left-0 max-md:h-dvh max-md:max-w-none max-md:translate-x-0 max-md:translate-y-0 max-md:content-start max-md:overflow-y-auto max-md:pt-[129px] max-md:px-7 max-md:rounded-none max-md:border-b-0 max-md:bg-background md:top-40 md:min-h-[600px] md:max-w-[500px] md:translate-y-0 md:content-start md:gap-5 md:px-0 md:pt-[42px] md:pb-[66px] [&>[data-slot=dialog-close]]:top-[9px] [&>[data-slot=dialog-close]]:right-3 [&>[data-slot=dialog-close]]:text-primary! [&>[data-slot=dialog-close]]:opacity-100 [&>[data-slot=dialog-close]_svg]:size-[18px]"
         aria-describedby="auth-description"
         overlayClassName="md:bg-transparent"
       >
-        <p aria-hidden="true" className="hidden pt-3.5 text-center text-3xl font-bold tracking-label max-md:block">KURIO</p>
-        <p aria-hidden="true" className="hidden pt-[68px] pb-4 text-center text-xl font-bold max-md:block">{isLogin ? t('auth.login') : t('auth.signupMobileTitle')}</p>
-        <div className="flex items-center justify-center gap-3 text-xl max-md:hidden">
+        <p aria-hidden="true" className="hidden text-center text-[32px] leading-9 font-bold tracking-label max-md:block">KURIO</p>
+        <p aria-hidden="true" className={cn('hidden pt-[68px] pb-[19px] text-center font-bold max-md:block', isLogin ? 'text-xl' : 'text-lg')}>{isLogin ? t('auth.login') : t('auth.signupMobileTitle')}</p>
+        <div className="flex items-center justify-center gap-3.5 text-[19px] max-md:hidden">
           <DialogTitle className="sr-only">{isLogin ? t('auth.login') : t('auth.signup')}</DialogTitle>
           <Link to="/login" search={{ redirect }} replace aria-current={isLogin ? 'page' : undefined} className={cn(isLogin ? 'font-bold text-highlight' : 'font-bold')}>{t('auth.login')}</Link>
           <span aria-hidden="true" className="h-5 w-px bg-primary" />
           <Link to="/signup" search={{ redirect }} replace aria-current={!isLogin ? 'page' : undefined} className={cn(!isLogin ? 'font-bold text-highlight' : 'font-bold')}>{t('auth.signup')}</Link>
         </div>
-        <DialogDescription id="auth-description" className="mx-auto max-w-[360px] text-center text-sm text-foreground max-md:sr-only">
+        <DialogDescription id="auth-description" className="mx-auto max-w-[400px] text-center text-[13px] leading-[17px] text-foreground max-md:sr-only md:mt-4">
           {isLogin ? t('auth.loginDescription') : t('auth.signupDescription')}
         </DialogDescription>
         {expired && <p role="status" className="rounded-sm border border-primary px-3 py-2 text-center text-xs">{t('auth.expired')}</p>}
-        <div className="mx-auto w-full max-w-[340px] space-y-5 max-md:max-w-none max-md:space-y-10">
+        <div className="mx-auto w-full max-w-[340px] space-y-5 max-md:max-w-none max-md:space-y-10 md:mt-[3px]">
           {isLogin ? <LoginForm onDone={leave} /> : <SignupForm onDone={leave} />}
-          <SocialButtons />
-          <p className="text-center text-base text-text-secondary md:hidden">
+          <SocialButtons spacious={!isLogin} />
+          <p className="text-center text-md text-text-secondary max-md:pt-[3px] md:hidden">
             {isLogin ? (
               <Link to="/signup" search={{ redirect }} replace className="hover:text-highlight">{t('auth.toSignup')}</Link>
             ) : (

@@ -1,0 +1,175 @@
+{
+  "frame": "desktop-home",
+  "source": "figma/frames/desktop-home.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
+  "elements": [
+    {
+      "id": "header-logo",
+      "selector": "role=banner >> role=link[name=\"Kurio, página inicial\"]",
+      "measure": "ink",
+      "x": 121,
+      "y": 36,
+      "w": 46,
+      "h": 11
+    },
+    {
+      "id": "header-nav-home",
+      "selector": "role=navigation[name=\"Principal\"] >> role=link[name=\"Início\"]",
+      "measure": "ink",
+      "x": 497,
+      "y": 29,
+      "w": 56,
+      "h": 12,
+      "ignore": [
+        "h"
+      ]
+    },
+    {
+      "id": "header-search",
+      "selector": "role=banner >> role=button[name=\"Buscar NFTs\"]",
+      "measure": "ink",
+      "x": 1113,
+      "y": 31,
+      "w": 20,
+      "h": 21
+    },
+    {
+      "id": "header-login",
+      "selector": "role=banner >> role=link[name=\"Entrar\"]",
+      "measure": "box",
+      "x": 1220,
+      "y": 24,
+      "w": 100,
+      "h": 34
+    },
+    {
+      "id": "hero-welcome",
+      "selector": "role=region[name=/./] >> text=\"Bem-vindo à Kurio\"",
+      "measure": "ink",
+      "x": 161,
+      "y": 146,
+      "w": 164,
+      "h": 11
+    },
+    {
+      "id": "hero-title",
+      "selector": "role=heading[level=1]",
+      "measure": "ink",
+      "x": 162,
+      "y": 189,
+      "w": 487,
+      "h": 91
+    },
+    {
+      "id": "hero-text",
+      "selector": "role=heading[level=1] >> xpath=following-sibling::p[1]",
+      "measure": "ink",
+      "x": 160,
+      "y": 318,
+      "w": 544,
+      "h": 59
+    },
+    {
+      "id": "hero-explore",
+      "selector": "role=link[name=\"Explorar\"] >> nth=0",
+      "measure": "box",
+      "x": 160,
+      "y": 416,
+      "w": 140,
+      "h": 40
+    },
+    {
+      "id": "hero-image",
+      "selector": "role=img[name=/Emerald Ape/] >> nth=0",
+      "measure": "box",
+      "x": 870,
+      "y": 101,
+      "w": 450,
+      "h": 450
+    },
+    {
+      "id": "filters-collections",
+      "selector": "role=complementary >> text=\"Coleções\" >> nth=0",
+      "measure": "ink",
+      "x": 140,
+      "y": 668,
+      "w": 86,
+      "h": 18
+    },
+    {
+      "id": "journal-title",
+      "selector": "text=\"Diário da Cunhagem\"",
+      "measure": "ink",
+      "x": 570,
+      "y": 2470,
+      "w": 300,
+      "h": 27
+    },
+    {
+      "id": "footer-feature-title",
+      "selector": "role=contentinfo >> role=heading[name=\"Segurança da carteira\"]",
+      "measure": "ink",
+      "x": 169,
+      "y": 3154,
+      "w": 213,
+      "h": 17,
+      "font": {
+        "size": 17,
+        "weight": 700
+      }
+    },
+    {
+      "id": "footer-feature-icon",
+      "selector": "role=contentinfo >> text=\"W\"",
+      "measure": "box",
+      "x": 168,
+      "y": 3066,
+      "w": 74,
+      "h": 74
+    },
+    {
+      "id": "footer-newsletter-input",
+      "selector": "role=contentinfo >> role=textbox",
+      "measure": "box",
+      "x": 965,
+      "y": 3114,
+      "w": 255,
+      "h": 40,
+      "ignore": [
+        "w"
+      ]
+    },
+    {
+      "id": "footer-column-title",
+      "selector": "role=contentinfo >> role=heading[name=\"Meu perfil\"]",
+      "measure": "ink",
+      "x": 153,
+      "y": 3405,
+      "w": 106,
+      "h": 15,
+      "ignore": [
+        "h"
+      ]
+    },
+    {
+      "id": "footer-column-help",
+      "selector": "role=contentinfo >> role=heading[name=\"Central de ajuda\"]",
+      "measure": "ink",
+      "x": 455,
+      "y": 3405,
+      "w": 172,
+      "h": 15,
+      "ignore": [
+        "h"
+      ]
+    },
+    {
+      "id": "footer-wallets-chip",
+      "selector": "role=contentinfo >> text=/MetaMask/",
+      "measure": "box",
+      "x": 1060,
+      "y": 3530,
+      "w": 228,
+      "h": 26
+    }
+  ]
+}

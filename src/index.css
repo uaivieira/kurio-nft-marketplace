@@ -40,6 +40,7 @@
   --ring: #e89b55;
   --radius: 0.25rem;
   --gradient-cta: linear-gradient(90deg, #d28a4c 0%, #a8723f 100%);
+  --gradient-hero: radial-gradient(circle at 46% 62%, rgb(255 214 170 / 0.1) 0 118px, transparent 119px), linear-gradient(100deg, #7a5232 0%, #55381f 45%, #281a11 100%);
 }
 
 @theme inline {
@@ -140,4 +141,8 @@
 
 @utility bg-cta {
   background-image: var(--gradient-cta);
+}
+
+@utility bg-hero {
+  background-image: var(--gradient-hero);
 }

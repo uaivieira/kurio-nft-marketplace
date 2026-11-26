@@ -70,7 +70,7 @@ function ProfileForm() {
       })
     })}>
       {formError && <p role="alert" className="rounded-sm border border-destructive px-3 py-2 text-xs text-destructive">{formError}</p>}
-      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-[30px] lg:[&>div]:gap-4">
+      <div className="grid gap-x-7 gap-y-6 lg:grid-cols-2 lg:gap-y-7 lg:[&>div]:gap-[19px]">
         <Field label={t('common.fields.displayName')} required error={errors.displayName?.message}>{(p) => <Input {...p} {...form.register('displayName')} />}</Field>
         <Field label={t('common.fields.username')} required error={errors.username?.message}>{(p) => <Input {...p} autoComplete="username" {...form.register('username')} />}</Field>
         <Field label={t('common.fields.email')} required error={errors.email?.message}>{(p) => <Input {...p} type="email" autoComplete="email" {...form.register('email')} />}</Field>
@@ -125,7 +125,7 @@ export function ProfilePage() {
   return (
     <div className="space-y-10">
       <section aria-labelledby="profile-title">
-        <h1 id="profile-title" className="mb-4 text-base font-bold">{t('account.profile.title')}</h1>
+        <h1 id="profile-title" className="mb-4 text-base font-bold lg:mb-[34px]">{t('account.profile.title')}</h1>
         {isPending ? (
           <div role="status" aria-busy="true" aria-label={t('account.profile.loading')} className="grid gap-4 lg:grid-cols-2" data-testid="profile-skeleton">{Array.from({ length: 6 }, (_, i) => <Skeleton key={i} className="h-16" />)}</div>
         ) : isError ? (

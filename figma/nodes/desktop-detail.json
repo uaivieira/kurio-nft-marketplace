@@ -1,0 +1,163 @@
+{
+  "frame": "desktop-detail",
+  "source": "figma/frames/desktop-detail.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do elemento no app.",
+  "elements": [
+    {
+      "id": "header-logo",
+      "selector": "role=banner >> role=link[name=\"Kurio, página inicial\"]",
+      "measure": "ink",
+      "x": 121,
+      "y": 36,
+      "w": 46,
+      "h": 11
+    },
+    {
+      "id": "header-nav-home",
+      "selector": "role=navigation[name=\"Principal\"] >> role=link[name=\"Início\"]",
+      "measure": "ink",
+      "x": 497,
+      "y": 29,
+      "w": 56,
+      "h": 12,
+      "ignore": [
+        "h"
+      ]
+    },
+    {
+      "id": "header-search",
+      "selector": "role=banner >> role=button[name=\"Buscar NFTs\"]",
+      "measure": "ink",
+      "x": 1113,
+      "y": 31,
+      "w": 20,
+      "h": 21
+    },
+    {
+      "id": "header-login",
+      "selector": "role=banner >> role=link[name=\"Entrar\"]",
+      "measure": "box",
+      "x": 1220,
+      "y": 24,
+      "w": 100,
+      "h": 34
+    },
+    {
+      "id": "breadcrumb",
+      "selector": "role=navigation[name=\"Trilha de navegação\"]",
+      "measure": "ink",
+      "x": 121,
+      "y": 103,
+      "w": 143,
+      "h": 13
+    },
+    {
+      "id": "thumbnail-1",
+      "selector": "role=list[name=/Miniaturas/] >> role=img >> nth=0",
+      "measure": "box",
+      "x": 120,
+      "y": 129,
+      "w": 100,
+      "h": 100
+    },
+    {
+      "id": "title",
+      "selector": "role=heading[level=1]",
+      "measure": "ink",
+      "x": 727,
+      "y": 137,
+      "w": 266,
+      "h": 27
+    },
+    {
+      "id": "price",
+      "selector": "data-testid=detail-price",
+      "measure": "ink",
+      "x": 727,
+      "y": 181,
+      "w": 103,
+      "h": 16,
+      "font": {
+        "size": 22,
+        "weight": 700
+      }
+    },
+    {
+      "id": "about",
+      "selector": "role=heading[name=\"Sobre este NFT:\"]",
+      "measure": "ink",
+      "x": 725,
+      "y": 226,
+      "w": 132,
+      "h": 12,
+      "font": {
+        "size": 15
+      }
+    },
+    {
+      "id": "description",
+      "selector": "role=heading[name=\"Sobre este NFT:\"] >> xpath=following-sibling::p[1]",
+      "measure": "ink",
+      "x": 726,
+      "y": 257,
+      "w": 559,
+      "h": 60
+    },
+    {
+      "id": "edition-legend",
+      "selector": "text=\"Edição:\"",
+      "measure": "ink",
+      "x": 726,
+      "y": 333,
+      "w": 59,
+      "h": 15
+    },
+    {
+      "id": "edition-chips",
+      "selector": "role=radiogroup",
+      "measure": "ink",
+      "x": 725,
+      "y": 358,
+      "w": 208,
+      "h": 27
+    },
+    {
+      "id": "buy",
+      "selector": "role=button[name=\"COMPRAR\"]",
+      "measure": "box",
+      "x": 1052,
+      "y": 400,
+      "w": 130,
+      "h": 40
+    },
+    {
+      "id": "favorite",
+      "selector": "data-testid=purchase-row >> role=button[name=\"Favoritar Emerald Ape #042\"]",
+      "measure": "box",
+      "x": 1190,
+      "y": 400,
+      "w": 130,
+      "h": 40
+    },
+    {
+      "id": "token-id",
+      "selector": "role=term >> nth=0 >> xpath=..",
+      "measure": "ink",
+      "x": 726,
+      "y": 468,
+      "w": 160,
+      "h": 11
+    },
+    {
+      "id": "tab-details",
+      "selector": "role=tab[name=\"Detalhes do NFT\"]",
+      "measure": "ink",
+      "x": 121,
+      "y": 675,
+      "w": 152,
+      "h": 13,
+      "ignore": [
+        "h"
+      ]
+    }
+  ]
+}

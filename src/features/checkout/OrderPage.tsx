@@ -35,7 +35,7 @@ function Lines({ order }: { order: Order }) {
   const row = 'flex items-baseline justify-between gap-3'
   return (
     <section aria-labelledby="order-lines" className="px-6 pb-2 md:px-11">
-      <h2 id="order-lines" className="pt-7 text-md leading-4 font-bold">{t('order.transactionDetails')}</h2>
+      <h2 id="order-lines" className="pt-7 text-md leading-4 font-bold md:pt-5">{t('order.transactionDetails')}</h2>
       <div className="mt-3 grid h-7 grid-cols-[minmax(0,1fr)_auto] border-b border-border text-md leading-4 font-bold sm:grid-cols-[minmax(0,1fr)_4.5rem_6.5rem]" aria-hidden="true"><span>{t('common.nfts')}</span><span className="text-center max-sm:hidden">{t('common.editions')}</span><span className="text-right">{t('common.subtotal')}</span></div>
       <ul>
         {order.lines.map((line) => (
@@ -65,7 +65,7 @@ function Frame({ children, title }: { children: React.ReactNode; title: string }
   const { t } = useTranslation()
   const navigate = useNavigate()
   return (
-    <div className="mx-auto max-w-page px-5 py-10 md:pt-[72px] md:pb-24">
+    <div className="mx-auto max-w-page px-5 py-10 md:pt-[97px] md:pb-24">
       <article aria-labelledby="order-title" className="relative mx-auto w-full max-w-[578px] border-b-[10px] border-primary bg-card">
         <button type="button" aria-label={t('order.close')} onClick={() => void navigate({ to: '/' })} className="absolute top-4 right-4 cursor-pointer text-primary"><XGlyph className="size-5" aria-hidden="true" /></button>
         <h1 id="order-title" className="sr-only">{title}</h1>
@@ -130,11 +130,11 @@ export function OrderPage({ orderId }: { orderId: string }) {
 
   return (
     <Frame title={t('order.confirmed.title')}>
-      <div className="flex flex-col items-center gap-3 border-b border-primary px-8 pt-10 pb-5 text-center">
+      <div className="flex flex-col items-center gap-3 border-b border-primary px-8 pt-10 pb-5 text-center md:pt-[22px]">
         <ThankYouIcon className="size-20 text-primary" />
         <p className="text-base font-bold text-text-secondary" data-testid="order-confirmed">{t('order.confirmed.heading')}</p>
       </div>
-      <dl className="grid grid-cols-2 gap-y-3 border-b border-primary px-6 py-3 text-sm leading-5 md:grid-cols-[repeat(4,auto)] md:justify-between md:divide-x md:divide-primary md:px-5 [&>div]:px-3 md:[&>div]:px-4">
+      <dl className="grid grid-cols-2 gap-y-3 border-b border-primary px-6 py-3 text-sm md:pt-[11px] leading-5 md:grid-cols-[repeat(4,auto)] md:justify-between md:divide-x md:divide-primary md:px-5 [&>div]:px-3 md:[&>div]:px-4">
         <div><dt className="font-bold text-muted-foreground">{t('order.confirmed.transactionId')}</dt><dd data-testid="receipt-hash" title={order.transactionHash ?? undefined}>{order.transactionHash ? shortHash(order.transactionHash) : '—'}</dd></div>
         <div><dt className="text-muted-foreground">{t('order.confirmed.date')}</dt><dd>{formatDate(order.updatedAt)}</dd></div>
         <div><dt className="text-muted-foreground">{t('common.total')}</dt><dd>{formatEth(order.total)}</dd></div>
@@ -144,7 +144,7 @@ export function OrderPage({ orderId }: { orderId: string }) {
       <p className="px-11 py-4 text-center text-sm leading-[22px] text-text-secondary">{t('order.confirmed.text')}</p>
       <div className="flex justify-center pb-8">
         <Dialog>
-          <DialogTrigger asChild><Button>{t('order.confirmed.explorer')}</Button></DialogTrigger>
+          <DialogTrigger asChild><Button className="md:h-12 md:w-[186px] md:text-base">{t('order.confirmed.explorer')}</Button></DialogTrigger>
           <DialogContent>
             <DialogTitle>{t('order.confirmed.explorerTitle')}</DialogTitle>
             <DialogDescription>{t('order.confirmed.explorerDescription')}</DialogDescription>

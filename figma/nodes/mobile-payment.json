@@ -1,0 +1,97 @@
+{
+  "frame": "mobile-payment",
+  "source": "figma/frames/mobile-payment.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
+  "elements": [
+    {
+      "id": "back-button",
+      "selector": "role=button[name=\"Voltar\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 32,
+      "w": 36,
+      "h": 36
+    },
+    {
+      "id": "title",
+      "selector": "text=\"Pagamento com carteira\" >> visible=true",
+      "measure": "ink",
+      "x": 88,
+      "y": 42,
+      "w": 262,
+      "h": 19,
+      "font": {
+        "size": 20,
+        "weight": 700,
+        "lineHeight": 28
+      }
+    },
+    {
+      "id": "connected-title",
+      "selector": "role=heading[name=\"Carteira conectada\"]",
+      "measure": "ink",
+      "x": 28,
+      "y": 94,
+      "w": 172,
+      "h": 12,
+      "font": {
+        "size": 16,
+        "weight": 700,
+        "lineHeight": 24
+      }
+    },
+    {
+      "id": "change-wallet",
+      "selector": "role=link[name=\"Trocar carteira\"]",
+      "measure": "ink",
+      "x": 259,
+      "y": 94,
+      "w": 125,
+      "h": 11
+    },
+    {
+      "id": "wallet-1",
+      "selector": "role=radiogroup[name=\"Carteira conectada\"] >> label >> nth=0",
+      "measure": "box",
+      "x": 28,
+      "y": 124,
+      "w": 358,
+      "h": 93
+    },
+    {
+      "id": "wallet-2",
+      "selector": "role=radiogroup[name=\"Carteira conectada\"] >> label >> nth=1",
+      "measure": "box",
+      "x": 28,
+      "y": 237,
+      "w": 358,
+      "h": 93
+    },
+    {
+      "id": "wallet-and-network",
+      "selector": "text=\"Carteira e rede\" >> visible=true",
+      "measure": "ink",
+      "x": 28,
+      "y": 348,
+      "w": 144,
+      "h": 12
+    },
+    {
+      "id": "provider-1",
+      "selector": "role=group[name=\"Carteira e rede\"] >> label >> nth=0",
+      "measure": "box",
+      "x": 28,
+      "y": 378,
+      "w": 358,
+      "h": 64
+    },
+    {
+      "id": "provider-2",
+      "selector": "role=group[name=\"Carteira e rede\"] >> label >> nth=1",
+      "measure": "box",
+      "x": 28,
+      "y": 459,
+      "w": 358,
+      "h": 64
+    }
+  ]
+}

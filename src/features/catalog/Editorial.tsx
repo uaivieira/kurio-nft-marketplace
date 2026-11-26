@@ -40,7 +40,7 @@ export function PromoBanners() {
 export function Journal() {
   const { t } = useTranslation()
   return (
-    <section aria-labelledby="journal-title" className="mx-auto mt-24 hidden max-w-page px-5 md:block">
+    <section aria-labelledby="journal-title" className="mx-auto mt-24 hidden max-w-page px-5 md:block lg:mt-[91px]">
       <h2 id="journal-title" className="text-center text-title font-bold">{t('catalog.journal.title')}</h2>
       <p className="mt-3 text-center text-md text-text-secondary">{t('catalog.journal.text')}</p>
       <ul className="mt-10 grid grid-cols-2 gap-6 lg:flex">

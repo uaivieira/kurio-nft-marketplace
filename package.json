@@ -19,7 +19,8 @@
     "test:e2e:report": "playwright show-report",
     "lighthouse": "node lighthouse/run.mjs",
     "assets": "tsx scripts/build-assets.ts",
-    "figma:compare": "tsx scripts/figma-compare.ts"
+    "figma:compare": "tsx scripts/figma-compare.ts",
+    "figma:geometry": "tsx scripts/figma-compare.ts --geometry"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.9",

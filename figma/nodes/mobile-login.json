@@ -1,0 +1,91 @@
+{
+  "frame": "mobile-login",
+  "source": "figma/frames/mobile-login.png (export 1x). O limite de chamadas MCP do plano Starter foi atingido no primeiro get_metadata, então cada valor foi medido no PNG: 'box' compara o retângulo do elemento no DOM; 'ink' compara a caixa dos pixels visíveis (texto, ícone), detectada com o mesmo limiar no PNG do Figma e na captura do app.",
+  "elements": [
+    {
+      "id": "logo",
+      "selector": "role=dialog >> text=KURIO",
+      "measure": "ink",
+      "x": 154,
+      "y": 137,
+      "w": 106,
+      "h": 24
+    },
+    {
+      "id": "title",
+      "selector": "role=dialog >> text=\"Entrar\" >> nth=0",
+      "measure": "ink",
+      "x": 172,
+      "y": 257,
+      "w": 70,
+      "h": 15
+    },
+    {
+      "id": "email",
+      "selector": "role=dialog >> role=textbox[name=\"E-mail\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 312,
+      "w": 358,
+      "h": 50
+    },
+    {
+      "id": "password",
+      "selector": "role=dialog >> role=textbox[name=\"Senha\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 374,
+      "w": 358,
+      "h": 50
+    },
+    {
+      "id": "forgot",
+      "selector": "role=dialog >> text=\"Esqueceu a senha?\"",
+      "measure": "ink",
+      "x": 244,
+      "y": 438,
+      "w": 141,
+      "h": 14
+    },
+    {
+      "id": "submit",
+      "selector": "role=dialog >> role=button[name=\"Entrar\"]",
+      "measure": "box",
+      "x": 28,
+      "y": 492,
+      "w": 358,
+      "h": 60
+    },
+    {
+      "id": "divider",
+      "selector": "role=dialog >> text=\"Ou continue com\"",
+      "measure": "ink",
+      "x": 148,
+      "y": 595,
+      "w": 117,
+      "h": 10
+    },
+    {
+      "id": "google",
+      "selector": "role=dialog >> role=button[name=/Google/]",
+      "measure": "box",
+      "x": 28,
+      "y": 620,
+      "w": 358,
+      "h": 40
+    },
+    {
+      "id": "footer-link",
+      "selector": "role=dialog >> role=link[name=\"Novo na Kurio? Crie uma conta\"]",
+      "measure": "ink",
+      "x": 77,
+      "y": 761,
+      "w": 259,
+      "h": 11,
+      "font": {
+        "size": 15,
+        "weight": 400
+      }
+    }
+  ]
+}

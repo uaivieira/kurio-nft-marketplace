@@ -239,7 +239,7 @@ export function CheckoutPage() {
   return (
     <>
       <MobileTopBar title={t('checkout.title')} />
-      <div className="mx-auto max-w-page px-5 pb-20">
+      <div className="mx-auto max-w-page px-7 pb-20 md:px-5">
         <Breadcrumbs items={[{ label: t('common.home'), to: '/' }, { label: t('common.market'), to: '/mercado' }, { label: t('checkout.breadcrumb') }]} />
 
         {hasPendingOrder && (
@@ -248,9 +248,9 @@ export function CheckoutPage() {
           </p>
         )}
 
-        <form noValidate onSubmit={(event) => { event.preventDefault(); void openReview() }} className="grid gap-8 pt-4 lg:grid-cols-[minmax(0,763fr)_minmax(320px,409fr)] lg:gap-x-7">
+        <form noValidate onSubmit={(event) => { event.preventDefault(); void openReview() }} className="grid gap-8 pt-4 max-md:pt-0 lg:grid-cols-[minmax(0,767fr)_minmax(400px,405fr)] lg:gap-x-7 lg:pt-[27px]">
           <section aria-labelledby="buyer-title" className="max-md:order-2">
-            <h2 id="buyer-title" className="mb-4 text-lg font-bold max-md:hidden">{t('checkout.buyerTitle')}</h2>
+            <h2 id="buyer-title" className="mb-4 text-lg font-bold max-md:hidden lg:mb-[11px] lg:text-[17px]">{t('checkout.buyerTitle')}</h2>
             <button type="button" aria-expanded={formOpen} aria-controls="buyer-fields" onClick={() => setFormOpen((open) => !open)} className="mb-4 flex w-full cursor-pointer items-center justify-between rounded-xl bg-card px-4 py-3 text-base font-bold md:hidden">
               {t('checkout.buyerToggle')}
               <span aria-hidden="true" className="text-highlight">{formOpen ? '−' : '+'}</span>
@@ -260,7 +260,7 @@ export function CheckoutPage() {
                 {Array.from({ length: 8 }, (_, i) => <Skeleton key={i} className="h-16" />)}
               </div>
             ) : (
-              <div id="buyer-fields" className={cn('grid gap-x-[23px] gap-y-4 sm:grid-cols-2', !formOpen && 'max-md:hidden')}>
+              <div id="buyer-fields" className={cn('grid gap-x-[23px] gap-y-4 sm:grid-cols-2 lg:gap-y-5', !formOpen && 'max-md:hidden')}>
                 <Field label={t('common.fields.displayName')} required error={errors.displayName?.message}>{(p) => <Input {...p} autoComplete="name" {...form.register('displayName')} />}</Field>
                 <Field label={t('common.fields.username')} required error={errors.username?.message}>{(p) => <Input {...p} autoComplete="username" {...form.register('username')} />}</Field>
                 <Field label={t('common.fields.network')} required error={errors.network?.message}>
@@ -309,7 +309,7 @@ export function CheckoutPage() {
 
           <aside className="max-md:order-1" aria-label={t('checkout.summary')}>
             <div className="max-md:hidden">
-            <h2 className="text-lg leading-4 font-bold">{t('checkout.yourNfts')}</h2>
+            <h2 className="text-lg leading-4 font-bold lg:mt-[5px] lg:text-[17px]">{t('checkout.yourNfts')}</h2>
             <p aria-hidden="true" className="mt-3 flex h-7 justify-between border-b border-border text-base leading-4 font-bold max-md:hidden"><span>{t('common.nfts')}</span><span>{t('common.subtotal')}</span></p>
             <ul className="mt-3 space-y-3" aria-label={t('checkout.lines')} data-testid="checkout-lines">
               {cart.isPending && [0, 1].map((i) => <Skeleton key={i} className="h-[4.5rem]" />)}
@@ -326,7 +326,7 @@ export function CheckoutPage() {
               ))}
             </ul>
             </div>
-            <div className="mt-4 space-y-4">
+            <div className="mt-4 space-y-4 max-md:mt-0">
               <div className="space-y-4 max-md:hidden">
                 {cart.data && lines.length > 0 && <CollapsibleCoupon cart={cart.data} />}
                 <TotalsRows quote={quote.data} loading={quote.isPending} />
@@ -341,19 +341,19 @@ export function CheckoutPage() {
             )}
 
             {registered.length > 0 && (
-              <section aria-labelledby="connected-title" className="mt-6 md:hidden">
+              <section aria-labelledby="connected-title" className="mt-3 md:hidden">
                 <div className="flex items-center justify-between">
                   <h2 id="connected-title" className="text-base font-bold">{t('checkout.connectedWallet')}</h2>
                   <Link to="/profile/wallets" className="text-sm font-bold text-highlight">{t('checkout.changeWallet')}</Link>
                 </div>
-                <div role="radiogroup" aria-labelledby="connected-title" className="mt-3 space-y-3">
+                <div role="radiogroup" aria-labelledby="connected-title" className="mt-3 space-y-5">
                   {registered.map((wallet) => (
-                    <label key={wallet.id} className="flex cursor-pointer items-center gap-4 rounded-xl bg-card px-4 py-4">
-                      <input type="radio" name="wallet-mobile" value={wallet.id} checked={wallet.id === selectedWallet?.id} onChange={() => chooseWallet(wallet.id)} className="size-4 accent-[var(--primary)]" />
+                    <label key={wallet.id} className="flex cursor-pointer items-center gap-[18px] rounded-xl bg-card px-5 py-3">
+                      <input type="radio" name="wallet-mobile" value={wallet.id} checked={wallet.id === selectedWallet?.id} onChange={() => chooseWallet(wallet.id)} className="size-4 shrink-0 cursor-pointer appearance-none rounded-full border-2 border-input checked:border-primary checked:bg-primary checked:shadow-[inset_0_0_0_2px_var(--card)]" />
                       <span className="flex-1 leading-6">
                         <span className="block text-base font-bold">{wallet.slot === 'primary' ? t('checkout.primary') : t('checkout.backup')}</span>
-                        <span className="block text-sm text-text-secondary">{wallet.ensLabel ? `${wallet.ensLabel}${wallet.ensSuffix}` : `${wallet.address.slice(0, 6)}…${wallet.address.slice(-4)}`}</span>
-                        <span className="block text-sm text-text-secondary">{t('checkout.networkOf', { network: NETWORK_LABELS[wallet.network] })}</span>
+                        <span className="block text-sm leading-[22px] text-text-secondary">{wallet.ensLabel ? `${wallet.ensLabel}${wallet.ensSuffix}` : `${wallet.address.slice(0, 6)}…${wallet.address.slice(-4)}`}</span>
+                        <span className="block text-sm leading-[22px] text-text-secondary">{t('checkout.networkOf', { network: NETWORK_LABELS[wallet.network] })}</span>
                       </span>
                     </label>
                   ))}
@@ -362,9 +362,9 @@ export function CheckoutPage() {
             )}
 
             {selectedWallet && (
-              <fieldset className="mt-6">
+              <fieldset className="mt-[15px] md:mt-6">
                 <legend className="mb-3 text-base font-bold md:w-full md:text-center">{t('checkout.walletAndNetwork')}</legend>
-                <div className="space-y-3">
+                <div className="space-y-4 md:space-y-3">
                   {WALLET_PROVIDERS.map((value) => {
                     const compatible = value === 'walletconnect' || value === selectedWallet.provider
                     const checked = value === activeProvider
@@ -384,7 +384,7 @@ export function CheckoutPage() {
                           checked={checked}
                           disabled={!compatible}
                           onChange={() => chooseProvider(value)}
-                          className="order-last size-4 accent-[var(--primary)] md:order-first"
+                          className="order-last size-4 accent-[var(--primary)] max-md:shrink-0 max-md:cursor-pointer max-md:appearance-none max-md:rounded-full max-md:border-2 max-md:border-input max-md:checked:border-primary max-md:checked:bg-primary max-md:checked:shadow-[inset_0_0_0_2px_var(--card)] max-md:disabled:cursor-not-allowed md:order-first"
                         />
                         <span aria-hidden="true" className="flex size-10 items-center justify-center rounded-full border border-border text-sm font-bold text-primary md:hidden">
                           {WALLET_PROVIDER_LABELS[value][0]}

@@ -41,9 +41,9 @@ export function AccountLayout() {
   }
 
   return (
-    <div className="mx-auto grid max-w-page grid-cols-[minmax(0,1fr)] gap-7 px-5 pt-6 pb-28 md:grid-cols-[310px_minmax(0,1fr)] md:pt-8 md:pb-16">
+    <div className="mx-auto grid max-w-page grid-cols-[minmax(0,1fr)] gap-7 px-5 pt-6 pb-28 md:grid-cols-[310px_minmax(0,1fr)] md:pt-7 md:pb-16">
       <nav aria-label={t('account.nav')} className="h-fit min-w-0 bg-card">
-        <h2 className="px-2.5 pt-3 pb-2 text-lg font-bold">{t('common.myProfile')}</h2>
+        <h2 className="px-2.5 pt-3 pb-2 text-lg font-bold md:pt-4 md:pb-1">{t('common.myProfile')}</h2>
         <ul className="relative max-md:flex max-md:overflow-x-auto">
           <li><Link to="/profile" className={itemClass(pathname === '/profile')} aria-current={pathname === '/profile' ? 'page' : undefined}><UserIcon className="size-5" aria-hidden="true" />{t('account.profileData')}</Link></li>
           <li><Link to="/profile/wallets" className={itemClass(pathname === '/profile/wallets')} aria-current={pathname === '/profile/wallets' ? 'page' : undefined}><LocationIcon className="size-5" aria-hidden="true" />{t('account.wallets')}</Link></li>

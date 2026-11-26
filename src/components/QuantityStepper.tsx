@@ -18,11 +18,11 @@ interface QuantityStepperProps {
 const button = {
   sm: "h-[26px] w-[18px] before:absolute before:-inset-x-1 before:inset-y-0 before:content-['']",
   lg: 'h-12 w-8',
-  adaptive: "h-[26px] w-[18px] before:absolute before:-inset-x-1 before:inset-y-0 before:content-[''] md:h-12 md:w-8 md:before:hidden",
+  adaptive: "h-[30px] w-5 before:absolute before:-inset-x-0.5 before:inset-y-0 before:content-[''] md:h-12 md:w-8 md:before:hidden",
 } as const
 const glyph = { sm: 'size-3.5', lg: 'size-5', adaptive: 'size-3.5 md:size-5' } as const
 const gap = { sm: 'gap-2.5', lg: 'gap-3', adaptive: 'gap-2.5 md:gap-3' } as const
-const output = { sm: 'w-4 text-sm md:text-base', lg: 'w-[13px] text-xl', adaptive: 'w-4 md:w-[13px] md:text-xl' } as const
+const output = { sm: 'w-4 text-sm md:text-base', lg: 'w-[13px] text-xl', adaptive: 'w-4 text-lg md:w-[13px] md:text-xl' } as const
 
 export function QuantityStepper({ value, max, onChange, label, disabled = false, size = 'sm', live = false, testId, className, buttonClassName }: QuantityStepperProps) {
   const { t } = useTranslation()
